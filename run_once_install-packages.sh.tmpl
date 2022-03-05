@@ -1,9 +1,17 @@
-{{ if eq .chezmoi.os "linux" -}}
-#!/bin/sh
-  #sudo apt install ripgrep
-
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-  #brew install ripgrep
-
-{{ end -}}
+{{ if eq .osid "darwin" }}
+# macOS-specific code
+  #!bin/bash
+  echo "Detected MacOS"
+{{ else if eq .osid "linux-debian" }}
+# Debian-specific code
+  #!bin/bash
+  echo "Detected Debian"
+{{ else if eq .osid "linux-fedora" }}
+# Fedora-specific code
+  #!bin/bash
+  echo "Detected Fedora"
+{{ else if eq .osid "linux-garuda" }}
+# Arch/Garuda-specific code
+  #!bin/bash
+  echo "Detected Garuda"
+{{ end }}
