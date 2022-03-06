@@ -11,6 +11,10 @@ echo "Detected Fedora"
 
 {{ else if eq .osid "linux-garuda" }}
 echo "Detected Garuda"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]
+then
 sudo pacman -Syu
 sudo pacman -S go neovim tmux autossh sshuttle fzf powerline code mosh nodejs discord git base-devel
 #git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
@@ -18,4 +22,5 @@ sudo pacman -S go neovim tmux autossh sshuttle fzf powerline code mosh nodejs di
 #makepkg -si
 #yay -Syu
 #yay -S slack-desktop brave
+fi
 {{ end }}
