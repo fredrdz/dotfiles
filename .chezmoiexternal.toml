@@ -4,21 +4,3 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-["/git/autojump"]
-    type = "archive"
-    url = "https://github.com/wting/autojump/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-["/git/tmux-powerline"]
-    type = "archive"
-    url = "https://github.com/fredrdz/tmux-powerline/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-["/git/tmux-mem-cpu-load"]
-    type = "archive"
-    url = "https://github.com/thewtex/tmux-mem-cpu-load/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
