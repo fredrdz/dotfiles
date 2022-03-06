@@ -1,18 +1,17 @@
 {{ if eq .osid "darwin" }}
-#!/bin/sh
+#!/usr/bin/sh
 echo "Detected MacOS"
 
 {{ else if eq .osid "linux-debian" }}
-#!/bin/sh
+#!/usr/bin/sh
 echo "Detected Debian"
 
 {{ else if eq .osid "linux-fedora" }}
-#!/bin/sh
+#!/usr/bin/sh
 echo "Detected Fedora"
 
 {{ else if eq .osid "linux-garuda" }}
-#!/bin/sh
+#!/usr/bin/sh
 echo "Detected Garuda"
-sudo pacman -Syu
 
 {{ end }}
