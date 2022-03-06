@@ -81,7 +81,7 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  title: alacritty@$HOST
+  title: alacritty@shirobo
 
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
