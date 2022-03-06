@@ -13,5 +13,6 @@ echo "Detected Fedora"
 {{ else if eq .osid "linux-garuda" }}
 #!/bin/sh
 echo "Detected Garuda"
+sudo pacman -Syu
 
 {{ end }}
