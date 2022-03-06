@@ -11,5 +11,11 @@ echo "Detected Fedora"
 
 {{ else if eq .osid "linux-garuda" }}
 echo "Detected Garuda"
-
+sudo pacman -Syu
+sudo pacman -S go neovim tmux autossh sshuttle fzf powerline code mosh nodejs discord git base-devel
+#git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
+#cd ~/git/yay-git
+#makepkg -si
+#yay -Syu
+#yay -S slack-desktop brave
 {{ end }}
