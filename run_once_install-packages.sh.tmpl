@@ -1,17 +1,17 @@
 {{ if eq .osid "darwin" }}
-#!/usr/bin/sh
+#!/bin/bash
 echo "Detected MacOS"
 
 {{ else if eq .osid "linux-debian" }}
-#!/usr/bin/sh
+#!/bin/bash
 echo "Detected Debian"
 
 {{ else if eq .osid "linux-fedora" }}
-#!/usr/bin/sh
+#!/bin/bash
 echo "Detected Fedora"
 
 {{ else if eq .osid "linux-garuda" }}
-#!/usr/bin/sh
+#!/usr/bin/bash
 echo "Detected Garuda"
 
 {{ end }}
