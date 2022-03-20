@@ -129,8 +129,8 @@ alias l='ls -lhsF --color=auto --group-directories-first'
 alias ll='ls -lAhsF --color=auto --group-directories-first'
 
 # exa aliases
-alias e='exa --long --grid --icons --group-directories-first --color=always --headers'
-alias ea='exa --long --grid --icons --group-directories-first --color=always --headers --all'
+alias e='exa --long --grid --icons --group-directories-first --color=always --header'
+alias ea='exa --long --grid --icons --group-directories-first --color=always --header --all'
 
 # bat aliases
 if ! foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
