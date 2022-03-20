@@ -133,7 +133,7 @@ alias e='exa --long --icons --group-directories-first'
 alias ea='exa --long --icons --group-directories-first --all'
 
 # bat aliases
-if ! foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
+if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
   alias b='bat --style=header,grid'
 else
   alias b='batcat --style=header,grid'
