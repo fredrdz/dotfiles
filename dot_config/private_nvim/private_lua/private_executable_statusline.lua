@@ -2,7 +2,7 @@ require'lualine'.setup {
 
     options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'kanagawa',
         component_separators = {'', ''},
         section_separators = {'', ''},
         disabled_filetypes = {}

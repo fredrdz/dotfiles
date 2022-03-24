@@ -50,8 +50,10 @@ vim.opt.cursorlineopt = {"number", "line"}
 vim.opt.termguicolors = true -- True color support
 vim.opt.winblend = 8
 vim.opt.pumblend = 8
+vim.opt.wildignore = '*.swp,*.bak,*.pyc,*.class'
 vim.opt.wildmode = "list:longest" -- Command-line completion mode
 vim.opt.wildoptions = "pum"
+vim.opt.wildignorecase = true -- Ignore case command completion menu
 vim.opt.shada = {"!", "'1000", "<50", "s10", "h"} -- remember stuff across sessions
 vim.opt.undofile = true
 vim.opt.undodir = "/tmp/undodir"
@@ -61,18 +63,23 @@ vim.opt.writebackup = false
 vim.opt.lazyredraw = true
 vim.opt.ttyfast = true
 vim.opt.title = true
-vim.opt.updatetime = 400
+vim.opt.updatetime = 300
 vim.opt.backspace = {"indent", "eol", "start"}
-
--------------------- restore cursor position --------------------
-vim.cmd(([[
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-]]))
-
--------------------- recompile automatically when editing plugins.lua --------------------
-vim.cmd(([[
-  autocmd BufWritePost plugins.lua PackerCompile
-]]))
+vim.opt.fillchars:append({fold = ' '})
+vim.opt.fillchars:append({foldopen = '▾', foldsep = '│', foldclose = '▸'})
+vim.opt.fillchars:append({
+    horiz = '━',
+    horizup = '┻',
+    horizdown = '┳',
+    vert = '┃',
+    vertleft = '┨',
+    vertright = '┣',
+    verthoriz = '╋',
+})
+vim.opt.showbreak = "↪ "
+vim.opt.listchars = "tab:|.,trail:_,extends:>,precedes:<,nbsp:~,eol:¬"
+vim.opt.signcolumn = "yes"
+vim.opt.laststatus = 3
 
 -------------------- set leader to space early --------------------
 vim.g.mapleader = " "
@@ -98,6 +105,33 @@ vim.g.matchup_surround_enabled = 1
 vim.g.Hexokinase_optInPatterns = {'full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names'}
 vim.g.Hexokinase_highlighters = {'virtual'}
 
+-------------------- load other lua configurations --------------------
+require("plugins")
+require("mappings")
+require("statusline")
+require("markdown")
+require("lspinstaller")
+--require("go")
+--require("lsp")
+
+-------------------- testing options --------------------
+vim.cmd([[
+augroup FileTypeHighlight
+  autocmd!
+  au FileType git*,dap*,vista_kind,tagbar,fugitive set winhighlight=Normal:NormalFloat
+augroup END
+]])
+
+-------------------- restore cursor position --------------------
+vim.cmd(([[
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+]]))
+
+-------------------- recompile automatically when editing plugins.lua --------------------
+vim.cmd(([[
+  autocmd BufWritePost plugins.lua PackerCompile
+]]))
+
 -------------------- efm-language-server (lua) settings --------------------
 -- lua auto-formatter
 -- run cmd: "lua vim.lsp.buf.formatting()"
@@ -105,15 +139,6 @@ vim.g.Hexokinase_highlighters = {'virtual'}
 vim.cmd(([[
   autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
 ]]))
-
--------------------- load other lua configurations --------------------
-require("plugins")
-require("mappings")
---require("go")
-require("statusline")
-require("markdown")
---require("lsp")
-require("lspinstaller")
 
 -------------------- color scheme options  --------------------
 vim.cmd(([[
@@ -145,4 +170,4 @@ vim.cmd(([[
   augroup END
 ]]))
 
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme kanagawa]]

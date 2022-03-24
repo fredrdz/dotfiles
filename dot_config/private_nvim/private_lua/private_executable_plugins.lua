@@ -12,19 +12,30 @@ return require("packer").startup(function(use)
         dimensions  = {
           height = 0.9,
           width = 0.9,
-    },
-      })
+        },
+    })
     end,
   }
 
-  use {'navarasu/onedark.nvim',
-    as = 'onedark',
+  use {'rebelot/kanagawa.nvim',
     config = function()
-      vim.g.onedark_style = 'warm'
-      vim.g.disable_toggle_style = false
-      vim.g.onedark_transparent_background = true -- By default it is false
-      require('onedark').setup()
-      require('onedark').toggle()
+      -- Default options:
+      require('kanagawa').setup({
+        undercurl = true,           -- enable undercurls
+        commentStyle = "italic",
+        functionStyle = "NONE",
+        keywordStyle = "italic",
+        statementStyle = "bold",
+        typeStyle = "NONE",
+        variablebuiltinStyle = "italic",
+        specialReturn = true,       -- special highlight for the return keyword
+        specialException = true,    -- special highlight for exception handling keywords
+        transparent = false,        -- do not set background color
+        dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+        globalStatus = true,       -- adjust window separators highlight for laststatus=3
+        colors = {},
+        overrides = {},
+      })
     end,
   }
 
