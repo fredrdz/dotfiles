@@ -79,7 +79,7 @@ require'navigator'.setup({
   -- setup here. if it is nil, navigator will not init signature help
   --signature_help_cfg = nil, -- if you would like to init ray-x/lsp_signature plugin in navigator, and pass in your own config to signature help
 
-  lsp_installer = false, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
+  lsp_installer = true, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
   lsp = {
     code_action = {enable = true, sign = true, sign_priority = 40, virtual_text = true},
     code_lens_action = {enable = true, sign = true, sign_priority = 40, virtual_text = true},
@@ -88,19 +88,19 @@ require'navigator'.setup({
     diagnostic_update_in_insert = false, -- update diagnostic message in insert mode
     disply_diagnostic_qf = true, -- always show quickfix if there are diagnostic errors, set to false if you  want to
 
-    gopls = {   -- gopls setting
-      cmd = { install_root_dir .. '/go/gopls' },
-      on_attach = function(client, bufnr)  -- on_attach for gopls
-        -- your special on attach here
-        -- e.g. disable gopls format because a known issue https://github.com/golang/go/issues/45732
-        client.resolved_capabilities.document_formatting = false
-      end,
-      settings = {
-        gopls = {gofumpt = true} -- disable gofumpt etc,
-      }
-    },
-    sumneko_lua = { cmd = { install_root_dir .. '/sumneko_lua/extension/server/bin/lua-language-server' } },
-    yamlls = { cmd = { install_root_dir .. '/yaml/node_modules/yaml-language-server/bin/yaml-language-server', '--stdio' } },
-    bashls = { cmd = { install_root_dir .. '/bash/node_modules/bash-language-server/bin/main.js', 'bash-language-server', 'start' } },
+    -- gopls = {   -- gopls setting
+    --   cmd = { install_root_dir .. '/go/gopls' },
+    --   on_attach = function(client, bufnr)  -- on_attach for gopls
+    --     -- your special on attach here
+    --     -- e.g. disable gopls format because a known issue https://github.com/golang/go/issues/45732
+    --     client.resolved_capabilities.document_formatting = false
+    --   end,
+    --   settings = {
+    --     gopls = {gofumpt = true} -- disable gofumpt etc,
+    --   }
+    -- },
+    -- sumneko_lua = { cmd = { install_root_dir .. '/sumneko_lua/extension/server/bin/lua-language-server' } },
+    -- yamlls = { cmd = { install_root_dir .. '/yaml/node_modules/yaml-language-server/bin/yaml-language-server', '--stdio' } },
+    -- bashls = { cmd = { install_root_dir .. '/bash/node_modules/bash-language-server/bin/main.js', 'bash-language-server', 'start' } },
   }
 })
