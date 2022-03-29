@@ -60,7 +60,11 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
+{{ if eq .osid "darwin" }}
+  decorations: buttonless
+{{ else }}
   decorations: full
+{{ end }}
 
   # Background opacity
   #
@@ -156,7 +160,11 @@ font:
     style: Extra Bold Italic
 
   # Point size
+{{ if eq .osid "darwin" }}
+  size: 14.5
+{{ else }}
   size: 11
+{{ end }}
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
