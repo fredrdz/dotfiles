@@ -51,14 +51,14 @@ return require("packer").startup(function(use)
   }
 
   --use { "fatih/vim-go" }
+  --use { "preservim/nerdtree" }
 
   -- tpope, the legend
   use { "tpope/vim-commentary" }
   use { "tpope/vim-repeat" } -- repeat commands
-  use { "tpope/vim-vinegar" } -- press - for local filebrowser
+  -- use { "tpope/vim-vinegar" } -- press - for local filebrowser
   use { "tpope/vim-surround" } -- cs)] turns surrounding ) into ]
 
-  --use { "preservim/nerdtree" }
 
   use { "vim-test/vim-test",
     requires = {{ 'preservim/vimux' }}
@@ -79,7 +79,7 @@ return require("packer").startup(function(use)
   use {
     "TimUntersberger/neogit",
     requires = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" },
-    commit = "53772efc42263989d18d4a86c350b8b0e1f1b71b", -- https://github.com/TimUntersberger/neogit/issues/206
+    -- commit = "53772efc42263989d18d4a86c350b8b0e1f1b71b", -- https://github.com/TimUntersberger/neogit/issues/206
     config = function() require("neogit").setup{
       disable_commit_confirmation = true,
       integrations = {
@@ -113,7 +113,10 @@ return require("packer").startup(function(use)
           -- [options]
         },
         ensure_installed = "maintained",
-        highlight = { enable = true } }
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false
+        }}
     end,
   }
 
@@ -134,16 +137,54 @@ return require("packer").startup(function(use)
     cmd = {
       "NvimTreeToggle",
     },
-    config = function() require("nvim-tree").setup{
-      disable_netrw = true,
-      hijack_netrw = true,
-      auto_close = false,
-      update_cwd = true,
-      update_to_buf_dir = {
-        enable = true,
-        auto_open = true,
-      },
-    } end,
+    config = function()
+      require'nvim-tree'.setup{
+        disable_netrw = false,
+        hijack_netrw = true,
+        update_cwd = true,
+        view = {
+          width = 60,
+          height = 60,
+          side = "right",
+          preserve_window_proportions = true,
+          number = false,
+          relativenumber = false,
+          signcolumn = "yes",
+          mappings = {
+            custom_only = false,
+            list = {
+              -- user mappings go here
+            },
+          },
+        },
+        update_to_buf_dir = {
+          enable = true,
+          auto_open = true,
+        },
+        update_focused_file = {
+          enable = true,
+          update_cwd = true,
+        },
+        actions = {
+          change_dir = {
+            enable = true,
+            global = false,
+          },
+          open_file = {
+            quit_on_open = true,
+            resize_window = true,
+            window_picker = {
+              enable = true,
+              chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+              exclude = {
+                filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+                buftype = { "nofile", "terminal", "help" },
+              },
+            },
+          },
+        },
+      }
+    end,
   }
 
   -- snippets
@@ -245,7 +286,12 @@ return require("packer").startup(function(use)
     "ray-x/lsp_signature.nvim",
   }
 
-  use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
+  use {
+    'ray-x/navigator.lua',
+    commit = "5773f66d14612f5dfdd38d34df4b16fdb2808723", -- testing nvim 0.7, https://github.com/ray-x/navigator.lua/commit/5773f66d14612f5dfdd38d34df4b16fdb2808723
+    requires = {'ray-x/guihua.lua',
+    run = 'cd lua/fzy && make',
+  }}
 
   use {
     'hoob3rt/lualine.nvim',
