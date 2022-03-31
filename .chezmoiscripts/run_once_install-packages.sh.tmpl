@@ -13,13 +13,12 @@ echo "Detected Fedora"
 echo "Detected Garuda"
 echo "Do you want to continue with installs?(yes/no)"
 read input
-if [ "$input" == "yes" ]
-then
-sudo pacman -Syu go neovim tmux autossh sshuttle fzf powerline code mosh nodejs discord git base-devel npm httpie python-pip
-#git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
-#cd ~/git/yay-git
-#makepkg -si
-#yay -Syu
-#yay -S slack-desktop brave
+if [ "$input" == "yes" ]; then
+  sudo pacman -Syu go neovim tmux autossh sshuttle fzf powerline code mosh nodejs discord git base-devel npm httpie python-pip
+
+  git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
+  cd ~/git/yay-git
+  makepkg -si
+  yay -Syu slack-desktop brave mongosh-bin noisetorch-git openrazer-meta polychromatic input-remapper-git
 fi
 {{ end }}
