@@ -26,76 +26,76 @@ local enhance_server_opts = {
       client.resolved_capabilities.document_formatting = false
     end
   end,
-  ['gopls'] = function(opts)
-    opts.settings = {
-      gopls = {
-        templateExtensions = { "gohtml", "gohtmltmpl", "gotexttmpl", "gotmpl", "tmpl", "tpl" },
-        -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
-        -- flags = {allow_incremental_sync = true, debounce_text_changes = 500},
-        -- not supported
-        analyses = { unusedparams = true, unreachable = false, shadow = true },
-        codelenses = {
-          generate = true, -- show the `go generate` lens.
-          gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-          test = true,
-          tidy = true,
-        },
-        usePlaceholders = true,
-        completeUnimported = true,
-        staticcheck = true,
-        matcher = "Fuzzy",
-        diagnosticsDelay = "500ms",
-        experimentalWatchedFileDelay = "100ms",
-        symbolMatcher = "fuzzy",
-        ["local"] = "",
-        gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-        buildFlags = { "-tags", "integration" },
-        -- buildFlags = {"-tags", "functional"}
-      }
-    }
-  end,
+  -- ['gopls'] = function(opts)
+  --   opts.settings = {
+  --     gopls = {
+  --       templateExtensions = { "gohtml", "gohtmltmpl", "gotexttmpl", "gotmpl", "tmpl", "tpl" },
+  --       -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+  --       -- flags = {allow_incremental_sync = true, debounce_text_changes = 500},
+  --       -- not supported
+  --       analyses = { unusedparams = true, unreachable = false, shadow = true },
+  --       codelenses = {
+  --         generate = true, -- show the `go generate` lens.
+  --         gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+  --         test = true,
+  --         tidy = true,
+  --       },
+  --       usePlaceholders = true,
+  --       completeUnimported = true,
+  --       staticcheck = true,
+  --       matcher = "Fuzzy",
+  --       diagnosticsDelay = "500ms",
+  --       experimentalWatchedFileDelay = "100ms",
+  --       symbolMatcher = "fuzzy",
+  --       ["local"] = "",
+  --       gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+  --       buildFlags = { "-tags", "integration" },
+  --       -- buildFlags = {"-tags", "functional"}
+  --     }
+  --   }
+  -- end,
 }
 
 lsp_installer.on_server_ready(function(server)
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = {
-    textDocument = {
-      completion = {
-        completionItem = {
-          commitCharactersSupport = true,
-          deprecatedSupport = true,
-          documentationFormat = { "markdown", "plaintext" },
-          preselectSupport = true,
-          insertReplaceSupport = true,
-          labelDetailsSupport = true,
-          snippetSupport = true,
-          resolveSupport = {
-            properties = {
-              "documentation",
-              "details",
-              "additionalTextEdits",
-            },
-          },
-        },
-        contextSupport = true,
-        dynamicRegistration = true,
-      },
-    },
-  }
+--   local capabilities = vim.lsp.protocol.make_client_capabilities()
+--   capabilities = {
+--     textDocument = {
+--       completion = {
+--         completionItem = {
+--           commitCharactersSupport = true,
+--           deprecatedSupport = true,
+--           documentationFormat = { "markdown", "plaintext" },
+--           preselectSupport = true,
+--           insertReplaceSupport = true,
+--           labelDetailsSupport = true,
+--           snippetSupport = true,
+--           resolveSupport = {
+--             properties = {
+--               "documentation",
+--               "details",
+--               "additionalTextEdits",
+--             },
+--           },
+--         },
+--         contextSupport = true,
+--         dynamicRegistration = true,
+--       },
+--     },
+--   }
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true, -- Enable underline, use default values
-      virtual_text = { spacing = 3, source = true }, -- show virtual for diagnostic message
-      update_in_insert = false, -- update diagnostic message in insert mode
-      severity_sort = { reverse = true }
-    }
-  )
+  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  --   vim.lsp.diagnostic.on_publish_diagnostics, {
+  --     underline = true, -- Enable underline, use default values
+  --     virtual_text = { spacing = 3, source = true }, -- show virtual for diagnostic message
+  --     update_in_insert = false, -- update diagnostic message in insert mode
+  --     severity_sort = { reverse = true }
+  --   }
+  -- )
 
   local opts = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = { allow_incremental_sync = true, debounce_text_changes = 1000 }
+  --   capabilities = capabilities,
+  --   on_attach = on_attach,
+  --   flags = { allow_incremental_sync = true, debounce_text_changes = 1000 }
   }
 
   if enhance_server_opts[server.name] then
