@@ -19,7 +19,7 @@ min_time = 10_000  # Show command duration over 10,000 milliseconds (= 10 sec)
 format = "took [$duration]($style)"
 
 [directory]
-style = "bold #FFFFF0"
+style = "bold #EEEEEE"
 read_only = " "
 read_only_style = "#AB2330"
 format = ': [$read_only]($read_only_style)[$path]($style) '
