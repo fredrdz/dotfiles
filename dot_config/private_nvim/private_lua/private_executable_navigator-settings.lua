@@ -35,20 +35,14 @@ require'navigator'.setup({
     diagnostic = {
       underline = true,
       virtual_text = true, -- show virtual for diagnostic message
-      update_in_insert = false, -- update diagnostic message in insert mode
+      update_in_insert = true, -- update diagnostic message in insert mode
     },
     diagnostic_scrollbar_sign = {'▃', '▆', '█'}, -- experimental:  diagnostic status in scroll bar area; set to false to disable the diagnostic sign,
     -- for other style, set to {'╍', 'ﮆ'} or {'-', '='}
     diagnostic_virtual_text = true,  -- show virtual for diagnostic message
-    diagnostic_update_in_insert = false, -- update diagnostic message in insert mode
+    diagnostic_update_in_insert = true, -- update diagnostic message in insert mode
     disply_diagnostic_qf = true, -- always show quickfix if there are diagnostic errors, set to false if you want to ignore it
     gopls = {   -- gopls setting
-      on_attach = function(client, bufnr)  -- on_attach for gopls
-        -- your special on attach here
-        -- e.g. disable gopls format because a known issue https://github.com/golang/go/issues/45732
-        --print("i am a hook, I will disable document format")
-        client.resolved_capabilities.document_formatting = false
-      end,
       cmd = { install_root_dir .. '/go/gopls' },
       settings = {
         gopls = {gofumpt = true} -- enable gofumpt etc,
