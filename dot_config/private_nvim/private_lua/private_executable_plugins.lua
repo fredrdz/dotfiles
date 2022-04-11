@@ -6,33 +6,33 @@ return require("packer").startup(function(use)
   use { 'numToStr/FTerm.nvim',
     config = function()
       require('FTerm').setup({
-        border = 'single',
-        blend = 8,
-        hl = 'Terminal',
-        dimensions  = {
+        border     = 'single',
+        blend      = 8,
+        hl         = 'Terminal',
+        dimensions = {
           height = 0.9,
           width = 0.9,
         },
-    })
+      })
     end,
   }
 
-  use {'rebelot/kanagawa.nvim',
+  use { 'rebelot/kanagawa.nvim',
     config = function()
       -- Default options:
       require('kanagawa').setup({
-        undercurl = true,           -- enable undercurls
+        undercurl = true, -- enable undercurls
         commentStyle = "italic",
         functionStyle = "NONE",
         keywordStyle = "italic",
         statementStyle = "bold",
         typeStyle = "NONE",
         variablebuiltinStyle = "italic",
-        specialReturn = true,       -- special highlight for the return keyword
-        specialException = true,    -- special highlight for exception handling keywords
-        transparent = false,        -- do not set background color
-        dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
-        globalStatus = true,       -- adjust window separators highlight for laststatus=3
+        specialReturn = true, -- special highlight for the return keyword
+        specialException = true, -- special highlight for exception handling keywords
+        transparent = false, -- do not set background color
+        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        globalStatus = true, -- adjust window separators highlight for laststatus=3
         colors = {},
         overrides = {},
       })
@@ -40,8 +40,8 @@ return require("packer").startup(function(use)
   }
 
   use {
-  'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
 
   use { "folke/which-key.nvim",
@@ -61,10 +61,10 @@ return require("packer").startup(function(use)
 
 
   use { "vim-test/vim-test",
-    requires = {{ 'preservim/vimux' }}
+    requires = { { 'preservim/vimux' } }
   }
 
-  use { "junegunn/vim-easy-align"}
+  use { "junegunn/vim-easy-align" }
 
   -- popup markdown preview
   use { "npxbr/glow.nvim", run = ":GlowInstall" }
@@ -80,12 +80,13 @@ return require("packer").startup(function(use)
     "TimUntersberger/neogit",
     requires = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" },
     -- commit = "53772efc42263989d18d4a86c350b8b0e1f1b71b", -- https://github.com/TimUntersberger/neogit/issues/206
-    config = function() require("neogit").setup{
-      disable_commit_confirmation = true,
-      integrations = {
-        diffview = true
+    config = function() require("neogit").setup {
+        disable_commit_confirmation = true,
+        integrations = {
+          diffview = true
+        }
       }
-    } end,
+    end,
   }
 
   use { "samoshkin/vim-mergetool" }
@@ -108,15 +109,16 @@ return require("packer").startup(function(use)
       local ts = require "nvim-treesitter.configs"
       ts.setup {
         matchup = {
-          enable = true,              -- mandatory, false will disable the whole extension
+          enable = true, -- mandatory, false will disable the whole extension
           --disable = { "c", "ruby" },  -- optional, list of language that will be disabled
           -- [options]
         },
-        ensure_installed = "maintained",
+        ensure_installed = "all",
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false
-        }}
+          disable = { "html" },
+          additional_vim_regex_highlighting = true
+        } }
     end,
   }
 
@@ -138,15 +140,15 @@ return require("packer").startup(function(use)
       "NvimTreeToggle",
     },
     config = function()
-      require'nvim-tree'.setup{
+      require 'nvim-tree'.setup {
         disable_netrw = false,
         hijack_netrw = true,
         update_cwd = true,
         view = {
-          width = 60,
-          height = 60,
+          width = 40,
+          height = 40,
           side = "right",
-          preserve_window_proportions = true,
+          preserve_window_proportions = false,
           number = false,
           relativenumber = false,
           signcolumn = "yes",
@@ -193,44 +195,44 @@ return require("packer").startup(function(use)
   use { "golang/vscode-go" }
 
   -- autocompletion
-    local t = function(str)
-      return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
+  local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  end
 
-    local check_back_space = function()
-        local col = vim.fn.col('.') - 1
-        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-    end
+  local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+  end
 
-    -- Use (s-)tab to:
-    --- move to prev/next item in completion menuone
-    --- jump to prev/next snippet's placeholder
-    _G.tab_complete = function()
-      if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-      elseif vim.fn['vsnip#available'](1) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
-      elseif check_back_space() then
-        return t "<Tab>"
-      else
-        return vim.fn['compe#complete']()
-      end
+  -- Use (s-)tab to:
+  --- move to prev/next item in completion menuone
+  --- jump to prev/next snippet's placeholder
+  _G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-n>"
+    elseif vim.fn['vsnip#available'](1) == 1 then
+      return t "<Plug>(vsnip-expand-or-jump)"
+    elseif check_back_space() then
+      return t "<Tab>"
+    else
+      return vim.fn['compe#complete']()
     end
-    _G.s_tab_complete = function()
-      if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-      elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
-      else
-        -- If <S-Tab> is not working in your terminal, change it to <C-h>
-        return t "<S-Tab>"
-      end
+  end
+  _G.s_tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-p>"
+    elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+      return t "<Plug>(vsnip-jump-prev)"
+    else
+      -- If <S-Tab> is not working in your terminal, change it to <C-h>
+      return t "<S-Tab>"
     end
+  end
 
-    vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-    vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-    vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-    vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+  vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
+  vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
+  vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+  vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 
   use {
     "hrsh7th/nvim-compe",
@@ -275,7 +277,7 @@ return require("packer").startup(function(use)
 
   use {
     'windwp/nvim-spectre',
-    requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}
+    requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } }
   }
 
   -- LSP goodies
@@ -289,13 +291,13 @@ return require("packer").startup(function(use)
   use {
     'ray-x/navigator.lua',
     --commit = "5773f66d14612f5dfdd38d34df4b16fdb2808723", -- testing nvim 0.7, https://github.com/ray-x/navigator.lua/commit/5773f66d14612f5dfdd38d34df4b16fdb2808723
-    requires = {'ray-x/guihua.lua',
-    run = 'cd lua/fzy && make',
-  }}
+    requires = { 'ray-x/guihua.lua',
+      run = 'cd lua/fzy && make',
+    } }
 
   use {
     'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   use { "mfussenegger/nvim-lint" }

@@ -29,10 +29,7 @@ local enhance_server_opts = {
   ['gopls'] = function(opts)
     opts.settings = {
       gopls = {
-        templateExtensions = { "gohtml", "gohtmltmpl", "gotexttmpl", "gotmpl", "tmpl", "tpl" },
-        -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
-        -- flags = {allow_incremental_sync = true, debounce_text_changes = 500},
-        -- not supported
+        templateExtensions = { "gohtml", "gohtmltmpl", "gotexttmpl", "gotmpl", "tmpl", "tpl", "html.tmpl" },
         analyses = { unusedparams = true, unreachable = false, shadow = true },
         codelenses = {
           generate = true, -- show the `go generate` lens.

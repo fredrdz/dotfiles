@@ -2,11 +2,11 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-    execute 'packadd packer.nvim'
+  fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
+  execute 'packadd packer.nvim'
 end
 
 -------------------- load other lua configurations --------------------
@@ -23,7 +23,7 @@ require('statusline')
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
 function OrgImports(wait_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
@@ -37,13 +37,18 @@ function OrgImports(wait_ms)
 end
 
 -------------------- autocmds --------------------
--- in testing, highlighting?
--- vim.cmd([[
--- augroup FileTypeHighlight
---   autocmd!
---   au FileType git*,dap*,vista_kind,tagbar,fugitive set winhighlight=Normal:NormalFloat
--- augroup END
--- ]])
+-- forces filetype of HTML on go templates
+vim.cmd(([[
+  function DetectGoHtmlTmpl()
+    if expand('%:e') == "tmpl" && search("{{") != 0
+        set filetype=html
+    endif
+  endfunction
+
+  augroup filetypedetect
+      au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+  augroup END
+]]))
 
 -- restore cursor position
 vim.cmd(([[
@@ -88,7 +93,7 @@ vim.cmd(([[
     highlight PmenuSbar guibg=#EEEEEE
     highlight PmenuThumb guibg=#16B2C3
     highlight Visual guibg=#16B2C3 guifg=#181818
-    highlight Search guibg=#FDE49C gui=italic guifg=#181818
+    highlight Search guibg=#FF4C29 gui=italic guifg=#2C394B
     highlight FloatBorder guifg=#16B2C3
     highlight NormalFloat guibg=#082032
     highlight WhichkeyFloat guibg=#334756
