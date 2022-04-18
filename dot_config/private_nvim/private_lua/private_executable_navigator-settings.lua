@@ -27,7 +27,7 @@ require 'navigator'.setup({
     code_lens_action = { enable = true, sign = true, sign_priority = 40, virtual_text = true },
     format_on_save = true, -- set to false to disable lsp code format on save (if you are using prettier/efm/formater etc)
     --disable_format_cap = {"sqls", "sumneko_lua", "gopls"},  -- a list of lsp disable format capacity (e.g. if you using efm or vim-codeformat etc), empty {} by default
-    --disable_lsp = {'pylsd', 'sqlls'}, -- a list of lsp server disabled for your project, e.g. denols and tsserver you may
+    disable_lsp = { 'angularls' }, -- a list of lsp server disabled for your project, e.g. denols and tsserver you may
     -- only want to enable one lsp server
     -- to disable all default config and use your own lsp setup set
     -- disable_lsp = 'all'
@@ -49,7 +49,6 @@ require 'navigator'.setup({
     emmet_ls = { cmd = { install_root_dir .. '/emmet_ls/node_modules/emmet_ls/out/server.js', '--stdio' } },
     html = { cmd = { install_root_dir .. '/html/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server', '--stdio' } },
     tailwindcss_npm = { cmd = { install_root_dir .. '/tailwindcss_npm/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server', '--stdio' } },
-    angularls = { cmd = { install_root_dir .. '/angularls/node_modules/typescript/bin/tsserver', '--stdio' } },
     --servers = {'cmake', 'ltex'}, -- by default empty, and it should load all LSP clients avalible based on filetype
     -- but if you whant navigator load  e.g. `cmake` and `ltex` for you , you
     -- can put them in the `servers` list and navigator will auto load them.
