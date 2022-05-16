@@ -99,5 +99,5 @@ lsp_installer.on_server_ready(function(server)
     enhance_server_opts[server.name](opts)
   end
 
-  -- server:setup(opts)
+  server:setup(opts)
 end)
