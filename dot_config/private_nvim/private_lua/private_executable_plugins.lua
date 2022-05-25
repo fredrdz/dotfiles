@@ -289,10 +289,8 @@ return require("packer").startup(function(use)
       "ray-x/lsp_signature.nvim",
     },
     "ray-x/navigator.lua",
-    --commit = "5773f66d14612f5dfdd38d34df4b16fdb2808723", -- testing nvim 0.7, https://github.com/ray-x/navigator.lua/commit/5773f66d14612f5dfdd38d34df4b16fdb2808723
-    requires = { 'ray-x/guihua.lua',
-      run = 'cd lua/fzy && make',
-    }
+    "ray-x/guihua.lua",
+    { run = 'cd lua/fzy && make' }
   }
 
   use {
