@@ -50,7 +50,7 @@ return require("packer").startup(function(use)
     end,
   }
 
-  --use { "fatih/vim-go" }
+  use { "fatih/vim-go" }
   --use { "preservim/nerdtree" }
 
   -- tpope, the legend
@@ -290,7 +290,7 @@ return require("packer").startup(function(use)
     },
     "ray-x/navigator.lua",
     "ray-x/guihua.lua",
-    { run = 'cd lua/fzy && make' }
+     run = { 'cd lua/fzy && make' }
   }
 
   use {
