@@ -28,10 +28,10 @@ return require("packer").startup(function(use)
         statementStyle = "bold",
         typeStyle = "NONE",
         variablebuiltinStyle = "italic",
-        specialReturn = true, -- special highlight for the return keyword
+        specialReturn = false, -- special highlight for the return keyword
         specialException = true, -- special highlight for exception handling keywords
         transparent = false, -- do not set background color
-        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        dimInactive = true, -- dim inactive window `:h hl-NormalNC`
         globalStatus = true, -- adjust window separators highlight for laststatus=3
         colors = {},
         overrides = {},
@@ -117,8 +117,25 @@ return require("packer").startup(function(use)
         highlight = {
           enable = true,
           disable = { "html" },
-          additional_vim_regex_highlighting = true
-        } }
+          additional_vim_regex_highlighting = false
+        },
+        autopairs = {
+          enable = true
+        },
+        autotag = {
+            enable = true
+        },
+        indent = { enable = true, disable = { "python" } }
+      }
+      require"nvim-treesitter.highlight".set_custom_captures {
+      -- Highlight the capture group with the "Identifier" Neovim highlight group.
+      -- Capture Group can be found at $HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua/nvim-treesitter/highlight.lua
+      -- Might use custom highlight groups from Neovim init.lua
+        -- ["keyword"] = "TSKeyword",
+        ["keyword.function"] = "KeywordFunction",
+        -- ["keyword.operator"] = "TSKeywordOperator",
+        -- ["keyword.return"] = "GolangKeywordReturn",
+      }
     end,
   }
 
