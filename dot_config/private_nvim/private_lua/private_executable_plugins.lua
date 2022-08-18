@@ -22,17 +22,18 @@ return require("packer").startup(function(use)
       -- Default options:
       require('kanagawa').setup({
         undercurl = true, -- enable undercurls
-        commentStyle = "italic",
-        functionStyle = "NONE",
-        keywordStyle = "italic",
-        statementStyle = "bold",
-        typeStyle = "NONE",
-        variablebuiltinStyle = "italic",
-        specialReturn = false, -- special highlight for the return keyword
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true},
+        statementStyle = { bold = true },
+        typeStyle = {},
+        variablebuiltinStyle = { italic = true},
+        specialReturn = true, -- special highlight for the return keyword
         specialException = true, -- special highlight for exception handling keywords
         transparent = false, -- do not set background color
         dimInactive = true, -- dim inactive window `:h hl-NormalNC`
         globalStatus = true, -- adjust window separators highlight for laststatus=3
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = {},
         overrides = {},
       })
@@ -160,11 +161,15 @@ return require("packer").startup(function(use)
       require 'nvim-tree'.setup {
         disable_netrw = false,
         hijack_netrw = true,
-        update_cwd = true,
+        auto_reload_on_write = true,
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
         view = {
-          width = 40,
-          height = 40,
+          -- width = 40,
+          -- height = 40,
           side = "right",
+          centralize_selection = true,
+          adaptive_size = true,
           preserve_window_proportions = false,
           number = false,
           relativenumber = false,
@@ -176,13 +181,9 @@ return require("packer").startup(function(use)
             },
           },
         },
-        update_to_buf_dir = {
-          enable = true,
-          auto_open = true,
-        },
         update_focused_file = {
           enable = true,
-          update_cwd = true,
+          update_root = true,
         },
         actions = {
           change_dir = {
@@ -200,6 +201,9 @@ return require("packer").startup(function(use)
                 buftype = { "nofile", "terminal", "help" },
               },
             },
+          },
+          remove_file = {
+            close_window = true,
           },
         },
       }

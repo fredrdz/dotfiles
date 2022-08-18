@@ -76,9 +76,6 @@ vim.g.mapleader = " "
 -------------------- set test strategy to vimux --------------------
 vim.g["test#strategy"] = "vimux"
 
--------------------- nvim.tree settings --------------------
-vim.g.nvim_tree_respect_buf_cwd = 0
-
 -------------------- vim-matchup settings --------------------
 --vim.g.loaded_matchit = 1
 vim.g.matchup_matchparen_offscreen = {method = 'popup'}
