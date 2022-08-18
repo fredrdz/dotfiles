@@ -12,29 +12,10 @@ end
 -------------------- load other lua configurations --------------------
 require('nvim-settings')
 require('plugins')
-require('lspinstaller-settings')
 require('lspkind-settings')
-require('navigator-settings')
 require('mappings')
 require('markdown')
 require('statusline')
-
--------------------- functions --------------------
--- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
--- function OrgImports(wait_ms)
---   local params = vim.lsp.util.make_range_params()
---   params.context = { only = { "source.organizeImports" } }
---   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
---   for _, res in pairs(result or {}) do
---     for _, r in pairs(res.result or {}) do
---       if r.edit then
---         vim.lsp.util.apply_workspace_edit(r.edit)
---       else
---         vim.lsp.buf.execute_command(r.command)
---       end
---     end
---   end
--- end
 
 -------------------- autocmds --------------------
 -- forces filetype of HTML on go templates
@@ -59,20 +40,6 @@ vim.cmd(([[
 vim.cmd(([[
   autocmd BufWritePost *.lua PackerCompile
 ]]))
-
--- auto-formatting settings
--- lua auto-formatter
--- run cmd: "lua vim.lsp.buf.formatting()"
--- this will auto-format LUA files on save:
--- vim.cmd(([[
---   autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
--- ]]))
-
--- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
--- vim.cmd(([[
---   autocmd BufWritePre *.go lua OrgImports(1000)
---   autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
--- ]]))
 
 -- NvimTree auto close on last window
 vim.cmd(([[

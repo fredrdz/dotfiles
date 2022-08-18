@@ -51,7 +51,7 @@ return require("packer").startup(function(use)
     end,
   }
 
-  use { "fatih/vim-go" }
+  -- use { "fatih/vim-go" }
   --use { "preservim/nerdtree" }
 
   -- tpope, the legend
@@ -302,17 +302,29 @@ return require("packer").startup(function(use)
   }
 
   -- LSP goodies
-  use {
-    "williamboman/nvim-lsp-installer",
-    {
-      "neovim/nvim-lspconfig",
-      "onsails/lspkind-nvim",
-      "ray-x/lsp_signature.nvim",
-    },
-    "ray-x/navigator.lua",
-    "ray-x/guihua.lua",
-     run = { 'cd lua/fzy && make' }
-  }
+      use("williamboman/mason.nvim")
+      use({
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+          require("mason").setup()
+          require("mason-lspconfig").setup({})
+        end,
+      })
+
+      use({
+        "ray-x/navigator.lua",
+        requires = {
+          { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+          { "neovim/nvim-lspconfig" },
+          { "onsails/lspkind-nvim" },
+          { "ray-x/lsp_signature.nvim" },
+        },
+        config = function()
+          require("navigator").setup({
+            mason = true,
+          })
+        end,
+      })
 
   use {
     'hoob3rt/lualine.nvim',
