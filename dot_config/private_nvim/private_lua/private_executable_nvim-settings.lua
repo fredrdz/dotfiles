@@ -57,14 +57,14 @@ vim.opt.backspace = {"indent", "eol", "start"}
 vim.opt.fillchars:append({fold = ' '})
 vim.opt.fillchars:append({foldopen = '▾', foldsep = '│', foldclose = '▸'})
 vim.opt.fillchars:append({
-    horiz = '━',
-    horizup = '┻',
-    horizdown = '┳',
-    vert = '┃',
-    vertleft = '┨',
-    vertright = '┣',
-    verthoriz = '╋',
-})
+   horiz = '━',
+   horizup = '┻',
+   horizdown = '┳',
+   vert = '┃',
+   vertleft = '┨',
+   vertright = '┣',
+   verthoriz = '╋',
+  })
 vim.opt.showbreak = "↪ "
 vim.opt.listchars = "tab:|.,trail:_,extends:>,precedes:<,nbsp:~,eol:¬"
 vim.opt.signcolumn = "yes"

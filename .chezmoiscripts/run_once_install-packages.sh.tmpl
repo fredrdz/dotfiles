@@ -14,11 +14,44 @@ echo "Detected Garuda"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-  sudo pacman -Syu go neovim tmux autossh sshuttle fzf powerline code mosh nodejs discord git base-devel npm httpie python-pip jre-openjdk php composer julia jdk-openjdk
+  sudo pacman -Syu go neovim tmux autossh sshuttle fzf powerline code mosh nodejs git base-devel npm httpie python-pip jre-openjdk php composer julia jdk-openjdk starship bat exa neofetch cmake unzip ninja tree-sitter curl yay-git
 
-  git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
-  cd ~/git/yay-git
-  makepkg -si
-  yay -Syu slack-desktop brave mongosh-bin noisetorch-git openrazer-meta polychromatic input-remapper-git
+  #git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
+  #cd ~/git/yay-git
+  #makepkg -si
+  yay -Syu slack-desktop brave mongosh-bin openrazer-meta polychromatic input-remapper-git
+
+  #installs rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
+
+{{ else if eq .osid "linux-steamos" }}
+echo "Detected Steam OS / Steam Deck"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]; then
+
+  # STEAM DECK ONLY
+  sudo steamos-readonly disable
+  sudo pacman-key --init
+  sudo pacman-key --populate archlinux
+  sudo pacman -Syu go tmux autossh sshuttle fzf powerline code mosh nodejs git base-devel npm httpie python-pip jre-openjdk php composer julia jdk-openjdk starship bat exa neofetch cmake unzip ninja tree-sitter curl yay-git htop wget gcc holo/linux-headers linux-neptune-headers holo/linux-lts-headersncat
+  sudo pacman -Syu $(pacman -Qk 2>/dev/null | grep -ve ' 0 missing' | grep -ie ^libc -e glibc -e gcc -e clang -e headers -e udev -e systemd | awk -F ':' '{print $1}') --overwrite '*'
+
+  # change shells
+  chsh -s $(which zsh)
+
+  # installs autojump
+  ~/git/autojump/install.py
+
+  # installs neovim
+  git clone https://github.com/neovim/neovim ~/git/neovim
+  cd ~/git/neovim
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
+
+  # installs rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
 {{ end }}

@@ -1,36 +1,24 @@
 -------------------- load packer on all machines --------------------
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
-  execute 'packadd packer.nvim'
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
--------------------- load other lua configurations --------------------
+-- load other lua configurations
 require('nvim-settings')
 require('plugins')
 require('lspkind-settings')
 require('mappings')
 require('markdown')
 require('statusline')
-
+  
 -------------------- autocmds --------------------
--- forces filetype of HTML on go templates
-vim.cmd(([[
-  function DetectGoHtmlTmpl()
-    if expand('%:e') == "tmpl" && search("{{") != 0
-        set filetype=html
-    endif
-  endfunction
-
-  augroup filetypedetect
-      au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
-  augroup END
-]]))
-
 -- restore cursor position
 vim.cmd(([[
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -44,6 +32,19 @@ vim.cmd(([[
 -- NvimTree auto close on last window
 vim.cmd(([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+]]))
+
+-- forces filetype of HTML on go templates
+vim.cmd(([[
+  function DetectGoHtmlTmpl()
+    if expand('%:e') == "tmpl" && search("{{") != 0
+        set filetype=html
+    endif
+  endfunction
+
+  augroup filetypedetect
+      au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+  augroup END
 ]]))
 
 -------------------- color scheme options  --------------------
