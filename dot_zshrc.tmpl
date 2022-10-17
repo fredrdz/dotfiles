@@ -288,6 +288,11 @@ alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
 
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
+
+# add podman bin path
+export PATH="/$HOME/.local/podman/bin:$PATH"
+
+# additional bin paths
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/$HOME/.local/bin:$PATH"
 
