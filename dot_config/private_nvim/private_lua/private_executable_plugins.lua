@@ -24,10 +24,10 @@ return require("packer").startup(function(use)
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = {},
-        keywordStyle = { italic = true},
+        keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        variablebuiltinStyle = { italic = true},
+        variablebuiltinStyle = { italic = true },
         specialReturn = true, -- special highlight for the return keyword
         specialException = true, -- special highlight for exception handling keywords
         transparent = false, -- do not set background color
@@ -124,14 +124,14 @@ return require("packer").startup(function(use)
           enable = true
         },
         autotag = {
-            enable = true
+          enable = true
         },
         indent = { enable = true, disable = { "python" } }
       }
-      require"nvim-treesitter.highlight".set_custom_captures {
-      -- Highlight the capture group with the "Identifier" Neovim highlight group.
-      -- Capture Group can be found at $HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua/nvim-treesitter/highlight.lua
-      -- Might use custom highlight groups from Neovim init.lua
+      require("nvim-treesitter.highlight").set_custom_captures {
+        -- Highlight the capture group with the "Identifier" Neovim highlight group.
+        -- Capture Group can be found at $HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua/nvim-treesitter/highlight.lua
+        -- Might use custom highlight groups from Neovim init.lua
         -- ["keyword"] = "TSKeyword",
         ["keyword.function"] = "KeywordFunction",
         -- ["keyword.operator"] = "TSKeywordOperator",
@@ -158,7 +158,7 @@ return require("packer").startup(function(use)
       "NvimTreeToggle",
     },
     config = function()
-      require 'nvim-tree'.setup {
+      require('nvim-tree').setup {
         disable_netrw = false,
         hijack_netrw = true,
         auto_reload_on_write = true,
@@ -302,29 +302,29 @@ return require("packer").startup(function(use)
   }
 
   -- LSP goodies
-      use("williamboman/mason.nvim")
-      use({
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-          require("mason").setup()
-          require("mason-lspconfig").setup({})
-        end,
-      })
+  use("williamboman/mason.nvim")
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup({})
+    end,
+  })
 
-      use({
-        "ray-x/navigator.lua",
-        requires = {
-          { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-          { "neovim/nvim-lspconfig" },
-          { "onsails/lspkind-nvim" },
-          { "ray-x/lsp_signature.nvim" },
-        },
-        config = function()
-          require("navigator").setup({
-            mason = true,
-          })
-        end,
+  use({
+    "ray-x/navigator.lua",
+    requires = {
+      { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+      { "neovim/nvim-lspconfig" },
+      { "onsails/lspkind-nvim" },
+      { "ray-x/lsp_signature.nvim" },
+    },
+    config = function()
+      require("navigator").setup({
+        mason = true,
       })
+    end,
+  })
 
   use {
     'hoob3rt/lualine.nvim',

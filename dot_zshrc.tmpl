@@ -42,7 +42,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -298,10 +298,17 @@ export PATH="/$HOME/.local/bin:$PATH"
 
 {{ if eq .osid "darwin" }}
 # MAC Tweaks
-  defaults write -g com.apple.trackpad.scaling -float 30.0
-  defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-  defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+defaults write -g com.apple.trackpad.scaling -float 30.0
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
-# coreutils integration
-  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# use brew versions of bins
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+# (used for netlify completion; installed via NPM)
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 {{ end }}

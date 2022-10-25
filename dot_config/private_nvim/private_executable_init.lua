@@ -1,9 +1,9 @@
 -------------------- load packer on all machines --------------------
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -17,7 +17,7 @@ require('lspkind-settings')
 require('mappings')
 require('markdown')
 require('statusline')
-  
+
 -------------------- autocmds --------------------
 -- restore cursor position
 vim.cmd(([[
@@ -34,28 +34,15 @@ vim.cmd(([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]]))
 
--- forces filetype of HTML on go templates
-vim.cmd(([[
-  function DetectGoHtmlTmpl()
-    if expand('%:e') == "tmpl" && search("{{") != 0
-        set filetype=html
-    endif
-  endfunction
-
-  augroup filetypedetect
-      au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
-  augroup END
-]]))
-
 -------------------- color scheme options  --------------------
-  -- highlight Visual guibg=#16B2C3 guifg=#181818
-  -- highlight Search gui=italic guibg=#FF4C29 guifg=#2C394B
-  -- highlight Pmenu guibg=#082032
-  -- highlight PmenuSel guibg=#7af9ff gui=none guifg=#181818
-  -- highlight PmenuSbar guibg=#EEEEEE
-  -- highlight PmenuThumb guibg=#16B2C3
-  -- highlight CursorColumn guibg=#2C394B
-  -- highlight CursorLine guibg=#2C394B
+-- highlight Visual guibg=#16B2C3 guifg=#181818
+-- highlight Search gui=italic guibg=#FF4C29 guifg=#2C394B
+-- highlight Pmenu guibg=#082032
+-- highlight PmenuSel guibg=#7af9ff gui=none guifg=#181818
+-- highlight PmenuSbar guibg=#EEEEEE
+-- highlight PmenuThumb guibg=#16B2C3
+-- highlight CursorColumn guibg=#2C394B
+-- highlight CursorLine guibg=#2C394B
 vim.cmd(([[
   function! MyHighlights() abort
     highlight MatchParen guifg=#FFFFFF gui=bold
