@@ -128,27 +128,12 @@ return require("packer").startup(function(use)
         },
         indent = { enable = true, disable = { "python" } }
       }
-      require("nvim-treesitter.highlight").set_custom_captures {
-        -- Highlight the capture group with the "Identifier" Neovim highlight group.
-        -- Capture Group can be found at $HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua/nvim-treesitter/highlight.lua
-        -- Might use custom highlight groups from Neovim init.lua
-        -- ["keyword"] = "TSKeyword",
-        ["keyword.function"] = "KeywordFunction",
-        -- ["keyword.operator"] = "TSKeywordOperator",
-        -- ["keyword.return"] = "GolangKeywordReturn",
-      }
     end,
   }
 
   -- trailing whitespaces
   use {
     "ntpeters/vim-better-whitespace",
-    config = function()
-      -- strip only if I touched the line
-      vim.g.strip_only_modified_lines = 1
-      vim.g.strip_whitespace_on_save = 1
-      vim.g.strip_whitespace_confirm = 0
-    end,
   }
 
   -- file tree instead of nerdtree (needs a patched font from: https://www.nerdfonts.com/)
