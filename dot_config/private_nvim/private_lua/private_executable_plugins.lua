@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
   }
 
   -- use { "fatih/vim-go" }
+  use { "phelipetls/vim-hugo" }
   --use { "preservim/nerdtree" }
 
   -- tpope, the legend
@@ -117,7 +118,7 @@ return require("packer").startup(function(use)
         ensure_installed = "all",
         highlight = {
           enable = true,
-          disable = { "html" },
+          -- disable = { "html" },
           additional_vim_regex_highlighting = false
         },
         autopairs = {
@@ -130,6 +131,7 @@ return require("packer").startup(function(use)
       }
     end,
   }
+  use { "nvim-treesitter/nvim-treesitter-textobjects" }
 
   -- trailing whitespaces
   use {
@@ -300,11 +302,6 @@ return require("packer").startup(function(use)
         function(server_name) -- default handler (optional)
           require("lspconfig")[server_name].setup {}
         end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-        -- ["rust_analyzer"] = function ()
-        --     require("rust-tools").setup {}
-        -- end
       }
     end,
   })

@@ -34,19 +34,6 @@ vim.cmd(([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]]))
 
-vim.cmd(([[
-  function DetectGoHtmlTmpl()
-    if expand('%:e') == "html" && search("{{") != 0
-      setfiletype gohtml
-    endif
-  endfunction
-
-  augroup filetypedetect
-    " gohtmltmpl
-    au BufRead,BufNewFile *.html call DetectGoHtmlTmpl()
-  augroup END
-]]))
-
 -------------------- color scheme options  --------------------
 -- highlight Visual guibg=#16B2C3 guifg=#181818
 -- highlight Search gui=italic guibg=#FF4C29 guifg=#2C394B
