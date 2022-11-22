@@ -68,7 +68,7 @@ return require("packer").startup(function(use)
   use { "junegunn/vim-easy-align" }
 
   -- popup markdown preview
-  use { "npxbr/glow.nvim", run = ":GlowInstall" }
+  use { "ellisonleao/glow.nvim" }
 
   -- git stuff
   use {
@@ -293,6 +293,19 @@ return require("packer").startup(function(use)
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({})
+      require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {}
+        end,
+        -- Next, you can provide a dedicated handler for specific servers.
+        -- For example, a handler override for the `rust_analyzer`:
+        -- ["rust_analyzer"] = function ()
+        --     require("rust-tools").setup {}
+        -- end
+      }
     end,
   })
 
@@ -312,7 +325,7 @@ return require("packer").startup(function(use)
   })
 
   use {
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
