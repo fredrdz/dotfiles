@@ -28,6 +28,12 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".tmux/plugins/tpm"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
 ["git/autojump"]
     type = "archive"
     url = "https://github.com/wting/autojump/archive/master.tar.gz"
