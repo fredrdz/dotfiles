@@ -1,3 +1,8 @@
+# FZF Settings
+export FZF_BASE="$HOME/.fzf"
+DISABLE_FZF_AUTO_COMPLETION="false"
+DISABLE_FZF_KEY_BINDINGS="false"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -79,13 +84,19 @@ plugins=(
   copyfile
   docker
   doctl
+  fzf
   gcloud
+  gh
   git
+  git-auto-fetch
   golang
   history-substring-search
+  httpie
   kubectl
-  wp-cli
+  ripgrep
   sudo
+  tmux
+  wp-cli
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -129,14 +140,19 @@ alias l='ls -lhsF --color=auto --group-directories-first'
 alias ll='ls -lAhsF --color=auto --group-directories-first'
 
 # exa aliases
-alias e='exa --long --tree --level 2 --icons --group-directories-first --color=always --header'
-alias ea='exa --long --tree --level 2 --icons --group-directories-first --color=always --header --all'
+alias e='exa --long --icons --group-directories-first --color=always --header'
+alias el='exa --oneline --icons --group-directories-first --color=always'
+alias els='exa --oneline --group-directories-first --color=always'
+alias ea='exa --long --icons --group-directories-first --color=always --header --all'
+alias eat='exa --long --tree --level 2 --icons --group-directories-first --color=always --header --all'
 
 # bat aliases
 if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
   alias b='bat --style=header,grid'
+  alias cat='bat --paging=never'
 else
   alias b='batcat --style=header,grid'
+  alias cat='batcat --paging=never'
 fi
 
 # nvim aliases
@@ -144,10 +160,6 @@ alias v='nvim'
 
 # ssh aliases
 alias ssh='TERM=xterm-256color ssh'
-
-# tmux aliases
-alias tmux='tmux -2'
-alias t='tmux -2'
 
 # docker aliases
 alias docker-compose='docker compose'
@@ -274,9 +286,6 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 
 # neofetch integration
   neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
-
-# fzf integration
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # starship integration
   eval "$(starship init zsh)"
