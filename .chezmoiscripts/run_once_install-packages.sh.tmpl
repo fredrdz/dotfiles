@@ -23,6 +23,8 @@ if [ "$input" == "yes" ]; then
 
   #installs rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  cargo install navi --locked
 fi
 
 {{ else if eq .osid "linux-steamos" }}
@@ -52,6 +54,8 @@ if [ "$input" == "yes" ]; then
 
   # installs rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  cargo install navi --locked
 fi
 
 {{ end }}
