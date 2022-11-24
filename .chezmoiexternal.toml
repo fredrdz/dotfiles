@@ -52,3 +52,9 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+["git/zshmux"]
+    type = "archive"
+    url = "https://github.com/huboles/zshmux/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"

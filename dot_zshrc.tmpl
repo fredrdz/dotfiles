@@ -164,8 +164,6 @@ alias ssh='TERM=xterm-256color ssh'
 # docker aliases
 alias docker-compose='docker compose'
 
-source ~/.local/share/lscolors.sh
-
 # ZSH Theme Color Scheme
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#778899'
 
@@ -285,15 +283,24 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 
 # neofetch integration
-  neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
+neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
 
 # starship integration
-  eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 # vim-mode
 #bindkey -v
 
 alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
+
+# https://github.com/huboles/zshmux
+# Auto-lists and connects to tmux sessions.
+[[ -d "$HOME/git/zshmux" ]] && source "$HOME/git/zshmux/zshmux.zsh"
+
+# DIR Colors
+[[ -e "$HOME/.local/share/lscolors.sh" ]] && source "$HOME/.local/share/lscolors.sh"
+
+# EXPORT PATH VARS
 
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
