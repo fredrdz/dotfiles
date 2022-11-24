@@ -1,16 +1,34 @@
 -------------------- load packer on all machines --------------------
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local vim = vim
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+-- Ensure that packer is installed.
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  execute 'packadd packer.nvim'
 end
 
--- load other lua configurations
+-- Use a protected call so we don't error out on first use.
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+vim.cmd('packadd packer.nvim')
+local util = require 'packer.util'
+packer.init({
+  package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack'),
+  -- Have packer use a popup windows.
+  display = {
+    open_fn = function()
+      return util.float({ border = 'single' })
+    end
+  }
+})
+
+-- Load lua configurations.
 require('nvim-settings')
 require('plugins')
 require('lspkind-settings')
@@ -19,17 +37,13 @@ require('markdown')
 require('statusline')
 
 -------------------- autocmds --------------------
--- restore cursor position
+
+-- Restore cursor position.
 vim.cmd(([[
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 ]]))
 
--- recompile automatically when editing *.lua
-vim.cmd(([[
-  autocmd BufWritePost *.lua PackerCompile
-]]))
-
--- NvimTree auto close on last window
+-- NvimTree auto close on last window.
 vim.cmd(([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]]))

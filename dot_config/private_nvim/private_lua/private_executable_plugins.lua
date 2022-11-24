@@ -1,4 +1,4 @@
-return require("packer").startup(function(use)
+return require('packer').startup(function(use)
 
   use "wbthomason/packer.nvim"
 
@@ -40,9 +40,29 @@ return require("packer").startup(function(use)
     end,
   }
 
+  -- telescope plugins
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      require('telescope').setup {
+        extensions = {
+          file_browser = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+          },
+        },
+      }
+      -- To get telescope-file-browser loaded and working with telescope,
+      -- you need to call load_extension, somewhere after setup function:
+      require('telescope').load_extension "file_browser"
+    end,
+  }
+
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = 'nvim-telescope/telescope.nvim',
   }
 
   use { "folke/which-key.nvim",
@@ -53,12 +73,10 @@ return require("packer").startup(function(use)
 
   -- use { "fatih/vim-go" }
   use { "phelipetls/vim-hugo" }
-  --use { "preservim/nerdtree" }
 
   -- tpope, the legend
   use { "tpope/vim-commentary" }
   use { "tpope/vim-repeat" } -- repeat commands
-  -- use { "tpope/vim-vinegar" } -- press - for local filebrowser
   use { "tpope/vim-surround" } -- cs)] turns surrounding ) into ]
 
 
@@ -327,4 +345,8 @@ return require("packer").startup(function(use)
   }
 
   use { "mfussenegger/nvim-lint" }
+
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)
