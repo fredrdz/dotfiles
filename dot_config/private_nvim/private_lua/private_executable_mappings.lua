@@ -10,15 +10,6 @@ vim.api.nvim_set_keymap('t', '<leader>t', '<C-\\><C-n><CMD>lua require("FTerm").
 -- avoid clashing with leader as space
 vim.api.nvim_set_keymap('n', '<space>', '<nop>', { noremap = true, silent = true })
 
--- code completion
-vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm(luaeval("require nvim-autopairs.autopairs_cr()"))', { expr = true })
-vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { noremap = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-e>', 'compe#close("<C-e>")', { noremap = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-f>', 'compe#scroll({ "delta" : +4 })', { noremap = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-d>', 'compe#scroll({ "delta" : -4 })', { noremap = true, expr = true })
--- vim.api.nvim_set_keymap('i', '<c-j>', 'pumvisible() ? "\\<c-n>" : "\\<c-j>"' , { noremap = true, expr=true })
--- vim.api.nvim_set_keymap('i', '<c-k>', 'pumvisible() ? "\\<c-p>" : "\\<c-j>"' , { noremap = true, expr=true })
-
 -- jj as <esc>
 vim.api.nvim_set_keymap('i', 'jj', '<esc>', { noremap = true })
 vim.api.nvim_set_keymap('t', 'jj', [[<C-\><C-n>]], { noremap = true })

@@ -14,7 +14,6 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.mouse = "" -- Disable mouse
 vim.opt.clipboard = "unnamedplus" -- Put those yanks in my os clipboards
-vim.opt.completeopt = "menuone,noselect" -- Completion options (for compe)
 vim.opt.hidden = true -- Enable modified buffers in background
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.incsearch = true -- Make search behave like modern browsers

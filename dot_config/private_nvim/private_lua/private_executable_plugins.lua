@@ -256,9 +256,9 @@ return require('packer').startup(function(use)
       -- Autocompletion
       ({
         'hrsh7th/nvim-cmp',
-        config = function()
-          require('cmp-config')
-        end
+        -- config = function()
+        --   require('cmp-config')
+        -- end
       }),
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
@@ -280,8 +280,58 @@ return require('packer').startup(function(use)
     },
     config = function()
       local lsp = require('lsp-zero')
-      lsp.preset('lsp-compe')
-      -- lsp.preset('recommended')
+      local cmp = require('cmp')
+      local lspkind = require('lspkind')
+      lsp.preset('recommended')
+      lsp.set_preferences({
+        suggest_lsp_servers = true,
+        setup_servers_on_start = true,
+        set_lsp_keymaps = true,
+        configure_diagnostics = true,
+        cmp_capabilities = true,
+        manage_nvim_cmp = true,
+        call_servers = 'local',
+        sign_icons = {
+          error = '✘',
+          warn = '▲',
+          hint = '⚑',
+          info = ''
+        }
+      })
+      lsp.setup_nvim_cmp({
+        preselect = 'none',
+        completion = {
+          completeopt = 'menu,menuone,noinsert,noselect'
+        },
+        mappings = lsp.defaults.cmp_mappings({
+          ['<C-j>'] = cmp.mapping.scroll_docs(5),
+          ['<C-k>'] = cmp.mapping.scroll_docs(-5),
+        }),
+        sources = {
+          { name = "nvim_lsp", group_index = 1 },
+          { name = "nvim_lua", group_index = 2 },
+          { name = "luasnip", group_index = 3 },
+          { name = "buffer", group_index = 4 },
+          { name = "path", group_index = 5 },
+          { name = "emoji", group_index = 6 },
+        },
+        formatting = {
+          fields = {'abbr', 'kind', 'menu'},
+          format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            maxwidth = 50,
+            ellipsis_char = '...',
+            before = function (entry, vim_item)
+              vim_item.menu = entry.source.name
+              return vim_item
+            end
+          })
+        },
+        documentation = {
+          border = 'rounded',
+          winhighlight = 'Normal:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None',
+        },
+      })
       lsp.ensure_installed({
         'bashls',
         'gopls',
@@ -292,6 +342,7 @@ return require('packer').startup(function(use)
       })
       lsp.nvim_workspace()
       lsp.setup()
+      cmp.setup(require('cmp-config'))
     end,
   })
 

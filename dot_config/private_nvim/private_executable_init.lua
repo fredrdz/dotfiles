@@ -24,7 +24,7 @@ packer.init({
   -- Have packer use a popup windows.
   display = {
     open_fn = function()
-      return util.float({ border = 'single' })
+      return util.float({ border = 'rounded' })
     end
   }
 })
