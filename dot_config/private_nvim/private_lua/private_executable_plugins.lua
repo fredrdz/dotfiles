@@ -65,6 +65,9 @@ return require('packer').startup(function(use)
     requires = 'nvim-telescope/telescope.nvim',
   }
 
+  -- Tag and symbol navigator
+  use { 'liuchengxu/vista.vim' }
+
   use { "folke/which-key.nvim",
     config = function()
       vim.g.timeoutlen = 3000
@@ -215,84 +218,13 @@ return require('packer').startup(function(use)
     end,
   }
 
-  -- snippets
-  use { "hrsh7th/vim-vsnip" }
-  use { "hrsh7th/vim-vsnip-integ" }
-  use { "golang/vscode-go" }
-
-  -- autocompletion
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
-
-  local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-  end
-
-  -- Use (s-)tab to:
-  --- move to prev/next item in completion menuone
-  --- jump to prev/next snippet's placeholder
-  _G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return t "<C-n>"
-    elseif vim.fn['vsnip#available'](1) == 1 then
-      return t "<Plug>(vsnip-expand-or-jump)"
-    elseif check_back_space() then
-      return t "<Tab>"
-    else
-      return vim.fn['compe#complete']()
-    end
-  end
-  _G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return t "<C-p>"
-    elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-      return t "<Plug>(vsnip-jump-prev)"
-    else
-      -- If <S-Tab> is not working in your terminal, change it to <C-h>
-      return t "<S-Tab>"
-    end
-  end
-
-  vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-  vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-  vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-  vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-
+  -- buffer enhancements
   use {
-    "hrsh7th/nvim-compe",
+    'windwp/nvim-autopairs',
     config = function()
-      require("compe").setup {
-        enabled = true,
-        autocomplete = true,
-        debug = false,
-        min_length = 1,
-        preselect = "enable",
-        throttle_time = 80,
-        source_timeout = 200,
-        incomplete_delay = 400,
-        max_abbr_width = 100,
-        max_kind_width = 100,
-        max_menu_width = 100,
-        documentation = true,
-
-        source = { path = true, buffer = false, calc = true, nvim_lsp = true, nvim_lua = true, vsnip = true },
-      }
+      require('autopairs-config')
     end,
   }
-
-  use {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-      require("nvim-autopairs.completion.compe").setup({
-        map_cr = true, --  map <CR> on insert mode
-        map_complete = true -- it will auto insert `(` after select function or method item
-      })
-    end,
-  }
-
   use { "yggdroot/indentline" }
   use { "andymass/vim-matchup" }
   use { "rrethy/vim-hexokinase", run = "make hexokinase" }
@@ -300,48 +232,121 @@ return require('packer').startup(function(use)
   -- show code actions as lightbulb
   use { "kosayoda/nvim-lightbulb" }
 
-
   use {
     'windwp/nvim-spectre',
     requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } }
   }
 
-  -- LSP goodies
-  use("williamboman/mason.nvim")
-  use({
-    "williamboman/mason-lspconfig.nvim",
+  -- LSP plugins
+  use {
+    'onsails/lspkind-nvim',
     config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({})
-      require("mason-lspconfig").setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {}
-        end,
-      }
+      require('lspkind-config')
+    end,
+  }
+
+  use({
+    'VonHeikemen/lsp-zero.nvim',
+    requires = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+
+      -- Autocompletion
+      ({
+        'hrsh7th/nvim-cmp',
+        config = function()
+          require('cmp-config')
+        end
+      }),
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/cmp-emoji' },
+      ({
+        'petertriho/cmp-git',
+        requires = 'nvim-lua/plenary.nvim'
+      }),
+
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'rafamadriz/friendly-snippets' },
+      { 'golang/vscode-go' },
+    },
+    config = function()
+      local lsp = require('lsp-zero')
+      lsp.preset('lsp-compe')
+      -- lsp.preset('recommended')
+      lsp.ensure_installed({
+        'bashls',
+        'gopls',
+        'html',
+        'sumneko_lua',
+        'tailwindcss',
+        'yamlls',
+      })
+      lsp.nvim_workspace()
+      lsp.setup()
     end,
   })
 
-  use({
-    "ray-x/navigator.lua",
-    requires = {
-      { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-      { "neovim/nvim-lspconfig" },
-      { "onsails/lspkind-nvim" },
-      { "ray-x/lsp_signature.nvim" },
-    },
-    config = function()
-      require("navigator").setup({
-        mason = true,
-      })
-    end,
-  })
+  -- use({
+  --   "ray-x/navigator.lua",
+  --   requires = {
+  --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+  --     { "neovim/nvim-lspconfig" },
+  --     { "onsails/lspkind-nvim" },
+  --     { "ray-x/lsp_signature.nvim" },
+  --   },
+  --   config = function()
+  --     require("navigator").setup({
+  --       mason = true,
+  --     })
+  --   end,
+  -- })
+
+  -- use({
+  --   'williamboman/mason-lspconfig.nvim',
+  --   requires = {
+  --     { 'williamboman/mason.nvim' },
+  --   },
+  --   config = function()
+  --     require("mason").setup()
+  --     require("mason-lspconfig").setup({})
+  --     require("mason-lspconfig").setup_handlers {
+  --       -- The first entry (without a key) will be the default handler
+  --       -- and will be called for each installed server that doesn't have
+  --       -- a dedicated handler.
+  --       function(server_name) -- default handler (optional)
+  --         local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+
+  --         if not cmp_nvim_lsp_status_ok then
+  --           print('MASON LSPCONFIG ENCOUNTERED AN ERROR!')
+  --           return
+  --         end
+
+  --         -- used to enable autocompletion (assign to every lsp server config)
+  --         local capabilities = cmp_nvim_lsp.default_capabilities()
+
+  --         require('lspconfig')[server_name].setup {
+  --           capabilities = capabilities
+  --         }
+  --       end,
+  --     }
+  --   end,
+  -- })
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('lualine-config')
+    end,
   }
 
   use { "mfussenegger/nvim-lint" }

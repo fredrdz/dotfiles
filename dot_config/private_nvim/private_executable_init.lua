@@ -13,6 +13,7 @@ end
 -- Use a protected call so we don't error out on first use.
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+  print('PACKER ENCOUNTERED AN ERROR!')
   return
 end
 
@@ -29,12 +30,9 @@ packer.init({
 })
 
 -- Load lua configurations.
-require('nvim-settings')
+require('options')
 require('plugins')
-require('lspkind-settings')
 require('mappings')
-require('markdown')
-require('statusline')
 
 -------------------- autocmds --------------------
 
@@ -47,6 +45,16 @@ vim.cmd(([[
 vim.cmd(([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]]))
+
+-- markdown funcs
+vim.cmd(([[
+  autocmd FileType markdown lua whichkeyMarkdown()
+]]))
+
+_G.whichkeyMarkdown = function()
+  local wk = require("which-key")
+  wk.register({ m = { name = "Markdown", p = { "<cmd>Glow<cr>", "preview" } } }, { prefix = "<leader>" })
+end
 
 -------------------- color scheme options  --------------------
 -- highlight Visual guibg=#16B2C3 guifg=#181818
