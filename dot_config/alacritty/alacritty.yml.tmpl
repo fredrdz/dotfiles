@@ -96,11 +96,14 @@ window:
     # General application class
     general: alacritty
 
-  # GTK theme variant (Linux/BSD only)
+  # Decorations theme variant (Linux/BSD only)
   #
-  # Override the variant of the GTK theme. Commonly supported values are `dark`
-  # and `light`. Set this to `None` to use the default theme variant.
-  gtk_theme_variant: dark
+  # Override the variant of the GTK theme/Wayland client side decorations.
+  # Commonly supported values are `dark` and `light`. Set this to `None` to use
+  # the default theme variant.
+  {{ if eq .osid "linux-garuda" }}
+  decorations_theme_variant: dark
+  {{ end }}
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -178,12 +181,6 @@ font:
   #glyph_offset:
   #  x: 0
   #  y: 0
-
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
