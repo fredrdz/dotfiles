@@ -59,14 +59,10 @@ end
 -------------------- color scheme options  --------------------
 -- highlight Visual guibg=#16B2C3 guifg=#181818
 -- highlight Search gui=italic guibg=#FF4C29 guifg=#2C394B
--- highlight Pmenu guibg=#082032
--- highlight PmenuSel guibg=#7af9ff gui=none guifg=#181818
--- highlight PmenuSbar guibg=#EEEEEE
--- highlight PmenuThumb guibg=#16B2C3
--- highlight CursorColumn guibg=#2C394B
--- highlight CursorLine guibg=#2C394B
 vim.cmd(([[
   function! MyHighlights() abort
+    highlight CursorColumn guibg=#2C394B
+    highlight CursorLine guibg=#2C394B
     highlight MatchParen guifg=#FFFFFF gui=bold
     highlight MatchWord guifg=#FFFFFF gui=bold
     highlight MatchParenCur gui=bold
@@ -75,6 +71,10 @@ vim.cmd(([[
     highlight default GHListDark guifg=#e0d8f4 guibg=#334756
     highlight default GHTextViewDark guifg=#e0d8f4 guibg=#082032
     highlight default GHListHl guifg=#181818 guibg=#7af9ff
+    highlight Pmenu guibg=#082032
+    highlight PmenuSel guibg=#7af9ff gui=none guifg=#181818
+    highlight PmenuSbar guibg=#EEEEEE
+    highlight PmenuThumb guibg=#16B2C3
     highlight FloatBorder guifg=#16B2C3
     highlight NormalFloat guibg=#082032
     highlight Terminal guibg=#082032
@@ -87,4 +87,4 @@ vim.cmd(([[
   augroup END
 ]]))
 
-vim.cmd [[colorscheme kanagawa]]
+vim.cmd("colorscheme kanagawa")

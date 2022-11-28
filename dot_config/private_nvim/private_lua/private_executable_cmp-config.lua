@@ -9,6 +9,9 @@ local compare = require("cmp.config.compare")
 
 -- Set up nvim-cmp.
 cmp.setup({
+  view = {
+    entries = { name = 'custom', selection_order = 'near_cursor' }
+  },
   sorting = {
     priority_weight = 2,
     comparators = {
@@ -33,8 +36,10 @@ cmp.setup({
     select = false,
   },
   window = {
-    border = 'rounded',
-    winhighlight = 'Normal:Pmenu,NormalFloat:Pmenu,FloatBorder:Normal,CursorLine:PmenuSel,Search:None',
+    completion = {
+      border = 'rounded',
+      winhighlight = 'Normal:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None',
+    }
   },
   experimental = {
     ghost_text = true,

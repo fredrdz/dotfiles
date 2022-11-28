@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use { 'numToStr/FTerm.nvim',
     config = function()
       require('FTerm').setup({
-        border     = 'single',
+        border     = 'rounded',
         blend      = 8,
         hl         = 'Terminal',
         dimensions = {
@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = {},
         overrides = {},
+        theme = "default"
       })
     end,
   }
@@ -56,7 +57,8 @@ return require('packer').startup(function(use)
       }
       -- To get telescope-file-browser loaded and working with telescope,
       -- you need to call load_extension, somewhere after setup function:
-      require('telescope').load_extension "file_browser"
+      require('telescope').load_extension('file_browser')
+      require('telescope').load_extension('neoclip')
     end,
   }
 
@@ -65,9 +67,17 @@ return require('packer').startup(function(use)
     requires = 'nvim-telescope/telescope.nvim',
   }
 
-  -- Tag and symbol navigator
-  use { 'liuchengxu/vista.vim' }
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      {'nvim-telescope/telescope.nvim'},
+    },
+    config = function()
+      require('neoclip').setup()
+    end,
+  }
 
+  -- all the keys!
   use { "folke/which-key.nvim",
     config = function()
       vim.g.timeoutlen = 3000
@@ -313,7 +323,8 @@ return require('packer').startup(function(use)
           { name = "luasnip", group_index = 3 },
           { name = "buffer", group_index = 4 },
           { name = "path", group_index = 5 },
-          { name = "emoji", group_index = 6 },
+          { name = "cmdline", group_index = 6 },
+          { name = "emoji", group_index = 7 },
         },
         formatting = {
           fields = {'abbr', 'kind', 'menu'},
@@ -321,10 +332,15 @@ return require('packer').startup(function(use)
             mode = 'symbol_text',
             maxwidth = 50,
             ellipsis_char = '...',
-            before = function (entry, vim_item)
-              vim_item.menu = entry.source.name
-              return vim_item
-            end
+            menu = {
+              nvim_lsp = "[LSP]",
+              nvim_lua = "[Lua]",
+              luasnip = "[LuaSnip]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+              cmdline = "[CmdLine]",
+              emoji = "[emoji]",
+            }
           })
         },
         documentation = {
@@ -340,7 +356,6 @@ return require('packer').startup(function(use)
         'tailwindcss',
         'yamlls',
       })
-      lsp.nvim_workspace()
       lsp.setup()
       cmp.setup(require('cmp-config'))
     end,
@@ -358,37 +373,6 @@ return require('packer').startup(function(use)
   --     require("navigator").setup({
   --       mason = true,
   --     })
-  --   end,
-  -- })
-
-  -- use({
-  --   'williamboman/mason-lspconfig.nvim',
-  --   requires = {
-  --     { 'williamboman/mason.nvim' },
-  --   },
-  --   config = function()
-  --     require("mason").setup()
-  --     require("mason-lspconfig").setup({})
-  --     require("mason-lspconfig").setup_handlers {
-  --       -- The first entry (without a key) will be the default handler
-  --       -- and will be called for each installed server that doesn't have
-  --       -- a dedicated handler.
-  --       function(server_name) -- default handler (optional)
-  --         local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-
-  --         if not cmp_nvim_lsp_status_ok then
-  --           print('MASON LSPCONFIG ENCOUNTERED AN ERROR!')
-  --           return
-  --         end
-
-  --         -- used to enable autocompletion (assign to every lsp server config)
-  --         local capabilities = cmp_nvim_lsp.default_capabilities()
-
-  --         require('lspconfig')[server_name].setup {
-  --           capabilities = capabilities
-  --         }
-  --       end,
-  --     }
   --   end,
   -- })
 

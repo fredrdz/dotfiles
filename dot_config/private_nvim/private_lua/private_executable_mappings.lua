@@ -48,7 +48,7 @@ wk.register({
       "list Files" },
     -- g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "grep in files" },
     S = { "<cmd>lua require('spectre').open_visual()<cr>", "Search and Replace (across files)" },
-
+    n = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
     B = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     F = { "<cmd>Telescope find_files<cr>", "Find File" },
