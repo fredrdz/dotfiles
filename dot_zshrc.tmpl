@@ -76,7 +76,6 @@ ENABLE_CORRECTION="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  autojump
   aws
   colored-man-pages
   copybuffer
@@ -289,6 +288,9 @@ neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
 
 # starship integration
 eval "$(starship init zsh)"
+
+# zoxide integration
+eval "$(zoxide init zsh)"
 
 # vim-mode
 #bindkey -v
