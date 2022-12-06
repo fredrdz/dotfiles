@@ -1,4 +1,8 @@
 #!/bin/bash
+# author: Fredy Rodriguez
+# note: uses golang templates to generate bash script
+# to see chezmoi vars
+# use: chezmoi data
 
 {{ if eq .osid "darwin" }}
 echo "Detected MacOS"
@@ -6,8 +10,23 @@ echo "Detected MacOS"
 {{ else if eq .osid "linux-debian" }}
 echo "Detected Debian"
 
-{{ else if eq .osid "linux-fedora" }}
-echo "Detected Fedora"
+{{ else if eq .osid "linux-nobara" }}
+echo "Detected Nobara"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]; then
+  echo "Detected Fedora"
+  sudo dnf install util-linux-user zsh
+  chsh -s $(which zsh)
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply fredrdz
+  sudo dnf install snapd cmake sshuttle tmux
+  sudo systemctl enable snapd
+  sudo snap install vlc slack discord bitwarden brave autossh httpie htop hugo gh
+  sudo snap install node go nvim tmux rg --classic
+  sudo npm install netlify-cli -g
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  cargo install navi zoxide exa starship bat fzf --locked
+fi
 
 {{ else if eq .osid "linux-garuda" }}
 echo "Detected Garuda"
