@@ -61,6 +61,8 @@ window:
   #     - buttonless: Title bar, transparent background and no title bar buttons
 {{ if eq .osid "darwin" }}
   decorations: buttonless
+{{ else if eq .osid "linux-nobara" }}
+  decorations: none
 {{ else }}
   decorations: full
 {{ end }}
@@ -101,9 +103,13 @@ window:
   # Override the variant of the GTK theme/Wayland client side decorations.
   # Commonly supported values are `dark` and `light`. Set this to `None` to use
   # the default theme variant.
-  {{ if eq .osid "linux-garuda" }}
+{{ if eq .osid "linux-garuda" }}
   decorations_theme_variant: dark
-  {{ end }}
+{{ else if eq .osid "linux-nobara" }}
+  decorations_theme_variant: dark
+{{ else }}
+  decorations_theme_variant: none
+{{ end }}
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
