@@ -149,11 +149,11 @@ alias eat='exa --long --tree --level 2 --icons --group-directories-first --color
 
 # bat aliases
 if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
-  alias b='bat --style=header,grid'
-  alias cat='bat --paging=never'
+  alias b='bat --style=full --paging=never --force-colorization'
+  alias cat='bat --plain --paging=never'
 else
-  alias b='batcat --style=header,grid'
-  alias cat='batcat --paging=never'
+  alias b='batcat --style=full --force-colorization'
+  alias cat='batcat --plain --paging=never'
 fi
 
 # nvim aliases
@@ -303,6 +303,9 @@ alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
 
 # DIR Colors
 [[ -e "$HOME/.local/share/lscolors.sh" ]] && source "$HOME/.local/share/lscolors.sh"
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # EXPORT PATH VARS
 

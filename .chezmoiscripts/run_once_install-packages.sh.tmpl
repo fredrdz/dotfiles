@@ -16,33 +16,44 @@ echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
   echo "Detected Fedora"
-  # shell
-  sudo dnf install util-linux-user zsh
-  chsh -s $(which zsh)
+  # chezmoi
+  # sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply fredrdz
   # dnf
-  sudo dnf install snapd cmake sshuttle tmux
+  sudo dnf install util-linux-user zsh snapd cmake sshuttle tmux xclip xsel
   # snap
-  sudo systemctl enable snapd
-  sudo snap install vlc slack discord bitwarden brave autossh httpie htop hugo gh
-  sudo snap install node go nvim tmux rg alacritty --classic
+  sudo systemctl enable snapd --now
+  sudo snap install vlc slack bitwarden brave autossh httpie htop hugo gh
+  sudo snap install node --classic
+  sudo snap install go --classic
+  sudo snap install nvim --classic
+  sudo snap install ripgrep --classic
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  cargo install navi zoxide exa starship bat fzf --locked
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
+    > /usr/share/pixmaps/Alacritty.svg
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
+    > ~/Documents/Alacritty.desktop
+  sudo desktop-file-install ~/Documents/Alacritty.desktop
+  sudo update-desktop-database
+  # fzf
+  ~/.fzf/install
   # node
   sudo npm install netlify-cli -g
   # xterm-256color-italic
-  cd ~/Documents/
-    curl https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo > xterm-256color-italic
-    tic xterm-256color-italic
-    rm xterm-256color-italic
-  cd -
+  curl --silent \
+    https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
+    > ~/Documents/xterm-256color-italic
+  tic ~/Documents/xterm-256color-italic
   # nerd-fonts
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/Documents/
   mkdir ~/.local/share/fonts
   unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
   fc-cache ~/.local/share/fonts
-  # chezmoi
-  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply fredrdz
+  # shell
+  chsh -s /usr/bin/zsh
 fi
 
 {{ else if eq .osid "linux-garuda" }}
