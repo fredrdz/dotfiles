@@ -16,13 +16,11 @@ echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
   echo "Detected Fedora"
-  # chezmoi
-  # sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply fredrdz
   # dnf
-  sudo dnf install util-linux-user zsh snapd cmake sshuttle tmux xclip xsel
+  sudo dnf install util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools
   # snap
   sudo systemctl enable snapd --now
-  sudo snap install vlc slack bitwarden brave autossh httpie htop hugo gh
+  sudo snap install vlc slack bitwarden autossh httpie htop hugo gh discord
   sudo snap install node --classic
   sudo snap install go --classic
   sudo snap install nvim --classic
@@ -30,14 +28,11 @@ if [ "$input" == "yes" ]; then
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
-    > /usr/share/pixmaps/Alacritty.svg
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
-    > ~/Documents/Alacritty.desktop
-  sudo desktop-file-install ~/Documents/Alacritty.desktop
-  sudo update-desktop-database
+  # shell
+  chsh -s /usr/bin/zsh
+  # ssh
+  sudo systemctl enable sshd
+  sudo systemctl start sshd
   # fzf
   ~/.fzf/install
   # node
@@ -52,8 +47,19 @@ if [ "$input" == "yes" ]; then
   mkdir ~/.local/share/fonts
   unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
   fc-cache ~/.local/share/fonts
-  # shell
-  chsh -s /usr/bin/zsh
+  # alacritty
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
+    > /usr/share/pixmaps/Alacritty.svg
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
+    > ~/Documents/Alacritty.desktop
+  sudo desktop-file-install ~/Documents/Alacritty.desktop
+  sudo update-desktop-database
+  # brave
+  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+  sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  sudo dnf install brave-browser
 fi
 
 {{ else if eq .osid "linux-garuda" }}
