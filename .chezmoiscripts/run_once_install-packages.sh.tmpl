@@ -17,10 +17,10 @@ read input
 if [ "$input" == "yes" ]; then
   echo "Detected Fedora"
   # dnf
-  sudo dnf install util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools
+  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools
   # snap
   sudo systemctl enable snapd --now
-  sudo snap install vlc slack bitwarden autossh httpie htop hugo gh discord
+  sudo snap install vlc slack bitwarden autossh httpie htop btop hugo gh discord
   sudo snap install node --classic
   sudo snap install go --classic
   sudo snap install nvim --classic
@@ -59,7 +59,15 @@ if [ "$input" == "yes" ]; then
   # brave
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-  sudo dnf install brave-browser
+  sudo dnf install -y brave-browser
+  # virtualization
+  #  sudo vi /etc/libvirt/libvirtd.conf
+  #  unix_sock_group = "libvirt"
+  #  unix_sock_rw_perms = "0770"
+  sudo dnf install -y @virtualization
+  sudo systemctl enable libvirtd
+  sudo systemctl start libvirtd
+  sudo usermod -a -G libvirt $(whoami)
 fi
 
 {{ else if eq .osid "linux-garuda" }}
