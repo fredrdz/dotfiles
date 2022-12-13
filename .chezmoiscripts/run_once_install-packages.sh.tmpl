@@ -37,6 +37,7 @@ if [ "$input" == "yes" ]; then
   ~/.fzf/install
   # node
   sudo npm install netlify-cli -g
+  sudo npm install diff-so-fancy -g
   # xterm-256color-italic
   curl --silent \
     https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
@@ -68,6 +69,24 @@ if [ "$input" == "yes" ]; then
   sudo systemctl enable libvirtd
   sudo systemctl start libvirtd
   sudo usermod -a -G libvirt $(whoami)
+  # chezmoi
+  mkdir ~/.oh-my-zsh/completions/
+  chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
+  # diff-so-fancy
+  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+  git config --global interactive.diffFilter "diff-so-fancy --patch"
+  git config --global color.ui true
+  git config --global color.diff-highlight.oldNormal    "red bold"
+  git config --global color.diff-highlight.oldHighlight "red bold 52"
+  git config --global color.diff-highlight.newNormal    "green bold"
+  git config --global color.diff-highlight.newHighlight "green bold 22"
+  git config --global color.diff.meta       "11"
+  git config --global color.diff.frag       "magenta bold"
+  git config --global color.diff.func       "146 bold"
+  git config --global color.diff.commit     "yellow bold"
+  git config --global color.diff.old        "red bold"
+  git config --global color.diff.new        "green bold"
+  git config --global color.diff.whitespace "red reverse"
 fi
 
 {{ else if eq .osid "linux-garuda" }}
