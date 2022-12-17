@@ -141,11 +141,11 @@ alias l='ls -lhsF --color=auto --group-directories-first'
 alias ll='ls -lAhsF --color=auto --group-directories-first'
 
 # exa aliases
-alias e='exa --long --icons --group-directories-first --color=always --header'
-alias el='exa --oneline --icons --group-directories-first --color=always'
-alias els='exa --oneline --group-directories-first --color=always'
-alias ea='exa --long --icons --group-directories-first --color=always --header --all'
-alias eat='exa --long --tree --level 2 --icons --group-directories-first --color=always --header --all'
+alias e='exa --git --long --icons --group-directories-first --color=always --header'
+alias el='exa --git --oneline --icons --group-directories-first --color=always'
+alias els='exa --git --oneline --group-directories-first --color=always'
+alias ea='exa --git --long --icons --group-directories-first --color=always --header --all'
+alias eat='exa --git --long --tree --level 2 --icons --group-directories-first --color=always --header --all'
 
 # bat aliases
 if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
@@ -155,6 +155,9 @@ else
   alias b='batcat --style=full --force-colorization'
   alias cat='batcat --plain --paging=never'
 fi
+
+# moar aliases
+alias m='moar --statusbar=bold'
 
 # nvim aliases
 alias v='nvim'
