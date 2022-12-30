@@ -15,14 +15,14 @@ echo "Detected Nobara"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-  echo "Detected Fedora"
+  echo "Detected Nobara"
   # dnf
-  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools
+  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config
   # shell
   chsh -s /usr/bin/zsh
   # snap
   sudo systemctl enable snapd --now
-  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh
+  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh slack discord
   sudo snap install node --classic
   sudo snap install go --classic
   sudo snap install nvim --classic
@@ -30,6 +30,7 @@ if [ "$input" == "yes" ]; then
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
+  ~/.cargo/bin/cargo install cargo-update
   # golang
   go install github.com/walles/moar@latest
   # ssh
