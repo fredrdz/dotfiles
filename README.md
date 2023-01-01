@@ -9,3 +9,4 @@ git remote -v
 git remote set-url origin git@github.com:fredrdz/dotfiles.git
 chezmoi diff
 chezmoi apply -v
+chezmoi data

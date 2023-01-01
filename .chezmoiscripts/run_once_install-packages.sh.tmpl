@@ -6,16 +6,80 @@
 
 {{ if eq .osid "darwin" }}
 echo "Detected MacOS"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]; then
+fi
 
-{{ else if eq .osid "linux-debian" }}
-echo "Detected Debian"
+{{ else if eq .osid "linux-ubuntu" }}
+echo "Detected Ubuntu"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]; then
+	# apt
+	sudo add-apt-repository ppa:aos1/diff-so-fancy
+	sudo apt update
+	sudo apt install zsh snapd cmake sshuttle tmux xclip xsel yp-tools pkg-config openssh-server libgit2-dev neofetch build-essential unzip diff-so-fancy
+	# locale
+	sudo locale-gen "en_US.UTF-8"
+	sudo dpkg-reconfigure locales
+	# ssh
+	sudo sed -i -E 's,^#?Port.*$,Port 2022,' /etc/ssh/sshd_config
+	sudo service ssh restart
+	sudo sh -c "echo '${USER} ALL=(root) NOPASSWD: /usr/sbin/service ssh start' >/etc/sudoers.d/service-ssh-start"
+	# rust
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	~/.cargo/bin/cargo install navi zoxide exa starship bat --locked
+	~/.cargo/bin/cargo install cargo-update
+	# snap
+	sudo systemctl enable snapd --now
+	sudo snap install autossh httpie htop btop hugo gh
+	sudo snap install node --classic
+	sudo snap install go --classic
+	sudo snap install nvim --classic
+	sudo snap install ripgrep --classic
+	# golang
+	go install github.com/walles/moar@latest
+	# fzf
+	~/.fzf/install
+	# node
+	sudo npm install netlify-cli -g
+	# xterm-256color-italic
+	mkdir ~/frodriguez
+	curl --silent \
+	https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
+	> ~/frodriguez/xterm-256color-italic
+	tic ~/frodriguez/xterm-256color-italic
+	# nerd-fonts
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/frodriguez/
+	mkdir ~/.local/share/fonts
+	unzip ~/frodriguez/JetBrainsMono.zip -d ~/.local/share/fonts/
+	fc-cache ~/.local/share/fonts
+	# chezmoi
+	mkdir ~/.oh-my-zsh/completions/
+	chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
+	# diff-so-fancy
+	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+	git config --global interactive.diffFilter "diff-so-fancy --patch"
+	git config --global color.ui true
+	git config --global color.diff-highlight.oldNormal    "red bold"
+	git config --global color.diff-highlight.oldHighlight "red bold 52"
+	git config --global color.diff-highlight.newNormal    "green bold"
+	git config --global color.diff-highlight.newHighlight "green bold 22"
+	git config --global color.diff.meta       "11"
+	git config --global color.diff.frag       "magenta bold"
+	git config --global color.diff.func       "146 bold"
+	git config --global color.diff.commit     "yellow bold"
+	git config --global color.diff.old        "red bold"
+	git config --global color.diff.new        "green bold"
+	git config --global color.diff.whitespace "red reverse"
+fi
 
 {{ else if eq .osid "linux-nobara" }}
 echo "Detected Nobara"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-  echo "Detected Nobara"
   # dnf
   sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config
   # shell
@@ -98,15 +162,12 @@ echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
   sudo pacman -Syu go neovim tmux autossh sshuttle fzf fd xclip diff-so-fancy powerline code mosh nodejs git base-devel npm httpie python-pip jre-openjdk php composer julia jdk-openjdk starship bat exa neofetch cmake unzip ninja tree-sitter curl yay-git
-
   #git clone https://aur.archlinux.org/yay-git.git ~/git/yay-git
   #cd ~/git/yay-git
   #makepkg -si
   yay -Syu slack-desktop brave mongosh-bin openrazer-meta polychromatic input-remapper-git
-
   #installs rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
   cargo install navi --locked
 fi
 
@@ -115,30 +176,23 @@ echo "Detected Steam OS / Steam Deck"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-
   # STEAM DECK ONLY
   sudo steamos-readonly disable
   sudo pacman-key --init
   sudo pacman-key --populate archlinux
   sudo pacman -Syu go tmux autossh sshuttle fzf powerline code mosh nodejs git base-devel npm httpie python-pip jre-openjdk php composer julia jdk-openjdk starship bat exa neofetch cmake unzip ninja tree-sitter curl yay-git htop wget gcc holo/linux-headers linux-neptune-headers holo/linux-lts-headersncat
   sudo pacman -Syu $(pacman -Qk 2>/dev/null | grep -ve ' 0 missing' | grep -ie ^libc -e glibc -e gcc -e clang -e headers -e udev -e systemd | awk -F ':' '{print $1}') --overwrite '*'
-
   # change shells
   chsh -s $(which zsh)
-
   # installs autojump
   ~/git/autojump/install.py
-
   # installs neovim
   git clone https://github.com/neovim/neovim ~/git/neovim
   cd ~/git/neovim
   make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
-
   # installs rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
   cargo install navi --locked
 fi
-
 {{ end }}

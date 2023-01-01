@@ -314,18 +314,18 @@ alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # EXPORT PATH VARS
-
-# Add go bin executables to PATH
-export PATH=$PATH:$(go env GOPATH)/bin
-
 # add podman bin path
 export PATH="/$HOME/.local/podman/bin:$PATH"
 
 # additional bin paths
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/$HOME/.local/bin:$PATH"
+export PATH="/snap/bin:$PATH"
 
+# Add go bin executables to PATH
+export PATH=$PATH:$(go env GOPATH)/bin
 {{ if eq .osid "darwin" }}
+
 # MAC Tweaks
 defaults write -g com.apple.trackpad.scaling -float 30.0
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
