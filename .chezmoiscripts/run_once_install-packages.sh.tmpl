@@ -16,6 +16,11 @@ echo "Detected Ubuntu"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
+  # systemd
+  sudo cat <<-EOT >> /etc/wsl.conf
+  [boot]
+  systemd=true
+  EOT
 	# apt
 	sudo add-apt-repository ppa:aos1/diff-so-fancy
 	sudo apt update
