@@ -22,11 +22,15 @@ sudo cat <<-EOF >> /etc/wsl.conf
 systemd=true
 EOF
   # dnf
-  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ htop neofetch wget ninja-build libtool libtool-bin openssh-server podman
+  sudo dnf install -y \
+    util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
+    libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ \
+    htop neofetch wget ninja-build libtool libtool-bin openssh-server \
+    podman clang libevent-devel
   sudo dnf groupinstall 'Development Tools' 'Development Libraries'
   # locale
   sudo dnf -y install glibc-common glibc-locale-source glibc-langpack-en
-  localedef --force -f UTF-8 -i en_US en_US.UTF-8
+  sudo localedef --force -f UTF-8 -i en_US en_US.UTF-8
   sudo dnf -y install langpacks-core-en_US langpacks-en_US man-pages-en_US
   # ssh
   sudo systemctl enable sshd --now
@@ -56,12 +60,11 @@ EOF
   sudo npm install netlify-cli -g
   ntl completion:install
   sudo npm install diff-so-fancy -g
-  # xterm-256color-italic
-  mkdir frodriguez
-  curl --silent \
-    https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
-    > ~/frodriguez/xterm-256color-italic
-  tic ~/frodriguez/xterm-256color-italic
+  # wezterm
+  tempfile=$(mktemp) \
+  && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+  && tic -x -o ~/.terminfo $tempfile \
+  && rm $tempfile
   # nerd-fonts
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/frodriguez/
   mkdir ~/.local/share/fonts
