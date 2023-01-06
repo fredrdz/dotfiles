@@ -1,61 +1,61 @@
+-- concise
+local opt = vim.opt
 local indent = 2
-vim.opt.syntax = "on"
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.api.nvim_command("set nofoldenable")
-vim.opt.foldnestmax = 10
-vim.opt.foldlevel = 0
-vim.opt.foldcolumn = "0"
-vim.opt.shiftwidth = indent -- Size of an indent
-vim.opt.tabstop = indent -- Number of spaces tabs count for
-vim.opt.softtabstop = indent
-vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.autoindent = true
-vim.opt.expandtab = true
-vim.opt.mouse = "" -- Disable mouse
-vim.opt.clipboard = "unnamedplus" -- Put those yanks in my os clipboards
-vim.opt.hidden = true -- Enable modified buffers in background
-vim.opt.ignorecase = true -- Ignore case
-vim.opt.incsearch = true -- Make search behave like modern browsers
-vim.opt.inccommand = "split" -- Live preview for search and replace
-vim.opt.joinspaces = false -- No double spaces with join after a dot
-vim.opt.scrolloff = 10 -- Lines of context
-vim.opt.shiftround = true -- Round indent
-vim.opt.sidescrolloff = 8 -- Columns of context
-vim.opt.smartcase = true -- Don't ignore case with capitals
-vim.opt.splitbelow = true -- Put new windows below current
-vim.opt.splitright = true -- Put new windows right of current
-vim.opt.list = false -- Show some invisible characters (tabs...)
-vim.opt.number = true -- Print line number
-vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.wrap = true -- Enable line wrap
-vim.opt.cmdheight = 2 -- More space to display messages
-vim.opt.timeoutlen = 400 -- Don't wait more that 400ms for normal mode commands
-vim.opt.guicursor = {"n-v-c:block", "i-ci-ve:ver25", "r-cr:hor20", "o:hor50", "a:blinkwait700-blinkoff400-blinkon250", "sm:block-blinkwait175-blinkoff150-blinkon175"}
-vim.opt.cursorcolumn = false
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = {"number", "line"}
-vim.opt.termguicolors = true -- True color support
-vim.opt.winblend = 8
-vim.opt.pumblend = 8
-vim.opt.wildignore = '*.swp,*.bak,*.pyc,*.class'
-vim.opt.wildmode = "list:longest" -- Command-line completion mode
-vim.opt.wildoptions = "pum"
-vim.opt.wildignorecase = true -- Ignore case command completion menu
-vim.opt.shada = {"!", "'1000", "<50", "s10", "h"} -- remember stuff across sessions
-vim.opt.undofile = true
-vim.opt.undodir = "/tmp/undodir"
-vim.opt.swapfile = false -- I have OCD file saving issues anyway
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.lazyredraw = true
-vim.opt.ttyfast = true
-vim.opt.title = true
-vim.opt.updatetime = 300
-vim.opt.backspace = {"indent", "eol", "start"}
-vim.opt.fillchars:append({fold = ' '})
-vim.opt.fillchars:append({foldopen = '▾', foldsep = '│', foldclose = '▸'})
-vim.opt.fillchars:append({
+
+-- mouse and clipboard
+opt.mouse:append('a')
+opt.clipboard = 'unnamed'
+
+-- searching
+opt.hlsearch = false
+opt.ignorecase = true -- Ignore case
+opt.smartcase = true -- Don't ignore case with capitals
+opt.inccommand = "split" -- Live preview for search and replace
+opt.incsearch = true -- Make search behave like modern browsers
+
+-- splits
+opt.splitbelow = true -- Put new windows below current
+opt.splitright = true -- Put new windows right of current
+
+-- default formatting
+opt.shiftwidth = indent -- Size of an indent
+opt.tabstop = indent -- Number of spaces tabs count for
+opt.softtabstop = indent
+opt.expandtab = true
+opt.autoindent = true
+opt.smartindent = true -- Insert indents automatically
+opt.shiftround = true -- Round indent
+
+-- treesitter folding
+-- vim.api.nvim_command("set nofoldenable")
+opt.foldmethod = 'expr'
+opt.foldlevel = 99
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- appearance
+opt.termguicolors = true -- True color support
+opt.syntax = "off"
+opt.cursorline = true
+-- opt.colorcolumn = '80,120'
+opt.cmdheight = 2 -- More space to display messages
+opt.wrap = true -- Enable line wrap
+opt.number = true -- Print line number
+opt.relativenumber = true -- Relative line numbers
+opt.scrolloff = 10 -- Lines of context
+opt.sidescrolloff = 8 -- Columns of context
+opt.signcolumn = 'yes'
+opt.laststatus = 3
+opt.errorbells = false
+opt.guicursor = {"n-v-c:block", "i-ci-ve:ver25", "r-cr:hor20", "o:hor50", "a:blinkwait700-blinkoff400-blinkon250", "sm:block-blinkwait175-blinkoff150-blinkon175"}
+opt.cursorlineopt = {"number", "line"}
+opt.backspace = {"indent", "eol", "start"}
+opt.list = false -- Show some invisible characters (tabs...)
+opt.listchars:append({trail = '·', eol = '↲'})
+-- opt.listchars = "tab:|.,trail:_,extends:>,precedes:<,nbsp:~,eol:¬"
+opt.indentkeys:remove(':,<:>')
+opt.fillchars:append({fold = ' '})
+opt.fillchars:append({foldopen = '▾', foldsep = '│', foldclose = '▸'})
+opt.fillchars:append({
    horiz = '━',
    horizup = '┻',
    horizdown = '┳',
@@ -64,10 +64,34 @@ vim.opt.fillchars:append({
    vertright = '┣',
    verthoriz = '╋',
   })
-vim.opt.showbreak = "↪ "
-vim.opt.listchars = "tab:|.,trail:_,extends:>,precedes:<,nbsp:~,eol:¬"
-vim.opt.signcolumn = "yes"
-vim.opt.laststatus = 3
+opt.showbreak = "↪ "
+
+-- menus
+opt.winblend = 8
+opt.pumblend = 8
+opt.wildignore = '*.swp,*.bak,*.pyc,*.class'
+opt.wildmode = "list:longest" -- Command-line completion mode
+opt.wildoptions = "pum"
+opt.wildignorecase = true -- Ignore case command completion menu
+
+-- misc
+opt.hidden = true -- Enable modified buffers in background
+opt.shada = {"!", "'1000", "<50", "s10", "h"} -- remember stuff across sessions
+opt.joinspaces = false -- No double spaces with join after a dot
+opt.timeoutlen = 400 -- Don't wait more that 400ms for normal mode commands
+opt.undofile = true
+opt.undodir = "/tmp/undodir"
+opt.swapfile = false -- I have OCD file saving issues anyway
+opt.backup = false
+opt.writebackup = false
+opt.lazyredraw = false
+opt.ttyfast = true
+opt.title = true
+opt.updatetime = 200
+
+-- nvim-tree
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 
 -------------------- set leader to space early --------------------
 vim.g.mapleader = " "

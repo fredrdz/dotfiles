@@ -324,8 +324,13 @@ export PATH="/snap/bin:$PATH"
 
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
-{{ if eq .osid "darwin" }}
 
+# tabtab source for packages
+# uninstall by removing these lines
+# (used for netlify completion; installed via NPM)
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+{{ if eq .osid "darwin" }}
 # MAC Tweaks
 defaults write -g com.apple.trackpad.scaling -float 30.0
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
@@ -335,9 +340,4 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-
-# tabtab source for packages
-# uninstall by removing these lines
-# (used for netlify completion; installed via NPM)
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 {{ end }}
