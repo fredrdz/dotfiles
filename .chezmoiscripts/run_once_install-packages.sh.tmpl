@@ -16,11 +16,11 @@ echo "Detected Fedora"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-  # systemd
-  sudo cat <<-EOT >> /etc/wsl.conf
-  [boot]
-  systemd=true
-  EOT
+# systemd
+sudo cat <<-EOF >> /etc/wsl.conf
+[boot]
+systemd=true
+EOF
   # dnf
   sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ htop neofetch wget ninja-build libtool libtool-bin openssh-server podman
   sudo dnf groupinstall 'Development Tools' 'Development Libraries'
