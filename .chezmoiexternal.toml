@@ -16,33 +16,15 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-[".oh-my-zsh/custom/themes/powerlevel10k"]
-    type = "archive"
-    url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
 [".fzf"]
     type = "archive"
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-[".tmux/plugins/tpm"]
+[".tmux"]
     type = "archive"
-    url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-["git/tmux-powerline"]
-    type = "archive"
-    url = "https://github.com/fredrdz/tmux-powerline/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-["git/tmux-mem-cpu-load"]
-    type = "archive"
-    url = "https://github.com/thewtex/tmux-mem-cpu-load/archive/master.tar.gz"
+    url = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
