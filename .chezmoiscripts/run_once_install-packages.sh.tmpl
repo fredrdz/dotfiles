@@ -26,8 +26,11 @@ EOF
     util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
     libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ \
     htop neofetch wget ninja-build libtool libtool-bin openssh-server \
-    podman clang libevent-devel
+    podman clang libevent-devel luarocks
   sudo dnf groupinstall 'Development Tools' 'Development Libraries'
+  sudo dnf install 'dnf-command(copr)'
+  sudo dnf copr enable atim/lazygit -y
+  sudo dnf install lazygit
   # locale
   sudo dnf -y install glibc-common glibc-locale-source glibc-langpack-en
   sudo localedef --force -f UTF-8 -i en_US en_US.UTF-8
@@ -47,10 +50,11 @@ EOF
   sudo snap install ripgrep --classic
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat --locked
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom --locked
   ~/.cargo/bin/cargo install cargo-update
   # golang
   go install github.com/walles/moar@latest
+  go install github.com/dundee/gdu/v5/cmd/gdu@latest
   # ssh
   sudo systemctl enable sshd
   sudo systemctl start sshd
