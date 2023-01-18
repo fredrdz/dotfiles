@@ -141,7 +141,7 @@ local config = {
                         status_diagnostics_enabled = true, -- enable diagnostics in statusline
                         icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
                         ui_notifications_enabled = true, -- disable notifications when toggling UI elements
-                        heirline_bufferline = true, -- enable new heirline based bufferline (requires :PackerSync after changing)
+                        heirline_bufferline = false, -- enable new heirline based bufferline (requires :PackerSync after changing)
                         -- set vim-matchup options
                         matchup_matchparen_offscreen = { method = 'popup' },
                         matchup_matchparen_deferred = 1,
@@ -355,6 +355,7 @@ local config = {
                                 end,
                         },
                         ["phelipetls/vim-hugo"] = {},
+                        ["tiagovla/scope.nvim"] = {},
                         ["andymass/vim-matchup"] = { after = "nvim-treesitter" },
                         ["nvim-treesitter/nvim-treesitter-textobjects"] = { after = "nvim-treesitter" },
                 },
@@ -382,6 +383,75 @@ local config = {
                 ["indent_blankline"] = {
                         show_current_context = true,
                         show_current_context_start = true,
+                },
+                ["neo-tree"] = {
+                        window = {
+                                position = "right",
+                                width = 30,
+                        },
+                        event_handlers = {
+                                {
+                                        event = "file_opened",
+                                        handler = function(file_path)
+                                                --auto close
+                                                require("neo-tree").close_all()
+                                        end
+                                },
+                                {
+                                        event = "neo_tree_window_after_open",
+                                        handler = function(args)
+                                                if args.position == "left" or args.position == "right" then
+                                                        vim.cmd("wincmd =")
+                                                end
+                                        end
+                                },
+                                {
+                                        event = "neo_tree_window_after_close",
+                                        handler = function(args)
+                                                if args.position == "left" or args.position == "right" then
+                                                        vim.cmd("wincmd =")
+                                                end
+                                        end
+                                },
+                        },
+                },
+                ["bufferline"] = {
+                        options = {
+                                mode = "buffers", -- set to "tabs" to only show tabpages instead
+                                numbers = function(opts)
+                                        return string.format('%s·%s', opts.raise(opts.id), opts.raise(opts.ordinal))
+                                end,
+                                indicator = {
+                                        style = 'underline',
+                                },
+                                diagnostics = "nvim_lsp",
+                                diagnostics_update_in_insert = true,
+                                offsets = {
+                                        {
+                                                filetype = "neo-tree",
+                                                text = "File Explorer",
+                                                text_align = "left",
+                                                separator = true
+                                        }
+                                },
+                                color_icons = true, -- whether or not to add the filetype icon highlights
+                                show_buffer_icons = true, -- disable filetype icons for buffers
+                                show_buffer_close_icons = true,
+                                show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
+                                show_close_icon = true,
+                                show_tab_indicators = true,
+                                show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
+                                persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+                                separator_style = 'slant',
+                                enforce_regular_tabs = false,
+                                always_show_bufferline = true,
+                                hover = {
+                                        enabled = true,
+                                        delay = 200,
+                                        reveal = { 'close' }
+                                },
+                                sort_by = 'tabs',
+                        },
                 },
                 -- use mason-lspconfig to configure LSP installations
                 ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
