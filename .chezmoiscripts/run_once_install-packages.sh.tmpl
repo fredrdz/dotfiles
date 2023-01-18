@@ -26,7 +26,7 @@ EOF
     util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
     libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ \
     htop neofetch wget ninja-build libtool libtool-bin openssh-server \
-    podman clang libevent-devel luarocks
+    podman clang libevent-devel luarocks openssl
   sudo dnf groupinstall 'Development Tools' 'Development Libraries'
   sudo dnf install 'dnf-command(copr)'
   sudo dnf copr enable atim/lazygit -y
