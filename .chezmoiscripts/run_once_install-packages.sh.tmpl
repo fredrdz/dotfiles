@@ -16,43 +16,34 @@ echo "Detected Fedora"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
-# systemd
-sudo cat <<-EOF >> /etc/wsl.conf
-[boot]
-systemd=true
-EOF
   # dnf
   sudo dnf install -y \
     util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
-    libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ \
-    htop neofetch wget ninja-build libtool libtool-bin openssh-server \
-    podman clang libevent-devel luarocks openssl net-tools
+    libgit2-devel libssh2-devel openssl-devel pkg-config gcc g++ httpie \
+    htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
+    podman clang libevent-devel luarocks openssl net-tools jq go neovim \
+    flatpak
   sudo dnf groupinstall 'Development Tools' 'Development Libraries'
   sudo dnf install 'dnf-command(copr)'
   sudo dnf copr enable atim/lazygit -y
   sudo dnf install lazygit
-  # locale
-  sudo dnf -y install glibc-common glibc-locale-source glibc-langpack-en
-  sudo localedef --force -f UTF-8 -i en_US en_US.UTF-8
-  sudo dnf -y install langpacks-core-en_US langpacks-en_US man-pages-en_US
+  sudo dnf module install nodejs:18/common
   # ssh
   sudo systemctl enable sshd --now
   sudo systemctl start sshd
   # shell
   chsh -s /usr/bin/zsh
+  # flatpak
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   # snap
   sudo ln -s /var/lib/snapd/snap /snap
   sudo systemctl enable snapd --now
-  sudo snap install bitwarden autossh httpie btop hugo gh
-  sudo snap install node --classic
-  sudo snap install go --classic
-  sudo snap install nvim --classic
-  sudo snap install ripgrep --classic
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom --locked
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom ripgrep --locked
   ~/.cargo/bin/cargo install cargo-update
   # golang
+  go install -tags extended github.com/gohugoio/hugo@latest
   go install github.com/walles/moar@latest
   go install github.com/dundee/gdu/v5/cmd/gdu@latest
   # ssh
