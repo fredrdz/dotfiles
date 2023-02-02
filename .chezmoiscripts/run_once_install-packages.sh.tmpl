@@ -35,6 +35,7 @@ if [ "$input" == "yes" ]; then
   chsh -s /usr/bin/zsh
   # flatpak
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install flathub org.wezfurlong.wezterm
   # snap
   sudo ln -s /var/lib/snapd/snap /snap
   sudo systemctl enable snapd --now
@@ -65,6 +66,92 @@ if [ "$input" == "yes" ]; then
   mkdir ~/.local/share/fonts
   unzip ~/frodriguez/JetBrainsMono.zip -d ~/.local/share/fonts/
   fc-cache ~/.local/share/fonts
+  # chezmoi
+  mkdir ~/.oh-my-zsh/completions/
+  chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
+  # diff-so-fancy
+  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+  git config --global interactive.diffFilter "diff-so-fancy --patch"
+  git config --global color.ui true
+  git config --global color.diff-highlight.oldNormal    "red bold"
+  git config --global color.diff-highlight.oldHighlight "red bold 52"
+  git config --global color.diff-highlight.newNormal    "green bold"
+  git config --global color.diff-highlight.newHighlight "green bold 22"
+  git config --global color.diff.meta       "11"
+  git config --global color.diff.frag       "magenta bold"
+  git config --global color.diff.func       "146 bold"
+  git config --global color.diff.commit     "yellow bold"
+  git config --global color.diff.old        "red bold"
+  git config --global color.diff.new        "green bold"
+  git config --global color.diff.whitespace "red reverse"
+fi
+
+{{ else if eq .osid "linux-nobara" }}
+echo "Detected Nobara"
+echo "Do you want to continue with installs?(yes/no)"
+read input
+if [ "$input" == "yes" ]; then
+  # dnf
+  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config
+  # shell
+  chsh -s /usr/bin/zsh
+  # flatpak
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install flathub org.wezfurlong.wezterm
+  flatpak install flathub com.github.wwmm.easyeffects
+  # snap
+  sudo systemctl enable snapd --now
+  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh slack discord
+  sudo snap install node --classic
+  sudo snap install go --classic
+  sudo snap install nvim --classic
+  sudo snap install ripgrep --classic
+  # rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
+  ~/.cargo/bin/cargo install cargo-update
+  # golang
+  go install github.com/walles/moar@latest
+  go install github.com/dundee/gdu/v5/cmd/gdu@latest
+  # ssh
+  sudo systemctl enable sshd
+  sudo systemctl start sshd
+  # fzf
+  ~/.fzf/install
+  # node
+  sudo npm install netlify-cli -g
+  sudo npm install diff-so-fancy -g
+  # xterm-256color-italic
+  curl --silent \
+    https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
+    > ~/Documents/xterm-256color-italic
+  tic ~/Documents/xterm-256color-italic
+  # nerd-fonts
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/Documents/
+  mkdir ~/.local/share/fonts
+  unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
+  fc-cache ~/.local/share/fonts
+  # alacritty
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
+    > /usr/share/pixmaps/Alacritty.svg
+  sudo curl --silent \
+    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
+    > ~/Documents/Alacritty.desktop
+  sudo desktop-file-install ~/Documents/Alacritty.desktop
+  sudo update-desktop-database
+  # brave
+  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+  sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  sudo dnf install -y brave-browser
+  # virtualization
+  #  sudo vi /etc/libvirt/libvirtd.conf
+  #  unix_sock_group = "libvirt"
+  #  unix_sock_rw_perms = "0770"
+  sudo dnf install -y @virtualization
+  sudo systemctl enable libvirtd
+  sudo systemctl start libvirtd
+  sudo usermod -a -G libvirt $(whoami)
   # chezmoi
   mkdir ~/.oh-my-zsh/completions/
   chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
@@ -152,87 +239,6 @@ if [ "$input" == "yes" ]; then
 	git config --global color.diff.old        "red bold"
 	git config --global color.diff.new        "green bold"
 	git config --global color.diff.whitespace "red reverse"
-fi
-
-{{ else if eq .osid "linux-nobara" }}
-echo "Detected Nobara"
-echo "Do you want to continue with installs?(yes/no)"
-read input
-if [ "$input" == "yes" ]; then
-  # dnf
-  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config
-  # shell
-  chsh -s /usr/bin/zsh
-  # snap
-  sudo systemctl enable snapd --now
-  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh slack discord
-  sudo snap install node --classic
-  sudo snap install go --classic
-  sudo snap install nvim --classic
-  sudo snap install ripgrep --classic
-  # rust
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
-  ~/.cargo/bin/cargo install cargo-update
-  # golang
-  go install github.com/walles/moar@latest
-  # ssh
-  sudo systemctl enable sshd
-  sudo systemctl start sshd
-  # fzf
-  ~/.fzf/install
-  # node
-  sudo npm install netlify-cli -g
-  sudo npm install diff-so-fancy -g
-  # xterm-256color-italic
-  curl --silent \
-    https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
-    > ~/Documents/xterm-256color-italic
-  tic ~/Documents/xterm-256color-italic
-  # nerd-fonts
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/Documents/
-  mkdir ~/.local/share/fonts
-  unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
-  fc-cache ~/.local/share/fonts
-  # alacritty
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
-    > /usr/share/pixmaps/Alacritty.svg
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
-    > ~/Documents/Alacritty.desktop
-  sudo desktop-file-install ~/Documents/Alacritty.desktop
-  sudo update-desktop-database
-  # brave
-  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-  sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-  sudo dnf install -y brave-browser
-  # virtualization
-  #  sudo vi /etc/libvirt/libvirtd.conf
-  #  unix_sock_group = "libvirt"
-  #  unix_sock_rw_perms = "0770"
-  sudo dnf install -y @virtualization
-  sudo systemctl enable libvirtd
-  sudo systemctl start libvirtd
-  sudo usermod -a -G libvirt $(whoami)
-  # chezmoi
-  mkdir ~/.oh-my-zsh/completions/
-  chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
-  # diff-so-fancy
-  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-  git config --global interactive.diffFilter "diff-so-fancy --patch"
-  git config --global color.ui true
-  git config --global color.diff-highlight.oldNormal    "red bold"
-  git config --global color.diff-highlight.oldHighlight "red bold 52"
-  git config --global color.diff-highlight.newNormal    "green bold"
-  git config --global color.diff-highlight.newHighlight "green bold 22"
-  git config --global color.diff.meta       "11"
-  git config --global color.diff.frag       "magenta bold"
-  git config --global color.diff.func       "146 bold"
-  git config --global color.diff.commit     "yellow bold"
-  git config --global color.diff.old        "red bold"
-  git config --global color.diff.new        "green bold"
-  git config --global color.diff.whitespace "red reverse"
 fi
 
 {{ else if eq .osid "linux-garuda" }}

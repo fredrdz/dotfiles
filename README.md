@@ -17,12 +17,36 @@ git remote -v
 git remote set-url origin git@github.com:fredrdz/dotfiles.git
 ```
 
+## Distrobox:
+Useful for immutatable OSes.
+```
+# installing fedora 37 on steam deck
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/install-podman | sh -s -- --prefix ~/.local
+sudo /home/fdev
+sudo chown deck:deck /home/fdev
+distrobox create --image fedora:37 --name fdev --home /home/fdev
+```
 
 ## ASTROVIM:
 https://github.com/AstroNvim/AstroNvim/
-
+```
+nvim +PackerSync
+```
 ### Backup Nvim Configs
 ```
 mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
 ```
+
+### OH-MY-TMUX:
+https://github.com/gpakosz/.tmux
+### Backup Tmux Configs
+```
+mv ~/.tmux ~/.tmux.bak
+mv ~/.tmux.conf ~/.tmux.conf.bak
+mv ~/.tmux.conf.local ~/.tmux.conf.local.bak
+```
+* installing plugins: <prefix> + I
+* uninstalling plugins: <prefix> + Alt + u
+* updating plugins: <prefix> + u
