@@ -342,3 +342,19 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 {{ end }}
+
+{{ if eq .osid "linux-steamos" }}
+command_not_found_handle() {
+# don't run if not in a container
+  if [ ! -e /run/.containerenv ] && [ ! -e /.dockerenv ]; then
+    exit 127
+  fi
+  
+  distrobox-host-exec "${@}"
+}
+if [ -n "${ZSH_VERSION-}" ]; then
+  command_not_found_handler() {
+    command_not_found_handle "$@"
+ }
+fi
+{{ end }}

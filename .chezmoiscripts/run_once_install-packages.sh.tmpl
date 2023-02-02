@@ -16,6 +16,9 @@ echo "Detected Fedora"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
+  # locale
+  sudo dnf -y install glibc-common glibc-locale-source glibc-langpack-en
+  sudo localedef --force -f UTF-8 -i en_US en_US.UTF-8
   # dnf
   sudo dnf install -y \
     util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
@@ -23,14 +26,11 @@ if [ "$input" == "yes" ]; then
     htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
     podman clang libevent-devel luarocks openssl net-tools jq go neovim \
     flatpak
-  sudo dnf groupinstall 'Development Tools' 'Development Libraries'
-  sudo dnf install 'dnf-command(copr)'
+  sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
+  sudo dnf install -y 'dnf-command(copr)'
   sudo dnf copr enable atim/lazygit -y
-  sudo dnf install lazygit
-  sudo dnf module install nodejs:18/common
-  # ssh
-  sudo systemctl enable sshd --now
-  sudo systemctl start sshd
+  sudo dnf install -y lazygit
+  sudo dnf module install -y nodejs:18/common
   # shell
   chsh -s /usr/bin/zsh
   # flatpak
@@ -47,9 +47,6 @@ if [ "$input" == "yes" ]; then
   go install -tags extended github.com/gohugoio/hugo@latest
   go install github.com/walles/moar@latest
   go install github.com/dundee/gdu/v5/cmd/gdu@latest
-  # ssh
-  sudo systemctl enable sshd
-  sudo systemctl start sshd
   # fzf
   ~/.fzf/install
   # node

@@ -50,3 +50,16 @@ mv ~/.tmux.conf.local ~/.tmux.conf.local.bak
 * installing plugins: <prefix> + I
 * uninstalling plugins: <prefix> + Alt + u
 * updating plugins: <prefix> + u
+
+## Steam Deck:
+### Accessing/Unlocking ROOT 
+Does NOT persist through updates.
+```
+passwd
+sudo steamos-readonly disable
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman -Sy
+sudo pacman -S <package>
+sudo steamos-readonly enable
+```
