@@ -343,7 +343,13 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 {{ end }}
 
-{{ if eq .osid "linux-steamos" }}
+{{ if eq .osid "linux-fedora" }}
+# alias
+alias dbe='distrobox-enter fdev'
+alias dbets='distrobox-enter fdev -- ts deck'
+alias dbeta='distrobox-enter fdev -- ta deck'
+
+# runs cmd on host if not found in container
 command_not_found_handle() {
 # don't run if not in a container
   if [ ! -e /run/.containerenv ] && [ ! -e /.dockerenv ]; then

@@ -18,6 +18,7 @@ git remote set-url origin git@github.com:fredrdz/dotfiles.git
 ```
 
 ## Distrobox:
+https://github.com/89luca89/distrobox
 Useful for immutatable OSes.
 ```
 # installing fedora 37 on steam deck
