@@ -50,7 +50,7 @@ local config = {
     left = 1, right = 1,
     top = 1, bottom = 1,
   },
-
+  window_decorations = "RESIZE",
   window_background_opacity = 0.9,
   text_background_opacity = 0.9,
 

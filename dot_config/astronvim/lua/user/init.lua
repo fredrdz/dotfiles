@@ -1,4 +1,4 @@
---              AstroNvim Configuration Table
+-- AstroNvim Configuration Table
 -- All configuration changes should go inside of the table below
 
 -- You can think of a Lua "table" as a dictionary like data structure the
@@ -358,6 +358,11 @@ local config = {
                         ["tiagovla/scope.nvim"] = {},
                         ["andymass/vim-matchup"] = { after = "nvim-treesitter" },
                         ["nvim-treesitter/nvim-treesitter-textobjects"] = { after = "nvim-treesitter" },
+                        ["ggandor/leap.nvim"] = {
+                                config = function()
+                                        require('leap').add_default_mappings()
+                                end,
+                        },
                 },
 
                 -- All other entries override the require("<key>").setup({...}) call for default plugins
