@@ -41,7 +41,7 @@ if [ "$input" == "yes" ]; then
   sudo systemctl enable snapd --now
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom ripgrep --locked
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom ripgrep
   ~/.cargo/bin/cargo install cargo-update
   # golang
   go install -tags extended github.com/gohugoio/hugo@latest
@@ -89,7 +89,9 @@ echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
   # dnf
-  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools libgit2-devel libssh2-devel openssl-devel pkg-config
+  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
+    libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc
+  sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
   # shell
   chsh -s /usr/bin/zsh
   # flatpak
@@ -103,13 +105,15 @@ if [ "$input" == "yes" ]; then
   sudo snap install go --classic
   sudo snap install nvim --classic
   sudo snap install ripgrep --classic
+  sudo snap install kubectl --classic
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty --locked
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty
   ~/.cargo/bin/cargo install cargo-update
   # golang
   go install github.com/walles/moar@latest
   go install github.com/dundee/gdu/v5/cmd/gdu@latest
+  go install sigs.k8s.io/kind@v0.17.0
   # ssh
   sudo systemctl enable sshd
   sudo systemctl start sshd
@@ -118,6 +122,11 @@ if [ "$input" == "yes" ]; then
   # node
   sudo npm install netlify-cli -g
   sudo npm install diff-so-fancy -g
+  # wezterm
+  tempfile=$(mktemp) \
+  && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+  && tic -x -o ~/.terminfo $tempfile \
+  && rm $tempfile
   # xterm-256color-italic
   curl --silent \
     https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
@@ -128,15 +137,6 @@ if [ "$input" == "yes" ]; then
   mkdir ~/.local/share/fonts
   unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
   fc-cache ~/.local/share/fonts
-  # alacritty
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg \
-    > /usr/share/pixmaps/Alacritty.svg
-  sudo curl --silent \
-    https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop \
-    > ~/Documents/Alacritty.desktop
-  sudo desktop-file-install ~/Documents/Alacritty.desktop
-  sudo update-desktop-database
   # brave
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
