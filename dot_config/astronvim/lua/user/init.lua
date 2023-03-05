@@ -358,6 +358,7 @@ local config = {
 			-- config variable is the default configuration table for the setup function call
 			-- local null_ls = require "null-ls"
 
+<<<<<<< HEAD
 			-- Check supported formatters and linters
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
@@ -545,6 +546,450 @@ local config = {
 		--   },
 		-- }
 	end,
+=======
+                        -- misc
+                        spell = false, -- sets vim.opt.spell
+                        hidden = true, -- Enable modified buffers in background
+                        shada = { "!", "'1000", "<50", "s10", "h" }, -- remember stuff across sessions
+                        joinspaces = false, -- No double spaces with join after a dot
+                        timeoutlen = 400, -- Don't wait more that 400ms for normal mode commands
+                        undofile = true,
+                        undodir = "/tmp/undodir",
+                        swapfile = false, -- I have OCD file saving issues anyway
+                        backup = false,
+                        writebackup = false,
+                        lazyredraw = false,
+                        ttyfast = true,
+                        title = true,
+                        updatetime = 200,
+                },
+                g = {
+                        mapleader = " ", -- sets vim.g.mapleader
+                        autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
+                        cmp_enabled = true, -- enable completion at start
+                        autopairs_enabled = true, -- enable autopairs at start
+                        diagnostics_enabled = true, -- enable diagnostics at start
+                        status_diagnostics_enabled = true, -- enable diagnostics in statusline
+                        icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
+                        ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+                        heirline_bufferline = false, -- enable new heirline based bufferline (requires :PackerSync after changing)
+                        -- set vim-matchup options
+                        matchup_matchparen_offscreen = { method = 'popup' },
+                        matchup_matchparen_deferred = 1,
+                        matchup_matchparen_deferred_show_delay = 50,
+                        matchup_matchparen_deferred_hide_delay = 700,
+                        matchup_matchparen_hi_surround_always = 1,
+                        matchup_surround_enabled = 1,
+                },
+        },
+        -- If you need more control, you can use the function()...end notation
+        -- options = function(local_vim)
+        --   local_vim.opt.relativenumber = true
+        --   local_vim.g.mapleader = " "
+        --   local_vim.opt.whichwrap = vim.opt.whichwrap - { 'b', 's' } -- removing option from list
+        --   local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
+        --
+        --   return local_vim
+        -- end,
+
+        -- Set dashboard header
+        header = {
+                " █████  ███████ ████████ ██████   ██████",
+                "██   ██ ██         ██    ██   ██ ██    ██",
+                "███████ ███████    ██    ██████  ██    ██",
+                "██   ██      ██    ██    ██   ██ ██    ██",
+                "██   ██ ███████    ██    ██   ██  ██████",
+                " ",
+                "    ███    ██ ██    ██ ██ ███    ███",
+                "    ████   ██ ██    ██ ██ ████  ████",
+                "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+                "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+                "    ██   ████   ████   ██ ██      ██",
+        },
+
+        -- Default theme configuration
+        default_theme = {
+                -- Modify the color palette for the default theme
+                colors = {
+                        fg = "#abb2bf",
+                        bg = "#1e222a",
+                },
+                highlights = function(hl) -- or a function that returns a new table of colors to set
+                        local C = require "default_theme.colors"
+
+                        hl.Normal = { fg = C.fg, bg = C.bg }
+
+                        -- New approach instead of diagnostic_style
+                        hl.DiagnosticError.italic = true
+                        hl.DiagnosticHint.italic = true
+                        hl.DiagnosticInfo.italic = true
+                        hl.DiagnosticWarn.italic = true
+
+                        return hl
+                end,
+                -- enable or disable highlighting for extra plugins
+                plugins = {
+                        aerial = true,
+                        beacon = false,
+                        bufferline = true,
+                        cmp = true,
+                        dashboard = true,
+                        highlighturl = true,
+                        hop = false,
+                        indent_blankline = true,
+                        lightspeed = false,
+                        ["neo-tree"] = true,
+                        notify = true,
+                        ["nvim-tree"] = false,
+                        ["nvim-web-devicons"] = true,
+                        rainbow = true,
+                        symbols_outline = false,
+                        telescope = true,
+                        treesitter = true,
+                        vimwiki = false,
+                        ["which-key"] = true,
+                },
+        },
+
+        -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
+        diagnostics = {
+                virtual_text = true,
+                underline = true,
+        },
+
+        -- Extend LSP configuration
+        lsp = {
+                -- enable servers that you already have installed without mason
+                servers = {
+                        -- "pyright"
+                },
+                formatting = {
+                        -- control auto formatting on save
+                        format_on_save = {
+                                enabled = true, -- enable or disable format on save globally
+                                allow_filetypes = { -- enable format on save for specified filetypes only
+                                        -- "go",
+                                },
+                                ignore_filetypes = { -- disable format on save for specified filetypes
+                                        "html",
+                                },
+                        },
+                        disabled = { -- disable formatting capabilities for the listed language servers
+                                -- "sumneko_lua",
+                        },
+                        timeout_ms = 1000, -- default format timeout
+                        -- filter = function(client) -- fully override the default formatting function
+                        --   return true
+                        -- end
+                },
+                -- easily add or disable built in mappings added during LSP attaching
+                mappings = {
+                        n = {
+                                -- ["<leader>lf"] = false -- disable formatting keymap
+                        },
+                },
+                -- add to the global LSP on_attach function
+                -- on_attach = function(client, bufnr)
+                -- end,
+
+                -- override the mason server-registration function
+                -- server_registration = function(server, opts)
+                --   require("lspconfig")[server].setup(opts)
+                -- end,
+
+                -- Add overrides for LSP server settings, the keys are the name of the server
+                ["server-settings"] = {
+                        -- example for addings schemas to yamlls
+                        -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
+                        --   settings = {
+                        --     yaml = {
+                        --       schemas = {
+                        --         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+                        --         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                        --         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+                        --       },
+                        --     },
+                        --   },
+                        -- },
+                },
+        },
+
+        -- Mapping data with "desc" stored directly by vim.keymap.set().
+        --
+        -- Please use this mappings table to set keyboard mapping since this is the
+        -- lower level configuration and more robust one. (which-key will
+        -- automatically pick-up stored data by this setting.)
+        mappings = {
+                -- first key is the mode
+                n = {
+                        -- second key is the lefthand side of the map
+                        -- mappings seen under group name "Buffer"
+                        ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+                        ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+                        ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+                        ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+                        -- quick save
+                        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+                },
+                t = {
+                        -- setting a mapping to false will disable it
+                        -- ["<esc>"] = false,
+                },
+        },
+
+        -- Configure plugins
+        plugins = {
+                init = {
+                        -- You can disable default plugins as follows:
+                        -- ["goolord/alpha-nvim"] = { disable = true },
+
+                        -- You can also add new plugins here as well:
+                        -- Add plugins, the packer syntax without the "use"
+                        -- { "andweeb/presence.nvim" },
+                        -- {
+                        --   "ray-x/lsp_signature.nvim",
+                        --   event = "BufRead",
+                        --   config = function()
+                        --     require("lsp_signature").setup()
+                        --   end,
+                        -- },
+
+                        -- We also support a key value style plugin definition similar to NvChad:
+                        -- ["ray-x/lsp_signature.nvim"] = {
+                        --   event = "BufRead",
+                        --   config = function()
+                        --     require("lsp_signature").setup()
+                        --   end,
+                        -- },
+
+                        ["rebelot/kanagawa.nvim"] = {
+                                config = function()
+                                        -- Default options:
+                                        require('kanagawa').setup({
+                                                undercurl = true, -- enable undercurls
+                                                commentStyle = { italic = true },
+                                                functionStyle = {},
+                                                keywordStyle = { italic = true },
+                                                statementStyle = { bold = true },
+                                                typeStyle = {},
+                                                variablebuiltinStyle = { italic = true },
+                                                specialReturn = true, -- special highlight for the return keyword
+                                                specialException = true, -- special highlight for exception handling keywords
+                                                transparent = false, -- do not set background color
+                                                dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+                                                globalStatus = true, -- adjust window separators highlight for laststatus=3
+                                                terminalColors = true, -- define vim.g.terminal_color_{0,17}
+                                                colors = {},
+                                                overrides = {},
+                                                theme = "default"
+                                        })
+                                end,
+                        },
+                        ["phelipetls/vim-hugo"] = {},
+                        ["tiagovla/scope.nvim"] = {},
+                        ["andymass/vim-matchup"] = { after = "nvim-treesitter" },
+                        ["nvim-treesitter/nvim-treesitter-textobjects"] = { after = "nvim-treesitter" },
+                        ["ggandor/leap.nvim"] = {
+                                config = function()
+                                        require('leap').add_default_mappings()
+                                end,
+                        },
+                },
+
+                -- All other entries override the require("<key>").setup({...}) call for default plugins
+                ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
+                        -- config variable is the default configuration table for the setup function call
+                        -- local null_ls = require "null-ls"
+
+                        -- Check supported formatters and linters
+                        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+                        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+                        config.sources = {
+                                -- Set a formatter
+                                -- null_ls.builtins.formatting.stylua,
+                                -- null_ls.builtins.formatting.prettier,
+                        }
+                        return config -- return final config table
+                end,
+                ["treesitter"] = { -- overrides `require("treesitter").setup(...)`
+                        highlight = { disable = { "help" } },
+                        indent = { enable = true, disable = { "python" } },
+                        matchup = { enable = true },
+                },
+                ["indent_blankline"] = {
+                        show_current_context = true,
+                        show_current_context_start = true,
+                },
+                ["neo-tree"] = {
+                        window = {
+                                position = "right",
+                                width = 30,
+                        },
+                        event_handlers = {
+                                {
+                                        event = "file_opened",
+                                        handler = function(file_path)
+                                                --auto close
+                                                require("neo-tree").close_all()
+                                        end
+                                },
+                                {
+                                        event = "neo_tree_window_after_open",
+                                        handler = function(args)
+                                                if args.position == "left" or args.position == "right" then
+                                                        vim.cmd("wincmd =")
+                                                end
+                                        end
+                                },
+                                {
+                                        event = "neo_tree_window_after_close",
+                                        handler = function(args)
+                                                if args.position == "left" or args.position == "right" then
+                                                        vim.cmd("wincmd =")
+                                                end
+                                        end
+                                },
+                        },
+                },
+                ["bufferline"] = {
+                        options = {
+                                mode = "buffers", -- set to "tabs" to only show tabpages instead
+                                numbers = function(opts)
+                                        return string.format('%s·%s', opts.raise(opts.id), opts.raise(opts.ordinal))
+                                end,
+                                indicator = {
+                                        style = 'underline',
+                                },
+                                diagnostics = "nvim_lsp",
+                                diagnostics_update_in_insert = true,
+                                offsets = {
+                                        {
+                                                filetype = "neo-tree",
+                                                text = "File Explorer",
+                                                text_align = "left",
+                                                separator = true
+                                        }
+                                },
+                                color_icons = true, -- whether or not to add the filetype icon highlights
+                                show_buffer_icons = true, -- disable filetype icons for buffers
+                                show_buffer_close_icons = true,
+                                show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
+                                show_close_icon = true,
+                                show_tab_indicators = true,
+                                show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
+                                persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+                                separator_style = 'slant',
+                                enforce_regular_tabs = false,
+                                always_show_bufferline = true,
+                                hover = {
+                                        enabled = true,
+                                        delay = 200,
+                                        reveal = { 'close' }
+                                },
+                                sort_by = 'tabs',
+                        },
+                },
+                -- use mason-lspconfig to configure LSP installations
+                ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
+                        -- ensure_installed = { "sumneko_lua" },
+                },
+                -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
+                ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
+                        -- ensure_installed = { "prettier", "stylua" },
+                },
+                ["mason-nvim-dap"] = { -- overrides `require("mason-nvim-dap").setup(...)`
+                        -- ensure_installed = { "python" },
+                },
+        },
+
+        -- LuaSnip Options
+        luasnip = {
+                -- Extend filetypes
+                filetype_extend = {
+                        -- javascript = { "javascriptreact" },
+                },
+                -- Configure luasnip loaders (vscode, lua, and/or snipmate)
+                vscode = {
+                        -- Add paths for including more VS Code style snippets in luasnip
+                        paths = {},
+                },
+        },
+
+        -- CMP Source Priorities
+        -- modify here the priorities of default cmp sources
+        -- higher value == higher priority
+        -- The value can also be set to a boolean for disabling default sources:
+        -- false == disabled
+        -- true == 1000
+        cmp = {
+                source_priority = {
+                        nvim_lsp = 1000,
+                        luasnip = 750,
+                        buffer = 500,
+                        path = 250,
+                },
+        },
+
+        -- Customize Heirline options
+        heirline = {
+                -- -- Customize different separators between sections
+                -- separators = {
+                --   tab = { "", "" },
+                -- },
+                -- -- Customize colors for each element each element has a `_fg` and a `_bg`
+                -- colors = function(colors)
+                --   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
+                --   return colors
+                -- end,
+                -- -- Customize attributes of highlighting in Heirline components
+                -- attributes = {
+                --   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
+                --   git_branch = { bold = true }, -- bold the git branch statusline component
+                -- },
+                -- -- Customize if icons should be highlighted
+                -- icon_highlights = {
+                --   breadcrumbs = false, -- LSP symbols in the breadcrumbs
+                --   file_icon = {
+                --     winbar = false, -- Filetype icon in the winbar inactive windows
+                --     statusline = true, -- Filetype icon in the statusline
+                --   },
+                -- },
+        },
+
+        -- Modify which-key registration (Use this with mappings table in the above.)
+        ["which-key"] = {
+                -- Add bindings which show up as group name
+                register = {
+                        -- first key is the mode, n == normal mode
+                        n = {
+                                -- second key is the prefix, <leader> prefixes
+                                ["<leader>"] = {
+                                        -- third key is the key to bring up next level and its displayed
+                                        -- group name in which-key top level menu
+                                        ["b"] = { name = "Buffer" },
+                                },
+                        },
+                },
+        },
+
+        -- This function is run last and is a good place to configuring
+        -- augroups/autocommands and custom filetypes also this just pure lua so
+        -- anything that doesn't fit in the normal config locations above can go here
+        polish = function()
+                -- Set up custom filetypes
+                -- vim.filetype.add {
+                --   extension = {
+                --     foo = "fooscript",
+                --   },
+                --   filename = {
+                --     ["Foofile"] = "fooscript",
+                --   },
+                --   pattern = {
+                --     ["~/%.config/foo/.*"] = "fooscript",
+                --   },
+                -- }
+        end,
+>>>>>>> 1ecb4691b47e60f2f90d5833977b53983ab80f93
 }
 
 return config
