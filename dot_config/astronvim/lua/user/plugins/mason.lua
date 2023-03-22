@@ -6,9 +6,12 @@ return {
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = {
       ensure_installed = {
-        "astro", "bashls", "cssls", "dockerls", "emmet_ls", "gopls",
-        "html", "jsonls", "lua_ls", "svelte", "tailwindcss",
-        "taplo", "tsserver", "vimls", "yamlls"
+        "bashls",
+        "cssls",
+        "dockerls",
+        "emmet_ls",
+        "html",
+        "vimls",
       }
     },
   },
