@@ -343,19 +343,24 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 {{ end }}
 
-{{ if eq .osid "linux-fedora" }}
+{{ if eq .osid "linux-steamos" }}
 # alias
 alias dbe='distrobox-enter fdev'
 alias dbets='distrobox-enter fdev -- ts deck'
 alias dbeta='distrobox-enter fdev -- ta deck'
 
+# https://github.com/89luca89/distrobox/blob/107503a20bdb1e950fa05f329788e13c72f29342/docs/posts/install_rootless.md
+# for distrobox gui apps; gives permissions
+xhost +si:localuser:$USER
+{{ end }}
+
+{{ if eq .osid "linux-fedora" }}
 # runs cmd on host if not found in container
 command_not_found_handle() {
-# don't run if not in a container
+  # don't run if not in a container
   if [ ! -e /run/.containerenv ] && [ ! -e /.dockerenv ]; then
     exit 127
   fi
-  
   distrobox-host-exec "${@}"
 }
 if [ -n "${ZSH_VERSION-}" ]; then
