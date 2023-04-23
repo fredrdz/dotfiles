@@ -21,8 +21,8 @@ return {
 				keywordStyle = { italic = true },
 				statementStyle = { bold = true },
 				typeStyle = {},
-				transparent = true, -- do not set background color
-				dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+				transparent = false, -- do not set background color
+				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 				theme = "wave",    -- Load "wave" theme when 'background' option is not set
 				background = {
@@ -33,6 +33,6 @@ return {
 			})
 		end,
 	},
-	{ "tiagovla/scope.nvim" },
+	{ "phelipetls/vim-hugo",  ft = "htmlhugo" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
 }

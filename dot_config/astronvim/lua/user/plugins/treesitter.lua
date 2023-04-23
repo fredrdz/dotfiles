@@ -27,7 +27,12 @@ return {
 	opts = {
 		auto_install = vim.fn.executable("tree-sitter") == 1,
 		highlight = { disable = { "help" } },
-		matchup = { enable = true },
+		matchup = {
+			enable = true,
+			disable = { "lua", "html" },
+			disable_virtual_text = true,
+			include_match_words = true,
+		},
 		rainbow = { enable = true },
 		textobjects = {
 			select = {
