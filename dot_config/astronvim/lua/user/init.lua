@@ -2,7 +2,7 @@ return {
 	-- Configure AstroNvim updates
 	updater = {
 		remote = "origin",   -- remote to use
-		channel = "stable",  -- "stable" or "nightly"
+		channel = "nightly", -- "stable" or "nightly"
 		version = "latest",  -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
 		branch = "nightly",  -- branch name (NIGHTLY ONLY)
 		commit = nil,        -- commit hash (NIGHTLY ONLY)
@@ -20,7 +20,7 @@ return {
 	colorscheme = "kanagawa-wave",
 	-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 	diagnostics = {
-		virtual_text = true,
+		virtual_text = false,
 		underline = true,
 	},
 	lsp = {
@@ -44,6 +44,10 @@ return {
 			-- filter = function(client) -- fully override the default formatting function
 			--   return true
 			-- end
+		},
+		-- enable servers that you already have installed without mason
+		servers = {
+			-- "pyright"
 		},
 	},
 	-- Configure require("lazy").setup() options

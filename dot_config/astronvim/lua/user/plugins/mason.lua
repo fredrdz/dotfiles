@@ -6,11 +6,22 @@ return {
 		-- overrides `require("mason-lspconfig").setup(...)`
 		opts = {
 			ensure_installed = {
+				"astro",
 				"bashls",
+				"cssls",
+				"docker_compose_language_service",
 				"dockerls",
 				"emmet_ls",
+				"gopls",
+				"jsonls",
+				"lua_ls",
+				"svelte",
+				"tailwindcss",
 				"html",
+				"taplo",
+				"tsserver",
 				"vimls",
+				"yamlls"
 			},
 		},
 	},
@@ -20,8 +31,15 @@ return {
 		-- overrides `require("mason-null-ls").setup(...)`
 		opts = {
 			ensure_installed = {
-				"prettier",
+				"gofumpt",
+				"goimports",
+				"gomodifytags",
+				"iferr",
+				"impl",
 				"prettierd",
+				"rustywind",
+				"shellcheck",
+				"shfmt"
 			},
 			handlers = {
 				-- for prettier
@@ -55,6 +73,8 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
+				"delve",
+				"js"
 			},
 		},
 	},

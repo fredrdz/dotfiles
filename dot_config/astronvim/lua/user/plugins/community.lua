@@ -8,6 +8,7 @@ return {
 	-- { import = "astrocommunity.completion.copilot-lua-cmp" },
 
 	-- packs
+	{ import = "astrocommunity.pack.bash",                    enabled = true },
 	{ import = "astrocommunity.pack.go",                      enabled = true },
 	{ import = "astrocommunity.pack.lua",                     enabled = true },
 	{ import = "astrocommunity.pack.markdown",                enabled = true },
@@ -17,6 +18,7 @@ return {
 	{ import = "astrocommunity.pack.yaml",                    enabled = true },
 
 	-- diagnostics
+	{ import = "astrocommunity.diagnostics.lsp_lines-nvim",   enabled = true },
 	{ import = "astrocommunity.diagnostics.trouble-nvim",     enabled = true },
 
 	-- indent
