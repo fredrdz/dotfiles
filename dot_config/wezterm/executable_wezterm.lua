@@ -8,7 +8,7 @@ local mykeys = {
 		mods = "SHIFT|CTRL",
 		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
-	{ key = "LeftArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "LeftArrow",  mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "RightArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(1) },
 }
 
@@ -50,8 +50,8 @@ local config = {
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
 	window_decorations = "RESIZE",
-	window_background_opacity = 1.0,
-	text_background_opacity = 1.0,
+	window_background_opacity = 0.95,
+	text_background_opacity = 0.5,
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,
 	harfbuzz_features = {
@@ -60,7 +60,7 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
-	font_size = 13,
+	font_size = 14,
 	-- Disable annoying default behaviors
 	adjust_window_size_when_changing_font_size = false,
 	-- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)
@@ -75,20 +75,20 @@ local config = {
 	hyperlink_rules = {
 		-- Linkify things that look like URLs and the host has a TLD name.
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b", format = "$0" },
+		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",    format = "$0" },
 		-- linkify email addresses
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]], format = "mailto:$0" },
+		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],                format = "mailto:$0" },
 		-- file:// URI
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\bfile://\S*\b]], format = "$0" },
+		{ regex = [[\bfile://\S*\b]],                           format = "$0" },
 		-- Linkify things that look like URLs with numeric addresses as hosts.
 		-- E.g. http://127.0.0.1:8000 for a local development server,
 		-- or http://192.168.1.1 for the web interface of many routers.
 		{ regex = [[\b\w+://(?:[\d]{1,3}\.){3}[\d]{1,3}\S*\b]], format = "$0" },
 		-- Make task numbers clickable
 		-- The first matched regex group is captured in $1.
-		{ regex = [[\b[tT](\d+)\b]], format = "https://example.com/tasks/?t=$1" },
+		{ regex = [[\b[tT](\d+)\b]],                            format = "https://example.com/tasks/?t=$1" },
 		-- Make username/project paths clickable. This implies paths like the following are for GitHub.
 		-- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
 		-- As long as a full URL hyperlink regex exists above this it should not match a full URL to

@@ -100,7 +100,7 @@ if [ "$input" == "yes" ]; then
   flatpak install flathub com.github.wwmm.easyeffects
   # snap
   sudo systemctl enable snapd --now
-  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh slack discord
+  sudo snap install vlc bitwarden autossh httpie htop btop hugo gh slack
   sudo snap install node --classic
   sudo snap install go --classic
   sudo snap install nvim --classic
@@ -108,7 +108,7 @@ if [ "$input" == "yes" ]; then
   sudo snap install kubectl --classic
   # rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat alacritty
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat
   ~/.cargo/bin/cargo install cargo-update
   # golang
   go install github.com/walles/moar@latest
