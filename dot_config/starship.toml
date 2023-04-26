@@ -3,14 +3,12 @@ add_newline = false
 # A continuation prompt that displays two filled in arrows
 continuation_prompt = '▶▶ '
 # Move the directory to the second line
-format = '''$username$hostname: $directory
-$character
-'''
+format = '$username$hostname$git_commit$git_branch$git_status$all$character'
 # move the rest of the prompt to the right
-right_format = '$git_commit$git_status$git_branch$all-> $time'
+right_format = '$directory⍆$time'
 
 [line_break]
-disabled = false
+disabled = true
 
 [character]
 success_symbol = "[❯❯](bold green)"
@@ -25,15 +23,15 @@ style = "bold #EEEEEE"
 read_only = " "
 read_only_style = "#AB2330"
 format = '[$read_only]($read_only_style)[$path]($style) '
-truncation_length = 10
+truncation_length = 20
 truncation_symbol = ""
 truncate_to_repo = true
 
 [git_branch]
 symbol = " "
 style = "dimmed blue"
-format = '\( [$symbol$branch(:$remote_branch)]($style) \): '
-truncation_length = 10
+format = '⟦[$symbol$branch(:$remote_branch)]($style)⟧ '
+truncation_length = 20
 truncation_symbol = ""
 
 [git_commit]
@@ -44,9 +42,16 @@ ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
 
+[username]
+style_user = "#36454F"
+style_root = "#ED2B2A"
+format = "[$user]($style)"
+disabled = false
+show_always = false
+
 [hostname]
 ssh_only = true
-format = "@ [$hostname](bold #FF4C29) "
+format = "◈[$hostname](bold #FF4C29)~>"
 trim_at = ".companyname.com"
 disabled = false
 
@@ -61,13 +66,6 @@ disabled = false
 style = "#667C76"
 time_format = "%T"
 format = "[$time]($style) "
-
-[username]
-style_user = "#36454F"
-style_root = "#ED2B2A"
-format = "[$user]($style) "
-disabled = false
-show_always = true
 
 #-------------------------------- non-common languages -------------------------------
 [aws]
