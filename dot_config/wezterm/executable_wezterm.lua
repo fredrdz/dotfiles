@@ -50,8 +50,8 @@ local config = {
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
 	window_decorations = "RESIZE",
-	window_background_opacity = 0.95,
-	text_background_opacity = 0.5,
+	window_background_opacity = 0.98,
+	text_background_opacity = 0.94,
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,
 	harfbuzz_features = {
@@ -60,7 +60,9 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
+	-- font settings
 	font_size = 14,
+	freetype_load_target = "Light",
 	-- Disable annoying default behaviors
 	adjust_window_size_when_changing_font_size = false,
 	-- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)

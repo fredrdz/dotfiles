@@ -15,6 +15,7 @@ return {
 				"gopls",
 				"jsonls",
 				"lua_ls",
+				"marksman",
 				"svelte",
 				"tailwindcss",
 				"html",
@@ -48,8 +49,12 @@ return {
 						condition = function(utils)
 							return utils.root_has_file("package.json")
 									or utils.root_has_file(".prettierrc")
-									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.config.js")
 									or utils.root_has_file(".prettierrc.js")
+									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.toml")
+									or utils.root_has_file(".prettierrc.yaml")
+									or utils.root_has_file(".prettierrc.yml")
 						end,
 					}))
 				end,
@@ -59,8 +64,12 @@ return {
 						condition = function(utils)
 							return utils.root_has_file("package.json")
 									or utils.root_has_file(".prettierrc")
-									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.config.js")
 									or utils.root_has_file(".prettierrc.js")
+									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.toml")
+									or utils.root_has_file(".prettierrc.yaml")
+									or utils.root_has_file(".prettierrc.yml")
 						end,
 					}))
 				end,
