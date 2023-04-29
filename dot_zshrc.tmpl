@@ -142,11 +142,12 @@ alias l='ls -lhsF --color=auto --group-directories-first'
 alias ll='ls -lAhsF --color=auto --group-directories-first'
 
 # exa aliases
-alias e='exa --git --long --icons --group-directories-first --color=always --header'
-alias el='exa --git --oneline --icons --group-directories-first --color=always'
-alias els='exa --git --oneline --group-directories-first --color=always'
+alias e='exa --icons --group-directories-first --color=always'
+alias el='exa --oneline --icons --group-directories-first --color=always'
+alias ell='exa --oneline --icons --group-directories-first --color=always --all'
+alias es='exa --git --long --icons --group-directories-first --color=always --header'
 alias ea='exa --git --long --icons --group-directories-first --color=always --header --all'
-alias eat='exa --git --long --tree --level 2 --icons --group-directories-first --color=always --header --all'
+alias eat='exa --git --long --tree --level 1 --icons --group-directories-first --color=always --header --all'
 
 # bat aliases
 if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
@@ -168,9 +169,6 @@ alias wezterm='flatpak run org.wezfurlong.wezterm'
 
 # ssh aliases
 alias ssh='TERM=xterm-256color ssh'
-
-# htop
-alias htop='TERM=xterm-256color htop'
 
 # docker aliases
 alias docker-compose='docker compose'
@@ -371,4 +369,8 @@ if [ -n "${ZSH_VERSION-}" ]; then
     command_not_found_handle "$@"
  }
 fi
+{{ end }}
+
+{{ if eq .osid "linux-nobara" }}
+alias update='sudo dnf update --refresh && sudo dnf distro-sync --refresh && flatpak update'
 {{ end }}
