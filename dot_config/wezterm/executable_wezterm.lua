@@ -40,8 +40,9 @@ local config = {
 	check_for_updates = true,
 	automatically_reload_config = true,
 	hide_tab_bar_if_only_one_tab = true,
-	max_fps = 144,
-	color_scheme = "Kanagawa (Gogh)",
+	animation_fps = 60,
+	max_fps = 60,
+	color_scheme = "kanagawabones",
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = true,
 	keys = mykeys,
@@ -49,9 +50,9 @@ local config = {
 	-- Pad window to avoid the content to be too close to the border,
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
-	window_decorations = "RESIZE",
+	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
 	window_background_opacity = 0.98,
-	text_background_opacity = 0.94,
+	text_background_opacity = 1,
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,
 	harfbuzz_features = {
@@ -60,7 +61,13 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
+	-- cursor settings
+	default_cursor_style = "BlinkingBlock",
 	-- font settings
+	font = wezterm.font {
+		family = 'JetBrains Mono',
+		weight = 'Medium',
+	},
 	font_size = 14,
 	freetype_load_target = "Light",
 	-- Disable annoying default behaviors

@@ -39,14 +39,6 @@ return {
 		signcolumn = "auto",
 		laststatus = 3,
 		errorbells = false,
-		guicursor = {
-			"n-v-c:block",
-			"i-ci-ve:ver25",
-			"r-cr:hor20",
-			"o:hor50",
-			"a:blinkwait700-blinkoff400-blinkon250",
-			"sm:block-blinkwait175-blinkoff150-blinkon175",
-		},
 		cursorlineopt = { "number", "line" },
 		backspace = { "indent", "eol", "start" },
 		list = false, -- Show some invisible characters (tabs...)
@@ -72,7 +64,7 @@ return {
 		lazyredraw = false,
 		ttyfast = true,
 		title = true,
-		updatetime = 200,
+		updatetime = 300,
 	},
 	g = {
 		mapleader = " ",                 -- sets vim.g.mapleader

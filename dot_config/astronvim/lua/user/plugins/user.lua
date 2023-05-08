@@ -33,6 +33,6 @@ return {
 			})
 		end,
 	},
-	{ "phelipetls/vim-hugo",  ft = "htmlhugo" },
+	{ "fredrdz/vim-hugo",     ft = "gohtml" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
 }

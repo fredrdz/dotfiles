@@ -46,41 +46,45 @@ return {
 	--   end,
 	-- },
 	{
-		"nvim-neo-tree/neo-tree.nvim",
+		"neo-tree.nvim",
 		opts = {
+			close_if_last_window = true,
+			popup_border_style = "rounded",
 			filesystem = {
 				filtered_items = {
 					always_show = { ".gitignore" },
 				}
 			},
 			window = {
-				position = "right",
+				position = "float",
 			},
-			event_handlers = {
-				{
-					event = "file_opened",
-					handler = function(file_path)
-						--auto close
-						require("neo-tree").close_all()
-					end,
-				},
-				{
-					event = "neo_tree_window_after_open",
-					handler = function(args)
-						if args.position == "left" or args.position == "right" then
-							vim.cmd("wincmd =")
-						end
-					end,
-				},
-				{
-					event = "neo_tree_window_after_close",
-					handler = function(args)
-						if args.position == "left" or args.position == "right" then
-							vim.cmd("wincmd =")
-						end
-					end,
-				},
-			},
+			highlight_tab = "NeoTreeTabInactive",                  -- string
+			highlight_tab_active = "NeoTreeTabActive",             -- string
+			highlight_background = "NeoTreeTabInactive",           -- string
+			highlight_separator = "NeoTreeTabSeparatorInactive",   -- string
+			highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
 		},
 	},
+	{
+		"nvim-notify",
+		opts = {
+			background_colour = "NotifyBackground",
+			fps = 60,
+			icons = {
+				DEBUG = "",
+				ERROR = "",
+				INFO = "",
+				TRACE = "✎",
+				WARN = ""
+			},
+			level = 2,
+			max_height = function() return math.floor(vim.o.lines * 0.75) end,
+			max_width = function() return math.floor(vim.o.columns * 0.75) end,
+			minimum_width = 50,
+			render = "compact", -- allowed: default, minimal, simple, compact
+			stages = "fade_in_slide_out",
+			timeout = 2000,
+			top_down = false
+		}
+	}
 }
