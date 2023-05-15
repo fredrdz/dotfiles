@@ -372,5 +372,5 @@ fi
 {{ end }}
 
 {{ if eq .osid "linux-nobara" }}
-alias update='sudo dnf update --refresh && sudo dnf distro-sync --refresh && flatpak update'
+alias update='sudo dnf update rpmfusion-nonfree-release rpmfusion-free-release fedora-repos nobara-repos --refresh && sudo dnf distro-sync --refresh && sudo dnf update --refresh'
 {{ end }}
