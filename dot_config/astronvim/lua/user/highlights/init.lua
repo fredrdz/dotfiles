@@ -14,18 +14,18 @@ return function()
 		OctoEditable = { fg = "NONE", bg = "NONE" },                 -- use treesitter for octo.nvim highlighting
 
 		-- telescope theme
-		TelescopeBorder = { fg = bg_alt, bg = bg },
-		TelescopeNormal = { bg = bg },
-		TelescopePreviewBorder = { fg = bg, bg = bg },
-		TelescopePreviewNormal = { bg = bg },
-		TelescopePreviewTitle = { fg = bg, bg = green },
-		TelescopePromptBorder = { fg = bg_alt, bg = bg_alt },
-		TelescopePromptNormal = { fg = fg, bg = bg_alt },
-		TelescopePromptPrefix = { fg = red, bg = bg_alt },
-		TelescopePromptTitle = { fg = bg, bg = red },
-		TelescopeResultsBorder = { fg = bg, bg = bg },
-		TelescopeResultsNormal = { bg = bg },
-		TelescopeResultsTitle = { fg = bg, bg = bg },
+		TelescopeBorder = { fg = "#16B2C3" },
+		TelescopeNormal = { bg = "#1F1F28" },
+		TelescopePreviewBorder = { fg = "#16B2C3" },
+		TelescopePreviewNormal = { bg = "#1F1F28" },
+		TelescopePreviewTitle = { fg = "#DCD7BA", bg = "#2B3328" },
+		TelescopePromptBorder = { fg = "#16B2C3" },
+		TelescopePromptNormal = { fg = "#DCD7BA", bg = "#1F1F28" },
+		TelescopePromptPrefix = { fg = "#DCD7BA", bg = "#43242B" },
+		TelescopePromptTitle = { fg = "#DCD7BA", bg = "#43242B" },
+		TelescopeResultsBorder = { fg = "#16B2C3" },
+		TelescopeResultsNormal = { bg = "#1F1F28" },
+		TelescopeResultsTitle = { fg = "#DCD7BA", bg = "#1F1F28" },
 
 		-- neotree theme
 		NeoTreeTabActive = { bg = "#16B2C3" },          -- string

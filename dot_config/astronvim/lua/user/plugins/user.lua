@@ -35,4 +35,18 @@ return {
 	},
 	{ "fredrdz/vim-hugo",     ft = "gohtml" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
+	{
+		"machakann/vim-sandwich",
+		event = "User AstroFile",
+		config = function()
+			vim.g.sandwich_no_default_key_mappings = 1
+		end,
+		opts = {}
+	},
+	{
+		"folke/todo-comments.nvim",
+		event = "User AstroFile",
+		cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
+		opts = {},
+	}
 }
