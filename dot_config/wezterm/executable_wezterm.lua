@@ -51,7 +51,7 @@ local config = {
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-	window_background_opacity = 0.98,
+	window_background_opacity = 0.97,
 	text_background_opacity = 1,
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,
@@ -63,12 +63,13 @@ local config = {
 	},
 	-- cursor settings
 	default_cursor_style = "BlinkingBlock",
+	force_reverse_video_cursor = true,
 	-- font settings
 	font = wezterm.font {
 		family = 'JetBrains Mono',
 		weight = 'Medium',
 	},
-	font_size = 14,
+	font_size = 14.5,
 	freetype_load_target = "Light",
 	-- Disable annoying default behaviors
 	adjust_window_size_when_changing_font_size = false,

@@ -86,5 +86,16 @@ return {
 			timeout = 2000,
 			top_down = false
 		}
+	},
+	{
+		"nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				mode = "virtualtext", -- Set the display mode.
+				-- Available methods are false / true / "normal" / "lsp" / "both"
+				-- True is same as normal
+				tailwind = "both", -- Enable tailwind colors
+			}
+		}
 	}
 }

@@ -44,12 +44,13 @@ return function()
 		-- highlight default GHTextViewDark guifg=#e0d8f4 guibg=#082032
 		-- highlight default GHListHl guifg=#181818 guibg=#7af9ff
 		--
+		MatchParen = { fg = "#7af9ff", bold = true, italic = true, underline = true },
+		MatchWord = { fg = "#7af9ff", bold = true, italic = true, underline = true },
+		MatchParenCur = { fg = "#7af9ff", bold = true, italic = true, underline = true },
+		MatchWordCur = { fg = "#7af9ff", bold = true, italic = true, underline = true },
+
 		CursorColumn = { bg = "#2C394B" },
 		CursorLine = { bg = "#2C394B" },
-		MatchParen = { fg = "#FFFFFF", bold = true },
-		MatchWord = { fg = "#FFFFFF", bold = true },
-		MatchParenCur = { bold = true },
-		MatchWordCur = { bold = true },
 		WhichkeyFloat = { bg = "#334756" },
 		Pmenu = { bg = "#082032" },
 		PmenuSel = { bg = "#7af9ff", fg = "#181818" },
