@@ -47,6 +47,13 @@ return {
 		"folke/todo-comments.nvim",
 		event = "User AstroFile",
 		cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-		opts = {},
-	}
+	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		event = "User AstroFile",
+		after = "telescope.nvim",
+		config = function()
+			require('neoclip').setup()
+		end,
+	},
 }

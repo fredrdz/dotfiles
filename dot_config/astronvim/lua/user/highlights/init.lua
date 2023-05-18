@@ -47,7 +47,7 @@ return function()
 		MatchParen = { fg = "#7af9ff", bold = true, italic = true, underline = true },
 		MatchWord = { fg = "#7af9ff", bold = true, italic = true, underline = true },
 		MatchParenCur = { fg = "#7af9ff", bold = true, italic = true, underline = true },
-		MatchWordCur = { fg = "#7af9ff", bold = true, italic = true, underline = true },
+		MatchWordCur = { bold = true, underline = true },
 
 		CursorColumn = { bg = "#2C394B" },
 		CursorLine = { bg = "#2C394B" },

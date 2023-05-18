@@ -4,7 +4,7 @@ return {
     "nvim-telescope/telescope-hop.nvim",
     "nvim-telescope/telescope-bibtex.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
-    "ahmedkhalf/project.nvim", -- defined in  ./editor.lua
+    "ahmedkhalf/project.nvim",
   },
   opts = function(_, opts)
     local telescope = require "telescope"

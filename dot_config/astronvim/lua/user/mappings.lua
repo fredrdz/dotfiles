@@ -48,6 +48,17 @@ return {
 			end,
 			desc = "Switch Buffers",
 		},
+		-- neoclip (registers)
+		["<leader>r"] = { name = "󰳴 Neoclip Registers" },
+		["<leader>rN"] = { "<cmd>Telescope neoclip<cr>", desc = "Default register (\")" },
+		["<leader>ra"] = { "<cmd>Telescope neoclip a<cr>", desc = "a" },
+		["<leader>rr"] = { "<cmd>Telescope neoclip r<cr>", desc = "r" },
+		["<leader>rs"] = { "<cmd>Telescope neoclip s<cr>", desc = "s" },
+		["<leader>rt"] = { "<cmd>Telescope neoclip t<cr>", desc = "t" },
+		["<leader>rn"] = { "<cmd>Telescope neoclip n<cr>", desc = "n" },
+		["<leader>re"] = { "<cmd>Telescope neoclip e<cr>", desc = "e" },
+		["<leader>ri"] = { "<cmd>Telescope neoclip i<cr>", desc = "i" },
+		["<leader>ro"] = { "<cmd>Telescope neoclip o<cr>", desc = "o" },
 		-- vim-sandwich
 		["<leader>m"] = { name = "󰉚 Sandwich" },
 		["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
