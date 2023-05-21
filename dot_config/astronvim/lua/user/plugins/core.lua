@@ -1,4 +1,5 @@
 return {
+
 	-- customize alpha options
 	{
 		"goolord/alpha-nvim",
@@ -20,6 +21,7 @@ return {
 			return opts
 		end,
 	},
+
 	-- You can disable default plugins as follows:
 	-- { "max397574/better-escape.nvim", enabled = false },
 	--
@@ -45,6 +47,7 @@ return {
 	--     }, { mode = "n", prefix = "<leader>" })
 	--   end,
 	-- },
+
 	{
 		"neo-tree.nvim",
 		opts = {
@@ -65,6 +68,7 @@ return {
 			highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
 		},
 	},
+
 	{
 		"nvim-notify",
 		opts = {
@@ -87,6 +91,7 @@ return {
 			top_down = false
 		}
 	},
+
 	{
 		"nvim-colorizer.lua",
 		opts = {
@@ -98,4 +103,5 @@ return {
 			}
 		}
 	}
+
 }

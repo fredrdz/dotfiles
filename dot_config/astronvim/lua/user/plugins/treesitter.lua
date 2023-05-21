@@ -35,7 +35,16 @@ return {
 			disable_virtual_text = true,
 			include_match_words = true,
 		},
-		rainbow = { enable = true },
+		rainbow = {
+			enable = true,
+			-- Which query to use for finding delimiters
+			-- Use parentheses by default, entire tags for HTML and blocks for LaTeX
+			query = {
+				'rainbow-parens',
+				html = 'rainbow-tags',
+				latex = 'rainbow-blocks',
+			}
+		},
 		textobjects = {
 			select = {
 				enable = true,

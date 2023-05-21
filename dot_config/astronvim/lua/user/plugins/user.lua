@@ -1,4 +1,5 @@
 return {
+
 	-- You can also add new plugins here as well:
 	-- Add plugins, the lazy syntax
 	-- "andweeb/presence.nvim",
@@ -9,6 +10,7 @@ return {
 	--     require("lsp_signature").setup()
 	--   end,
 	-- },
+
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()
@@ -33,8 +35,10 @@ return {
 			})
 		end,
 	},
+
 	{ "fredrdz/vim-hugo",     ft = "gohtml" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
+
 	{
 		"machakann/vim-sandwich",
 		event = "User AstroFile",
@@ -43,11 +47,13 @@ return {
 		end,
 		opts = {}
 	},
+
 	{
 		"folke/todo-comments.nvim",
 		event = "User AstroFile",
 		cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
 	},
+
 	{
 		"AckslD/nvim-neoclip.lua",
 		event = "User AstroFile",
@@ -56,4 +62,5 @@ return {
 			require('neoclip').setup()
 		end,
 	},
+
 }
