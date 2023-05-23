@@ -1,7 +1,22 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		{
+			"ngalaiko/tree-sitter-go-template",
+			config = function()
+				local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+				parser_config.gotmpl = {
+					install_info = {
+						url = "https://github.com/ngalaiko/tree-sitter-go-template",
+						files = { "src/parser.c" }
+					},
+					filetype = "gotmpl",
+					used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "gohtml", "htmlhugo" }
+				}
+			end,
+		},
 		{
 			"andymass/vim-matchup",
 			init = function()
@@ -26,15 +41,20 @@ return {
 			end,
 		},
 	},
+
 	opts = {
 		auto_install = vim.fn.executable("tree-sitter") == 1,
-		highlight = { disable = { "help" } },
+		highlight = {
+			additional_vim_regex_highlighting = true,
+			disable = { "help" }
+		},
 		matchup = {
 			enable = true,
 			disable = { "lua" },
 			disable_virtual_text = true,
 			include_match_words = true,
 		},
+
 		rainbow = {
 			enable = true,
 			-- Which query to use for finding delimiters
@@ -45,6 +65,7 @@ return {
 				latex = 'rainbow-blocks',
 			}
 		},
+
 		textobjects = {
 			select = {
 				enable = true,
@@ -74,6 +95,7 @@ return {
 					iC = "@comment.outer",
 				},
 			},
+
 			move = {
 				enable = true,
 				set_jumps = true,
@@ -84,6 +106,7 @@ return {
 					["]x"] = { query = "@class.outer", desc = "Next class start" },
 					["]c"] = { query = "@comment.outer", desc = "Next comment start" },
 				},
+
 				goto_next_end = {
 					["]B"] = { query = "@block.outer", desc = "Next block end" },
 					["]F"] = { query = "@function.outer", desc = "Next function end" },
@@ -91,6 +114,7 @@ return {
 					["]X"] = { query = "@class.outer", desc = "Next class end" },
 					["]C"] = { query = "@comment.outer", desc = "Next comment end" },
 				},
+
 				goto_previous_start = {
 					["[b"] = { query = "@block.outer", desc = "Previous block start" },
 					["[f"] = { query = "@function.outer", desc = "Previous function start" },
@@ -98,6 +122,7 @@ return {
 					["[x"] = { query = "@class.outer", desc = "Previous class start" },
 					["[c"] = { query = "@comment.outer", desc = "Previous comment start" },
 				},
+
 				goto_previous_end = {
 					["[B"] = { query = "@block.outer", desc = "Previous block end" },
 					["[F"] = { query = "@function.outer", desc = "Previous function end" },
@@ -106,6 +131,7 @@ return {
 					["[C"] = { query = "@comment.outer", desc = "Previous comment end" },
 				},
 			},
+
 			swap = {
 				enable = true,
 				swap_next = {
@@ -119,6 +145,7 @@ return {
 					["<P"] = { query = "@parameter.inner", desc = "Swap previous parameter" },
 				},
 			},
+
 			lsp_interop = {
 				enable = true,
 				border = "single",
@@ -129,4 +156,5 @@ return {
 			},
 		},
 	},
+
 }

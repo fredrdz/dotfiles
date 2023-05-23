@@ -35,18 +35,20 @@ return {
 	--   luasnip.filetype_extend("javascript", { "javascriptreact" })
 	-- end,
 	-- },
-	-- By adding to the which-key config and using our helper function you can add more which-key registered bindings
-	-- {
-	--   "folke/which-key.nvim",
-	--   config = function(plugin, opts)
-	--     require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
-	--     -- Add bindings which show up as group name
-	--     local wk = require "which-key"
-	--     wk.register({
-	--       b = { name = "Buffer" },
-	--     }, { mode = "n", prefix = "<leader>" })
-	--   end,
-	-- },
+
+	{
+		"which-key.nvim",
+		opts = {
+			window = {
+				border = "none",      -- none, single, double, shadow
+				position = "bottom",  -- bottom, top
+				margin = { 0, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+				padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
+				winblend = 6,         -- value between 0-100 0 for fully opaque and 100 for fully transparent
+				zindex = 1000,        -- positive value to position WhichKey above other floating windows.
+			},
+		}
+	},
 
 	{
 		"neo-tree.nvim",

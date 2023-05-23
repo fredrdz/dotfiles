@@ -49,6 +49,7 @@ return {
 					null_ls.register(null_ls.builtins.formatting.prettierd.with {
 						filetypes = {
 							"gohtml",
+							"htmlhugo",
 							"json",
 							"yaml",
 						},
