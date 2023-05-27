@@ -3,14 +3,14 @@ return function()
 	local nontext = get_hlgroup("NonText")
 
 	return {
-		CursorLineFold = { link = "CursorLineNr" },                  -- highlight fold indicator as well as line number
+		CursorLineFold = { link = "CursorLineNr" }, -- highlight fold indicator as well as line number
 		GitSignsCurrentLineBlame = { fg = nontext.fg, italic = true }, -- italicize git blame virtual text
-		HighlightURL = { underline = true },                         -- always underline URLs
-		OctoEditable = { fg = "NONE", bg = "NONE" },                 -- use treesitter for octo.nvim highlighting
+		HighlightURL = { underline = true }, -- always underline URLs
+		OctoEditable = { fg = "NONE", bg = "NONE" }, -- use treesitter for octo.nvim highlighting
 
 		-- neotree theme
-		NeoTreeTabActive = { bg = "#334756" },          -- string
-		NeoTreeTabInactive = { bg = "#082032" },        -- string
+		NeoTreeTabActive = { bg = "#334756" }, -- string
+		NeoTreeTabInactive = { bg = "#082032" }, -- string
 		NeoTreeTabSeparatorInactive = { bg = "#082032" }, -- string
 		NeoTreeTabSeparatorActive = { bg = "#16B2C3" }, -- string
 
