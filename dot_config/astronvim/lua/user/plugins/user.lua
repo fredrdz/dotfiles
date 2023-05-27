@@ -26,7 +26,7 @@ return {
 				transparent = false, -- do not set background color
 				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
-				theme = "wave",    -- Load "wave" theme when 'background' option is not set
+				theme = "wave", -- Load "wave" theme when 'background' option is not set
 				background = {
 					-- map the value of 'background' option to a theme
 					dark = "wave", -- try "dragon" !
@@ -36,7 +36,7 @@ return {
 					local theme = colors.theme
 					return {
 						-- transparent floating windows
-						NormalFloat = { bg = "none" },
+						NormalFloat = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 						FloatBorder = { bg = "none" },
 						FloatTitle = { bg = "none" },
 
@@ -51,7 +51,7 @@ return {
 						MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 						NeoTreeNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
-						-- block-like modern telescope	
+						-- block-like modern telescope
 						TelescopeTitle = { fg = theme.ui.special, bold = true },
 						TelescopeNormal = { bg = "none" },
 						TelescopeBorder = { fg = "#16B2C3" },
@@ -80,7 +80,7 @@ return {
 		end,
 	},
 
-	{ "phelipetls/vim-hugo",  ft = "htmlhugo" },
+	{ "fredrdz/vim-hugo", ft = "gohtml" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
 
 	{
@@ -89,7 +89,7 @@ return {
 		config = function()
 			vim.g.sandwich_no_default_key_mappings = 1
 		end,
-		opts = {}
+		opts = {},
 	},
 
 	{
@@ -103,8 +103,7 @@ return {
 		event = "User AstroFile",
 		after = "telescope.nvim",
 		config = function()
-			require('neoclip').setup()
+			require("neoclip").setup()
 		end,
 	},
-
 }
