@@ -74,6 +74,34 @@ return {
 						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 						PmenuSbar = { bg = theme.ui.bg_m1 },
 						PmenuThumb = { bg = "#082032" },
+
+						-- ts rainbow
+						TSRainbowRed = { fg = colors.palette.autumnRed },
+						TSRainbowYellow = { fg = colors.palette.carpYellow },
+						TSRainbowBlue = { fg = colors.palette.dragonBlue },
+						TSRainbowOrange = { fg = colors.palette.surimiOrange },
+						TSRainbowGreen = { fg = colors.palette.springGreen },
+						TSRainbowViolet = { fg = colors.palette.oniViolet },
+						TSRainbowCyan = { fg = colors.palette.waveAqua1 },
+
+						-- hugo
+						HugoDelimiters = { fg = "#383E56" },
+						htmlHugoBlock = { fg = "#545B77" },
+						htmlHugoInclude = { fg = "#C88EA7" },
+						htmlHugoStatement = { fg = "#D36B00" },
+						htmlHugoRepeat = { fg = "#C06014" },
+						htmlHugoConditional = { fg = "#C06014" },
+						htmlHugoOperator = { fg = theme.syn.operator },
+						htmlHugoFunction = { fg = "#F69E7B" },
+						htmlHugoAssignment = { fg = theme.syn.special1 },
+						htmlHugoPipe = { fg = theme.syn.special2 },
+						htmlHugoNumber = { fg = "#85586F" },
+						htmlHugoMethod = { fg = "#EEDAD1" },
+						htmlHugoString = { fg = theme.syn.string },
+						htmlHugoRawString = { fg = theme.syn.string },
+						htmlHugoComment = { fg = theme.syn.comment },
+						htmlHugoDelimiters = { fg = theme.syn.punct },
+						htmlHugoIdentifier = { fg = theme.syn.identifier },
 					}
 				end,
 			})

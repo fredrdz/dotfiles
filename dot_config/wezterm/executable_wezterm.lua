@@ -8,7 +8,7 @@ local mykeys = {
 		mods = "SHIFT|CTRL",
 		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
-	{ key = "LeftArrow",  mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "LeftArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "RightArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(1) },
 }
 
@@ -25,6 +25,16 @@ local mymouse = {
 		action = act.OpenLinkAtMouseCursor,
 	},
 }
+
+-- A helper function for my fallback fonts
+local function font_with_fallback(name, params)
+	local names = {
+		name,
+		"Source Code Pro",
+		"JetBrains Mono",
+	}
+	return wezterm.font_with_fallback(names, params)
+end
 
 -- Set up my tab style
 -- The filled in variant of the < symbol
@@ -61,16 +71,56 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
+
 	-- cursor settings
 	default_cursor_style = "BlinkingBlock",
 	force_reverse_video_cursor = true,
+
 	-- font settings
-	font = wezterm.font {
-		family = 'JetBrains Mono',
-		weight = 'Medium',
+	font = wezterm.font({
+		family = "JetBrains Mono",
+		weight = "Regular",
+	}),
+	font_rules = {
+		{
+			italic = true,
+			intensity = "Bold",
+			underline = "Single",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBold" }),
+		},
+		{
+			italic = true,
+			intensity = "Bold",
+			underline = "None",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Bold" }),
+		},
+		{
+			intensity = "Bold",
+			italic = false,
+			underline = "None",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Normal", weight = "DemiBold" }),
+		},
+		{
+			intensity = "Normal",
+			italic = true,
+			underline = "None",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Medium" }),
+		},
+		{
+			intensity = "Normal",
+			italic = false,
+			underline = "Single",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Light" }),
+		},
 	},
 	font_size = 14.5,
 	freetype_load_target = "Light",
+	underline_position = "110%",
+	underline_thickness = "200%",
+	line_height = 1.0,
+	bold_brightens_ansi_colors = true,
+	inactive_pane_hsb = { hue = 1.0, saturation = 0.7, brightness = 0.8 },
+
 	-- Disable annoying default behaviors
 	adjust_window_size_when_changing_font_size = false,
 	-- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)
@@ -85,20 +135,20 @@ local config = {
 	hyperlink_rules = {
 		-- Linkify things that look like URLs and the host has a TLD name.
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",    format = "$0" },
+		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b", format = "$0" },
 		-- linkify email addresses
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],                format = "mailto:$0" },
+		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]], format = "mailto:$0" },
 		-- file:// URI
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\bfile://\S*\b]],                           format = "$0" },
+		{ regex = [[\bfile://\S*\b]], format = "$0" },
 		-- Linkify things that look like URLs with numeric addresses as hosts.
 		-- E.g. http://127.0.0.1:8000 for a local development server,
 		-- or http://192.168.1.1 for the web interface of many routers.
 		{ regex = [[\b\w+://(?:[\d]{1,3}\.){3}[\d]{1,3}\S*\b]], format = "$0" },
 		-- Make task numbers clickable
 		-- The first matched regex group is captured in $1.
-		{ regex = [[\b[tT](\d+)\b]],                            format = "https://example.com/tasks/?t=$1" },
+		{ regex = [[\b[tT](\d+)\b]], format = "https://example.com/tasks/?t=$1" },
 		-- Make username/project paths clickable. This implies paths like the following are for GitHub.
 		-- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
 		-- As long as a full URL hyperlink regex exists above this it should not match a full URL to
