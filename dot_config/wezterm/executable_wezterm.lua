@@ -4,9 +4,14 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mykeys = {
 	{
-		key = "Enter",
+		key = "Backspace",
 		mods = "SHIFT|CTRL",
 		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "Space",
+		mods = "SHIFT|CTRL",
+		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 	{ key = "LeftArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "RightArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(1) },
@@ -45,21 +50,20 @@ local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
 local config = {
 	term = "wezterm",
+	enable_wayland = false,
 	audible_bell = "Disabled",
 	window_close_confirmation = "NeverPrompt",
 	check_for_updates = true,
 	automatically_reload_config = true,
-	hide_tab_bar_if_only_one_tab = true,
 	animation_fps = 60,
 	max_fps = 60,
 	color_scheme = "kanagawabones",
-	tab_bar_at_bottom = true,
-	use_fancy_tab_bar = true,
 	keys = mykeys,
 	mouse_bindings = mymouse,
 	-- Pad window to avoid the content to be too close to the border,
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
+	-- window_decorations = "TITLE|RESIZE",
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
 	window_background_opacity = 0.97,
 	text_background_opacity = 1,
@@ -71,6 +75,10 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
+	-- tab settings
+	hide_tab_bar_if_only_one_tab = true,
+	tab_bar_at_bottom = true,
+	use_fancy_tab_bar = true,
 
 	-- cursor settings
 	default_cursor_style = "BlinkingBlock",

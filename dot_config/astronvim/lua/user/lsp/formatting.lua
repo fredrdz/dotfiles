@@ -15,7 +15,7 @@ return {
 		-- "sumneko_lua",
 	},
 
-	timeout_ms = 1000, -- default format timeout
+	timeout_ms = 3000, -- default format timeout
 
 	filter = function(client) -- fully override the default formatting function
 		-- enable formatting for a specific file on a specific server
@@ -25,7 +25,17 @@ return {
 		-- if vim.bo.filetype == "toml" then
 		--   return client.name == "taplo"
 		-- end
-		if vim.bo.filetype == "yaml" or "json" or "lua" or "toml" then
+		if
+			vim.bo.filetype == "yaml"
+			or "json"
+			or "lua"
+			or "toml"
+			or "css"
+			or "markdown"
+			or "scss"
+			or "javascript"
+			or "typescript"
+		then
 			return client.name == "null-ls"
 		end
 		-- enable all other clients

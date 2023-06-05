@@ -85,7 +85,7 @@ return {
 						TSRainbowCyan = { fg = colors.palette.waveAqua1 },
 
 						-- hugo
-						HugoDelimiters = { fg = "#383E56" },
+						HugoDelimiters = { fg = "#03506F", bold = true },
 						htmlHugoBlock = { fg = "#545B77" },
 						htmlHugoInclude = { fg = "#C88EA7" },
 						htmlHugoStatement = { fg = "#D36B00" },

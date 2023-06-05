@@ -6,14 +6,14 @@ return {
 		{
 			"ngalaiko/tree-sitter-go-template",
 			config = function()
-				local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+				local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 				parser_config.gotmpl = {
 					install_info = {
 						url = "https://github.com/ngalaiko/tree-sitter-go-template",
-						files = { "src/parser.c" }
+						files = { "src/parser.c" },
 					},
 					filetype = "gotmpl",
-					used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "gohtml", "htmlhugo" }
+					used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "gohtml", "htmlhugo" },
 				}
 			end,
 		},
@@ -46,7 +46,7 @@ return {
 		auto_install = vim.fn.executable("tree-sitter") == 1,
 		highlight = {
 			additional_vim_regex_highlighting = true,
-			disable = { "help" }
+			disable = { "help" },
 		},
 		matchup = {
 			enable = true,
@@ -60,10 +60,10 @@ return {
 			-- Which query to use for finding delimiters
 			-- Use parentheses by default, entire tags for HTML and blocks for LaTeX
 			query = {
-				'rainbow-parens',
-				html = 'rainbow-tags',
-				latex = 'rainbow-blocks',
-			}
+				"rainbow-parens",
+				html = "rainbow-tags",
+				latex = "rainbow-blocks",
+			},
 		},
 
 		textobjects = {
@@ -156,5 +156,4 @@ return {
 			},
 		},
 	},
-
 }

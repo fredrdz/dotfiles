@@ -53,10 +53,15 @@ return {
 					local null_ls = require("null-ls")
 					null_ls.register(null_ls.builtins.formatting.prettierd.with({
 						filetypes = {
+							"css",
 							"gohtml",
 							"html",
 							"htmlhugo",
+							"javascript",
 							"json",
+							"markdown",
+							"scss",
+							"typescript",
 							"yaml",
 						},
 						condition = function(utils)
