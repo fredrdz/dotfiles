@@ -40,14 +40,14 @@ return {
 		"which-key.nvim",
 		opts = {
 			window = {
-				border = "none",      -- none, single, double, shadow
-				position = "bottom",  -- bottom, top
+				border = "none", -- none, single, double, shadow
+				position = "bottom", -- bottom, top
 				margin = { 0, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
 				padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-				winblend = 6,         -- value between 0-100 0 for fully opaque and 100 for fully transparent
-				zindex = 1000,        -- positive value to position WhichKey above other floating windows.
+				winblend = 6, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+				zindex = 1000, -- positive value to position WhichKey above other floating windows.
 			},
-		}
+		},
 	},
 
 	{
@@ -58,15 +58,15 @@ return {
 			filesystem = {
 				filtered_items = {
 					always_show = { ".gitignore" },
-				}
+				},
 			},
 			window = {
 				position = "float",
 			},
-			highlight_tab = "NeoTreeTabInactive",                  -- string
-			highlight_tab_active = "NeoTreeTabActive",             -- string
-			highlight_background = "NeoTreeTabInactive",           -- string
-			highlight_separator = "NeoTreeTabSeparatorInactive",   -- string
+			highlight_tab = "NeoTreeTabInactive", -- string
+			highlight_tab_active = "NeoTreeTabActive", -- string
+			highlight_background = "NeoTreeTabInactive", -- string
+			highlight_separator = "NeoTreeTabSeparatorInactive", -- string
 			highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
 		},
 	},
@@ -81,17 +81,21 @@ return {
 				ERROR = "",
 				INFO = "",
 				TRACE = "✎",
-				WARN = ""
+				WARN = "",
 			},
 			level = 2,
-			max_height = function() return math.floor(vim.o.lines * 0.75) end,
-			max_width = function() return math.floor(vim.o.columns * 0.75) end,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
 			minimum_width = 50,
 			render = "compact", -- allowed: default, minimal, simple, compact
 			stages = "fade_in_slide_out",
 			timeout = 2000,
-			top_down = false
-		}
+			top_down = false,
+		},
 	},
 
 	{
@@ -102,8 +106,11 @@ return {
 				-- Available methods are false / true / "normal" / "lsp" / "both"
 				-- True is same as normal
 				tailwind = "both", -- Enable tailwind colors
-			}
-		}
-	}
-
+			},
+		},
+	},
+	{
+		"smart-splits.nvim",
+		event = "User AstroFile",
+	},
 }

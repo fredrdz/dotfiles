@@ -45,11 +45,11 @@ return {
 	opts = {
 		auto_install = vim.fn.executable("tree-sitter") == 1,
 		highlight = {
-			additional_vim_regex_highlighting = true,
+			additional_vim_regex_highlighting = false,
 			disable = { "help" },
 		},
 		matchup = {
-			enable = true,
+			enable = false,
 			disable = { "lua" },
 			disable_virtual_text = true,
 			include_match_words = true,
