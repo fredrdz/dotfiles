@@ -74,63 +74,57 @@ return {
 		-- misc
 		["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
 
+		-- disable defaults
+		["<F7>"] = false,
+		-- pane navigation movements; disable defaults
+		["<]b>"] = false,
+		["<[b>"] = false,
+		["<C-h>"] = false,
+		["<C-j>"] = false,
+		["<C-k>"] = false,
+		["<C-l>"] = false,
 		-- pane navigation movements
-		["C-Left"] = false,
-		["C-Right"] = false,
-		["C-Up"] = false,
-		["C-Down"] = false,
-		["C-h"] = false,
-		["C-j"] = false,
-		["C-k"] = false,
-		["C-l"] = false,
 		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
 		["<C-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
 		["<C-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
 		-- pane resizing
-		["C-M-Left"] = false,
-		["C-M-Right"] = false,
-		["C-M-Up"] = false,
-		["C-M-Down"] = false,
-		["<C-M-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
-		["<C-M-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
-		["<C-M-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
-		["<C-M-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
+		["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
+		["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
+		["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
+		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 		-- better buffer navigation
-		["]b"] = false,
-		["[b"] = false,
-		["S-Left"] = false,
-		["S-Right"] = false,
-		["S-Up"] = false,
-		["S-Down"] = false,
-		["<S-Up>"] = {
+		["<M-Up>"] = {
 			function()
 				require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
 			end,
 			desc = "Next buffer",
 		},
-		["<S-Down>"] = {
+		["<M-Down>"] = {
 			function()
 				require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
 			end,
 			desc = "Previous buffer",
 		},
 		-- tabs
-		["<leader>j"] = { name = "󱋤 Tabs" },
-		["<leader>jn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-		["<leader>jc"] = { "<cmd>tabclose<cr>", desc = "New close" },
-		["<S-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
-		["<S-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
-		-- disabling due conflicts -- using on tmux for tab switching
-		["M-Left"] = false,
-		["M-Right"] = false,
-		["M-Up"] = false,
-		["M-Down"] = false,
+		["<leader>T"] = { name = "󱋤 Tabs" },
+		["<leader>Tn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+		["<leader>Tc"] = { "<cmd>tabclose<cr>", desc = "New close" },
+		["<M-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
+		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
 	},
 
 	t = {
-		-- setting a mapping to false will disable it
-		-- ["<esc>"] = false,
+		-- pane navigation movements
+		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
+		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
+		["<C-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
+		["<C-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
+		-- pane resizing
+		["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
+		["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
+		["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
+		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 	},
 
 	o = {

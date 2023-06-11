@@ -112,5 +112,27 @@ return {
 	{
 		"smart-splits.nvim",
 		event = "User AstroFile",
+		opts = {
+			resize_mode = {
+				-- key to exit persistent resize mode
+				quit_key = "<ESC>",
+				-- keys to use for moving in resize mode
+				-- in order of left, down, up' right
+				resize_keys = { "Left", "Down", "Up", "Right" },
+				-- set to true to silence the notifications
+				-- when entering/exiting persistent resize mode
+				silent = false,
+			},
+		},
+	},
+	{
+		"toggleterm.nvim",
+		event = "User AstroFile",
+		opts = {
+			size = 30,
+			open_mapping = [[<M-t>]],
+			shading_factor = 2,
+			direction = "horizontal",
+		},
 	},
 }

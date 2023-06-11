@@ -368,16 +368,17 @@ bind-key C-Space send-prefix
 # See: https://github.com/christoomey/vim-tmux-navigator
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+# move
 bind-key -n C-Left if-shell "$is_vim" 'send-keys C-Left'  'select-pane -L'
 bind-key -n C-Right if-shell "$is_vim" 'send-keys C-Right'  'select-pane -R'
 bind-key -n C-Up if-shell "$is_vim" 'send-keys C-Up'  'select-pane -U'
 bind-key -n C-Down if-shell "$is_vim" 'send-keys C-Down'  'select-pane -D'
-
-bind-key -n C-M-Left if-shell "$is_vim" 'send-keys C-S-Left' 'resize-pane -L 3'
-bind-key -n C-M-Right if-shell "$is_vim" 'send-keys C-S-Right' 'resize-pane -R 3'
-bind-key -n C-M-Up if-shell "$is_vim" 'send-keys C-S-Up' 'resize-pane -U 3'
-bind-key -n C-M-Down if-shell "$is_vim" 'send-keys C-S-Down' 'resize-pane -D 3'
-
+# resize
+bind-key -n S-Left if-shell "$is_vim" 'send-keys S-Left' 'resize-pane -L 3'
+bind-key -n S-Right if-shell "$is_vim" 'send-keys S-Right' 'resize-pane -R 3'
+bind-key -n S-Up if-shell "$is_vim" 'send-keys S-Up' 'resize-pane -U 3'
+bind-key -n S-Down if-shell "$is_vim" 'send-keys S-Down' 'resize-pane -D 3'
+# send to vim
 tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
 if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
     "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
@@ -390,11 +391,10 @@ if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
 # bind-key -T copy-mode-vi 'M-Right' select-pane -R
 # bind-key -T copy-mode-vi 'M-\' select-pane -l
 
-# Move to the previous tab with Meta+Left arrow
-bind-key -n M-Left previous-window
-
-# Move to the next tab with Meta+Right arrow
-bind-key -n M-Right next-window
+bind-key -n M-Home previous-window
+bind-key -n M-End next-window
+bind-key -n M-PageUp switch-client -p
+bind-key -n M-PageDown switch-client -n
 
 # ---
 
