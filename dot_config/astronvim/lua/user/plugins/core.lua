@@ -111,7 +111,7 @@ return {
 	},
 	{
 		"smart-splits.nvim",
-		event = "User AstroFile",
+		event = "VeryLazy",
 		opts = {
 			resize_mode = {
 				-- key to exit persistent resize mode
@@ -127,7 +127,7 @@ return {
 	},
 	{
 		"toggleterm.nvim",
-		event = "User AstroFile",
+		keys = { "<M-t>" },
 		opts = {
 			size = 30,
 			open_mapping = [[<M-t>]],

@@ -29,17 +29,6 @@ return {
 				vim.g.matchup_transmute_enabled = 1
 			end,
 		},
-		{
-			"HiPhish/nvim-ts-rainbow2",
-			config = function()
-				vim.api.nvim_create_autocmd({ "BufWritePost", "FocusGained" }, {
-					callback = function()
-						vim.cmd.TSDisable("rainbow")
-						vim.cmd.TSEnable("rainbow")
-					end,
-				})
-			end,
-		},
 	},
 
 	opts = {
@@ -49,21 +38,10 @@ return {
 			disable = { "help" },
 		},
 		matchup = {
-			enable = false,
-			disable = { "lua" },
-			disable_virtual_text = true,
-			include_match_words = true,
+			enable = true,
 		},
-
 		rainbow = {
 			enable = true,
-			-- Which query to use for finding delimiters
-			-- Use parentheses by default, entire tags for HTML and blocks for LaTeX
-			query = {
-				"rainbow-parens",
-				html = "rainbow-tags",
-				latex = "rainbow-blocks",
-			},
 		},
 
 		textobjects = {

@@ -28,8 +28,12 @@ return {
 		-- Easy-Align
 		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
 
+		-- better increment/decrement
+		["-"] = { "<c-x>", desc = "Descrement number" },
+		["+"] = { "<c-a>", desc = "Increment number" },
+
 		-- buffer switching
-		["<leader><Tab>"] = {
+		["<Tab>"] = {
 			function()
 				if #vim.t.bufs > 1 then
 					require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
