@@ -37,6 +37,7 @@ packages-golang () {
   go install github.com/dundee/gdu/v5/cmd/gdu@latest
   go install sigs.k8s.io/kind@v0.17.0
   go install github.com/mikefarah/yq/v4@latest
+  go install github.com/TheZoraiz/ascii-image-converter@latest
 }
 
 packages-rust () {
@@ -103,7 +104,7 @@ packages-desktop () {
   # brave
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-  sudo dnf install -y brave-browser vlc
+  sudo dnf install -y brave-browser vlc mpv
   # ssh
   sudo systemctl enable sshd
   sudo systemctl start sshd
@@ -114,6 +115,16 @@ echo "Detected MacOS"
 echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
+  # shell
+  chsh -s /usr/bin/zsh
+  # rust
+  packages-rust
+  # golang
+  packages-golang
+  # node
+  packages-node
+  # env/dev settings
+  settings-development
 fi
 
 {{ else if eq .osid "linux-fedora" }}

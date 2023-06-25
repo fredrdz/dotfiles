@@ -342,6 +342,8 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 {{ end }}
 
 {{ if eq .osid "linux-steamos" }}

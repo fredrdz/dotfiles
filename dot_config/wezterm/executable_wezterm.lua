@@ -65,7 +65,7 @@ local config = {
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
 	-- window_decorations = "TITLE|RESIZE",
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-	window_background_opacity = 0.97,
+	window_background_opacity = 1,
 	text_background_opacity = 1,
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,

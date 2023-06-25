@@ -6,17 +6,26 @@ return {
 		opts = function(_, opts)
 			-- customize the dashboard header
 			opts.section.header.val = {
-				" █████  ███████ ████████ ██████   ██████",
-				"██   ██ ██         ██    ██   ██ ██    ██",
-				"███████ ███████    ██    ██████  ██    ██",
-				"██   ██      ██    ██    ██   ██ ██    ██",
-				"██   ██ ███████    ██    ██   ██  ██████",
-				" ",
-				"    ███    ██ ██    ██ ██ ███    ███",
-				"    ████   ██ ██    ██ ██ ████  ████",
-				"    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-				"    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-				"    ██   ████   ████   ██ ██      ██",
+				"                       I>. idjrxxnjU@_        ",
+				"                      .1({-X(     |b}         ",
+				"                      .1||8(|/([i~a[          ",
+				"                      ')|\\/ttf/uWU[]i,.      ",
+				"                       |f/tffj/v&Ufnnnnj(-l^  ",
+				"                      _ki:~]||cWUfunnuvvccccj)",
+				"                  <l!fMi     +#1-8jnvvccczzXYY",
+				"             `;<]18{vMt   . ~hi   ^<(vzzXXYYYY",
+				"        .,>?)/t//t)zWj{'   <o-,_{tnczXXXXYUJJJ",
+				"    _!-)trjjjjftf(UWx|/`<!-UcjccczzzzXYUUJJzj{",
+				"I_1fnnnnnxrrrrrr/JW/_<I/nuunvccccXXYUUXx(_;'  ",
+				"ccccvvuuuunnnf(<na;   .nvuucczXXYYu/]!^       ",
+				"zzzzccccn(+;'  ]b:   . xcczzXvf{<:.           ",
+				"UYXXXXXzcj)->,{k`     -Yvr(_I`                ",
+				"cJUUUUYXXXXzzcUj[_I^ ]p<8                     ",
+				".:+)xXJUUUUXzXczzzzxU&)                       ",
+				"     `l?|vcUUUUYXXvm&Yu`                      ",
+				"          v0{rXJJzw8Ucv'                      ",
+				"       . tO    ,<0#YYUY`                      ",
+				"        ($urnxrtjw,^>}t`                      ",
 			}
 			return opts
 		end,
@@ -102,7 +111,7 @@ return {
 		"nvim-colorizer.lua",
 		opts = {
 			user_default_options = {
-				mode = "virtualtext", -- Set the display mode.
+				mode = "lsp", -- Set the display mode.
 				-- Available methods are false / true / "normal" / "lsp" / "both"
 				-- True is same as normal
 				tailwind = "both", -- Enable tailwind colors
