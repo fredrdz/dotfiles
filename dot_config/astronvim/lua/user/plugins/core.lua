@@ -111,10 +111,11 @@ return {
 		"nvim-colorizer.lua",
 		opts = {
 			user_default_options = {
-				mode = "lsp", -- Set the display mode.
+				-- Available modes for `mode`: foreground, background,  virtualtext
+				mode = "background", -- Set the display mode.
 				-- Available methods are false / true / "normal" / "lsp" / "both"
 				-- True is same as normal
-				tailwind = "both", -- Enable tailwind colors
+				tailwind = "normal", -- Enable tailwind colors
 			},
 		},
 	},

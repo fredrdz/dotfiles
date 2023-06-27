@@ -5,29 +5,28 @@
 # use: chezmoi data
 
 packages-dnf () {
-  sudo dnf install -y util-linux-user zsh snapd cmake sshuttle tmux xclip xsel yp-tools \
-    libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc \
+  sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
+    libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
     httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
     podman clang libevent-devel luarocks openssl net-tools jq go neovim \
-    flatpak
+    flatpak nodejs ripgrep
   sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
   sudo dnf install -y 'dnf-command(copr)'
   sudo dnf copr enable atim/lazygit -y
   sudo dnf install -y lazygit
-  sudo dnf module install -y nodejs:18/common
+  # sudo dnf module install -y nodejs:18/common
 }
 
 packages-snap () {
   sudo ln -s /var/lib/snapd/snap /snap
   sudo systemctl enable snapd --now
-  # sudo snap install vlc bitwarden slack discord
-  sudo snap install ripgrep --classic
+  # sudo snap install vlc bitwarden slack discord quiqr
   sudo snap install kubectl --classic
 }
 
 packages-node () {
   sudo npm install diff-so-fancy -g
-	sudo npm install netlify-cli -g
+  sudo npm install netlify-cli -g
   ntl completion:install
 }
 
@@ -42,7 +41,7 @@ packages-golang () {
 
 packages-rust () {
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom ripgrep
+  ~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom
   ~/.cargo/bin/cargo install cargo-update
 }
 
@@ -104,7 +103,7 @@ packages-desktop () {
   # brave
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-  sudo dnf install -y brave-browser vlc mpv
+  sudo dnf install -y xprop xwininfo xdotool xrandr xev sxhkd brave-browser vlc mpv
   # ssh
   sudo systemctl enable sshd
   sudo systemctl start sshd
@@ -142,7 +141,7 @@ if [ "$input" == "yes" ]; then
   # flatpak
   packages-flatpak
   # snap
-  packages-snap
+  # packages-snap
   # rust
   packages-rust
   # golang
@@ -166,7 +165,7 @@ if [ "$input" == "yes" ]; then
   packages-flatpak
   flatpak install flathub com.github.wwmm.easyeffects
   # snap
-  packages-snap
+  # packages-snap
   # rust
   packages-rust
   # golang

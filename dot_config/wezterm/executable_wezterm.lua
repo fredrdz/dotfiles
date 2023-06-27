@@ -3,18 +3,30 @@ local wezterm = require("wezterm")
 -- Set up keyboard shortcuts
 local act = wezterm.action
 local mykeys = {
-	{
-		key = "Backspace",
-		mods = "SHIFT|CTRL",
-		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "Space",
-		mods = "SHIFT|CTRL",
-		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{ key = "LeftArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(-1) },
-	{ key = "RightArrow", mods = "ALT|CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
+	{ key = "-", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
+	{ key = "0", mods = "SHIFT|CTRL", action = act.ResetFontSize },
+	{ key = "N", mods = "SHIFT|CTRL", action = act.SpawnWindow },
+	{ key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+	{ key = "T", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
+	{ key = "LeftArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Left") },
+	{ key = "LeftArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Left", 1 }) },
+	{ key = "RightArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Right") },
+	{ key = "RightArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Right", 1 }) },
+	{ key = "UpArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Up") },
+	{ key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Up", 1 }) },
+	{ key = "DownArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Down") },
+	{ key = "DownArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Down", 1 }) },
+	{ key = "Enter", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
+	{ key = "Backspace", mods = "SHIFT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "Space", mods = "SHIFT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
+	{ key = "Insert", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
+	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 }
 
 -- Set up mouse binds
@@ -58,7 +70,11 @@ local config = {
 	animation_fps = 60,
 	max_fps = 60,
 	color_scheme = "kanagawabones",
+
+	-- keys
+	disable_default_key_bindings = true,
 	keys = mykeys,
+
 	mouse_bindings = mymouse,
 	-- Pad window to avoid the content to be too close to the border,
 	-- so it's easier to see and select.

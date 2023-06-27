@@ -1,0 +1,22 @@
+# to find custom keyboard keycodes, run cmd: 
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+# wezterm 
+XF86Launch5
+    tdrop -mta --width 98% --height 96% -y 1% -x 1% -n wezterm --class=wezterm flatpak run org.wezfurlong.wezterm
+
+# signal 
+XF86Launch6
+    tdrop -mta -w 60% -h 70% -x 20% -y 25% -n signal --class=signal flatpak run org.signal.Signal
+
+# discord 
+XF86Launch7
+    tdrop -mta -w 60% -h 70% -x 20% -y 25% -n discord --class=discord flatpak run com.discordapp.Discord
+
+# slack 
+XF86Launch8
+    tdrop -mta -w 60% -h 70% -x 20% -y 25% -n slack --class=slack flatpak run com.slack.Slack
+
+# reload sxhkd
+super + meta + Escape
+    pkill -USR1 -x sxhkd
