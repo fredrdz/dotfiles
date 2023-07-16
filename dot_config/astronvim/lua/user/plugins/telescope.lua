@@ -5,7 +5,6 @@ return {
 		"nvim-telescope/telescope-hop.nvim",
 		"nvim-telescope/telescope-bibtex.nvim",
 		"nvim-telescope/telescope-file-browser.nvim",
-		"ahmedkhalf/project.nvim",
 	},
 
 	opts = function(_, opts)
