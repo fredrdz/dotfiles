@@ -16,6 +16,23 @@ return function()
 	-- }
 	-- create an augroup to easily manage autocommands
 
+	-- The search function checks for '#!/bin/bash' or '#!/usr/bin/env bash' at the beginning of the file
+	function detect_shell_script()
+		local shebang = vim.fn.getline(1)
+		if shebang == "#!/bin/bash" or shebang == "#!/usr/bin/env bash" then
+			vim.cmd("set ft=sh")
+		elseif shebang == "#!/bin/zsh" or shebang == "#!/usr/bin/env zsh" then
+			vim.cmd("set ft=zsh")
+		end
+	end
+
+	vim.cmd([[
+		augroup DetectShellScript
+  		autocmd!
+  		autocmd BufNewFile,BufRead *.tmpl lua detect_shell_script()
+		augroup END
+	]])
+
 	vim.api.nvim_create_augroup("autohidetabline", { clear = true })
 	-- create a new autocmd on the "User" event
 	vim.api.nvim_create_autocmd("User", {
