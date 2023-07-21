@@ -137,10 +137,10 @@ return {
 	},
 	{
 		"toggleterm.nvim",
-		keys = { "<M-t>" },
+		keys = { "<F4>" },
 		opts = {
 			size = 30,
-			open_mapping = [[<M-t>]],
+			open_mapping = [[<F4>]],
 			shading_factor = 2,
 			direction = "horizontal",
 		},
