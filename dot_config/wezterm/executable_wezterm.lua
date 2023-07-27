@@ -23,10 +23,18 @@ local mykeys = {
 	{ key = "Space", mods = "SHIFT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
-	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
 	{ key = "Insert", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
-	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+	{ key = "Insert", mods = "CTRL", action = act.CopyTo("Clipboard") },
+	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
+	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("Clipboard") },
+	{ key = "V", mods = "CTRL", action = act.PasteFrom("PrimarySelection") },
+	{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "C", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
+	{ key = "C", mods = "CTRL", action = act.CopyTo("Clipboard") },
+	{ key = "Paste", mods = "NONE", action = act.PasteFrom("PrimarySelection") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
+	{ key = "Copy", mods = "NONE", action = act.CopyTo("PrimarySelection") },
+	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 }
 
 -- Set up mouse binds

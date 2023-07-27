@@ -396,6 +396,16 @@ bind-key -n M-End next-window
 bind-key -n M-PageUp switch-client -p
 bind-key -n M-PageDown switch-client -n
 
+# rebind keys for splits
+# vertically
+unbind %
+unbind -
+bind | split-window -h
+# horizontally 
+unbind '"'
+unbind _
+bind \\ split-window -v
+
 # ---
 
 # move status line to top
