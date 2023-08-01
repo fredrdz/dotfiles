@@ -34,7 +34,6 @@ return {
 		-- overrides `require("mason-null-ls").setup(...)`
 		opts = {
 			ensure_installed = {
-				"dprint",
 				"gofumpt",
 				"goimports",
 				"gomodifytags",

@@ -19,23 +19,10 @@ return {
 
 	filter = function(client) -- fully override the default formatting function
 		-- enable formatting for a specific file on a specific server
-		-- if vim.bo.filetype == "lua" then
-		--   return client.name == "lua_ls"
-		-- end
-		-- if vim.bo.filetype == "toml" then
-		--   return client.name == "taplo"
-		-- end
-		if
-			vim.bo.filetype == "yaml"
-			or "json"
-			or "lua"
-			or "toml"
-			or "css"
-			or "markdown"
-			or "scss"
-			or "javascript"
-			or "typescript"
-		then
+		if vim.bo.filetype == "toml" then
+			return client.name == "taplo"
+		end
+		if vim.bo.filetype == "yaml" or "json" or "css" or "markdown" or "scss" or "javascript" or "typescript" then
 			return client.name == "null-ls"
 		end
 		-- enable all other clients
