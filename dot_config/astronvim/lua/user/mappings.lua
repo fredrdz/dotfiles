@@ -65,6 +65,13 @@ return {
 		["<leader>mrb"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
 
 		-- telescope plugin mappings
+		["<leader>f<CR>"] = false,
+		["<leader>f<Tab>"] = {
+			function()
+				require("telescope.builtin").resume()
+			end,
+			desc = "Resume previous search",
+		},
 		["<leader>fB"] = { "<cmd>Telescope bibtex<cr>", desc = "Find BibTeX" },
 		["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" },
 		["<leader>fp"] = {
@@ -119,6 +126,8 @@ return {
 	},
 
 	t = {
+		-- to normal mode
+		["<Esc>"] = { "<C-\\><C-n>", desc = "Normal mode" },
 		-- pane navigation movements
 		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
@@ -129,6 +138,9 @@ return {
 		["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
 		["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
 		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
+		-- tab navigation
+		["<M-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
+		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
 	},
 
 	o = {
