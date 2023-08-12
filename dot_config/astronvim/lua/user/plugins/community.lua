@@ -5,7 +5,26 @@ return {
 	-- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
 	-- completion
-	{ import = "astrocommunity.completion.copilot-lua-cmp" },
+	{ import = "astrocommunity.completion.copilot-lua-cmp", enabled = true },
+	{ -- further customize the options set by the community
+		"copilot.lua",
+		event = "InsertEnter",
+		opts = {
+			panel = {
+				enabled = true,
+				auto_refresh = true,
+				layout = {
+					position = "right", -- | top | left | right
+					ratio = 0.3,
+				},
+			},
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				debounce = 75,
+			},
+		},
+	},
 
 	-- packs
 	{ import = "astrocommunity.pack.bash", enabled = true },

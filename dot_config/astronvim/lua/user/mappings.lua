@@ -64,6 +64,11 @@ return {
 		["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
 		["<leader>mrb"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
 
+		-- copilot
+		["<leader>k"] = { name = "󰙘 Copilot" },
+		["<leader>ko"] = { "<cmd>lua require('copilot.panel').open({postion, ratio})<cr>", desc = "Copilot Open" },
+		["<leader>kr"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
+
 		-- telescope plugin mappings
 		["<leader>f<CR>"] = false,
 		["<leader>f<Tab>"] = {
