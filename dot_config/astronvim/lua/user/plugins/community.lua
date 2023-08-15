@@ -14,14 +14,14 @@ return {
 				enabled = true,
 				auto_refresh = true,
 				layout = {
-					position = "right", -- | top | left | right
-					ratio = 0.3,
+					position = "top", -- | top | left | right
+					ratio = 0.20,
 				},
 			},
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
-				debounce = 75,
+				debounce = 100,
 			},
 		},
 	},
