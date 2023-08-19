@@ -3,7 +3,8 @@ return function()
 	local nontext = get_hlgroup("NonText")
 
 	return {
-		CursorLineFold = { link = "CursorLineNr" }, -- highlight fold indicator as well as line number
+		-- highlight fold indicator as well as line number
+		CursorLineFold = { link = "CursorLineNr" },
 		GitSignsCurrentLineBlame = { fg = nontext.fg, italic = true }, -- italicize git blame virtual text
 		HighlightURL = { underline = true }, -- always underline URLs
 		OctoEditable = { fg = "NONE", bg = "NONE" }, -- use treesitter for octo.nvim highlighting
@@ -18,7 +19,7 @@ return function()
 		NotifyBackground = { bg = "#16B2C3" },
 
 		-- heirline
-		Folded = { bg = "#7af9ff", fg = "#181818" },
+		Folded = { bg = "#082032", fg = "#181818" },
 
 		-- whichkey
 		WhichkeyFloat = { bg = "#082032" },
