@@ -37,7 +37,6 @@ return {
 	{ import = "astrocommunity.pack.yaml", enabled = true },
 
 	-- diagnostics
-	{ import = "astrocommunity.diagnostics.lsp_lines-nvim", enabled = true },
 	{ import = "astrocommunity.diagnostics.trouble-nvim", enabled = true },
 
 	-- editing-support

@@ -44,6 +44,14 @@ return {
 			desc = "Switch Buffers",
 		},
 
+		-- trouble
+		["<leader>x"] = { desc = "󰒡 Trouble" },
+		["<leader>xX"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+		["<leader>xx"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+		["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+		["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+		["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
+
 		-- neoclip (registers)
 		["<leader>r"] = { name = "󰳴 Neoclip Registers" },
 		["<leader>rN"] = { "<cmd>Telescope neoclip<cr>", desc = 'Default register (")' },
@@ -130,9 +138,30 @@ return {
 		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
 	},
 
+	v = {
+		["<leader>s"] = {
+			function()
+				require("spectre").open_visual()
+			end,
+			desc = "Spectre",
+		},
+	},
+
+	i = {
+		-- signature help, fails silently so attach always
+		["<C-l>"] = {
+			function()
+				vim.lsp.buf.signature_help()
+			end,
+			desc = "Signature help",
+		},
+		["<S-Tab>"] = { "<C-V><Tab>", desc = "Tab character" },
+	},
+
 	t = {
 		-- to normal mode
-		["<Esc>"] = { "<C-\\><C-n>", desc = "Normal mode" },
+		["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
+		["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
 		-- pane navigation movements
 		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
@@ -149,6 +178,11 @@ return {
 	},
 
 	o = {
+		-- better increment/decrement
+		["+"] = { "g<C-a>", desc = "Increment number" },
+		["-"] = { "g<C-x>", desc = "Descrement number" },
+		-- Easy-Align
+		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
 		-- vim-sandwich
 		["<leader>m"] = { name = "󰉚 Sandwich" },
 		["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
