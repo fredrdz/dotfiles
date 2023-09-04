@@ -31,7 +31,7 @@ return {
 		cursorline = true,
 		-- opt.colorcolumn = '80,120'
 		cmdheight = 0, -- More space to display messages
-		wrap = true, -- Enable line wrap
+		wrap = false, -- Enable line wrap
 		number = true, -- Print line number
 		relativenumber = true, -- Relative line numbers
 		scrolloff = 10, -- Lines of context
