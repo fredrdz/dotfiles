@@ -42,12 +42,12 @@ packages-golang() {
 
 packages-rust() {
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	~/.cargo/bin/cargo install navi zoxide exa starship bat tree-sitter-cli bottom
+	~/.cargo/bin/cargo install navi zoxide eza starship bat tree-sitter-cli bottom
 	~/.cargo/bin/cargo install cargo-update
 }
 
 packages-flatpak() {
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	flatpak install flathub org.wezfurlong.wezterm org.signal.Signal com.slack.Slack com.google.Chrome com.discordapp.Discord com.brave.Browser
 }
 

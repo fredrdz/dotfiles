@@ -55,22 +55,15 @@ local mymouse = {
 local function font_with_fallback(name, params)
 	local names = {
 		name,
-		"Source Code Pro",
 		"JetBrains Mono",
+		"Source Code Pro",
 	}
 	return wezterm.font_with_fallback(names, params)
 end
 
--- Set up my tab style
--- The filled in variant of the < symbol
-local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-
--- The filled in variant of the > symbol
-local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
-
 local config = {
 	term = "wezterm",
-	enable_wayland = false,
+	enable_wayland = true,
 	audible_bell = "Disabled",
 	window_close_confirmation = "NeverPrompt",
 	check_for_updates = true,
@@ -118,22 +111,28 @@ local config = {
 			italic = true,
 			intensity = "Bold",
 			underline = "Single",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBold" }),
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBlack" }),
 		},
 		{
 			italic = true,
 			intensity = "Bold",
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Bold" }),
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBold" }),
 		},
 		{
 			intensity = "Bold",
 			italic = false,
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Normal", weight = "DemiBold" }),
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Normal", weight = "Bold" }),
 		},
 		{
 			intensity = "Normal",
+			italic = true,
+			underline = "None",
+			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "DemiBold" }),
+		},
+		{
+			intensity = "Half",
 			italic = true,
 			underline = "None",
 			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Medium" }),
