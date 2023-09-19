@@ -25,9 +25,6 @@ return {
 		-- quick save
 		-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
-		-- Easy-Align
-		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
-
 		-- better increment/decrement
 		["-"] = { "<c-x>", desc = "Descrement number" },
 		["+"] = { "<c-a>", desc = "Increment number" },
@@ -136,6 +133,10 @@ return {
 		["<leader>Tc"] = { "<cmd>tabclose<cr>", desc = "New close" },
 		["<M-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
 		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
+
+		-- g menu
+		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
+		gs = { function() require("aerial").toggle() end, desc = "Symbols outline" },
 	},
 
 	v = {

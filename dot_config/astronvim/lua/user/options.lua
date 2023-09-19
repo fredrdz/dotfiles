@@ -55,7 +55,7 @@ return {
 		hidden = true, -- Enable modified buffers in background
 		shada = { "!", "'1000", "<50", "s10", "h" }, -- remember stuff across sessions
 		joinspaces = false, -- No double spaces with join after a dot
-		timeoutlen = 400, -- Don't wait more that 400ms for normal mode commands
+		timeoutlen = 300, -- Don't wait more that 400ms for normal mode commands ie. whichkey
 		undofile = true,
 		undodir = "/tmp/undodir",
 		swapfile = false, -- I have OCD file saving issues anyway

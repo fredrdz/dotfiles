@@ -29,20 +29,6 @@ return {
 		},
 	},
 
-	-- opts = {
-	-- 	auto_install = vim.fn.executable("tree-sitter") == 1,
-	-- 	highlight = {
-	-- 		additional_vim_regex_highlighting = false,
-	-- 		disable = { "help" },
-	-- 	},
-	-- 	matchup = {
-	-- 		enable = true,
-	-- 	},
-	-- 	rainbow = {
-	-- 		enable = true,
-	-- 	},
-	-- },
-
 	opts = function(_, opts)
 		opts.textobjects = {
 			select = {
@@ -63,8 +49,8 @@ return {
 					["ic"] = { query = "@class.inner", desc = "inside class" },
 					["a?"] = { query = "@conditional.outer", desc = "around conditional" },
 					["i?"] = { query = "@conditional.inner", desc = "inside conditional" },
-					["af"] = { query = "@function.outer", desc = "around function " },
-					["if"] = { query = "@function.inner", desc = "inside function " },
+					["af"] = { query = "@function.outer", desc = "around function" },
+					["if"] = { query = "@function.inner", desc = "inside function" },
 					["al"] = { query = "@loop.outer", desc = "around loop" },
 					["il"] = { query = "@loop.inner", desc = "inside loop" },
 					["ap"] = { query = "@parameter.outer", desc = "around parameter" },

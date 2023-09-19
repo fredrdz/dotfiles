@@ -1,6 +1,18 @@
 return {
+	{
+		"stevearc/aerial.nvim",
+		opts = {
+			layout = {
+				default_direction = "float",
+			},
+			close_on_select = true,
+			-- folding
+			manage_folds = true,
+			link_folds_to_tree = true,
+			link_tree_to_folds = true,
+		},
+	},
 
-	-- customize alpha options
 	{
 		"goolord/alpha-nvim",
 		opts = function(_, opts)
@@ -27,7 +39,6 @@ return {
 				"       . tO    ,<0#YYUY`                      ",
 				"        ($urnxrtjw,^>}t`                      ",
 			}
-
 			local button = require("astronvim.utils").alpha_button
 			opts.section.buttons.val = {
 				button("LDR S f", "  Find Session"),
