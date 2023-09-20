@@ -4,6 +4,10 @@ return {
 		opts = {
 			layout = {
 				default_direction = "float",
+				resize_to_content = true,
+				min_width = 10,
+				max_width = { 50, 0.50 },
+				width = nil,
 			},
 			close_on_select = true,
 			-- folding

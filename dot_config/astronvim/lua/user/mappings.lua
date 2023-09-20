@@ -136,7 +136,7 @@ return {
 
 		-- g menu
 		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
-		gs = { function() require("aerial").toggle() end, desc = "Symbols outline" },
+		gk = { function() require("aerial").toggle() end, desc = "Symbols outline" },
 	},
 
 	v = {
