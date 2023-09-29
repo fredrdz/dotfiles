@@ -180,6 +180,12 @@ alias docker-compose='docker compose'
 # cargo updater
 alias cargo-update="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && cargo install-update -a"
 
+# keyboard firmware updater
+alias kbupdate="tempfile=$(mktemp --suffix=.bin) &&
+	curl -o $tempfile https://oryx.zsa.io/RWBdx/latest/binary &&
+	wally-cli $tempfile &&
+	rm $tempfile"
+
 # ZSH Theme Color Scheme
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#778899'
 

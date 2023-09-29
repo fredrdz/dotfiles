@@ -31,13 +31,14 @@ packages-node() {
 }
 
 packages-golang() {
-	go install -tags extended github.com/gohugoio/hugo@latest
+	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 	go install github.com/walles/moar@latest
 	go install github.com/dundee/gdu/v5/cmd/gdu@latest
 	go install sigs.k8s.io/kind@v0.17.0
 	go install github.com/mikefarah/yq/v4@latest
 	go install github.com/TheZoraiz/ascii-image-converter@latest
 	go install github.com/sensepost/gowitness@latest
+	go install github.com/zsa/wally-cli
 }
 
 packages-rust() {
@@ -101,7 +102,7 @@ settings-development() {
 }
 
 packages-desktop() {
-	sudo dnf install -y xprop xwininfo xdotool xrandr xev sxhkd vlc mpv chromium gtk3 webkit2gtk3 libusb
+	sudo dnf install -y xprop xwininfo xdotool xrandr xev sxhkd vlc mpv chromium gtk3 webkit2gtk3 libusb libusb1-devel
 	# ssh
 	sudo systemctl enable sshd
 	sudo systemctl start sshd
