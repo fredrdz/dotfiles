@@ -9,7 +9,7 @@ packages-dnf() {
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
 		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
-		flatpak nodejs ripgrep
+		flatpak nodejs ripgrep vim whoami docker
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
 	sudo dnf copr enable atim/lazygit -y
@@ -63,6 +63,25 @@ settings-virtualization() {
 	sudo usermod -a -G libvirt $(whoami)
 }
 
+settings-docker() {
+	sudo dnf -y install dnf-plugins-core
+	sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+	sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	sudo systemctl enable docker.service
+	sudo systemctl enable containerd.service
+	sudo systemctl start docker
+	sudo groupadd docker
+	sudo usermod -aG docker $USER
+	newgrp docker
+}
+
+settings-php() {
+	sudo dnf install -y php
+	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	chmod +x wp-cli.phar
+	sudo mv wp-cli.phar /usr/local/bin/wp
+}
+
 settings-development() {
 	# fzf
 	~/.fzf/install
@@ -99,6 +118,8 @@ settings-development() {
 	git config --global color.diff.old "red bold"
 	git config --global color.diff.new "green bold"
 	git config --global color.diff.whitespace "red reverse"
+	# timezone
+	sudo timedatectl set-timezone America/Chicago
 }
 
 packages-desktop() {
@@ -134,8 +155,8 @@ if [ "$input" == "yes" ]; then
 	packages-dnf
 	# shell
 	chsh -s /usr/bin/zsh
-	# flatpak
-	packages-flatpak
+	# docker
+	packages-docker
 	# rust
 	packages-rust
 	# golang
