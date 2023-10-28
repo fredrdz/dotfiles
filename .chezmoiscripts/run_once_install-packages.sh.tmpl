@@ -9,7 +9,7 @@ packages-dnf() {
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
 		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
-		flatpak nodejs ripgrep vim whoami docker
+		flatpak nodejs ripgrep vim docker
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
 	sudo dnf copr enable atim/lazygit -y
@@ -38,7 +38,7 @@ packages-golang() {
 	go install github.com/mikefarah/yq/v4@latest
 	go install github.com/TheZoraiz/ascii-image-converter@latest
 	go install github.com/sensepost/gowitness@latest
-	go install github.com/zsa/wally-cli
+	go install github.com/zsa/wally-cli@latest
 }
 
 packages-rust() {
@@ -52,7 +52,7 @@ packages-flatpak() {
 	flatpak install flathub org.wezfurlong.wezterm org.signal.Signal com.slack.Slack com.google.Chrome com.discordapp.Discord com.brave.Browser
 }
 
-settings-virtualization() {
+packages-virtualization() {
 	# virtualization
 	#  sudo vi /etc/libvirt/libvirtd.conf
 	#  unix_sock_group = "libvirt"
@@ -63,7 +63,7 @@ settings-virtualization() {
 	sudo usermod -a -G libvirt $(whoami)
 }
 
-settings-docker() {
+packages-docker() {
 	sudo dnf -y install dnf-plugins-core
 	sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 	sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -75,7 +75,7 @@ settings-docker() {
 	newgrp docker
 }
 
-settings-php() {
+packages-php() {
 	sudo dnf install -y php
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
@@ -122,6 +122,11 @@ settings-development() {
 	sudo timedatectl set-timezone America/Chicago
 }
 
+settings-locale() {
+	sudo dnf install glibc-langpack-en
+	sudo localectl set-locale LANG=en_US.UTF-8
+}
+
 packages-desktop() {
 	sudo dnf install -y xprop xwininfo xdotool xrandr xev sxhkd vlc mpv chromium gtk3 webkit2gtk3 libusb libusb1-devel
 	# ssh
@@ -157,6 +162,8 @@ if [ "$input" == "yes" ]; then
 	chsh -s /usr/bin/zsh
 	# docker
 	packages-docker
+	# php
+	packages-php
 	# rust
 	packages-rust
 	# golang
