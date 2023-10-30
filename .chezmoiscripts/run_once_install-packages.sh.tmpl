@@ -9,7 +9,7 @@ packages-dnf() {
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
 		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
-		flatpak nodejs ripgrep vim docker
+		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
 	sudo dnf copr enable atim/lazygit -y
