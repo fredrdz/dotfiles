@@ -25,12 +25,17 @@ git remote set-url origin git@github.com:fredrdz/dotfiles.git
 Useful for immutatable OSes.
 
 ```bash
-# installing fedora 37 on steam deck
+# installing fedora latest on steam deck
 curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local
-curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/install-podman | sh -s -- --prefix ~/.local
-sudo /home/fdev
+sudo mkdir /home/fdev
 sudo chown deck:deck /home/fdev
-distrobox create --image fedora:37 --name fdev --home /home/fdev
+# w/ root and systemd, specific fedora release
+distrobox create --image registry.fedoraproject.org/fedora:38 --name fdev --home /home/fdev --additional-packages "systemd" --init --root
+# w/o root and systemd, on latest fedora release
+distrobox create --image fedora:latest --name fdev --home /home/fdev
+# enter container w/ root if used during image creation
+distrobox enter --root fdev
+distrobox enter fdev
 ```
 
 ## ASTROVIM

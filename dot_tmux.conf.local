@@ -406,6 +406,14 @@ unbind '"'
 unbind _
 bind \\ split-window -v
 
+# plugin keys
+# fuzzback
+set -g @fuzzback-bind 'C-?'
+set -g @fuzzback-popup 1
+set -g @fuzzback-popup-size '90%'
+# fzf
+TMUX_FZF_LAUNCH_KEY="Space"
+
 # ---
 
 # move status line to top
@@ -455,6 +463,8 @@ set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'roosta/tmux-fuzzback'
+set -g @plugin 'sainnhe/tmux-fzf'
 set -g @continuum-restore 'on'
 
 
