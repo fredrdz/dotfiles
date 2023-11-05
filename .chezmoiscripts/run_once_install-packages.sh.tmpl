@@ -5,11 +5,12 @@
 # use: chezmoi data
 
 packages-dnf() {
+	sudo dnf update -y
 	sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
 		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
-		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli
+		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli libusb1-devel.x86_64
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
 	sudo dnf copr enable atim/lazygit -y
@@ -27,7 +28,7 @@ packages-snap() {
 packages-node() {
 	sudo npm install diff-so-fancy -g
 	sudo npm install netlify-cli -g
-	ntl completion:install
+	netlify completion:install
 }
 
 packages-golang() {
@@ -162,8 +163,6 @@ if [ "$input" == "yes" ]; then
 	packages-dnf
 	# shell
 	chsh -s /usr/bin/zsh
-	# docker
-	packages-docker
 	# php
 	packages-php
 	# rust
@@ -174,6 +173,8 @@ if [ "$input" == "yes" ]; then
 	packages-node
 	# env/dev settings
 	settings-development
+	# chezmoi
+	cd ~/.local/share/chezmoi/ && git remote set-url origin git@github.com:fredrdz/dotfiles.git && cd -
 fi
 
 {{ else if eq .osid "linux-nobara" }}
