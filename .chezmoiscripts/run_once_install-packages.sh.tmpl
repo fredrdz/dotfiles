@@ -106,6 +106,8 @@ settings-development() {
 	mkdir ~/.local/share/fonts
 	unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
 	fc-cache ~/.local/share/fonts
+	# swap to ssh as default
+	git config --global url."ssh://git@github.com".insteadOf "https://github.com"
 	# diff-so-fancy
 	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 	git config --global interactive.diffFilter "diff-so-fancy --patch"
