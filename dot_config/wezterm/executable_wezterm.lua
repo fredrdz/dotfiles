@@ -64,9 +64,10 @@ end
 local config = {
 	term = "wezterm",
 	enable_wayland = true,
+	front_end = "WebGpu",
 	audible_bell = "Disabled",
-	window_close_confirmation = "NeverPrompt",
 	check_for_updates = true,
+	check_for_updates_interval_seconds = 86400,
 	automatically_reload_config = true,
 	animation_fps = 60,
 	max_fps = 60,
@@ -75,15 +76,8 @@ local config = {
 	-- keys
 	disable_default_key_bindings = true,
 	keys = mykeys,
-
 	mouse_bindings = mymouse,
-	-- Pad window to avoid the content to be too close to the border,
-	-- so it's easier to see and select.
-	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
-	-- window_decorations = "TITLE|RESIZE",
-	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-	window_background_opacity = 1,
-	text_background_opacity = 1,
+
 	scrollback_lines = 3500,
 	enable_scroll_bar = true,
 	harfbuzz_features = {
@@ -92,14 +86,49 @@ local config = {
 		"liga", -- (default) ligatures
 		"clig", -- (default) contextual ligatures
 	},
-	-- tab settings
-	hide_tab_bar_if_only_one_tab = true,
-	tab_bar_at_bottom = true,
+
+	-- wsl
+	default_domain = "WSL:fedora",
+
+	-- tab_bar
+	enable_tab_bar = true,
 	use_fancy_tab_bar = true,
+	tab_max_width = 50,
+	hide_tab_bar_if_only_one_tab = false,
+	tab_bar_at_bottom = true,
+
+	-- window settings
+	window_frame = {
+		font = wezterm.font({ family = "JetBrains Mono", weight = "Light" }),
+		font_size = 9,
+		active_titlebar_bg = "#202123",
+		inactive_titlebar_bg = "#202123",
+		border_left_width = "0cell",
+		border_right_width = "0cell",
+		border_bottom_height = "0cell",
+		border_top_height = "0cell",
+		border_left_color = "None",
+		border_right_color = "None",
+		border_bottom_color = "None",
+		border_top_color = "None",
+	},
+	-- Pad window to avoid the content to be too close to the border,
+	-- so it's easier to see and select.
+	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
+	window_decorations = "INTEGRATED_BUTTONS",
+	window_background_opacity = 1,
+	macos_window_background_blur = 50,
+	text_background_opacity = 1,
+	window_close_confirmation = "NeverPrompt",
+	use_resize_increments = false,
 
 	-- cursor settings
 	default_cursor_style = "BlinkingBlock",
 	force_reverse_video_cursor = true,
+	cursor_blink_ease_in = "Constant",
+	cursor_blink_ease_out = "Constant",
+	cursor_blink_rate = 700,
+	cursor_thickness = 2,
 
 	-- font settings
 	font = wezterm.font({
@@ -144,12 +173,19 @@ local config = {
 			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Light" }),
 		},
 	},
-	font_size = 14.5,
+	font_size = 14,
 	freetype_load_target = "Light",
+	freetype_load_flags = "NO_HINTING",
+	foreground_text_hsb = {
+		hue = 1.0,
+		saturation = 1.0,
+		brightness = 1.0,
+	},
 	underline_position = "110%",
 	underline_thickness = "200%",
 	line_height = 1.0,
-	bold_brightens_ansi_colors = true,
+	cell_width = 0.9,
+	bold_brightens_ansi_colors = "BrightOnly",
 	inactive_pane_hsb = { hue = 1.0, saturation = 0.7, brightness = 0.8 },
 
 	-- Disable annoying default behaviors
