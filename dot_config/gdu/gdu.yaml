@@ -1,0 +1,5 @@
+# https://github.com/dundee/gdu
+style:
+    selected-row:
+        text-color: "#0ABAB5"
+        background-color: "#223249"
