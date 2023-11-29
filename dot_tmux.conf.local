@@ -225,6 +225,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{hostname}
 #     - #{hostname_full}
 #     - #{hostname_full_ssh}
+#     - #{lan}
 #     - #{loadavg}
 #     - #{mouse}
 #     - #{pairing}
@@ -238,7 +239,9 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #S | #{wan} | #{lan} "
+#     - #{wan}
+
+tmux_conf_theme_status_left=" ❐ #{circled_session_name} | #{loadavg} | #{wan},#{lan} "
 tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
 
 # status left style
