@@ -83,6 +83,14 @@ packages-php() {
 	sudo mv wp-cli.phar /usr/local/bin/wp
 }
 
+packages-aws() {
+	tempfile=$(mktemp) &&
+		curl -o $tempfile "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" &&
+		unzip $tempfile -d /tmp/ &&
+		sudo /tmp/aws/install &&
+		rm $tempfile /tmp/aws -rf
+}
+
 settings-development() {
 	# fzf
 	~/.fzf/install
@@ -171,6 +179,8 @@ if [ "$input" == "yes" ]; then
 	packages-golang
 	# node
 	packages-node
+	# aws
+	packages-aws
 	# env/dev settings
 	settings-development
 	# chezmoi

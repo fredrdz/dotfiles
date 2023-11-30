@@ -156,10 +156,10 @@ alias est='eza --git --long --tree --level 1 --icons --group-directories-first -
 # bat aliases
 if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
   alias b='bat --style=full --paging=never --force-colorization'
-  alias cat='bat --plain --paging=never'
+  alias cat='bat -pp'
 else
   alias b='batcat --style=full --force-colorization'
-  alias cat='batcat --plain --paging=never'
+  alias cat='bat -pp'
 fi
 
 # moar aliases
