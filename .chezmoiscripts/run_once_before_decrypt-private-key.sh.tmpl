@@ -2,7 +2,7 @@
 DIR="${HOME}/.config/chezmoi"
 
 if [ ! -f "${DIR}/chezmoi.key" ]; then
-    mkdir -p "${DIR}"
-    chezmoi age decrypt --output "${DIR}/chezmoi.key" --passphrase "{{ .chezmoi.sourceDir }}/chezmoi.key.age"
-    chmod 600 "${DIR}/chezmoi.key"
+	mkdir -p "${DIR}"
+	chezmoi age decrypt --output "${DIR}/chezmoi.key" --passphrase "{{ .chezmoi.sourceDir }}/chezmoi.key.age"
+	chmod 600 "${DIR}/chezmoi.key"
 fi

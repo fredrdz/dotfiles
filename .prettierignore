@@ -32,7 +32,3 @@ node_modules/
 
 # misc
 tmp/
-
-# spooky secrets
-*.env
-*.key

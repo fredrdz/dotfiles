@@ -17,15 +17,20 @@ return {
 
 	timeout_ms = 3000, -- default format timeout
 
-	filter = function(client) -- fully override the default formatting function
-		-- enable formatting for a specific file on a specific server
-		if vim.bo.filetype == "toml" then
-			return client.name == "taplo"
-		end
-		if vim.bo.filetype == "yaml" or "json" or "css" or "markdown" or "scss" or "javascript" or "typescript" then
-			return client.name == "null-ls"
-		end
-		-- enable all other clients
-		return true
+	filter = function(client)
+		local filetypes = {
+			toml = "taplo",
+			yaml = "null-ls",
+			json = "null-ls",
+			css = "null-ls",
+			markdown = "null-ls",
+			scss = "null-ls",
+			javascript = "null-ls",
+			typescript = "null-ls",
+		}
+
+		local filetype = vim.bo.filetype
+
+		return filetypes[filetype] == client.name or true
 	end,
 }
