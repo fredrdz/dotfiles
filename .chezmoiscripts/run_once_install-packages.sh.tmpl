@@ -7,7 +7,7 @@
 packages-dnf() {
 	sudo dnf update -y
 	sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
-		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ \
+		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ perl \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
 		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
 		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli libusb1-devel.x86_64
@@ -44,7 +44,7 @@ packages-golang() {
 
 packages-rust() {
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	~/.cargo/bin/cargo install navi zoxide eza starship bat tree-sitter-cli bottom
+	~/.cargo/bin/cargo install navi zoxide eza starship bat tree-sitter-cli bottom bws
 	~/.cargo/bin/cargo install cargo-update
 }
 

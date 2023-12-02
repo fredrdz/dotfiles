@@ -1,7 +1,15 @@
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+    {{- $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
+
+encryption = "age"
+[age]
+    identity = "~/.config/chezmoi/chezmoi.key"
+    recipient = "age1n0fcf9ddaasredxp3np2eu2cx854eh0hrxljrpzuwk55rflm7chs8vm8rj"
+
+[hooks.read-source-state.pre]
+    command = ".local/share/chezmoi/.chezmoiscripts/run_once_before_install-password-manager.sh" 
 
 [data]
     osid = {{ $osid | quote }}

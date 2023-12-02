@@ -64,7 +64,7 @@ end
 local config = {
 	term = "wezterm",
 	enable_wayland = true,
-	front_end = "WebGpu",
+	-- front_end = "WebGpu",
 	audible_bell = "Disabled",
 	check_for_updates = true,
 	check_for_updates_interval_seconds = 86400,
@@ -116,7 +116,7 @@ local config = {
 	-- so it's easier to see and select.
 	window_padding = { left = 1, right = 1, top = 1, bottom = 1 },
 	window_decorations = "INTEGRATED_BUTTONS",
-	window_background_opacity = 1,
+	window_background_opacity = 0.97,
 	macos_window_background_blur = 50,
 	text_background_opacity = 1,
 	window_close_confirmation = "NeverPrompt",
