@@ -1,36 +1,36 @@
 [".oh-my-zsh"]
-    type = "archive"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
 [".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
 [".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
 [".fzf"]
-    type = "archive"
-    url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/junegunn/fzf/archive/master.tar.gz"
 [".tmux"]
-    type = "archive"
-    url = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
 [".config/nvim"]
-    type = "archive"
-    url = "https://github.com/AstroNvim/AstroNvim/archive/master.tar.gz"
-    exact = true
+    exact           = true
+    refreshPeriod   = "168h"
     stripComponents = 1
-    refreshPeriod = "168h"
+    type            = "archive"
+    url             = "https://github.com/AstroNvim/AstroNvim/archive/master.tar.gz"
