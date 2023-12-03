@@ -49,8 +49,8 @@ return {
 			handlers = {
 				-- for prettierd
 				prettierd = function()
-					local null_ls = require("null-ls")
-					null_ls.register(null_ls.builtins.formatting.prettierd.with({
+					local null_ls = require "null-ls"
+					null_ls.register(null_ls.builtins.formatting.prettierd.with {
 						filetypes = {
 							"css",
 							"gohtml",
@@ -64,16 +64,16 @@ return {
 							"yaml",
 						},
 						condition = function(utils)
-							return utils.root_has_file("package.json")
-								or utils.root_has_file(".prettierrc")
-								or utils.root_has_file(".prettierrc.config.js")
-								or utils.root_has_file(".prettierrc.js")
-								or utils.root_has_file(".prettierrc.json")
-								or utils.root_has_file(".prettierrc.toml")
-								or utils.root_has_file(".prettierrc.yaml")
-								or utils.root_has_file(".prettierrc.yml")
+							return utils.root_has_file "package.json"
+									or utils.root_has_file ".prettierrc"
+									or utils.root_has_file ".prettierrc.config.js"
+									or utils.root_has_file ".prettierrc.js"
+									or utils.root_has_file ".prettierrc.json"
+									or utils.root_has_file ".prettierrc.toml"
+									or utils.root_has_file ".prettierrc.yaml"
+									or utils.root_has_file ".prettierrc.yml"
 						end,
-					}))
+					})
 				end,
 			},
 		},

@@ -3,16 +3,16 @@ return {
 		"rebelot/kanagawa.nvim",
 		config = function()
 			-- Default options:
-			require("kanagawa").setup({
-				compile = true, -- enable compiling the colorscheme
+			require("kanagawa").setup {
+				compile = true,   -- enable compiling the colorscheme
 				undercurl = true, -- enable undercurls
 				commentStyle = { italic = true },
 				functionStyle = {},
 				keywordStyle = { italic = true, bold = true },
 				statementStyle = {},
 				typeStyle = { bold = true },
-				transparent = false, -- do not set background color
-				dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+				transparent = false,   -- do not set background color
+				dimInactive = true,    -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 				colors = {
 					theme = {
@@ -101,19 +101,17 @@ return {
 						htmlHugoIdentifier = { fg = theme.syn.identifier },
 					}
 				end,
-			})
+			}
 		end,
 	},
 
-	{ "fredrdz/vim-hugo", ft = "gohtml" },
+	{ "fredrdz/vim-hugo",     ft = "gohtml" },
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
 
 	{
 		"machakann/vim-sandwich",
 		event = "User AstroFile",
-		config = function()
-			vim.g.sandwich_no_default_key_mappings = 1
-		end,
+		config = function() vim.g.sandwich_no_default_key_mappings = 1 end,
 		opts = {},
 	},
 
@@ -127,8 +125,6 @@ return {
 		"AckslD/nvim-neoclip.lua",
 		event = "User AstroFile",
 		after = "telescope.nvim",
-		config = function()
-			require("neoclip").setup()
-		end,
+		config = function() require("neoclip").setup() end,
 	},
 }

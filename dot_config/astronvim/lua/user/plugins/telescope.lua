@@ -8,8 +8,8 @@ return {
 	},
 
 	opts = function(_, opts)
-		local telescope = require("telescope")
-		local actions = require("telescope.actions")
+		local telescope = require "telescope"
+		local actions = require "telescope.actions"
 		local fb_actions = require("telescope").extensions.file_browser.actions
 		local hop = telescope.extensions.hop
 		return require("astronvim.utils").extend_tbl(opts, {
@@ -74,10 +74,10 @@ return {
 	end,
 
 	config = function(...)
-		require("plugins.configs.telescope")(...)
-		local telescope = require("telescope")
-		telescope.load_extension("bibtex")
-		telescope.load_extension("file_browser")
-		telescope.load_extension("projects")
+		require "plugins.configs.telescope" (...)
+		local telescope = require "telescope"
+		telescope.load_extension "bibtex"
+		telescope.load_extension "file_browser"
+		telescope.load_extension "projects"
 	end,
 }

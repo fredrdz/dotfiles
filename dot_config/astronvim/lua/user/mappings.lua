@@ -1,4 +1,4 @@
-local astro_utils = require("astronvim.utils")
+local astro_utils = require "astronvim.utils"
 
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
@@ -13,9 +13,9 @@ return {
 		-- mappings seen under group name "Buffer"
 		["<leader>bD"] = {
 			function()
-				require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
-					require("astronvim.utils.buffer").close(bufnr)
-				end)
+				require("astronvim.utils.status").heirline.buffer_picker(
+					function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+				)
 			end,
 			desc = "Pick to close",
 		},
@@ -33,9 +33,9 @@ return {
 		["<Tab>"] = {
 			function()
 				if #vim.t.bufs > 1 then
-					require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+					require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
 				else
-					astro_utils.notify("No other buffers open")
+					astro_utils.notify "No other buffers open"
 				end
 			end,
 			desc = "Switch Buffers",
@@ -77,17 +77,13 @@ return {
 		-- telescope plugin mappings
 		["<leader>f<CR>"] = false,
 		["<leader>f<Tab>"] = {
-			function()
-				require("telescope.builtin").resume()
-			end,
+			function() require("telescope.builtin").resume() end,
 			desc = "Resume previous search",
 		},
 		["<leader>fB"] = { "<cmd>Telescope bibtex<cr>", desc = "Find BibTeX" },
 		["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" },
 		["<leader>fp"] = {
-			function()
-				require("telescope").extensions.projects.projects({})
-			end,
+			function() require("telescope").extensions.projects.projects {} end,
 			desc = "Find projects",
 		},
 		["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
@@ -116,15 +112,11 @@ return {
 		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 		-- better buffer navigation
 		["<M-Up>"] = {
-			function()
-				require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-			end,
+			function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
 			desc = "Next buffer",
 		},
 		["<M-Down>"] = {
-			function()
-				require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-			end,
+			function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
 			desc = "Previous buffer",
 		},
 		-- tabs
@@ -141,9 +133,7 @@ return {
 
 	v = {
 		["<leader>s"] = {
-			function()
-				require("spectre").open_visual()
-			end,
+			function() require("spectre").open_visual() end,
 			desc = "Spectre",
 		},
 	},
@@ -151,9 +141,7 @@ return {
 	i = {
 		-- signature help, fails silently so attach always
 		["<C-l>"] = {
-			function()
-				vim.lsp.buf.signature_help()
-			end,
+			function() vim.lsp.buf.signature_help() end,
 			desc = "Signature help",
 		},
 		["<S-Tab>"] = { "<C-V><Tab>", desc = "Tab character" },
