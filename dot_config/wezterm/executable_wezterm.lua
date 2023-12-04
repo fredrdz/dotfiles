@@ -1,40 +1,40 @@
-local wezterm = require("wezterm")
+local wezterm = require "wezterm"
 
 -- Set up keyboard shortcuts
 local act = wezterm.action
 local mykeys = {
-	{ key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
-	{ key = "-", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
-	{ key = "0", mods = "SHIFT|CTRL", action = act.ResetFontSize },
-	{ key = "N", mods = "SHIFT|CTRL", action = act.SpawnWindow },
-	{ key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
-	{ key = "T", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
-	{ key = "LeftArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Left") },
-	{ key = "LeftArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Left", 1 }) },
-	{ key = "RightArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Right") },
-	{ key = "RightArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Right", 1 }) },
-	{ key = "UpArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Up") },
-	{ key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Up", 1 }) },
-	{ key = "DownArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Down") },
-	{ key = "DownArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Down", 1 }) },
-	{ key = "Enter", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
-	{ key = "Backspace", mods = "SHIFT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "Space", mods = "SHIFT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
-	{ key = "Insert", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
-	{ key = "Insert", mods = "CTRL", action = act.CopyTo("Clipboard") },
-	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
-	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("Clipboard") },
-	{ key = "V", mods = "CTRL", action = act.PasteFrom("PrimarySelection") },
-	{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
-	{ key = "C", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
-	{ key = "C", mods = "CTRL", action = act.CopyTo("Clipboard") },
-	{ key = "Paste", mods = "NONE", action = act.PasteFrom("PrimarySelection") },
-	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
-	{ key = "Copy", mods = "NONE", action = act.CopyTo("PrimarySelection") },
-	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+	{ key = "+",          mods = "SHIFT|CTRL",     action = act.IncreaseFontSize },
+	{ key = "-",          mods = "SHIFT|CTRL",     action = act.DecreaseFontSize },
+	{ key = "0",          mods = "SHIFT|CTRL",     action = act.ResetFontSize },
+	{ key = "N",          mods = "SHIFT|CTRL",     action = act.SpawnWindow },
+	{ key = "R",          mods = "SHIFT|CTRL",     action = act.ReloadConfiguration },
+	{ key = "T",          mods = "SHIFT|CTRL",     action = act.SpawnTab "CurrentPaneDomain" },
+	{ key = "Z",          mods = "SHIFT|CTRL",     action = act.TogglePaneZoomState },
+	{ key = "LeftArrow",  mods = "SHIFT|CTRL",     action = act.ActivatePaneDirection "Left" },
+	{ key = "LeftArrow",  mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize { "Left", 1 } },
+	{ key = "RightArrow", mods = "SHIFT|CTRL",     action = act.ActivatePaneDirection "Right" },
+	{ key = "RightArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize { "Right", 1 } },
+	{ key = "UpArrow",    mods = "SHIFT|CTRL",     action = act.ActivatePaneDirection "Up" },
+	{ key = "UpArrow",    mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize { "Up", 1 } },
+	{ key = "DownArrow",  mods = "SHIFT|CTRL",     action = act.ActivatePaneDirection "Down" },
+	{ key = "DownArrow",  mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize { "Down", 1 } },
+	{ key = "Enter",      mods = "SHIFT|CTRL",     action = act.ToggleFullScreen },
+	{ key = "Backspace",  mods = "SHIFT|CTRL",     action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+	{ key = "Space",      mods = "SHIFT|CTRL",     action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+	{ key = "Tab",        mods = "CTRL",           action = act.ActivateTabRelative(1) },
+	{ key = "Tab",        mods = "SHIFT|CTRL",     action = act.ActivateTabRelative(-1) },
+	{ key = "Insert",     mods = "CTRL",           action = act.CopyTo "PrimarySelection" },
+	{ key = "Insert",     mods = "CTRL",           action = act.CopyTo "Clipboard" },
+	{ key = "Insert",     mods = "SHIFT",          action = act.PasteFrom "PrimarySelection" },
+	{ key = "Insert",     mods = "SHIFT",          action = act.PasteFrom "Clipboard" },
+	{ key = "V",          mods = "CTRL",           action = act.PasteFrom "PrimarySelection" },
+	{ key = "V",          mods = "CTRL",           action = act.PasteFrom "Clipboard" },
+	{ key = "C",          mods = "CTRL",           action = act.CopyTo "PrimarySelection" },
+	{ key = "C",          mods = "CTRL",           action = act.CopyTo "Clipboard" },
+	{ key = "Paste",      mods = "NONE",           action = act.PasteFrom "PrimarySelection" },
+	{ key = "Paste",      mods = "NONE",           action = act.PasteFrom "Clipboard" },
+	{ key = "Copy",       mods = "NONE",           action = act.CopyTo "PrimarySelection" },
+	{ key = "Copy",       mods = "NONE",           action = act.CopyTo "Clipboard" },
 }
 
 -- Set up mouse binds
@@ -42,7 +42,7 @@ local mymouse = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = NONE,
-		action = act.CompleteSelection("PrimarySelection"),
+		action = act.CompleteSelection "PrimarySelection",
 	},
 	{
 		event = { Up = { streak = 1, button = "Left" } },
@@ -87,9 +87,6 @@ local config = {
 		"clig", -- (default) contextual ligatures
 	},
 
-	-- wsl
-	default_domain = "WSL:fedora",
-
 	-- tab_bar
 	enable_tab_bar = true,
 	use_fancy_tab_bar = true,
@@ -99,7 +96,7 @@ local config = {
 
 	-- window settings
 	window_frame = {
-		font = wezterm.font({ family = "JetBrains Mono", weight = "Light" }),
+		font = wezterm.font { family = "JetBrains Mono", weight = "Light" },
 		font_size = 9,
 		active_titlebar_bg = "#202123",
 		inactive_titlebar_bg = "#202123",
@@ -131,10 +128,10 @@ local config = {
 	cursor_thickness = 2,
 
 	-- font settings
-	font = wezterm.font({
+	font = wezterm.font {
 		family = "JetBrains Mono",
 		weight = "Regular",
-	}),
+	},
 	font_rules = {
 		{
 			italic = true,
@@ -202,20 +199,20 @@ local config = {
 	hyperlink_rules = {
 		-- Linkify things that look like URLs and the host has a TLD name.
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b", format = "$0" },
+		{ regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",    format = "$0" },
 		-- linkify email addresses
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]], format = "mailto:$0" },
+		{ regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],                format = "mailto:$0" },
 		-- file:// URI
 		-- Compiled-in default. Used if you don't specify any hyperlink_rules.
-		{ regex = [[\bfile://\S*\b]], format = "$0" },
+		{ regex = [[\bfile://\S*\b]],                           format = "$0" },
 		-- Linkify things that look like URLs with numeric addresses as hosts.
 		-- E.g. http://127.0.0.1:8000 for a local development server,
 		-- or http://192.168.1.1 for the web interface of many routers.
 		{ regex = [[\b\w+://(?:[\d]{1,3}\.){3}[\d]{1,3}\S*\b]], format = "$0" },
 		-- Make task numbers clickable
 		-- The first matched regex group is captured in $1.
-		{ regex = [[\b[tT](\d+)\b]], format = "https://example.com/tasks/?t=$1" },
+		{ regex = [[\b[tT](\d+)\b]],                            format = "https://example.com/tasks/?t=$1" },
 		-- Make username/project paths clickable. This implies paths like the following are for GitHub.
 		-- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
 		-- As long as a full URL hyperlink regex exists above this it should not match a full URL to

@@ -14,6 +14,12 @@ if [ -f /etc/os-release ]; then
 		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 		~/.cargo/bin/cargo install bws
 		;;
+	nobara)
+		sudo dnf update rpmfusion-nonfree-release rpmfusion-free-release fedora-repos nobara-repos --refresh && sudo dnf distro-sync --refresh && sudo dnf update --refresh
+		sudo dnf install perl -y
+		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+		~/.cargo/bin/cargo install bws
+		;;
 	*)
 		echo "Unsupported OS: $ID"
 		exit 1
