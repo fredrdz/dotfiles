@@ -340,9 +340,8 @@ export PATH="/snap/bin:$PATH"
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# bitwarden completion
+# enable completion
 autoload -U compinit; compinit
-source <(~/.cargo/bin/bws completions zsh)
 
 # tabtab source for packages
 # uninstall by removing these lines

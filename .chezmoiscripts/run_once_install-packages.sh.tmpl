@@ -7,9 +7,9 @@
 packages-dnf() {
 	sudo dnf update -y
 	sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
-		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ perl \
+		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ perl podman \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
-		podman clang libevent-devel luarocks openssl net-tools jq go neovim \
+		clang libevent-devel luarocks openssl net-tools jq go neovim \
 		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli libusb1-devel.x86_64
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
@@ -97,6 +97,8 @@ settings-development() {
 	# chezmoi
 	mkdir ~/.oh-my-zsh/completions/
 	chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
+	# bws
+	~/.cargo/bin/bws completions zsh >~/.oh-my-zsh/completions/_bws
 	# wezterm
 	tempfile=$(mktemp) &&
 		curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo &&
@@ -122,10 +124,25 @@ settings-locale() {
 }
 
 packages-desktop() {
-	sudo dnf install -y xprop xwininfo xdotool xrandr xev sxhkd vlc mpv chromium gtk3 webkit2gtk3
+	sudo dnf install -y xprop xwininfo xdotool xrandr xev vlc mpv chromium gtk3 webkit2gtk3 \
+		'pkgconfig(libudev)'
+	# tdrop
+	# git clone https://github.com/noctuid/tdrop
+	# sudo make install
+	#
+	# swhkd
+	# git clone https://github.com/waycrate/swhkd
+	# cd swhkd
+	# make setup
+	# make clean
+	# make
+	# sudo make install
+	# sudo ln -s ~/.config/swhkd/swhkdrc /etc/swhkd/swhkdrc
 	# ssh
 	sudo systemctl enable sshd
 	sudo systemctl start sshd
+	# wezterm
+	wezterm shell-completion --shell zsh >~/.oh-my-zsh/completions/_wezterm
 }
 
 {{ if eq .osid "darwin" }}

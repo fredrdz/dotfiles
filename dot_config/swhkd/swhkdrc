@@ -1,0 +1,26 @@
+# to find custom keyboard keycodes, run cmd: 
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+# brave
+f15
+    WAYLAND_DISPLAY=no tdrop -mta --width 98% --height 96% -y 1% -x 1% -n brave --class=brave flatpak run com.brave.Browser
+
+# discord 
+f16
+    WAYLAND_DISPLAY=no tdrop -mta -w 60% -h 70% -x 20% -y 25% -n discord --class=discord flatpak run com.discordapp.Discord
+
+# wezterm 
+f17
+    WAYLAND_DISPLAY=no tdrop -mta --width 98% --height 96% -y 1% -x 1% -n wezterm --class=wezterm flatpak run org.wezfurlong.wezterm
+
+# slack 
+f18
+    WAYLAND_DISPLAY=no tdrop -mta -w 60% -h 70% -x 20% -y 25% -n slack --class=slack flatpak run com.slack.Slack
+
+# signal 
+f19
+    WAYLAND_DISPLAY=no tdrop -mta -w 30% -h 50% -x 35% -y 40% -n signal --class=signal flatpak run org.signal.Signal
+
+# reload swhkd
+shift + f15
+    pkill -HUP swhkd; notify-send 'swhkd' 'config reloaded'
