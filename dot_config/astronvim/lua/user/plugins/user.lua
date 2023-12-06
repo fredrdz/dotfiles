@@ -33,8 +33,8 @@ return {
           local theme = colors.theme
           return {
             -- transparent floating windows
-            NormalFloat = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            FloatBorder = { bg = "none" },
+            NormalFloat = { bg = "none", fg = theme.ui.fg_dim },
+            FloatBorder = { bg = "none", fg = "#16B2C3" },
             FloatTitle = { bg = "none" },
 
             -- Save an hlgroup with dark background and dimmed foreground
@@ -51,19 +51,19 @@ return {
             -- block-like modern telescope
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopeNormal = { bg = "none" },
-            TelescopeBorder = { fg = "#16B2C3" },
+            TelescopeBorder = { bg = "none", fg = "#16B2C3" },
 
             TelescopePromptTitle = { bg = theme.diff.delete, fg = theme.ui.fg_dim },
             TelescopePromptPrefix = { bg = theme.diff.delete, fg = theme.ui.fg_dim },
-            TelescopePromptNormal = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+            TelescopePromptNormal = { bg = "none", fg = theme.ui.fg_dim },
             TelescopePromptBorder = { bg = "none" },
 
             TelescopeResultsTitle = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            TelescopeResultsNormal = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+            TelescopeResultsNormal = { bg = "none", fg = theme.ui.fg_dim },
             TelescopeResultsBorder = { bg = "none" },
 
             TelescopePreviewTitle = { bg = theme.diff.add, fg = theme.ui.fg_dim },
-            TelescopePreviewNormal = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+            TelescopePreviewNormal = { bg = "none", fg = theme.ui.fg_dim },
             TelescopePreviewBorder = { bg = "none" },
 
             -- dark completion menu
