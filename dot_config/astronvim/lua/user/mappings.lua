@@ -101,21 +101,21 @@ return {
 		["<C-k>"] = false,
 		["<C-l>"] = false,
 		-- pane navigation movements
-		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
-		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
-		["<C-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
-		["<C-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
+		["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
+		["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
+		["<M-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
+		["<M-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
 		-- pane resizing
 		["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
 		["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
 		["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
 		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 		-- better buffer navigation
-		["<M-Up>"] = {
+		["<C-Up>"] = {
 			function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
 			desc = "Next buffer",
 		},
-		["<M-Down>"] = {
+		["<C-Down>"] = {
 			function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
 			desc = "Previous buffer",
 		},
@@ -123,8 +123,8 @@ return {
 		["<leader>T"] = { name = "󱋤 Tabs" },
 		["<leader>Tn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
 		["<leader>Tc"] = { "<cmd>tabclose<cr>", desc = "New close" },
-		["<M-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
-		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
+		["<C-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
+		["<C-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
 
 		-- g menu
 		ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
@@ -152,18 +152,18 @@ return {
 		["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
 		["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
 		-- pane navigation movements
-		["<C-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
-		["<C-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
-		["<C-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
-		["<C-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
+		["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
+		["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
+		["<M-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
+		["<M-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
 		-- pane resizing
 		["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
 		["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
 		["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
 		["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 		-- tab navigation
-		["<M-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
-		["<M-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
+		["<C-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
+		["<C-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
 	},
 
 	o = {

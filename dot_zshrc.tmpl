@@ -168,9 +168,6 @@ alias m='moar --statusbar=bold'
 # nvim aliases
 alias v='nvim'
 
-# wezterm aliases
-alias wezterm='flatpak run org.wezfurlong.wezterm'
-
 # ssh aliases
 alias ssh='TERM=xterm-256color ssh'
 
@@ -185,6 +182,9 @@ alias kbupdate="tempfile=$(mktemp --suffix=.bin) &&
 	curl -o $tempfile https://oryx.zsa.io/RWBdx/latest/binary &&
 	wally-cli $tempfile &&
 	rm $tempfile"
+
+# my public ip
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com | cat"
 
 # ZSH Theme Color Scheme
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#778899'

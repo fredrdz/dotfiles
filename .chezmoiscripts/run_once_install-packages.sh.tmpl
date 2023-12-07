@@ -39,6 +39,7 @@ packages-golang() {
 	go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 	go install github.com/cosmtrek/air@latest
 	go install github.com/charmbracelet/glow@latest
+	go install filippo.io/age/cmd/...@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
