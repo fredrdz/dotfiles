@@ -40,6 +40,86 @@ return {
   { import = "astrocommunity.diagnostics.trouble-nvim",     enabled = true },
 
   -- editing-support
+  { import = "astrocommunity.editing-support.chatgpt-nvim", enabled = true },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      local cmd = "bws secret get 3fade66a-163f-4419-8566-b0d10166eb0f"
+      local bws = vim.fn.system(cmd)
+      local api_key = vim.fn.json_decode(bws).value
+      -- vim.notify("API Key: " .. api_key, "info", {
+      --   title = "OpenAI API Key",
+      --   timeout = 5000,
+      -- })
+      vim.env.OPENAI_API_KEY = api_key
+      require("chatgpt").setup({
+        edit_with_instructions = {
+          diff = false,
+          keymaps = {
+            close = "<C-c>",
+            accept = "<C-y>",
+            toggle_diff = "<C-d>",
+            toggle_settings = "<C-o>",
+            cycle_windows = "<Tab>",
+            use_output_as_input = "<C-i>",
+          },
+        },
+        chat = {
+          keymaps = {
+            close = "<C-c>",
+            yank_last = "<C-y>",
+            yank_last_code = "<C-a>",
+            scroll_up = "<C-PageUp>",
+            scroll_down = "<C-PageDown>",
+            new_session = "<C-n>",
+            cycle_windows = "<Tab>",
+            cycle_modes = "<C-m>",
+            prev_message = "<C-PageUp>",
+            next_message = "<C-PageDown>",
+            select_session = "<Enter>",
+            rename_session = "r",
+            delete_session = "d",
+            draft_message = "<C-d>",
+            edit_message = "e",
+            delete_message = "d",
+            toggle_settings = "<C-o>",
+            toggle_message_role = "<C-r>",
+            toggle_system_role_open = "<C-s>",
+            stop_generating = "<C-x>",
+          },
+        },
+        popup_layout = {
+          default = "center",
+          center = {
+            width = "90%",
+            height = "90%",
+          },
+          right = {
+            width = "30%",
+            width_settings_open = "50%",
+          },
+        },
+        openai_params = {
+          model = "gpt-3.5-turbo",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 300,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+        openai_edit_params = {
+          model = "gpt-3.5-turbo",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+      })
+    end,
+  },
   { import = "astrocommunity.editing-support.neogen",       enabled = true },
 
   -- indent

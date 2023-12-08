@@ -70,9 +70,23 @@ return {
 		["<leader>mrb"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
 
 		-- copilot
-		["<leader>k"] = { name = "󰙘 Copilot" },
-		["<leader>ko"] = { "<cmd>lua require('copilot.panel').open({postion, ratio})<cr>", desc = "Copilot Open" },
-		["<leader>kr"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
+		["<leader>k"] = { name = "󰙘 AI" },
+		["<leader>kp"] = { name = "Copilot" },
+		["<leader>kpo"] = { "<cmd>lua require('copilot.panel').open({postion, ratio})<cr>", desc = "Copilot Open" },
+		["<leader>kpr"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
+		["<leader>kc"] = { "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
+		["<leader>ke"] = { "<cmd>ChatGPTEditWithInstruction<CR>", desc = "Edit with instruction" },
+		["<leader>kg"] = { "<cmdChatGPTRun grammar_correction<CR>", desc = "Grammar Correction" },
+		["<leader>kt"] = { "<cmd>ChatGPTRun translate<CR>", desc = "Translate" },
+		["<leader>kk"] = { "<cmd>ChatGPTRun keywords<CR>", desc = "Keywords" },
+		["<leader>kd"] = { "<cmd>ChatGPTRun docstring<CR>", desc = "Docstring" },
+		["<leader>ka"] = { "<cmd>ChatGPTRun add_tests<CR>", desc = "Add Tests" },
+		["<leader>ko"] = { "<cmd>ChatGPTRun optimize_code<CR>", desc = "Optimize Code" },
+		["<leader>ks"] = { "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize" },
+		["<leader>kf"] = { "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs" },
+		["<leader>kx"] = { "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code" },
+		["<leader>kr"] = { "<cmd>ChatGPTRun roxygen_edit<CR>", desc = "Roxygen Edit" },
+		["<leader>kl"] = { "<cmd>ChatGPTRun code_readability_analysis<CR>", desc = "Code Readability Analysis" },
 
 		-- telescope plugin mappings
 		["<leader>f<CR>"] = false,
@@ -135,6 +149,10 @@ return {
 		["<leader>s"] = {
 			function() require("spectre").open_visual() end,
 			desc = "Spectre",
+		},
+		["<leader>k"] = {
+			function() require("chatgpt").edit_with_instructions() end,
+			desc = "ChatGPT code edit",
 		},
 	},
 
