@@ -34,18 +34,18 @@ return {
 					return {
 						-- transparent floating windows
 						NormalFloat = { bg = "none", fg = theme.ui.fg_dim },
-						FloatBorder = { bg = "none", fg = "#16B2C3" },
+						FloatBorder = { bg = "none", fg = theme.ui.fg_dim },
 						FloatTitle = { bg = "none" },
 
 						-- noice
-						NoiceCmdlinePopupBorder = { bg = "none", fg = "#16B2C3" },
+						NoiceCmdlinePopupBorder = { bg = "none", fg = theme.ui.fg_dim },
 
 						-- diagnostics
-						DiagnosticSignInfo = { bg = "none", fg = "#16B2C3" },
-						DiagnosticInfo = { bg = "none", fg = "#16B2C3" },
+						DiagnosticSignInfo = { bg = "none", fg = theme.ui.fg_dim },
+						DiagnosticInfo = { bg = "none", fg = theme.ui.fg_dim },
 
 						-- lsp
-						LspInfoBorder = { bg = "none", fg = "#16B2C3" },
+						LspInfoBorder = { bg = "none", fg = theme.ui.fg_dim },
 
 						-- Save an hlgroup with dark background and dimmed foreground
 						-- so that you can use it where your still want darker windows.
@@ -61,7 +61,7 @@ return {
 						-- block-like modern telescope
 						TelescopeTitle = { fg = theme.ui.special, bold = true },
 						TelescopeNormal = { bg = "none" },
-						TelescopeBorder = { bg = "none", fg = "#16B2C3" },
+						TelescopeBorder = { bg = "none", fg = theme.ui.fg_dim },
 
 						TelescopePromptTitle = { bg = theme.diff.delete, fg = theme.ui.fg_dim },
 						TelescopePromptPrefix = { bg = theme.diff.delete, fg = theme.ui.fg_dim },

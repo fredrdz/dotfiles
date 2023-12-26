@@ -3,9 +3,9 @@ local wezterm = require "wezterm"
 -- Set up keyboard shortcuts
 local act = wezterm.action
 local mykeys = {
-  { key = "+",          mods = "SHIFT|CTRL",     action = act.IncreaseFontSize },
-  { key = "-",          mods = "SHIFT|CTRL",     action = act.DecreaseFontSize },
-  { key = "0",          mods = "SHIFT|CTRL",     action = act.ResetFontSize },
+  { key = "F18",        mods = "NONE",           action = act.DecreaseFontSize },
+  { key = "F19",        mods = "NONE",           action = act.IncreaseFontSize },
+  { key = "F20",        mods = "NONE",           action = act.ResetFontSize },
   { key = "N",          mods = "SHIFT|CTRL",     action = act.SpawnWindow },
   { key = "R",          mods = "SHIFT|CTRL",     action = act.ReloadConfiguration },
   { key = "T",          mods = "SHIFT|CTRL",     action = act.SpawnTab "CurrentPaneDomain" },
