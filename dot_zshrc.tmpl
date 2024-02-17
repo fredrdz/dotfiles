@@ -85,22 +85,22 @@ plugins=(
   copypath
   copyfile
   docker
-  doctl
   fzf
   gcloud
   gh
   git
   git-auto-fetch
   golang
-  history-substring-search
   httpie
   kubectl
   ripgrep
+  starship
   sudo
   tmux
   wp-cli
-  zsh-autosuggestions
+  zoxide
   zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 # You may need to manually set your language environment
@@ -154,13 +154,9 @@ alias esa='eza --git --long --icons --group-directories-first --color=always --h
 alias est='eza --git --long --tree --level 1 --icons --group-directories-first --color=always --header --all'
 
 # bat aliases
-if foobar_loc="$(type -p bat)" || [[ -z $foobar_loc ]]; then
-  alias b='bat --style=full --paging=never --force-colorization'
-  alias cat='bat -pp'
-else
-  alias b='batcat --style=full --force-colorization'
-  alias cat='bat -pp'
-fi
+alias b='bat --style=full --paging=never --force-colorization'
+alias cat='bat -pp'
+PAGER='bat -pp'
 
 # moar aliases
 alias m='moar --statusbar=bold'
@@ -307,12 +303,6 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # neofetch integration
 neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
 
-# starship integration
-eval "$(starship init zsh)"
-
-# zoxide integration
-eval "$(zoxide init zsh)"
-
 # vim-mode
 #bindkey -v
 
@@ -325,9 +315,6 @@ alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
 # DIR Colors
 [[ -e "$HOME/.local/share/lscolors.sh" ]] && source "$HOME/.local/share/lscolors.sh"
 
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # EXPORT PATH VARS
 # add podman bin path
 export PATH="/$HOME/.local/podman/bin:$PATH"
@@ -335,7 +322,6 @@ export PATH="/$HOME/.local/podman/bin:$PATH"
 # additional bin paths
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/$HOME/.local/bin:$PATH"
-export PATH="/snap/bin:$PATH"
 
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
