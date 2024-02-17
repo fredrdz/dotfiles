@@ -9,7 +9,7 @@ packages-dnf() {
 	sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ perl podman \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
-		clang libevent-devel luarocks openssl net-tools jq go neovim \
+		clang libevent-devel luarocks openssl net-tools jq go neovim tree \
 		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli libusb1-devel.x86_64
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
@@ -40,6 +40,7 @@ packages-golang() {
 	go install github.com/cosmtrek/air@latest
 	go install github.com/charmbracelet/glow@latest
 	go install filippo.io/age/cmd/...@latest
+	go install github.com/goreleaser/goreleaser@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
@@ -100,6 +101,8 @@ settings-development() {
 	chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
 	# bws
 	~/.cargo/bin/bws completions zsh >~/.oh-my-zsh/completions/_bws
+	# go releaser
+	goreleaser completion zsh >~/.oh-my-zsh/completions/_goreleaser
 	# wezterm
 	tempfile=$(mktemp) &&
 		curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo &&
