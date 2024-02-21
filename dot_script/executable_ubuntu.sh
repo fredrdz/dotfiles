@@ -21,6 +21,26 @@ sudo apt install -y \
 	git binutils build-essential libwrap0-dev libssl-dev ca-certificates curl wget
 
 # --------------------------------------------------------------
+# Install gh (GitHub CLI)
+
+git config --global url."ssh://git@github.com".insteadOf "https://github.com"
+git config --global user.name "unset_git_user"
+git config --global user.email "unset@domain.local"
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+	sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+	sudo apt update -y &&
+	sudo apt install gh -y
+
+# --------------------------------------------------------------
+# Install nodejs
+
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt update -y
+sudo apt install -y nodejs
+
+# --------------------------------------------------------------
 # Install ohmyzsh
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -36,16 +56,6 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 sudo apt update -y
 sudo apt install -y eza
-
-# --------------------------------------------------------------
-# Install gh (GitHub CLI)
-
-type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
-	sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
-	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
-	sudo apt update -y &&
-	sudo apt install gh -y
 
 # --------------------------------------------------------------
 # Install starship prompt
