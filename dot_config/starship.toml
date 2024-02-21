@@ -76,8 +76,9 @@ right_format = '$directory⍆ $time'
   symbol   = ""
 
 [docker_context]
-  format = "[$symbol$context](green) "
-  symbol = ""
+  disabled = false
+  format   = "[$symbol$context](green) "
+  symbol   = ""
 
 [gcloud]
   disabled = true
@@ -86,10 +87,11 @@ right_format = '$directory⍆ $time'
   symbol   = " "
 
 [golang]
-  disabled = false
-  format   = "[$symbol ($version)]($style) "
-  style    = "cyan"
-  symbol   = ""
+  disabled       = false
+  format         = '[$symbol ($version)]($style) '
+  style          = 'cyan'
+  symbol         = ''
+  version_format = 'v${raw}'
 
 [kubernetes]
   disabled = true
