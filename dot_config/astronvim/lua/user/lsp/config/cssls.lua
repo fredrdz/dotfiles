@@ -1,5 +1,5 @@
-return {
-	settings = {
+return function(opts)
+	opts.settings = {
 		css = {
 			validate = true,
 			lint = {
@@ -18,5 +18,6 @@ return {
 				unknownAtRules = "ignore",
 			},
 		},
-	},
-}
+	}
+	return opts
+end

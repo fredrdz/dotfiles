@@ -1,5 +1,5 @@
-return {
-	settings = {
+return function(opts)
+	opts.settings = {
 		Lua = {
 			hint = { enable = true, arrayIndex = "Disable" },
 			diagnostics = {
@@ -17,5 +17,6 @@ return {
 				},
 			},
 		},
-	},
-}
+	}
+	return opts
+end
