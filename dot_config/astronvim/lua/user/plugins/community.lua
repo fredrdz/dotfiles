@@ -27,10 +27,12 @@ return {
 	},
 
 	-- packs
+	{ import = "astrocommunity.pack.astro",                   enabled = true },
 	{ import = "astrocommunity.pack.bash",                    enabled = true },
 	{ import = "astrocommunity.pack.go",                      enabled = true },
 	{ import = "astrocommunity.pack.lua",                     enabled = true },
 	{ import = "astrocommunity.pack.markdown",                enabled = true },
+	{ import = "astrocommunity.pack.svelte",                  enabled = true },
 	{ import = "astrocommunity.pack.tailwindcss",             enabled = true },
 	{ import = "astrocommunity.pack.toml",                    enabled = true },
 	{ import = "astrocommunity.pack.typescript",              enabled = true },
