@@ -16,12 +16,16 @@ return function()
 			vim.cmd "set ft=sh"
 		elseif shebang == "#!/bin/zsh" or shebang == "#!/usr/bin/env zsh" then
 			vim.cmd "set ft=zsh"
-		elseif filename:match "toml.tmpl$" then
+		elseif filename:match "%.toml.tmpl$" then
 			vim.cmd "set ft=toml"
-		elseif filename:match "yaml.tmpl$" or filename:match "yml.tmpl$" then
+		elseif filename:match "%.yaml.tmpl$" or filename:match "%.yml.tmpl$" then
 			vim.cmd "set ft=yaml"
 		end
 	end
+
+	-- add custom filetype
+	vim.filetype.add({ extension = { templ = "templ" } })
+	vim.filetype.add({ extension = { gohtml = "gohtml" } })
 
 	-- Set up custom filetypes
 	vim.filetype.add {

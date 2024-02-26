@@ -26,10 +26,15 @@ return {
 		},
 	},
 
+	-- lsp
+	{ import = "astrocommunity.lsp.garbage-day-nvim",         enabled = true },
+	{ import = "astrocommunity.lsp.lsp-signature-nvim",       enabled = true },
+
 	-- packs
 	{ import = "astrocommunity.pack.astro",                   enabled = true },
 	{ import = "astrocommunity.pack.bash",                    enabled = true },
 	{ import = "astrocommunity.pack.go",                      enabled = true },
+	{ import = "astrocommunity.pack.html-css",                enabled = true },
 	{ import = "astrocommunity.pack.lua",                     enabled = true },
 	{ import = "astrocommunity.pack.markdown",                enabled = true },
 	{ import = "astrocommunity.pack.svelte",                  enabled = true },
@@ -147,4 +152,17 @@ return {
 
 	-- utility
 	{ import = "astrocommunity.utility.noice-nvim",           enabled = true },
+	{
+		"noice.nvim",
+		opts = function(_, opts)
+			opts.presets.bottom_search = false
+			opts.presets.command_palette = false
+			opts.long_message_to_split = true
+			opts.presets.lsp_doc_border = true
+			opts.presets.inc_rename = true
+			opts.lsp.hover = { silent = true }
+			opts.lsp.signature = { enabled = false }
+			return opts
+		end,
+	},
 }

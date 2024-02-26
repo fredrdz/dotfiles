@@ -116,6 +116,8 @@ return {
 	},
 
 	{ "fredrdz/vim-hugo",     ft = "gohtml" },
+	{ "tjdevries/templ.nvim", ft = "templ" },
+
 	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
 
 	{
