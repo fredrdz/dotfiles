@@ -8,6 +8,13 @@ if [ -f /etc/os-release ]; then
 	. /etc/os-release
 
 	case $ID in
+	# fedora/rhel systems; tested on amazon linux 2, fedora 39, and nobara 39
+	amzn)
+		sudo yum update -y
+		sudo yum install -y perl perl-App-cpanminus.noarch
+		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+		~/.cargo/bin/cargo install bws
+		;;
 	fedora)
 		sudo dnf update -y
 		sudo dnf install perl -y
