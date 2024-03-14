@@ -334,6 +334,14 @@ autoload -U compinit; compinit
 # (used for netlify completion; installed via NPM)
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
+{{ if eq .chezmoi.os "linux" }}
+{{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# WSL-specific code
+# ln -s "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe" ~/.local/bin/brave
+export BROWSER="$HOME/.local/bin/brave"
+{{ end }}
+{{ end }}
+
 {{ if eq .osid "darwin" }}
 # MAC Tweaks
 defaults write -g com.apple.trackpad.scaling -float 30.0
