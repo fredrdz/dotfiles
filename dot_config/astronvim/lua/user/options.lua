@@ -51,6 +51,7 @@ return {
 		wildoptions = "pum",
 		wildignorecase = true,                     -- Ignore case command completion menu
 		-- misc
+		clipboard = "unnamedplus",                 -- Copy paste between vim and everything else
 		spell = false,                             -- sets vim.opt.spell
 		hidden = true,                             -- Enable modified buffers in background
 		shada = { "!", "'1000", "<50", "s10", "h" }, -- remember stuff across sessions
