@@ -28,9 +28,3 @@
     stripComponents = 1
     type            = "archive"
     url             = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
-[".config/nvim"]
-    exact           = true
-    refreshPeriod   = "168h"
-    stripComponents = 1
-    type            = "archive"
-    url             = "https://github.com/AstroNvim/AstroNvim/archive/master.tar.gz"

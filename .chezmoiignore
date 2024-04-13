@@ -4,5 +4,5 @@ README.md
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
 .fzf/bin/**
 .tmux/plugins/**
-.config/nvim/lua/user/**
 chezmoi.key.age
+lazy-lock.json
