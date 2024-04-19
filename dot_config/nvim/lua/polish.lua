@@ -23,25 +23,13 @@ local function detect_tmpl_type()
 	end
 end
 
--- add custom filetype
-vim.filetype.add({ extension = { templ = "templ" } })
-vim.filetype.add({ extension = { gohtml = "gohtml" } })
-
 -- Set up custom filetypes
 vim.filetype.add({
 	extension = {
-		-- ["toml.tmpl"] = "toml.tmpl",
-		-- ["sh.tmpl"] = "sh",
 		tmpl = detect_tmpl_type,
 	},
-	filename = {
-		--   ["Foofile"] = "fooscript",
-	},
-	pattern = {
-		-- ["~/%.config/foo/.*"] = "fooscript",
-		-- ["%.toml.tmpl$"] = "toml",
-	},
 })
+
 -- hides the tabline when there is only one tab and one buffer in it
 vim.api.nvim_create_augroup("autohidetabline", { clear = true })
 

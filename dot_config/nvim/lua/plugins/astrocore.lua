@@ -99,11 +99,6 @@ return {
 				-- configure global vim variables (vim.g)
 				-- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
 				-- This can be found in the `lua/lazy_setup.lua` file
-
-				autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
-				autopairs_enabled = true, -- enable autopairs at start
-				status_diagnostics_enabled = true, -- enable diagnostics in statusline
-				resession_enabled = true, -- enable or disable session saving
 			},
 		},
 	},

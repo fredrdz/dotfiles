@@ -36,6 +36,7 @@ return {
 
 				-- heirline
 				Folded = { bg = "#082032", fg = "#181818" },
+				KanaTabline = { bg = "#16161D" },
 
 				-- whichkey
 				WhichkeyFloat = { bg = "#082032" },
