@@ -336,8 +336,14 @@ autoload -U compinit; compinit
 
 {{ if eq .chezmoi.os "linux" }}
 {{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-# WSL-specific code
+## WSL-specific code
+## fixes issue with WSL2 while running systemd: https://github.com/microsoft/WSL/issues/8843#issuecomment-1480103001
+# sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
+#
+## bring in windows binaries for browsers
 # ln -s "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe" ~/.local/bin/brave
+# ln -s "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" ~/.local/bin/google-chrome
+export PATH="$HOME/.local/bin/brave:$HOME/.local/bin/google-chrome:$PATH"
 export BROWSER="$HOME/.local/bin/brave"
 {{ end }}
 {{ end }}

@@ -31,7 +31,7 @@ return {
 	{ import = "astrocommunity.recipes.heirline-nvchad-statusline", enabled = false },
 
 	-- lsp
-	{ import = "astrocommunity.lsp.garbage-day-nvim", enabled = true },
+	{ import = "astrocommunity.lsp.garbage-day-nvim", enabled = false },
 	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
 
 	-- packs
@@ -42,6 +42,7 @@ return {
 	{ import = "astrocommunity.pack.html-css", enabled = true },
 	{ import = "astrocommunity.pack.lua", enabled = true },
 	{ import = "astrocommunity.pack.markdown", enabled = true },
+	{ import = "astrocommunity.pack.python-ruff", enabled = true },
 	{ import = "astrocommunity.pack.svelte", enabled = true },
 	{ import = "astrocommunity.pack.tailwindcss", enabled = true },
 	{ import = "astrocommunity.pack.toml", enabled = true },
