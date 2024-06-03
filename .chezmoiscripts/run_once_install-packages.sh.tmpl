@@ -5,11 +5,13 @@
 # use: chezmoi data
 
 packages-dnf() {
+	sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf update -y
 	sudo dnf install -y util-linux-user zsh make cmake sshuttle tmux xclip xsel yp-tools \
 		libgit2-devel libssh2-devel openssl-devel pkg-config g++ gcc gcc-c++ perl podman \
 		httpie htop neofetch wget ninja-build libtool openssh-server gh btop autossh \
-		clang libevent-devel luarocks openssl net-tools jq go neovim tree \
+		clang libevent-devel luarocks openssl net-tools jq go neovim tree ffmpeg \
 		flatpak nodejs ripgrep vim docker iotop iftop speedtest-cli libusb1-devel.x86_64
 	sudo dnf groupinstall -y 'Development Tools' 'Development Libraries'
 	sudo dnf install -y 'dnf-command(copr)'
