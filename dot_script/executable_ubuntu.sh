@@ -18,7 +18,7 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y \
 	net-tools zsh btop jq iftop iotop gdu httpie unzip fontconfig fzf pass gnupg2 gpg bat fd-find zoxide \
-	git binutils build-essential libwrap0-dev libssl-dev ca-certificates curl wget
+	git binutils build-essential libwrap0-dev libssl-dev ca-certificates curl wget php
 
 # --------------------------------------------------------------
 # Install gh (GitHub CLI)
