@@ -6,10 +6,12 @@
 return {
 	"AstroNvim/astrocommunity",
 	-- completion
+	{ import = "astrocommunity.completion.codeium-nvim", enabled = true },
 	{ import = "astrocommunity.completion.copilot-lua-cmp", enabled = true },
 	{ -- further customize the options set by the community
 		"copilot.lua",
 		event = "InsertEnter",
+		enabled = true,
 		opts = {
 			panel = {
 				enabled = true,

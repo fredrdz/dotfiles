@@ -326,6 +326,9 @@ export PATH="/$HOME/.local/bin:$PATH"
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 
+# Setup Go proxy
+# export GOPROXY="https://proxy.golang.org,direct"
+
 # enable completion
 autoload -U compinit; compinit
 
