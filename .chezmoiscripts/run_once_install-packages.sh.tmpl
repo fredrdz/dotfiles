@@ -111,10 +111,10 @@ settings-development() {
 	# fzf
 	~/.fzf/install
 	# chezmoi
-	mkdir ~/.oh-my-zsh/completions/
+	mkdir -p ~/.oh-my-zsh/completions/
 	chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
 	# bws
-	~/.cargo/bin/bws completions zsh >~/.oh-my-zsh/completions/_bws
+	bws completions zsh >~/.oh-my-zsh/completions/_bws
 	# go releaser
 	goreleaser completion zsh >~/.oh-my-zsh/completions/_goreleaser
 	# wezterm
@@ -174,15 +174,20 @@ echo "Do you want to continue with installs?(yes/no)"
 read input
 if [ "$input" == "yes" ]; then
 	# shell
-	chsh -s /usr/bin/zsh
-	# rust
-	packages-rust
+	chsh -s /bin/zsh
+	# brew clip apps
+	brew install zsh make cmake sshuttle tmux xclip xsel perl podman gcc httpie htop neofetch wget gh btop autossh luarocks openssl jq go neovim tree ffmpeg ninja libtool pkg-config libgit2 libevent nodejs ripgrep vim docker iftop gotop speedtest-cli lazygit caddy fzf navi zoxide eza starship bat bottom diff-so-fancy netlify-cli npm-check-updates php wp-cli coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep google-cloud-sdk
 	# golang
 	packages-golang
-	# node
-	packages-node
 	# env/dev settings
 	settings-development
+	# brew casks
+	brew install --cask keymapp slack discord miro iina vlc mpv bitwarden visual-studio-code cloudflare-warp
+	# fonts
+	brew install --cask font-jetbrains-mono-nerd-font
+	# completions
+	netlify completion:install
+	warp-cli generate-completions zsh >~/.oh-my-zsh/completions/_warp-cli
 fi
 
 {{ else if eq .osid "linux-fedora" }}

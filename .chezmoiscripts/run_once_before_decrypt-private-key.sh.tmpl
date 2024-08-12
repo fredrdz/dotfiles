@@ -5,4 +5,5 @@ if [ ! -f "${DIR}/chezmoi.key" ]; then
 	mkdir -p "${DIR}"
 	chezmoi age decrypt --output "${DIR}/chezmoi.key" --passphrase "{{ .chezmoi.sourceDir }}/chezmoi.key.age"
 	chmod 600 "${DIR}/chezmoi.key"
+	chezmoi decrypt "{{ .chezmoi.sourceDir }}/encrypted_dot_zshenv.age" >> "${HOME}/.zshenv"
 fi

@@ -93,7 +93,6 @@ plugins=(
   golang
   httpie
   kubectl
-  ripgrep
   starship
   sudo
   tmux
@@ -174,10 +173,19 @@ alias docker-compose='docker compose'
 alias cargo-update="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && cargo install-update -a"
 
 # keyboard firmware updater
-alias kbupdate="tempfile=$(mktemp --suffix=.bin) &&
-	curl -o $tempfile https://oryx.zsa.io/RWBdx/latest/binary &&
-	wally-cli $tempfile &&
-	rm $tempfile"
+alias kbupdate='
+tempfile=$(mktemp --suffix=.bin) &&
+if curl -o "$tempfile" https://oryx.zsa.io/RWBdx/latest/binary; then
+    if wally-cli "$tempfile"; then
+        rm -f "$tempfile"
+    else
+        echo "Error: wally-cli failed." >&2
+        rm -f "$tempfile"
+    fi
+else
+    echo "Error: Download failed." >&2
+fi
+'
 
 # my public ip
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com | cat"
@@ -358,11 +366,17 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
 
 # use brew versions of bins
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 {{ end }}
 
 {{ if eq .osid "linux-steamos" }}
