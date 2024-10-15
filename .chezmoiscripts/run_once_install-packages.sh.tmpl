@@ -43,6 +43,8 @@ packages-golang() {
 	go install filippo.io/age/cmd/...@latest
 	go install github.com/goreleaser/goreleaser/v2@latest
 	go install github.com/a-h/templ/cmd/templ@latest
+	go install github.com/wailsapp/wails/v2/cmd/wails@latest
+	go install github.com/raviqqe/muffet/v2@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
@@ -176,15 +178,20 @@ if [ "$input" == "yes" ]; then
 	# shell
 	chsh -s /bin/zsh
 	# brew clip apps
-	brew install zsh make cmake sshuttle tmux xclip xsel perl podman gcc httpie htop neofetch wget gh btop autossh luarocks openssl jq go neovim tree ffmpeg ninja libtool pkg-config libgit2 libevent nodejs ripgrep vim docker iftop gotop speedtest-cli lazygit caddy fzf navi zoxide eza starship bat bottom diff-so-fancy netlify-cli npm-check-updates php wp-cli coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep google-cloud-sdk
+	brew install zsh make cmake sshuttle tmux xclip xsel perl podman gcc httpie htop neofetch wget gh btop autossh luarocks openssl jq go neovim tree ffmpeg ninja libtool pkg-config libgit2 libevent nodejs ripgrep vim iftop gotop speedtest-cli lazygit caddy fzf navi zoxide eza starship bat bottom diff-so-fancy netlify-cli npm-check-updates php wp-cli coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep google-cloud-sdk wine-stable winetricks mono sdl2 faudio zlib sqlc automake yarn cloudflare-wrangler2
+	brew tap homebrew/services
 	# golang
 	packages-golang
 	# env/dev settings
 	settings-development
 	# brew casks
-	brew install --cask keymapp slack discord miro iina vlc mpv bitwarden visual-studio-code cloudflare-warp
+	brew install --cask keymapp brave-browser slack discord miro iina vlc mpv bitwarden visual-studio-code cloudflare-warp tor-browser docker chatgpt signal notion
 	# fonts
 	brew install --cask font-jetbrains-mono-nerd-font
+	# windows management
+	brew install --cask nikitabobko/tap/aerospace
+	brew tap FelixKratz/formulae
+	brew install borders
 	# completions
 	netlify completion:install
 	warp-cli generate-completions zsh >~/.oh-my-zsh/completions/_warp-cli
