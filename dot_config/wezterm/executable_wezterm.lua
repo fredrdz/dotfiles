@@ -3,9 +3,9 @@ local wezterm = require("wezterm")
 -- Set up keyboard shortcuts
 local act = wezterm.action
 local mykeys = {
-	{ key = "F18", mods = "NONE", action = act.DecreaseFontSize },
-	{ key = "F19", mods = "NONE", action = act.IncreaseFontSize },
-	{ key = "F17", mods = "NONE", action = act.ResetFontSize },
+	{ key = "Comma", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
+	{ key = "Period", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
+	{ key = "Slash", mods = "SHIFT|CTRL", action = act.ResetFontSize },
 	{ key = "N", mods = "SHIFT|CTRL", action = act.SpawnWindow },
 	{ key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
 	{ key = "T", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
@@ -95,13 +95,13 @@ local config = {
 	enable_tab_bar = true,
 	use_fancy_tab_bar = true,
 	tab_max_width = 50,
-	hide_tab_bar_if_only_one_tab = false,
+	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = false,
 
 	-- window settings
 	window_frame = {
 		font = wezterm.font({ family = "JetBrains Nerd Font Mono", weight = "Light" }),
-		font_size = 9,
+		font_size = 10,
 		active_titlebar_bg = "#202123",
 		inactive_titlebar_bg = "#202123",
 		border_left_width = "0cell",
@@ -118,7 +118,7 @@ local config = {
 	window_padding = { left = "0.25cell", right = "0.25cell", top = "0.25cell", bottom = "0cell" },
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
 	window_background_opacity = 0.95,
-	macos_window_background_blur = 50,
+	macos_window_background_blur = 5,
 	text_background_opacity = 1,
 	window_close_confirmation = "NeverPrompt",
 	use_resize_increments = false,
@@ -174,7 +174,7 @@ local config = {
 			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Light" }),
 		},
 	},
-	font_size = 14,
+	font_size = 15,
 	freetype_load_target = "Light",
 	freetype_load_flags = "NO_HINTING",
 	foreground_text_hsb = {
