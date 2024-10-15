@@ -21,7 +21,7 @@ return {
 		{
 			"andymass/vim-matchup",
 			init = function()
-				vim.g.matchup_matchparen_offscreen = { method = "status" } -- "popup" | "status"
+				vim.g.matchup_matchparen_offscreen = { method = "popup" } -- "popup" | "status"
 				vim.g.matchup_matchparen_hi_surround_always = 1
 				vim.g.matchup_matchparen_deferred = 1
 				vim.g.matchup_matchparen_deferred_show_delay = 50
@@ -80,7 +80,7 @@ return {
 					["[S"] = { query = "@statement.outer", desc = "Previous statement start" },
 					["[M"] = { query = "@call.outer", desc = "Previous method start" },
 					["[L"] = { query = "@loop.outer", desc = "Previous loop start" },
-					["[??"] = { query = "@conditional.outer", desc = "Previous conditional start" },
+					["[?s"] = { query = "@conditional.outer", desc = "Previous conditional start" },
 					["[/"] = { query = "@comment.outer", desc = "Goto previous comment" },
 					["[R"] = { query = "@regex.outer", desc = "Previous regex start" },
 				},
@@ -94,7 +94,7 @@ return {
 					["[s"] = { query = "@statement.outer", desc = "Previous statement end" },
 					["[m"] = { query = "@call.outer", desc = "Previous method end" },
 					["[l"] = { query = "@loop.outer", desc = "Previous loop end" },
-					["[?"] = { query = "@conditional.outer", desc = "Previous conditional end" },
+					["[?e"] = { query = "@conditional.outer", desc = "Previous conditional end" },
 					["[r"] = { query = "@regex.outer", desc = "Previous regex end" },
 				},
 				goto_next_start = {

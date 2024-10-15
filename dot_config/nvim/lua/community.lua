@@ -31,10 +31,12 @@ return {
 
 	-- recipes
 	{ import = "astrocommunity.recipes.heirline-nvchad-statusline", enabled = false },
+	{ import = "astrocommunity.recipes.auto-session-restore", enabled = true },
+	{ import = "astrocommunity.recipes.telescope-lsp-mappings", enabled = true },
 
 	-- lsp
 	{ import = "astrocommunity.lsp.garbage-day-nvim", enabled = false },
-	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
+	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = false },
 
 	-- packs
 	{ import = "astrocommunity.pack.astro", enabled = true },
@@ -138,6 +140,9 @@ return {
 	},
 	{ import = "astrocommunity.editing-support.neogen", enabled = true },
 
+	-- icon
+	{ import = "astrocommunity.icon.mini-icons", enabled = true },
+
 	-- indent
 	{ import = "astrocommunity.indent.indent-blankline-nvim", enabled = true },
 	{ import = "astrocommunity.indent.indent-tools-nvim", enabled = true },
@@ -149,7 +154,9 @@ return {
 
 	-- project
 	{ import = "astrocommunity.project.project-nvim", enabled = true },
-	{ import = "astrocommunity.project.nvim-spectre", enabled = true },
+
+	-- search
+	{ import = "astrocommunity.search.nvim-spectre", enabled = true },
 
 	-- syntax
 	{ import = "astrocommunity.syntax.hlargs-nvim", enabled = true },

@@ -67,10 +67,10 @@ return {
 					-- vim-sandwich
 					["<leader>m"] = { name = "󰉚 Sandwich" },
 					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>md"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
-					["<leader>mdb"] = { "<Plug>(sandwich-delete-auto)", desc = "Delete Auto" },
 					["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
-					["<leader>mrb"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
+					["<leader>ms"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
+					["<leader>mt"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
+					["<leader>mg"] = { "<Plug>(sandwich-delete-auto)", desc = "Delete Auto" },
 
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
@@ -196,7 +196,7 @@ return {
 				t = {
 					-- to normal mode
 					["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
-					["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
+					["<S-esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
 					-- pane navigation movements
 					["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 					["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
@@ -221,13 +221,19 @@ return {
 					-- vim-sandwich
 					["<leader>m"] = { name = "󰉚 Sandwich" },
 					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>mib"] = { "<Plug>(textobj-sandwich-auto-i)", desc = "Search/Select auto inner block" },
-					["<leader>mis"] = {
+					["<leader>mq"] = {
+						"<Plug>(textobj-sandwich-auto-i)",
+						desc = "Search/Select auto inner block",
+					},
+					["<leader>mw"] = {
 						"<Plug>(textobj-sandwich-query-i)",
 						desc = "Search/Select query inner sandwich",
 					},
-					["<leader>mab"] = { "<Plug>(textobj-sandwich-auto-a)", desc = "Search/Select auto around block" },
-					["<leader>mas"] = {
+					["<leader>mf"] = {
+						"<Plug>(textobj-sandwich-auto-a)",
+						desc = "Search/Select auto around block",
+					},
+					["<leader>mp"] = {
 						"<Plug>(textobj-sandwich-query-a)",
 						desc = "Search/Select query around sandwich",
 					},
@@ -237,15 +243,21 @@ return {
 					-- vim-sandwich
 					["<leader>m"] = { name = "󰉚 Sandwich" },
 					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>md"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
 					["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
-					["<leader>mib"] = { "<Plug>(textobj-sandwich-auto-i)", desc = "Search/Select auto inner block" },
-					["<leader>mis"] = {
+					["<leader>ms"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
+					["<leader>mq"] = {
+						"<Plug>(textobj-sandwich-auto-i)",
+						desc = "Search/Select auto inner block",
+					},
+					["<leader>mw"] = {
 						"<Plug>(textobj-sandwich-query-i)",
 						desc = "Search/Select query inner sandwich",
 					},
-					["<leader>mab"] = { "<Plug>(textobj-sandwich-auto-a)", desc = "Search/Select auto around block" },
-					["<leader>mas"] = {
+					["<leader>mf"] = {
+						"<Plug>(textobj-sandwich-auto-a)",
+						desc = "Search/Select auto around block",
+					},
+					["<leader>mp"] = {
 						"<Plug>(textobj-sandwich-query-a)",
 						desc = "Search/Select query around sandwich",
 					},
@@ -266,14 +278,6 @@ return {
 							vim.lsp.buf.hover()
 						end,
 						desc = "Hover symbol details",
-					},
-					-- condition for only server with declaration capabilities
-					gD = {
-						function()
-							vim.lsp.buf.declaration()
-						end,
-						desc = "Declaration of current symbol",
-						cond = "textDocument/declaration",
 					},
 				},
 			},
