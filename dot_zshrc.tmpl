@@ -360,10 +360,15 @@ export BROWSER="$HOME/.local/bin/brave"
 {{ end }}
 
 {{ if eq .osid "darwin" }}
-# MAC Tweaks
-defaults write -g com.apple.trackpad.scaling -float 30.0
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
+# mac tweaks
+defaults write -g NSWindowShouldDragOnGesture -bool true
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# alias for golang du
+alias gdu="$(go env GOPATH)/bin/gdu"
+
+# sdl2 library path
+export DYLD_LIBRARY_PATH=/opt/homebrew/lib:$DYLD_LIBRARY_PATH
 
 # use brew versions of bins
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
@@ -374,6 +379,7 @@ export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
