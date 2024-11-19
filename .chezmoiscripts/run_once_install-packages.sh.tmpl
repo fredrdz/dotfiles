@@ -45,6 +45,7 @@ packages-golang() {
 	go install github.com/a-h/templ/cmd/templ@latest
 	go install github.com/wailsapp/wails/v2/cmd/wails@latest
 	go install github.com/raviqqe/muffet/v2@latest
+	go install github.com/koblas/s3-cli@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
@@ -185,7 +186,7 @@ if [ "$input" == "yes" ]; then
 	# env/dev settings
 	settings-development
 	# brew casks
-	brew install --cask keymapp brave-browser slack discord miro iina vlc mpv bitwarden visual-studio-code cloudflare-warp tor-browser docker chatgpt signal notion
+	brew install --cask keymapp brave-browser slack discord iina vlc mpv bitwarden visual-studio-code cloudflare-warp tor-browser docker chatgpt signal notion figma
 	# fonts
 	brew install --cask font-jetbrains-mono-nerd-font
 	# windows management
