@@ -25,7 +25,7 @@ return {
 				"htmx",
 				"taplo",
 				"templ",
-				"tsserver",
+				"ts_ls",
 				"vimls",
 				"yamlls",
 			})
