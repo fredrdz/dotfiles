@@ -367,8 +367,11 @@ defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 # alias for golang du
 alias gdu="$(go env GOPATH)/bin/gdu"
 
-# sdl2 library path
-export DYLD_LIBRARY_PATH=/opt/homebrew/lib:$DYLD_LIBRARY_PATH
+# sdl2/dotnet vars
+export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+# mono
+export MONO_GAC_PREFIX="/opt/homebrew"
 
 # use brew versions of bins
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
