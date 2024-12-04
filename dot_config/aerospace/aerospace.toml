@@ -120,11 +120,11 @@ automatically-unhide-macos-hidden-apps = true
   #"org.whispersystems.signal-desktop"'
   f16       = 'exec-and-forget open -a /Applications/WezTerm.app/'
   f17       = 'exec-and-forget open -a /Applications/ChatGPT.app/'
-  f18       = 'exec-and-forget open -a /Applications/Signal.app/'
+  f18       = 'exec-and-forget open -a /Applications/Slack.app/'
   f19       = 'exec-and-forget open -a /Applications/Notion.app/'
   f20       = 'exec-and-forget open -a /Applications/Figma.app/'
   shift-f13 = 'exec-and-forget open -a /Applications/Discord.app/'
-  shift-f14 = 'exec-and-forget open -a /Applications/Slack.app/'
+  shift-f14 = 'exec-and-forget open -a /Applications/Signal.app/'
   shift-f15 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
 
 [mode.service.binding]
