@@ -16,6 +16,7 @@ return {
 						end,
 						desc = "Pick to close",
 					},
+
 					-- tables with the `name` key will be registered with which-key if it's installed
 					-- this is useful for naming menus
 					["<leader>b"] = { name = "Buffers" },
@@ -74,28 +75,12 @@ return {
 
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
-					["<leader>kp"] = { name = "Copilot" },
-					["<leader>kpo"] = {
+					["<leader>ka"] = { name = " Copilot" },
+					["<leader>kao"] = {
 						"<cmd>lua require('copilot.panel').open({postion, ratio})<cr>",
 						desc = "Copilot Open",
 					},
-					["<leader>kpr"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
-					["<leader>kc"] = { "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
-					["<leader>ke"] = { "<cmd>ChatGPTEditWithInstruction<CR>", desc = "Edit with instruction" },
-					["<leader>kg"] = { "<cmdChatGPTRun grammar_correction<CR>", desc = "Grammar Correction" },
-					["<leader>kt"] = { "<cmd>ChatGPTRun translate<CR>", desc = "Translate" },
-					["<leader>kk"] = { "<cmd>ChatGPTRun keywords<CR>", desc = "Keywords" },
-					["<leader>kd"] = { "<cmd>ChatGPTRun docstring<CR>", desc = "Docstring" },
-					["<leader>ka"] = { "<cmd>ChatGPTRun add_tests<CR>", desc = "Add Tests" },
-					["<leader>ko"] = { "<cmd>ChatGPTRun optimize_code<CR>", desc = "Optimize Code" },
-					["<leader>ks"] = { "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize" },
-					["<leader>kf"] = { "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs" },
-					["<leader>kx"] = { "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code" },
-					["<leader>kr"] = { "<cmd>ChatGPTRun roxygen_edit<CR>", desc = "Roxygen Edit" },
-					["<leader>kl"] = {
-						"<cmd>ChatGPTRun code_readability_analysis<CR>",
-						desc = "Code Readability Analysis",
-					},
+					["<leader>kar"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
 
 					-- telescope plugin mappings
 					["<leader>f<CR>"] = false,
@@ -120,6 +105,7 @@ return {
 
 					-- disable defaults
 					["<F7>"] = false,
+
 					-- pane navigation movements; disable defaults
 					["<]b>"] = false,
 					["<[b>"] = false,
@@ -127,16 +113,19 @@ return {
 					["<C-j>"] = false,
 					["<C-k>"] = false,
 					["<C-l>"] = false,
+
 					-- pane navigation movements
 					["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 					["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
 					["<M-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
 					["<M-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
+
 					-- pane resizing
 					["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
 					["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
 					["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
 					["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
+
 					-- better buffer navigation
 					["<C-Up>"] = {
 						function()
@@ -150,6 +139,7 @@ return {
 						end,
 						desc = "Previous buffer",
 					},
+
 					-- tabs
 					["<leader>T"] = { name = "󱋤 Tabs" },
 					["<leader>Tn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
@@ -183,13 +173,6 @@ return {
 				},
 
 				i = {
-					-- signature help, fails silently so attach always
-					["<C-l>"] = {
-						function()
-							vim.lsp.buf.signature_help()
-						end,
-						desc = "Signature help",
-					},
 					["<S-Tab>"] = { "<C-V><Tab>", desc = "Tab character" },
 				},
 

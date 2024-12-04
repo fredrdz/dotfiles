@@ -26,49 +26,32 @@ return {
 				only_current_line = true,
 			},
 		},
+
 		-- vim options can be configured here
 		options = {
 			opt = { -- vim.opt.<key>
-				-- set to true or false etc.
 				-- searching
 				hlsearch = true,
-				ignorecase = true, -- Ignore case
-				smartcase = true, -- Don't ignore case with capitals
 				inccommand = "split", -- Live preview for search and replace
 				incsearch = true, -- Make search behave like modern browsers
-				-- splits
-				splitbelow = true, -- Put new windows below current
-				splitright = true, -- Put new windows right of current
 				-- default formatting
 				shiftwidth = 2, -- Size of an indent
 				tabstop = 2, -- Number of spaces tabs count for
 				softtabstop = 2,
-				expandtab = true,
 				autoindent = true,
 				smartindent = true, -- Insert indents automatically
-				shiftround = true, -- Round indent
 				-- treesitter folding
 				conceallevel = 2, -- enable conceal
-				foldenable = true,
-				foldlevel = 99,
 				foldmethod = "expr",
 				foldexpr = "nvim_treesitter#foldexpr()",
 				-- appearance
-				termguicolors = true, -- True color support
 				syntax = "off",
-				cursorline = true,
-				-- opt.colorcolumn = '80,120'
-				cmdheight = 0, -- More space to display messages
-				wrap = false, -- Enable line wrap
-				number = true, -- Print line number
-				relativenumber = true, -- Relative line numbers
 				scrolloff = 10, -- Lines of context
 				sidescrolloff = 8, -- Columns of context
 				signcolumn = "auto",
-				laststatus = 3,
 				errorbells = false,
-				cursorlineopt = { "number", "line" },
-				backspace = { "indent", "eol", "start" },
+				-- cursorlineopt = { "number", "line" },
+				-- backspace = { "indent", "eol", "start" },
 				list = false, -- Show some invisible characters (tabs...)
 				showbreak = "↪ ",
 				-- menus
@@ -84,17 +67,13 @@ return {
 				hidden = true, -- Enable modified buffers in background
 				shada = { "!", "'1000", "<50", "s10", "h" }, -- remember stuff across sessions
 				joinspaces = false, -- No double spaces with join after a dot
-				timeoutlen = 300, -- Don't wait more that 400ms for normal mode commands ie. whichkey
-				undofile = true,
 				undodir = "/tmp/undodir",
-				swapfile = false, -- I have OCD file saving issues anyway
+				swapfile = false,
 				backup = false,
-				writebackup = false,
 				lazyredraw = false,
 				ttyfast = true,
-				title = true,
-				updatetime = 300,
 			},
+
 			g = { -- vim.g.<key>
 				-- configure global vim variables (vim.g)
 				-- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
