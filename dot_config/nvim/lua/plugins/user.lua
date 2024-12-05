@@ -167,7 +167,7 @@ return {
 			size = 30,
 			open_mapping = [[<F4>]],
 			shading_factor = 2,
-			direction = "tab",
+			direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float'
 		},
 	},
 

@@ -6,22 +6,19 @@ return {
 			mappings = {
 				-- first key is the mode
 				n = {
-					-- second key is the lefthand side of the map
-					-- mappings seen under group name "Buffer"
-					["<leader>bD"] = {
-						function()
-							require("astroui.status").heirline.buffer_picker(function(bufnr)
-								require("astrocore.buffer").close(bufnr)
-							end)
-						end,
-						desc = "Pick to close",
-					},
-
-					-- tables with the `name` key will be registered with which-key if it's installed
-					-- this is useful for naming menus
-					["<leader>b"] = { name = "Buffers" },
-					-- quick save
-					-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+					-- disable some defaults key mappings
+					["<F7>"] = false, -- toggleterm
+					-- lsp bindings
+					["grr"] = false,
+					["gra"] = false,
+					["grn"] = false,
+					-- pane navigation movements
+					["<]b>"] = false,
+					["<[b>"] = false,
+					["<C-h>"] = false,
+					["<C-j>"] = false,
+					["<C-k>"] = false,
+					["<C-l>"] = false,
 
 					-- better increment/decrement
 					["-"] = { "<c-x>", desc = "Descrement number" },
@@ -83,7 +80,6 @@ return {
 					["<leader>kar"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
 
 					-- telescope plugin mappings
-					["<leader>f<CR>"] = false,
 					["<leader>f<Tab>"] = {
 						function()
 							require("telescope.builtin").resume()
@@ -103,17 +99,6 @@ return {
 					-- misc
 					["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
 
-					-- disable defaults
-					["<F7>"] = false,
-
-					-- pane navigation movements; disable defaults
-					["<]b>"] = false,
-					["<[b>"] = false,
-					["<C-h>"] = false,
-					["<C-j>"] = false,
-					["<C-k>"] = false,
-					["<C-l>"] = false,
-
 					-- pane navigation movements
 					["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 					["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
@@ -127,17 +112,17 @@ return {
 					["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
 
 					-- better buffer navigation
-					["<C-Up>"] = {
-						function()
-							require("astrocore.buffer").nav(vim.v.count1)
-						end,
-						desc = "Next buffer",
-					},
 					["<C-Down>"] = {
 						function()
 							require("astrocore.buffer").nav(-vim.v.count1)
 						end,
 						desc = "Previous buffer",
+					},
+					["<C-Up>"] = {
+						function()
+							require("astrocore.buffer").nav(vim.v.count1)
+						end,
+						desc = "Next buffer",
 					},
 
 					-- tabs
@@ -146,31 +131,9 @@ return {
 					["<leader>Tc"] = { "<cmd>tabclose<cr>", desc = "New close" },
 					["<C-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
 					["<C-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
-
-					-- g menu
-					ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
-					gk = {
-						function()
-							require("aerial").toggle()
-						end,
-						desc = "Symbols outline",
-					},
 				},
 
-				v = {
-					["<leader>s"] = {
-						function()
-							require("spectre").open_visual()
-						end,
-						desc = "Spectre",
-					},
-					["<leader>k"] = {
-						function()
-							require("chatgpt").edit_with_instructions()
-						end,
-						desc = "ChatGPT code edit",
-					},
-				},
+				v = {},
 
 				i = {
 					["<S-Tab>"] = { "<C-V><Tab>", desc = "Tab character" },
@@ -243,24 +206,6 @@ return {
 					["<leader>mp"] = {
 						"<Plug>(textobj-sandwich-query-a)",
 						desc = "Search/Select query around sandwich",
-					},
-				},
-			},
-		},
-	},
-
-	{
-		"AstroNvim/astrolsp",
-		---@type AstroLSPOpts
-		opts = {
-			mappings = {
-				n = {
-					-- this mapping will only be set in buffers with an LSP attached
-					K = {
-						function()
-							vim.lsp.buf.hover()
-						end,
-						desc = "Hover symbol details",
 					},
 				},
 			},

@@ -7,7 +7,7 @@ return {
 	-- editing-support
 	{ import = "astrocommunity.editing-support.neogen", enabled = true },
 	{
-		"danymat/neogen",
+		"danymat/neogen", -- for annotations
 		dependencies = {
 			{
 				"AstroNvim/astrocore",
@@ -73,6 +73,7 @@ return {
 	-- packs
 	{ import = "astrocommunity.pack.astro", enabled = true },
 	{ import = "astrocommunity.pack.bash", enabled = true },
+	{ import = "astrocommunity.pack.cs", enabled = true },
 	{ import = "astrocommunity.pack.docker", enabled = true },
 	{ import = "astrocommunity.pack.go", enabled = true },
 	{ import = "astrocommunity.pack.html-css", enabled = true },
@@ -99,6 +100,43 @@ return {
 
 	-- motion
 	{ import = "astrocommunity.motion.leap-nvim", enabled = true },
+	{
+		"ggandor/leap.nvim",
+		dependencies = {
+			{
+				"AstroNvim/astrocore",
+				opts = function(_, opts)
+					local new_mappings = {
+						n = {
+							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
+							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
+							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
+						},
+						x = {
+							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
+							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
+							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
+						},
+						o = {
+							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
+							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
+							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
+						},
+					}
+					-- unbind the default mappings
+					local modes = { "n", "x", "o" }
+					for _, mode in ipairs(modes) do
+						opts.mappings[mode] = opts.mappings[mode] or {}
+						opts.mappings[mode]["s"] = nil
+						opts.mappings[mode]["S"] = nil
+						opts.mappings[mode]["gs"] = nil
+					end
+					-- merge new mappings into existing ones
+					opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, new_mappings)
+				end,
+			},
+		},
+	},
 	{ import = "astrocommunity.motion.mini-move", enabled = true },
 
 	-- project
