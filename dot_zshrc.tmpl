@@ -334,19 +334,28 @@ export PATH="/$HOME/.local/bin:$PATH"
 # Add go bin executables to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# Setup Go proxy
+# Setup go proxy
 # export GOPROXY="https://proxy.golang.org,direct"
-
-# enable completion
-autoload -U compinit; compinit
 
 # tabtab source for packages
 # uninstall by removing these lines
 # (used for netlify completion; installed via NPM)
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-{{ if eq .chezmoi.os "linux" }}
-{{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# bun completions
+[ -s "$HOME/.oh-my-zsh/completions/_bun" ] && source "$HOME/.oh-my-zsh/completions/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# enable completion
+autoload -U compinit; compinit
+
+
+{{/*---------------------- WSL -----------------------*/}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 ## WSL-specific code
 ## fixes issue with WSL2 while running systemd: https://github.com/microsoft/WSL/issues/8843#issuecomment-1480103001
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
@@ -356,20 +365,24 @@ autoload -U compinit; compinit
 # ln -s "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" ~/.local/bin/google-chrome
 export PATH="$HOME/.local/bin/brave:$HOME/.local/bin/google-chrome:$PATH"
 export BROWSER="$HOME/.local/bin/brave"
-{{ end }}
-{{ end }}
+{{- end -}}
+{{- end -}}
 
-{{ if eq .osid "darwin" }}
-# mac tweaks
+{{/*-------------------- Darwin ----------------------*/}}
+{{- if eq .osid "darwin" -}}
+#######################
+# mac specific settings 
+#######################
 defaults write -g NSWindowShouldDragOnGesture -bool true
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
-# alias for golang du
+# alias for golang du because of conflict w/ du
 alias gdu="$(go env GOPATH)/bin/gdu"
 
 # sdl2/dotnet vars
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
 # mono
 export MONO_GAC_PREFIX="/opt/homebrew"
 
@@ -386,9 +399,10 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-{{ end }}
+{{- end -}}
 
-{{ if eq .osid "linux-steamos" }}
+{{/*------------------- SteamOS ----------------------*/}}
+{{- if eq .osid "linux-steamos" -}}
 # alias
 alias dbe='distrobox-enter fdev'
 alias dbets='distrobox-enter fdev -- ts deck'
@@ -397,9 +411,10 @@ alias dbeta='distrobox-enter fdev -- ta deck'
 # https://github.com/89luca89/distrobox/blob/107503a20bdb1e950fa05f329788e13c72f29342/docs/posts/install_rootless.md
 # for distrobox gui apps; gives permissions
 xhost +si:localuser:$USER
-{{ end }}
+{{- end -}}
 
-{{ if eq .osid "linux-fedora" }}
+{{/*-------------------- Fedora ----------------------*/}}
+{{- if eq .osid "linux-fedora" -}}
 # runs cmd on host if not found in container
 command_not_found_handle() {
   # don't run if not in a container
@@ -413,8 +428,9 @@ if [ -n "${ZSH_VERSION-}" ]; then
     command_not_found_handle "$@"
  }
 fi
-{{ end }}
+{{- end -}}
 
-{{ if eq .osid "linux-nobara" }}
+{{/*-------------------- Nobara ----------------------*/}}
+{{- if eq .osid "linux-nobara" -}}
 alias update='sudo dnf update rpmfusion-nonfree-release rpmfusion-free-release fedora-repos nobara-repos --refresh && sudo dnf distro-sync --refresh && sudo dnf update --refresh'
-{{ end }}
+{{- end -}}

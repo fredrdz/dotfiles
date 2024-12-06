@@ -111,31 +111,33 @@ packages-cloudflare-warp() {
 }
 
 settings-development() {
-	# fzf
+	# bun install
+	curl -fsSL https://bun.sh/install | bash
+	# fzf install
 	~/.fzf/install
-	# chezmoi
+	# chezmoi completions
 	mkdir -p ~/.oh-my-zsh/completions/
 	chezmoi completion zsh --output=~/.oh-my-zsh/completions/_chezmoi
-	# bws
+	# bws completions
 	bws completions zsh >~/.oh-my-zsh/completions/_bws
-	# go releaser
+	# go releaser completions
 	goreleaser completion zsh >~/.oh-my-zsh/completions/_goreleaser
-	# wezterm
+	# wezterm terminfo
 	tempfile=$(mktemp) &&
 		curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo &&
 		tic -x -o ~/.terminfo $tempfile &&
 		rm $tempfile
-	# xterm-256color-italic
+	# xterm-256color-italic terminfo
 	curl --silent \
 		https://gist.githubusercontent.com/sadsfae/0b4dd18670639f7dce941a1b2a9e4e9e/raw/908b48e6b6370da0568be8d138966c60240a50dd/xterm-256color-italic.terminfo \
 		>~/Documents/xterm-256color-italic
 	tic ~/Documents/xterm-256color-italic
-	# nerd-fonts
+	# nerd-fonts JetBrainsMono install
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -P ~/Documents/
 	mkdir ~/.local/share/fonts
 	unzip ~/Documents/JetBrainsMono.zip -d ~/.local/share/fonts/
 	fc-cache ~/.local/share/fonts
-	# timezone
+	# timezone set
 	sudo timedatectl set-timezone America/Chicago
 }
 
@@ -179,7 +181,7 @@ if [ "$input" == "yes" ]; then
 	# shell
 	chsh -s /bin/zsh
 	# brew clip apps
-	brew install zsh make cmake sshuttle tmux xclip xsel perl podman gcc httpie htop neofetch wget gh btop autossh luarocks openssl jq go neovim tree ffmpeg ninja libtool pkg-config libgit2 libevent nodejs ripgrep vim iftop gotop speedtest-cli lazygit caddy fzf navi zoxide eza starship bat bottom diff-so-fancy netlify-cli npm-check-updates php wp-cli coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep google-cloud-sdk wine-stable winetricks mono sdl2 faudio zlib sqlc automake yarn cloudflare-wrangler2
+	brew install zsh make cmake sshuttle tmux xclip xsel perl podman gcc httpie htop neofetch wget gh btop autossh luarocks openssl jq go neovim tree ffmpeg ninja libtool pkg-config libgit2 libevent nodejs ripgrep vim iftop gotop speedtest-cli lazygit caddy fzf navi zoxide eza starship bat bottom diff-so-fancy netlify-cli npm-check-updates php wp-cli coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep google-cloud-sdk wine-stable winetricks mono sdl2 faudio zlib sqlc automake yarn cloudflare-wrangler2 scriptisto
 	brew tap homebrew/services
 	# golang
 	packages-golang
