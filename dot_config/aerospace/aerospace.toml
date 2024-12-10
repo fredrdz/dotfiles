@@ -9,7 +9,8 @@ enable-normalization-flatten-containers                         = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # Mouse follows focus when focused monitor changes
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 # janky borders
 # https://github.com/FelixKratz/JankyBorders
@@ -113,11 +114,6 @@ automatically-unhide-macos-hidden-apps = true
   alt-shift-ctrl-t = 'workspace 4'
 
   # See: https://nikitabobko.github.io/AeroSpace/goodness#open-a-new-window-with-applescript
-  #"com.hnc.Discord"'
-  #"com.brave.Browser"'
-  #"com.github.wez.wezterm"'
-  #"com.tinyspeck.slackmacgap"'
-  #"org.whispersystems.signal-desktop"'
   f16       = 'exec-and-forget open -a /Applications/WezTerm.app/'
   f17       = 'exec-and-forget open -a /Applications/ChatGPT.app/'
   f18       = 'exec-and-forget open -a /Applications/Slack.app/'
@@ -145,3 +141,43 @@ automatically-unhide-macos-hidden-apps = true
   o = 'resize width +50'
   # --
   k = ['mode main', 'reload-config']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.finder'
+  run       = ['layout floating', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.github.wez.wezterm'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.figma.Desktop'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'notion.id'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.brave.Browser'
+  run       = ['layout tiling', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.MobileSMS'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+  if.app-id = 'com.tinyspeck.slackmacgap'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+  if.app-id = 'com.hnc.Discord'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+  if.app-id = 'org.whispersystems.signal-desktop'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+  if.app-id = 'com.openai.chat'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
