@@ -1,0 +1,16 @@
+#!/bin/bash
+# lazygit config hash: {{ include "dot_config/lazygit/config.yml" | sha256sum }}
+{{ if eq .osid "darwin" -}}
+
+DIR="${HOME}/Library/Application Support/lazygit"
+
+if [ ! -L "${DIR}/config.yml" ] && [ -f "${DIR}/config.yml" ]; then
+	rm "${DIR}/config.yml"
+fi
+
+if [ ! -f "${DIR}/config.yml" ]; then
+	mkdir -p "${DIR}"
+	ln -s "${HOME}/.config/lazygit/config.yml" "${DIR}/config.yml"
+fi
+
+{{- end }}
