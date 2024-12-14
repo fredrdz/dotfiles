@@ -1,16 +1,16 @@
 #!/bin/bash
 # aichat config hash: {{ include "dot_config/aichat/config.yaml.tmpl" | sha256sum }}
+# aichat theme hash: {{ include "dot_config/aichat/dark.tmTheme" | sha256sum }}
 {{ if eq .osid "darwin" -}}
 
 DIR="${HOME}/Library/Application Support/aichat"
 
-if [ ! -L "${DIR}/config.yaml" ] && [ -f "${DIR}/config.yaml" ]; then
-	rm "${DIR}/config.yaml"
+if [ ! -L "${DIR}" ] && [ -e "${DIR}" ]; then
+	rm -rf "${DIR}"
 fi
 
-if [ ! -f "${DIR}/config.yaml" ]; then
-	mkdir -p "${DIR}"
-	ln -s "${HOME}/.config/aichat/config.yaml" "${DIR}/config.yaml"
+if [ ! -e "${DIR}" ]; then
+	ln -s "${HOME}/.config/aichat" "${DIR}"
 fi
 
 {{- end }}
