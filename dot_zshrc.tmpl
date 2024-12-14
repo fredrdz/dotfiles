@@ -152,13 +152,21 @@ alias es='eza --git --long --icons --group-directories-first --color=always --he
 alias esa='eza --git --long --icons --group-directories-first --color=always --header --all'
 alias est='eza --git --long --tree --level 1 --icons --group-directories-first --color=always --header --all'
 
-# bat aliases
-alias b='bat --style=full --paging=never --force-colorization'
-alias cat='bat -pp'
-PAGER='bat -pp'
+# diff alias
+alias diff='riff'
 
-# moar aliases
-alias m='moar --statusbar=bold'
+# moar
+export MOAR='--statusbar=bold -quit-if-one-screen -terminal-fg --no-linenumbers'
+alias m='moar'
+
+# bat
+alias b='bat'
+alias cat='bat --paging=never --style=plain'
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+# pagers
+export PAGER='moar'
 
 # nvim aliases
 alias v='nvim'
