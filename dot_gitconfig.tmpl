@@ -3,31 +3,30 @@
 	email = {{ (bitwardenSecrets "ccfacb4b-44ba-46df-b76f-b0cd0027b0f6").value }}
 
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
+
+[delta]
+	dark = true
+	hyperlinks = true
+	line-numbers = true
+	side-by-side = false
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
 
 [color]
 	ui = true
-
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
 
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
