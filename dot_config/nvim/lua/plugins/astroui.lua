@@ -52,7 +52,7 @@ return {
 				Delimiter = { fg = "#16B2C3", bold = true },
 			},
 
-			astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
+			astrodark = { -- a table of overrides/changes when applying the astrotheme theme
 				-- Normal = { bg = "#000000" },
 			},
 		},

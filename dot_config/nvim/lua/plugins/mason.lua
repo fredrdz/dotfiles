@@ -5,9 +5,8 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		-- overrides `require("mason-lspconfig").setup(...)`
-		opts = function(_, opts)
-			-- add more things to the ensure_installed table protecting against community packs modifying it
-			opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+		opts = {
+			ensure_installed = {
 				"astro",
 				"bashls",
 				"cssls",
@@ -28,17 +27,16 @@ return {
 				"vimls",
 				"vtsls",
 				"yamlls",
-			})
-		end,
+			},
+		},
 	},
 
 	-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
 	{
 		"jay-babu/mason-null-ls.nvim",
 		-- overrides `require("mason-null-ls").setup(...)`
-		opts = function(_, opts)
-			-- add more things to the ensure_installed table protecting against community packs modifying it
-			opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+		opts = {
+			ensure_installed = {
 				"gofumpt",
 				"goimports",
 				"gomodifytags",
@@ -50,41 +48,40 @@ return {
 				"rustywind",
 				"shellcheck",
 				"shfmt",
-			})
-			-- NOTE: handlers is broken
-			-- opts.handlers = {
-			-- 	-- for prettierd
-			-- 	prettierd = function()
-			-- 		local null_ls = require("null-ls")
-			-- 		null_ls.register(null_ls.builtins.formatting.prettierd.with({
-			-- 			filetypes = {
-			-- 				"gohtml",
-			-- 				"htmlhugo",
-			-- 			},
-			-- 			condition = function(utils)
-			-- 				return utils.root_has_file("package.json")
-			-- 					or utils.root_has_file(".prettierrc")
-			-- 					or utils.root_has_file(".prettierrc.config.js")
-			-- 					or utils.root_has_file(".prettierrc.js")
-			-- 					or utils.root_has_file(".prettierrc.json")
-			-- 					or utils.root_has_file(".prettierrc.toml")
-			-- 					or utils.root_has_file(".prettierrc.yaml")
-			-- 					or utils.root_has_file(".prettierrc.yml")
-			-- 			end,
-			-- 		}))
-			-- 	end,
-			-- }
-		end,
+			},
+		},
+		-- NOTE: handlers is broken
+		-- opts.handlers = {
+		-- 	-- for prettierd
+		-- 	prettierd = function()
+		-- 		local null_ls = require("null-ls")
+		-- 		null_ls.register(null_ls.builtins.formatting.prettierd.with({
+		-- 			filetypes = {
+		-- 				"gohtml",
+		-- 				"htmlhugo",
+		-- 			},
+		-- 			condition = function(utils)
+		-- 				return utils.root_has_file("package.json")
+		-- 					or utils.root_has_file(".prettierrc")
+		-- 					or utils.root_has_file(".prettierrc.config.js")
+		-- 					or utils.root_has_file(".prettierrc.js")
+		-- 					or utils.root_has_file(".prettierrc.json")
+		-- 					or utils.root_has_file(".prettierrc.toml")
+		-- 					or utils.root_has_file(".prettierrc.yaml")
+		-- 					or utils.root_has_file(".prettierrc.yml")
+		-- 			end,
+		-- 		}))
+		-- 	end,
+		-- }
 	},
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		-- overrides `require("mason-nvim-dap").setup(...)`
-		opts = function(_, opts)
-			-- add more things to the ensure_installed table protecting against community packs modifying it
-			opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+		opts = {
+			ensure_installed = {
 				"bash",
 				"delve",
-			})
-		end,
+			},
+		},
 	},
 }
