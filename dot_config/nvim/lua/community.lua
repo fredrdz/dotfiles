@@ -4,31 +4,6 @@
 ---@type LazySpec
 return {
 	"AstroNvim/astrocommunity",
-	-- editing-support
-	{ import = "astrocommunity.editing-support.neogen", enabled = true },
-	{
-		"danymat/neogen", -- for annotations
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				---@param opts AstroCoreOpts
-				opts = function(_, opts)
-					local maps = opts.mappings
-					-- iterate over existing mappings to remap them
-					for key, value in pairs(maps.n) do
-						if key:match("^<Leader>a") then
-							-- create new key by replacing
-							local new_key = key:gsub("^<Leader>a", "<Leader>A")
-							maps.n[new_key] = value
-							-- remove old mapping
-							maps.n[key] = nil
-						end
-					end
-				end,
-			},
-		},
-	},
-
 	-- completion
 	{ import = "astrocommunity.completion.avante-nvim", enabled = true },
 	{ import = "astrocommunity.completion.codeium-nvim", enabled = true },
@@ -40,21 +15,50 @@ return {
 				---@param opts AstroCoreOpts
 				opts = function(_, opts)
 					local maps = opts.mappings
-					-- create a temporary table to store new mappings
-					local new_mappings = {}
-					-- iterate over existing mappings to remap them
-					for key, value in pairs(maps.n) do
-						if key:match("^<Leader>;") then
-							-- create new key by replacing
-							local new_key = key:gsub("^<Leader>;", "<Leader>kr")
-							new_mappings[new_key] = value
-							-- remove old mapping
-							maps.n[key] = nil
+					if maps and maps.n then
+						-- create a temporary table to store new mappings
+						local new_mappings = {}
+						-- iterate over existing mappings to remap them
+						for key, value in pairs(maps.n) do
+							if key:match("^<Leader>;") then
+								-- create new key by replacing
+								local new_key = key:gsub("^<Leader>;", "<Leader>kr")
+								new_mappings[new_key] = value
+								-- remove old mapping
+								maps.n[key] = nil
+							end
+						end
+						-- merge new mappings into the original mappings table
+						for new_key, value in pairs(new_mappings) do
+							maps.n[new_key] = value
 						end
 					end
-					-- merge new mappings into the original mappings table
-					for new_key, value in pairs(new_mappings) do
-						maps.n[new_key] = value
+				end,
+			},
+		},
+	},
+
+	-- editing-support
+	{ import = "astrocommunity.editing-support.neogen", enabled = true },
+	{
+		"danymat/neogen", -- for annotations
+		dependencies = {
+			{
+				"AstroNvim/astrocore",
+				---@param opts AstroCoreOpts
+				opts = function(_, opts)
+					local maps = opts.mappings
+					if maps and maps.n then
+						-- iterate over existing mappings to remap them
+						for key, value in pairs(maps.n) do
+							if key:match("^<Leader>a") then
+								-- create new key by replacing
+								local new_key = key:gsub("^<Leader>a", "<Leader>A")
+								maps.n[new_key] = value
+								-- remove old mapping
+								maps.n[key] = nil
+							end
+						end
 					end
 				end,
 			},
