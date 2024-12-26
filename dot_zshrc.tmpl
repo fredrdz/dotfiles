@@ -207,7 +207,7 @@ fi
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com | cat"
 
 # ZSH Theme Color Scheme
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#778899'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#778899'
 
 #
 # zstyle Options
@@ -363,11 +363,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # enable completion
 autoload -U compinit; compinit
 
-# ZSH Chroma plugin settings
+# zsh chroma plugin settings
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
 export ZSH_COLORIZE_TOOL="chroma"
 export ZSH_COLORIZE_STYLE="gruvbox"
 export ZSH_COLORIZE_CHROMA_FORMATTER="terminal16m"
+
+# eza settings
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+# disable LS_COLORS to use eza themes
+export LS_COLORS=""
 
 {{/*---------------------- WSL -----------------------*/}}
 {{- if eq .chezmoi.os "linux" -}}
