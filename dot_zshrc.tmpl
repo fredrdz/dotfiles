@@ -80,7 +80,11 @@ ENABLE_CORRECTION="false"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
+  bun
+  brew
+  chezmoi
   colored-man-pages
+  colorize
   copybuffer
   copypath
   copyfile
@@ -98,8 +102,9 @@ plugins=(
   tmux
   wp-cli
   zoxide
-  zsh-syntax-highlighting
   zsh-autosuggestions
+  zsh-interactive-cd
+  zsh-syntax-highlighting
 )
 
 # You may need to manually set your language environment
@@ -132,6 +137,9 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# lua aliases
+alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
 
 # ctag aliases
 # make sure to install ctags first
@@ -322,8 +330,6 @@ fastfetch -c archey.jsonc
 # vim-mode
 #bindkey -v
 
-alias luamake=/usr/local/share/lua-language-server/3rd/luamake/compile/luamake
-
 # https://github.com/huboles/zshmux
 # Auto-lists and connects to tmux sessions.
 [[ -d "$HOME/git/zshmux" ]] && source "$HOME/git/zshmux/zshmux.zsh"
@@ -350,9 +356,6 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # (used for netlify completion; installed via NPM)
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-# bun completions
-[ -s "$HOME/.oh-my-zsh/completions/_bun" ] && source "$HOME/.oh-my-zsh/completions/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -360,6 +363,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # enable completion
 autoload -U compinit; compinit
 
+# ZSH Chroma plugin settings
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+export ZSH_COLORIZE_TOOL="chroma"
+export ZSH_COLORIZE_STYLE="gruvbox"
+export ZSH_COLORIZE_CHROMA_FORMATTER="terminal16m"
 
 {{/*---------------------- WSL -----------------------*/}}
 {{- if eq .chezmoi.os "linux" -}}
