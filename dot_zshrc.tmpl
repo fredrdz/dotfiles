@@ -316,8 +316,8 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' l
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 
-# neofetch integration
-neofetch --gap 4 --bold off --ascii_bold off --ascii_colors 1 1 1 1 1 1
+# fastfetch integration
+fastfetch -c archey.jsonc
 
 # vim-mode
 #bindkey -v
