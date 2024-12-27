@@ -1,190 +1,259 @@
 colourful: true
 
 filekinds:
-  normal: {foreground: "#DCD7BA"}
-  directory: {foreground: "#C0A36E"}
-  symlink: {foreground: "#8ec07c"}
-  pipe: {foreground: "#928374"}
-  block_device: {foreground: "#fb4934"}
-  char_device: {foreground: "#fb4934"}
-  socket: {foreground: "#665c54"}
-  special: {foreground: "#d3869b"}
-  executable: {foreground: "#b8bb26"}
-  mount_point: {foreground: "#fe8019"}
+  normal: {foreground: "#DCD7BA"}               # fujiWhite
+  directory: {foreground: "#C0A36E"}            # boatYellow2
+  symlink: {foreground: "#957FB8"}              # oniViolet
+  pipe: {foreground: "#938056"}                 # boatYellow1
+  block_device: {foreground: "#C34043"}         # autumnRed
+  char_device: {foreground: "#C34043"}          # autumnRed
+  socket: {foreground: "#E46876"}               # waveRed
+  special: {foreground: "#D27E99"}              # sakuraPink
+  executable: {foreground: "#9CABCA"}           # springViolet2
+  mount_point: {foreground: "#FF9E3B"}          # roninYellow
 
 perms:
-  user_read: {foreground: "#ebdbb2"}
-  user_write: {foreground: "#fabd2f"}
-  user_execute_file: {foreground: "#b8bb26"}
-  user_execute_other: {foreground: "#b8bb26"}
-  group_read: {foreground: "#ebdbb2"}
-  group_write: {foreground: "#fabd2f"}
-  group_execute: {foreground: "#b8bb26"}
-  other_read: {foreground: "#bdae93"}
-  other_write: {foreground: "#fabd2f"}
-  other_execute: {foreground: "#b8bb26"}
-  special_user_file: {foreground: "#d3869b"}
-  special_other: {foreground: "#928374"}
-  attribute: {foreground: "#bdae93"}
+  user_read: {foreground: "#7E9CD8"}            # crystalBlue
+  user_write: {foreground: "#9CABCA"}           # springViolet2 
+  user_execute_file: {foreground: "#957FB8"}    # oniViolet
+  user_execute_other: {foreground: "#957FB8"}   # oniViolet
+  group_read: {foreground: "#7E9CD8"}           # crystalBlue
+  group_write: {foreground: "#9CABCA"}          # springViolet2  
+  group_execute: {foreground: "#957FB8"}        # oniViolet
+  other_read: {foreground: "#7E9CD8"}           # crystalBlue
+  other_write: {foreground: "#9CABCA"}          # springViolet2  
+  other_execute: {foreground: "#957FB8"}        # oniViolet
+  special_user_file: {foreground: "#E46876"}    # waveRed
+  special_other: {foreground: "#FF5D62"}        # peachRed
+  attribute: {foreground: "#7E9CD8"}            # crystalBlue
 
 size:
-  major: {foreground: "#bdae93"}
-  minor: {foreground: "#8ec07c"}
-  number_byte: {foreground: "#ebdbb2"}
-  number_kilo: {foreground: "#ebdbb2"}
-  number_mega: {foreground: "#83a598"}
-  number_giga: {foreground: "#d3869b"}
-  number_huge: {foreground: "#d3869b"}
-  unit_byte: {foreground: "#bdae93"}
-  unit_kilo: {foreground: "#83a598"}
-  unit_mega: {foreground: "#d3869b"}
-  unit_giga: {foreground: "#d3869b"}
-  unit_huge: {foreground: "#fe8019"}
+  major: {foreground: "#7E9CD8"}          # crystalBlue
+  minor: {foreground: "#957FB8"}          # oniViolet
+  number_byte: {foreground: "#C8C093"}    # oldWhite
+  number_kilo: {foreground: "#C8C093"}    # oldWhite
+  number_mega: {foreground: "#6A9589"}    # waveAqua1
+  number_giga: {foreground: "#D27E99"}    # sakuraPink
+  number_huge: {foreground: "#D27E99"}    # sakuraPink
+  unit_byte: {foreground: "#7E9CD8"}      # crystalBlue
+  unit_kilo: {foreground: "#6A9589"}      # waveAqua1
+  unit_mega: {foreground: "#D27E99"}      # sakuraPink
+  unit_giga: {foreground: "#D27E99"}      # sakuraPink
+  unit_huge: {foreground: "#FF9E3B"}      # roninYellow
 
 users:
-  user_you: {foreground: "#ebdbb2"}
-  user_root: {foreground: "#fb4934"}
-  user_other: {foreground: "#d3869b"}
-  group_yours: {foreground: "#ebdbb2"}
-  group_other: {foreground: "#928374"}
-  group_root: {foreground: "#fb4934"}
+  user_you: {foreground: "#49443C"}       # winterYellow
+  user_root: {foreground: "#C34043"}      # autumnRed
+  user_other: {foreground: "#D27E99"}     # sakuraPink
+  group_yours: {foreground: "#49443C"}    # winterYellow
+  group_other: {foreground: "#938056"}    # boatYellow1
+  group_root: {foreground: "#C34043"}     # autumnRed
 
 links:
-  normal: {foreground: "#8ec07c"}
-  multi_link_file: {foreground: "#fe8019"}
+  normal: {foreground: "#957FB8"}          # oniViolet
+  multi_link_file: {foreground: "#FF9E3B"} # roninYellow
 
 git:
-  new: {foreground: "#b8bb26"}
-  modified: {foreground: "#fabd2f"}
-  deleted: {foreground: "#fb4934"}
-  renamed: {foreground: "#8ec07c"}
-  typechange: {foreground: "#d3869b"}
-  ignored: {foreground: "#928374"}
-  conflicted: {foreground: "#cc241d"}
+  new: {foreground: "#76946A"}              # autumnGreen
+  modified: {foreground: "#DCA561"}         # autumnYellow
+  deleted: {foreground: "#C34043"}          # autumnRed
+  renamed: {foreground: "#98BB6C"}          # springGreen
+  typechange: {foreground: "#D27E99"}       # sakuraPink
+  ignored: {foreground: "#938056"}          # boatYellow1
+  conflicted: {foreground: "#E82424"}       # samuraiRed
 
 git_repo:
-  branch_main: {foreground: "#ebdbb2"}
-  branch_other: {foreground: "#d3869b"}
-  git_clean: {foreground: "#b8bb26"}
-  git_dirty: {foreground: "#fb4934"}
+  branch_main: {foreground: "#C8C093"}  # oldWhite
+  branch_other: {foreground: "#D27E99"} # sakuraPink
+  git_clean: {foreground: "#9CABCA"}    # springViolet2
+  git_dirty: {foreground: "#C34043"}    # autumnRed
 
 security_context:
-  colon: {foreground: "#928374"}
-  user: {foreground: "#ebdbb2"}
-  role: {foreground: "#d3869b"}
-  typ: {foreground: "#665c54"}
-  range: {foreground: "#d3869b"}
+  colon: {foreground: "#938056"}        # boatYellow1
+  user: {foreground: "#C8C093"}         # oldWhite
+  role: {foreground: "#D27E99"}         # sakuraPink
+  typ: {foreground: "#E46876"}          # waveRed
+  range: {foreground: "#D27E99"}        # sakuraPink
 
 file_type:
-  image: {foreground: "#fabd2f"}
-  video: {foreground: "#fb4934"}
-  music: {foreground: "#b8bb26"}
-  lossless: {foreground: "#8ec07c"}
-  crypto: {foreground: "#928374"}
-  document: {foreground: "#ebdbb2"}
-  compressed: {foreground: "#d3869b"}
-  temp: {foreground: "#cc241d"}
-  compiled: {foreground: "#83a598"}
-  build: {foreground: "#928374"}
-  source: {foreground: "#83a598"}
+  image: {foreground: "#7E9CD8"}        # crystalBlue
+  video: {foreground: "#938AA9"}        # springViolet1
+  music: {foreground: "#9CABCA"}        # springViolet2
+  lossless: {foreground: "#957FB8"}     # oniViolet
+  crypto: {foreground: "#E82424"}       # samuraiRed
+  document: {foreground: "#C8C093"}     # oldWhite
+  compressed: {foreground: "#658594"}   # dragonBlue
+  temp: {foreground: "#FF5D62"}         # peachRed
+  compiled: {foreground: "#E6C384"}     # carpYellow
+  build: {foreground: "#7FB4CA"}        # springBlue
+  source: {foreground: "#6A9589"}       # waveAqua1
 
-punctuation: {foreground: "#928374"}
-date: {foreground: "#938056"}
-inode: {foreground: "#bdae93"}
-blocks: {foreground: "#a89984"}
-header: {foreground: "#ebdbb2"}
-octal: {foreground: "#8ec07c"}
-flags: {foreground: "#d3869b"}
-symlink_path: {foreground: "#8ec07c"}
-control_char: {foreground: "#83a598"}
-broken_symlink: {foreground: "#fb4934"}
-broken_path_overlay: {foreground: "#928374"}
+punctuation: {foreground: "#938056"}          # boatYellow1
+date: {foreground: "#49443C"}                 # winterYellow
+inode: {foreground: "#7E9CD8"}                # crystalBlue
+blocks: {foreground: "#A3D4D5"}               # lightBlue
+header: {foreground: "#C8C093"}               # oldWhite
+octal: {foreground: "#957FB8"}                # oniViolet
+flags: {foreground: "#D27E99"}                # sakuraPink
+symlink_path: {foreground: "#957FB8"}         # oniViolet
+control_char: {foreground: "#6A9589"}         # waveAqua1
+broken_symlink: {foreground: "#C34043"}       # autumnRed
+broken_path_overlay: {foreground: "#938056"}  # boatYellow1
 
 extensions:
   "toml":
     filename:
-      foreground: "#727169"
+      foreground: "#727169"   # fujiGray
       is_dimmed: true
   "json":
     filename:
-      foreground: "#727169"
+      foreground: "#727169"   # fujiGray
       is_dimmed: true
   "yml":
     filename:
-      foreground: "#727169"
+      foreground: "#727169"   # fujiGray
       is_dimmed: true
   "yaml":
     filename:
-      foreground: "#727169"
+      foreground: "#727169"   # fujiGray
       is_dimmed: true
-  "md":
+  "conf":
     filename:
-      foreground: "#DCA561"
-      is_bold: true
-  "js":
+      foreground: "#727169"   # fujiGray
+  "local":
     filename:
-      foreground: "#83a598"
-      is_bold: true
-  "ts":
+      foreground: "#727169"   # fujiGray
+  "zsh":
     filename:
-      foreground: "#83a598"
-      is_bold: true
+      foreground: "#7AA89F"   # waveAqua2
+  "bash":
+    filename:
+      foreground: "#7AA89F"   # waveAqua2
   "cjs":
     filename:
-      foreground: "#6A9589"
+      foreground: "#7AA89F"   # waveAqua2
   "mjs":
     filename:
-      foreground: "#6A9589"
+      foreground: "#7AA89F"   # waveAqua2
   "astro":
     filename:
-      foreground: "#6A9589"
+      foreground: "#7AA89F"   # waveAqua2
   "mod":
     filename:
-      foreground: "#6A9589"
+      foreground: "#7AA89F"   # waveAqua2
+      is_italic: true
   "sum":
     filename:
-      foreground: "#6A9589"
+      foreground: "#7AA89F"   # waveAqua2
+      is_italic: true
+  "tmpl":
+    filename:
+      foreground: "#727169"   # fujiGray
+      is_underline: true
 
 filenames:
   ".env":
     filename:
-      foreground: "#E82424"
+      foreground: "#E82424"   # samuraiRed   
       is_bold: true
       is_underline: true
   "Makefile":
     filename:
-      foreground: "#FF5D62"
+      foreground: "#717C7C"   # katanaGray
       is_bold: true
+  ".DS_Store":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_bold: true
+  ".chezmoiignore":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".viminfo":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".yarnrc":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".luacheckrc":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
   ".editorconfig":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".prettierignore":
+    filename:
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
   ".prettierrc":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".zshrc":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".zshenv":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".zprofile":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".zsh_history":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".bashrc":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+  ".bash_profile":
+    filename:
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
   "README.md":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+      is_italic: true
+  "README":
+    filename:
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
       is_italic: true
   "LICENSE":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
       is_italic: true
   "CHANGELOG.md":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+      is_italic: true
+  ".gitconfig":
+    filename:
+      foreground: "#54546D"   # sumiInk4
+      is_dimmed: true
+      is_italic: true
+  ".gitmodules":
+    filename:
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
       is_italic: true
   ".gitattributes":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
       is_italic: true
   ".gitignore":
     filename:
-      foreground: "#54546D"
+      foreground: "#54546D"   # sumiInk4
       is_dimmed: true
       is_italic: true
