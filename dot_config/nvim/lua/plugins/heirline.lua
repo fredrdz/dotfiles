@@ -9,8 +9,9 @@ return {
 				separators = {
 					left = { "", "" }, -- separator for the left side of the statusline
 					right = { " ", "" }, -- separator for the right side of the statusline
-					tab = { "", "" },
+					tab = { " ", "" },
 				},
+
 				-- add new colors that can be used by heirline
 				colors = function(hl)
 					local get_hlgroup = require("astroui").get_hlgroup
@@ -31,7 +32,7 @@ return {
 				end,
 				attributes = {
 					mode = { bold = true },
-					buffer_active = { bold = true, bg = "#49443C" },
+					buffer_active = { bold = true, italic = true, bg = "#363646" },
 					buffer_picker = { bold = true },
 					macro_recording = { bold = true },
 					git_branch = { bold = true },

@@ -12,8 +12,7 @@ return {
 	---@type AstroUIOpts
 	opts = {
 		-- change colorscheme
-		-- colorscheme = "astrodark",
-		colorscheme = "kanagawa-wave",
+		colorscheme = "kanagawa",
 
 		-- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
 		highlights = {
@@ -29,17 +28,10 @@ return {
 				NeoTreeTabInactive = { bg = "#082032" }, -- string
 				NeoTreeTabSeparatorInactive = { bg = "#082032" }, -- string
 				NeoTreeTabSeparatorActive = { bg = "#16B2C3" }, -- string
-				-- NeoTreeFloatBorder
-
-				-- nvim-notify
-				NotifyBackground = { bg = "#16B2C3" },
 
 				-- heirline
 				Folded = { bg = "#082032", fg = "#181818" },
 				KanaTabline = { bg = "#16161D" },
-
-				-- whichkey
-				WhichkeyFloat = { bg = "#082032" },
 
 				-- matchup
 				MatchParen = { fg = "#7af9ff", bold = true, italic = true, underline = true },

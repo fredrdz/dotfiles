@@ -8,10 +8,10 @@ return {
 				undercurl = true, -- enable undercurls
 				commentStyle = { italic = true },
 				functionStyle = {},
-				keywordStyle = { italic = true, bold = true },
-				statementStyle = {},
-				typeStyle = { bold = true },
-				transparent = false, -- do not set background color
+				keywordStyle = { italic = true },
+				statementStyle = { bold = true },
+				typeStyle = {},
+				transparent = true, -- do not set background color
 				dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 				colors = {
@@ -19,6 +19,9 @@ return {
 						all = {
 							ui = {
 								bg_gutter = "none",
+								float = {
+									{ bg = "none" },
+								},
 							},
 						},
 					},
@@ -31,56 +34,77 @@ return {
 				},
 				overrides = function(colors)
 					local theme = colors.theme
+					local makeDiagnosticColor = function(color)
+						local c = require("kanagawa.lib.color")
+						return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
+					end
+
 					return {
-						-- transparent floating windows
-						NormalFloat = { bg = "none", fg = theme.ui.fg_dim },
-						FloatBorder = { bg = "none", fg = theme.ui.fg_dim },
-						FloatTitle = { bg = "none" },
+						-- floating windows
+						NormalFloat = { bg = theme.ui.bg },
+						FloatBorder = { bg = theme.ui.bg },
+						FloatTitle = { bg = theme.ui.bg, bold = true },
+
+						-- whichkey
+						WhichKeyNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
 
 						-- noice
-						NoiceCmdlinePopupBorder = { bg = "none", fg = theme.ui.fg_dim },
+						NoiceCmdline = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+						NoiceCmdlinePopupBorder = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+						NoiceCmdlinePopupBorderSearch = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+						NoiceCmdlinePopup = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
+
+						-- nvim-notify
+						NotifyBackground = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
 
 						-- diagnostics
-						DiagnosticSignInfo = { bg = "none", fg = theme.ui.fg_dim },
-						DiagnosticInfo = { bg = "none", fg = theme.ui.fg_dim },
+						DiagnosticSignInfo = { bg = theme.ui.bg, fg = theme.ui.fg },
+						DiagnosticInfo = { bg = theme.ui.bg, fg = theme.ui.fg },
 
 						-- lsp
-						LspInfoBorder = { bg = "none", fg = theme.ui.fg_dim },
+						LspInfoBorder = { bg = theme.ui.bg, fg = theme.ui.fg },
 
 						-- Save an hlgroup with dark background and dimmed foreground
 						-- so that you can use it where your still want darker windows.
 						-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-						NormalDark = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+						-- NormalDark = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+						NormalDark = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
 
 						-- Popular plugins that open floats will link to NormalFloat by default;
 						-- set their background accordingly if you wish to keep them dark and borderless
-						LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-						MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-						NeoTreeNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+						LazyNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
+						MasonNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
+						NeoTreeNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
 
 						-- block-like modern telescope
-						TelescopeTitle = { fg = theme.ui.special, bold = true },
-						TelescopeNormal = { bg = "none" },
-						TelescopeBorder = { bg = "none", fg = theme.ui.fg_dim },
+						TelescopeTitle = { fg = theme.ui.fg, bold = true },
+						TelescopeNormal = { bg = theme.ui.bg },
+						TelescopeBorder = { bg = theme.ui.bg, fg = theme.ui.fg },
 
-						TelescopePromptTitle = { bg = theme.diff.delete, fg = theme.ui.fg_dim },
-						TelescopePromptPrefix = { bg = theme.diff.delete, fg = theme.ui.fg_dim },
-						TelescopePromptNormal = { bg = "none", fg = theme.ui.fg_dim },
+						TelescopePromptTitle = { bg = "none", fg = theme.ui.fg },
+						TelescopePromptPrefix = { bg = "none", fg = theme.ui.fg },
+						TelescopePromptNormal = { bg = "none", fg = theme.ui.fg },
 						TelescopePromptBorder = { bg = "none" },
 
-						TelescopeResultsTitle = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-						TelescopeResultsNormal = { bg = "none", fg = theme.ui.fg_dim },
+						TelescopeResultsTitle = { bg = "none", fg = theme.ui.fg },
+						TelescopeResultsNormal = { bg = "none", fg = theme.ui.fg },
 						TelescopeResultsBorder = { bg = "none" },
 
-						TelescopePreviewTitle = { bg = theme.diff.add, fg = theme.ui.fg_dim },
-						TelescopePreviewNormal = { bg = "none", fg = theme.ui.fg_dim },
-						TelescopePreviewBorder = { bg = "none" },
+						TelescopePreviewTitle = { bg = "none", fg = theme.ui.fg },
+						TelescopePreviewNormal = { bg = theme.ui.bg },
+						TelescopePreviewBorder = { bg = theme.ui.bg, fg = theme.ui.bg_dim },
 
 						-- dark completion menu
 						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
 						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 						PmenuSbar = { bg = theme.ui.bg_m1 },
 						PmenuThumb = { bg = "#082032" },
+
+						-- diagnostics
+						DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
+						DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
+						DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
+						DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
 
 						-- ts rainbow
 						TSRainbowRed = { fg = colors.palette.autumnRed },
