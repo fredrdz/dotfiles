@@ -19,7 +19,7 @@ return {
 		},
 		-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 		diagnostics = {
-			virtual_text = false,
+			virtual_text = true,
 			underline = true,
 			virtual_lines = {
 				highlight_whole_line = true,
@@ -62,6 +62,7 @@ return {
 				wildoptions = "pum",
 				wildignorecase = true, -- Ignore case command completion menu
 				-- misc
+				wrap = true,
 				clipboard = "unnamedplus", -- Copy paste between vim and everything else
 				spell = false, -- sets vim.opt.spell
 				hidden = true, -- Enable modified buffers in background
