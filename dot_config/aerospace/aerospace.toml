@@ -119,8 +119,8 @@ automatically-unhide-macos-hidden-apps = true
   f18       = 'exec-and-forget open -a /Applications/Slack.app/'
   f19       = 'exec-and-forget open -a /Applications/Figma.app/'
   f20       = 'exec-and-forget open -a /Applications/Notion.app/'
-  shift-f13 = 'exec-and-forget open -a /Applications/Discord.app/'
-  shift-f14 = 'exec-and-forget open -a /Applications/Signal.app/'
+  shift-f13 = 'exec-and-forget open -a /Applications/Signal.app/'
+  shift-f14 = 'exec-and-forget open -a /Applications/Discord.app/'
   shift-f15 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
 
 [mode.service.binding]
