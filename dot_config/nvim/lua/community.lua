@@ -36,13 +36,16 @@ return {
 	{ import = "astrocommunity.completion.avante-nvim", enabled = true },
 	{
 		"yetone/avante.nvim",
+		enabled = true,
 		dependencies = {
 			{
 				"AstroNvim/astrocore",
 				opts = function(_, opts)
+					local ui = require("astroui")
 					-- reset prefix for neogen annotations
-					opts.mappings.n["<Leader>A"] =
-						{ desc = require("astroui").get_icon("Neogen", 1, true) .. "Annotation" }
+					opts.mappings.n["<Leader>A"] = {
+						desc = ui.get_icon("Neogen", 1, true) .. "Annotation",
+					}
 					-- define the new prefix
 					opts.mappings.n["<Leader>a"] = { desc = " Avante" }
 				end,
@@ -64,11 +67,64 @@ return {
 			opts.mappings.diff.next = "]c"
 			opts.mappings.diff.prev = "[c"
 			opts.mappings.files.add_current = prefix .. "."
+
+			-- behavior
+			opts.behaviour = {
+				auto_suggestions = false, -- experimental stage
+				auto_set_highlight_group = true,
+				auto_set_keymaps = true,
+				auto_apply_diff_after_generation = false,
+				support_paste_from_clipboard = true,
+				minimize_diff = false, -- whether to remove unchanged lines when applying a code block
+			}
+
+			-- base settings
+			---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+			opts.provider = "claude"
+			opts.auto_suggestions_provider = "claude"
+
+			-- ai providers
+			opts.openai = {
+				endpoint = "https://api.openai.com/v1",
+				model = "gpt-4o",
+				timeout = 30000, -- timeout in milliseconds
+				temperature = 0,
+				max_tokens = 8192,
+			}
+			opts.copilot = {
+				endpoint = "https://api.githubcopilot.com",
+				model = "gpt-4o-2024-08-06",
+				proxy = nil, -- [protocol://]host[:port] Use this proxy
+				allow_insecure = false, -- allow insecure server connections
+				timeout = 30000, -- timeout in milliseconds
+				temperature = 0,
+				max_tokens = 8192,
+			}
+			opts.claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-3-5-sonnet-20241022",
+				timeout = 30000, -- timeout in milliseconds
+				temperature = 0,
+				max_tokens = 8000,
+			}
+
+			-- window settings
+			opts.windows = {
+				input = {
+					prefix = " ",
+					height = 10, -- height of the input window in vertical layout
+				},
+				ask = {
+					floating = false, -- open the 'AvanteAsk' prompt in a floating window
+				},
+			}
 		end,
 	},
-	{ import = "astrocommunity.completion.codeium-nvim", enabled = true },
+
+	{ import = "astrocommunity.completion.codeium-nvim", enabled = false },
 	{
 		"Exafunction/codeium.nvim",
+		enabled = false,
 		dependencies = {
 			{
 				"AstroNvim/astrocore",
@@ -99,12 +155,10 @@ return {
 	},
 
 	-- recipes
-	{ import = "astrocommunity.recipes.heirline-nvchad-statusline", enabled = false },
 	{ import = "astrocommunity.recipes.auto-session-restore", enabled = true },
 	{ import = "astrocommunity.recipes.telescope-lsp-mappings", enabled = true },
 
 	-- lsp
-	{ import = "astrocommunity.lsp.garbage-day-nvim", enabled = false },
 	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = false },
 
 	-- packs
