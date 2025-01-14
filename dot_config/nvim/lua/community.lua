@@ -31,12 +31,38 @@ return {
 			},
 		},
 	},
+	{ import = "astrocommunity.editing-support.copilotchat-nvim", enabled = true },
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		enabled = true,
+		dependencies = {
+			{
+				"AstroNvim/astrocore",
+				---@param opts AstroCoreOpts
+				opts = function(_, opts)
+					local maps = opts.mappings
+					if maps and maps.n then
+						-- iterate over existing mappings to remap them
+						for key, value in pairs(maps.n) do
+							if key:match("^<Leader>P") then
+								-- create new key by replacing
+								local new_key = key:gsub("^<Leader>P", "<Leader>a")
+								maps.n[new_key] = value
+								-- remove old mapping
+								maps.n[key] = nil
+							end
+						end
+					end
+				end,
+			},
+		},
+	},
 
 	-- completion
-	{ import = "astrocommunity.completion.avante-nvim", enabled = true },
+	{ import = "astrocommunity.completion.avante-nvim", enabled = false },
 	{
 		"yetone/avante.nvim",
-		enabled = true,
+		enabled = false,
 		dependencies = {
 			{
 				"AstroNvim/astrocore",
@@ -121,10 +147,10 @@ return {
 		end,
 	},
 
-	{ import = "astrocommunity.completion.codeium-nvim", enabled = false },
+	{ import = "astrocommunity.completion.codeium-nvim", enabled = true },
 	{
 		"Exafunction/codeium.nvim",
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			{
 				"AstroNvim/astrocore",
