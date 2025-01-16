@@ -51,16 +51,18 @@ return {
 					["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
 
 					-- neoclip (registers)
-					["<leader>r"] = { name = "󰳴 Neoclip Registers" },
-					["<leader>rN"] = { "<cmd>Telescope neoclip<cr>", desc = 'Default register (")' },
-					["<leader>ra"] = { "<cmd>Telescope neoclip a<cr>", desc = "a" },
-					["<leader>rr"] = { "<cmd>Telescope neoclip r<cr>", desc = "r" },
-					["<leader>rs"] = { "<cmd>Telescope neoclip s<cr>", desc = "s" },
-					["<leader>rt"] = { "<cmd>Telescope neoclip t<cr>", desc = "t" },
-					["<leader>rn"] = { "<cmd>Telescope neoclip n<cr>", desc = "n" },
-					["<leader>re"] = { "<cmd>Telescope neoclip e<cr>", desc = "e" },
-					["<leader>ri"] = { "<cmd>Telescope neoclip i<cr>", desc = "i" },
-					["<leader>ro"] = { "<cmd>Telescope neoclip o<cr>", desc = "o" },
+					["<leader>r"] = { name = "󰳴 Registers" },
+					['<leader>r"'] = { "<cmd>Telescope neoclip<cr>", desc = "Default Register" },
+					["<leader>ra"] = { "<cmd>Telescope neoclip a<cr>", desc = "Register: a" },
+					["<leader>rr"] = { "<cmd>Telescope neoclip r<cr>", desc = "Register: r" },
+					["<leader>rs"] = { "<cmd>Telescope neoclip s<cr>", desc = "Register: s" },
+					["<leader>rt"] = { "<cmd>Telescope neoclip t<cr>", desc = "Register: t" },
+					["<leader>rg"] = { "<cmd>Telescope neoclip g<cr>", desc = "Register: g" },
+					["<leader>rm"] = { "<cmd>Telescope neoclip m<cr>", desc = "Register: m" },
+					["<leader>rn"] = { "<cmd>Telescope neoclip n<cr>", desc = "Register: n" },
+					["<leader>re"] = { "<cmd>Telescope neoclip e<cr>", desc = "Register: e" },
+					["<leader>ri"] = { "<cmd>Telescope neoclip i<cr>", desc = "Register: i" },
+					["<leader>ro"] = { "<cmd>Telescope neoclip o<cr>", desc = "Register: o" },
 
 					-- vim-sandwich
 					["<leader>m"] = { name = "󰉚 Sandwich" },
@@ -167,22 +169,6 @@ return {
 					-- vim-sandwich
 					["<leader>m"] = { name = "󰉚 Sandwich" },
 					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>mq"] = {
-						"<Plug>(textobj-sandwich-auto-i)",
-						desc = "Search/Select auto inner block",
-					},
-					["<leader>mw"] = {
-						"<Plug>(textobj-sandwich-query-i)",
-						desc = "Search/Select query inner sandwich",
-					},
-					["<leader>mf"] = {
-						"<Plug>(textobj-sandwich-auto-a)",
-						desc = "Search/Select auto around block",
-					},
-					["<leader>mp"] = {
-						"<Plug>(textobj-sandwich-query-a)",
-						desc = "Search/Select query around sandwich",
-					},
 				},
 
 				x = {
@@ -191,22 +177,6 @@ return {
 					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
 					["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
 					["<leader>ms"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
-					["<leader>mq"] = {
-						"<Plug>(textobj-sandwich-auto-i)",
-						desc = "Search/Select auto inner block",
-					},
-					["<leader>mw"] = {
-						"<Plug>(textobj-sandwich-query-i)",
-						desc = "Search/Select query inner sandwich",
-					},
-					["<leader>mf"] = {
-						"<Plug>(textobj-sandwich-auto-a)",
-						desc = "Search/Select auto around block",
-					},
-					["<leader>mp"] = {
-						"<Plug>(textobj-sandwich-query-a)",
-						desc = "Search/Select query around sandwich",
-					},
 				},
 			},
 		},
