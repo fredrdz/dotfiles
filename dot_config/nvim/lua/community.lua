@@ -7,6 +7,7 @@ return {
 
 	-- editing-support
 	{ import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
+	{ import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
 	{ import = "astrocommunity.editing-support.neogen", enabled = true },
 	{
 		"danymat/neogen", -- for annotations
@@ -32,6 +33,7 @@ return {
 			},
 		},
 	},
+
 	{ import = "astrocommunity.editing-support.copilotchat-nvim", enabled = true },
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
@@ -58,6 +60,9 @@ return {
 			},
 		},
 	},
+
+	-- comment
+	{ import = "astrocommunity.comment.mini-comment", enabled = true },
 
 	-- completion
 	{ import = "astrocommunity.completion.avante-nvim", enabled = false },
@@ -219,40 +224,8 @@ return {
 	{ import = "astrocommunity.motion.leap-nvim", enabled = true },
 	{
 		"ggandor/leap.nvim",
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				opts = function(_, opts)
-					local new_mappings = {
-						n = {
-							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
-							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
-							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
-						},
-						x = {
-							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
-							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
-							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
-						},
-						o = {
-							["m"] = { "<Plug>(leap-forward)", desc = "Leap forward" },
-							["M"] = { "<Plug>(leap-backward)", desc = "Leap backward" },
-							["gm"] = { "<Plug>(leap-from-window)", desc = "Leap from window" },
-						},
-					}
-					-- unbind the default mappings
-					local modes = { "n", "x", "o" }
-					for _, mode in ipairs(modes) do
-						opts.mappings[mode] = opts.mappings[mode] or {}
-						opts.mappings[mode]["s"] = nil
-						opts.mappings[mode]["S"] = nil
-						opts.mappings[mode]["gs"] = nil
-					end
-					-- merge new mappings into existing ones
-					opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, new_mappings)
-				end,
-			},
-		},
+		enabled = true,
+		commit = "5ae080b646021bbb6e1d8715b155b1e633e28166",
 	},
 	{ import = "astrocommunity.motion.mini-move", enabled = true },
 	{ import = "astrocommunity.motion.mini-surround", enabled = true },
@@ -305,7 +278,6 @@ return {
 	-- syntax
 	{ import = "astrocommunity.syntax.hlargs-nvim", enabled = true },
 	{ import = "astrocommunity.syntax.vim-easy-align", enabled = true },
-	{ import = "astrocommunity.syntax.vim-sandwich", enabled = false },
 
 	-- color
 	{ import = "astrocommunity.color.headlines-nvim", enabled = true },
