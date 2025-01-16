@@ -8,10 +8,12 @@ return {
 				n = {
 					-- disable some defaults key mappings
 					["<F7>"] = false, -- toggleterm
+
 					-- lsp bindings
 					["grr"] = false,
 					["gra"] = false,
 					["grn"] = false,
+
 					-- pane navigation movements
 					["<]b>"] = false,
 					["<[b>"] = false,
@@ -63,14 +65,6 @@ return {
 					["<leader>re"] = { "<cmd>Telescope neoclip e<cr>", desc = "Register: e" },
 					["<leader>ri"] = { "<cmd>Telescope neoclip i<cr>", desc = "Register: i" },
 					["<leader>ro"] = { "<cmd>Telescope neoclip o<cr>", desc = "Register: o" },
-
-					-- vim-sandwich
-					["<leader>m"] = { name = "󰉚 Sandwich" },
-					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
-					["<leader>ms"] = { "<Plug>(sandwich-replace-auto)", desc = "Replace Auto" },
-					["<leader>mt"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
-					["<leader>mg"] = { "<Plug>(sandwich-delete-auto)", desc = "Delete Auto" },
 
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
@@ -145,16 +139,19 @@ return {
 					-- to normal mode
 					["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
 					["<S-esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
+
 					-- pane navigation movements
 					["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },
 					["<M-Right>"] = { "<cmd>SmartCursorMoveRight<cr>", desc = "Navigate pane right" },
 					["<M-Up>"] = { "<cmd>SmartCursorMoveUp<cr>", desc = "Navigate pane up" },
 					["<M-Down>"] = { "<cmd>SmartCursorMoveDown<cr>", desc = "Navigate pane down" },
+
 					-- pane resizing
 					["<S-Left>"] = { "<cmd>SmartResizeLeft<cr>", desc = "Resize pane left" },
 					["<S-Right>"] = { "<cmd>SmartResizeRight<cr>", desc = "Resize pane right" },
 					["<S-Up>"] = { "<cmd>SmartResizeUp<cr>", desc = "Resize pane up" },
 					["<S-Down>"] = { "<cmd>SmartResizeDown<cr>", desc = "Resize pane down" },
+
 					-- tab navigation
 					["<C-Left>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
 					["<C-Right>"] = { "<cmd>tabnext<cr>", desc = "Next tab" },
@@ -164,20 +161,12 @@ return {
 					-- better increment/decrement
 					["+"] = { "g<C-a>", desc = "Increment number" },
 					["-"] = { "g<C-x>", desc = "Descrement number" },
+
 					-- Easy-Align
 					ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
-					-- vim-sandwich
-					["<leader>m"] = { name = "󰉚 Sandwich" },
-					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
 				},
 
-				x = {
-					-- vim-sandwich
-					["<leader>m"] = { name = "󰉚 Sandwich" },
-					["<leader>ma"] = { "<Plug>(sandwich-add)", desc = "Add" },
-					["<leader>mr"] = { "<Plug>(sandwich-replace)", desc = "Replace" },
-					["<leader>ms"] = { "<Plug>(sandwich-delete)", desc = "Delete" },
-				},
+				x = {},
 			},
 		},
 	},
