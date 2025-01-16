@@ -185,7 +185,7 @@ return {
 	{ import = "astrocommunity.recipes.telescope-lsp-mappings", enabled = true },
 
 	-- lsp
-	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = false },
+	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
 
 	-- packs
 	{ import = "astrocommunity.pack.astro", enabled = true },
@@ -201,7 +201,7 @@ return {
 	{ import = "astrocommunity.pack.tailwindcss", enabled = true },
 	{ import = "astrocommunity.pack.toml", enabled = true },
 	{ import = "astrocommunity.pack.typescript", enabled = true },
-	{ import = "astrocommunity.pack.templ", enabled = false },
+	{ import = "astrocommunity.pack.templ", enabled = true },
 	{ import = "astrocommunity.pack.yaml", enabled = true },
 
 	-- diagnostics
