@@ -61,20 +61,6 @@ return {
 	},
 
 	{
-		"which-key.nvim",
-		opts = {
-			window = {
-				border = "none", -- none, single, double, shadow
-				position = "bottom", -- bottom, top
-				margin = { 0, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
-				padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-				winblend = 6, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-				zindex = 1000, -- positive value to position WhichKey above other floating windows.
-			},
-		},
-	},
-
-	{
 		"neo-tree.nvim",
 		opts = {
 			close_if_last_window = true,
@@ -217,29 +203,18 @@ return {
 	{ "fredrdz/vim-hugo", ft = "gohtml" },
 	{ "tjdevries/templ.nvim", ft = "templ" },
 
-	{ "andymass/vim-matchup", after = "nvim-treesitter", event = "User AstroFile" },
-
 	{
-		"machakann/vim-sandwich",
+		"andymass/vim-matchup",
+		after = "nvim-treesitter",
 		event = "User AstroFile",
-		config = function()
-			vim.g.sandwich_no_default_key_mappings = 1
-		end,
-		opts = {},
-	},
-
-	{
-		"folke/todo-comments.nvim",
-		event = "User AstroFile",
-		cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-	},
-
-	{
-		"AckslD/nvim-neoclip.lua",
-		event = "User AstroFile",
-		after = "telescope.nvim",
-		config = function()
-			require("neoclip").setup()
+		init = function()
+			vim.g.matchup_matchparen_offscreen = { method = "status" } -- "popup" | "status"
+			vim.g.matchup_matchparen_hi_surround_always = 1
+			vim.g.matchup_matchparen_deferred = 1
+			vim.g.matchup_matchparen_deferred_show_delay = 50
+			vim.g.matchup_matchparen_deferred_hide_delay = 700
+			vim.g.matchup_surround_enabled = 1
+			vim.g.matchup_transmute_enabled = 1
 		end,
 	},
 }
