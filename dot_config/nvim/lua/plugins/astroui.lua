@@ -34,18 +34,10 @@ return {
 				KanaTabline = { bg = "#16161D" },
 
 				-- matchup
-				MatchParen = { fg = "#7af9ff", bold = true, italic = true, underline = true },
-				MatchWord = { fg = "#7af9ff", bold = true, italic = true, underline = true },
-				MatchParenCur = { fg = "#7af9ff", bold = true, italic = true, underline = true },
-				MatchWordCur = { bold = true, underline = true },
-
-				CursorColumn = { bg = "#2C394B" },
-				CursorLine = { bg = "#2C394B" },
-				Delimiter = { fg = "#16B2C3", bold = true },
-			},
-
-			astrodark = { -- a table of overrides/changes when applying the astrotheme theme
-				-- Normal = { bg = "#000000" },
+				MatchParen = { fg = "#16B2C3", bold = true, italic = true, underline = true },
+				MatchWord = { fg = "#16B2C3", bold = true, italic = true, underline = true },
+				MatchParenCur = { fg = "#16B2C3", bold = true, italic = true, underline = true },
+				MatchWordCur = { fg = "#16B2C3", bold = true, underline = true, italic = true },
 			},
 		},
 	},

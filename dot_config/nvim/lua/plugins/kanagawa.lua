@@ -45,8 +45,8 @@ return {
 						FloatBorder = { bg = theme.ui.bg },
 						FloatTitle = { bg = theme.ui.bg, bold = true },
 
-						-- whichkey
-						WhichKeyNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
+						-- leap
+						LeapLabelPrimary = { bg = theme.ui.shade0, fg = "#16B2C3", bold = true },
 
 						-- noice
 						NoiceCmdline = { bg = theme.ui.bg, fg = theme.ui.fg_dim },
