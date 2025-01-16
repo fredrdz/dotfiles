@@ -6,6 +6,7 @@ return {
 	"AstroNvim/astrocommunity",
 
 	-- editing-support
+	{ import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
 	{ import = "astrocommunity.editing-support.neogen", enabled = true },
 	{
 		"danymat/neogen", -- for annotations
@@ -259,12 +260,16 @@ return {
 	-- project
 	{ import = "astrocommunity.project.project-nvim", enabled = true },
 
+	-- register
+	{ import = "astrocommunity.register.nvim-neoclip-lua", enabled = true },
+
 	-- search
 	{ import = "astrocommunity.search.nvim-spectre", enabled = true },
 
 	-- syntax
 	{ import = "astrocommunity.syntax.hlargs-nvim", enabled = true },
 	{ import = "astrocommunity.syntax.vim-easy-align", enabled = true },
+	{ import = "astrocommunity.syntax.vim-sandwich", enabled = true },
 
 	-- color
 	{ import = "astrocommunity.color.headlines-nvim", enabled = true },
