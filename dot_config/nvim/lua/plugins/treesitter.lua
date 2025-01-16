@@ -7,6 +7,7 @@ return {
 		{
 			"ngalaiko/tree-sitter-go-template",
 			config = function()
+				---@class parser_config
 				local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 				parser_config.gotmpl = {
 					install_info = {
@@ -18,18 +19,7 @@ return {
 				}
 			end,
 		},
-		{
-			"andymass/vim-matchup",
-			init = function()
-				vim.g.matchup_matchparen_offscreen = { method = "popup" } -- "popup" | "status"
-				vim.g.matchup_matchparen_hi_surround_always = 1
-				vim.g.matchup_matchparen_deferred = 1
-				vim.g.matchup_matchparen_deferred_show_delay = 50
-				vim.g.matchup_matchparen_deferred_hide_delay = 700
-				vim.g.matchup_surround_enabled = 1
-				vim.g.matchup_transmute_enabled = 1
-			end,
-		},
+		{ "andymass/vim-matchup" },
 	},
 
 	opts = {
