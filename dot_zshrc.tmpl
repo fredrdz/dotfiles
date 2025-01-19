@@ -185,8 +185,11 @@ alias ssh='TERM=xterm-256color ssh'
 # docker aliases
 alias docker-compose='docker compose'
 
-# cargo updater
-alias cargo-update="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && cargo install-update -a"
+# cargo apps updater
+alias cargo-update="cargo install-update -a"
+
+# go apps updater
+alias go-update="go-global-update"
 
 # keyboard firmware updater
 alias kbupdate='
@@ -457,5 +460,6 @@ fi
 
 {{/*-------------------- Nobara ----------------------*/}}
 {{- if eq .osid "linux-nobara" -}}
-alias update='sudo dnf update rpmfusion-nonfree-release rpmfusion-free-release fedora-repos nobara-repos --refresh && sudo dnf distro-sync --refresh && sudo dnf update --refresh'
+alias update='nobara-sync cli'
+alias update-extra='sudo dnf update rpmfusion-nonfree-release rpmfusion-free-release fedora-repos nobara-repos --refresh && sudo dnf distro-sync --refresh && sudo dnf update --refresh'
 {{- end -}}
