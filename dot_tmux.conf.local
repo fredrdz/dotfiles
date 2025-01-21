@@ -223,7 +223,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{wan_ip_v4}
 
 tmux_conf_theme_status_left=" ❐ #{circled_session_name} | #{loadavg} |󰖈 #{wan_ip_v4} , 󰌘 #{lan}"
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_bar,#{battery_bar},}#{?battery_status, #{battery_status},}#{?battery_percentage,#{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} |  %T ,  %F |  #{username}#{root} ,  #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -321,6 +321,8 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+set -g status-interval 1 # update status line every second
+
 # increase history size
 set -g history-limit 10000
 
@@ -332,6 +334,17 @@ set -g mouse on
 #set -g status-keys vi
 #set -g mode-keys vi
 
+# move status line to top
+set -g status-position top
+
+# Undercurl
+set -g default-terminal '${TERM}'
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+
+# -- user keybindings ---------------------------------------------------------
+
 # Unbind the default prefix key
 set -gu prefix2
 unbind C-a
@@ -342,9 +355,6 @@ bind-key C-Space send-prefix
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind v new-window -c #{pane_current_path} #!important
-
-# user custom bindings
-# ---
 
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
@@ -367,11 +377,10 @@ if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
 if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
     "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
 
-# bind-key -T copy-mode-vi 'M-Left' select-pane -L
-# bind-key -T copy-mode-vi 'M-Down' select-pane -D
-# bind-key -T copy-mode-vi 'M-Up' select-pane -U
-# bind-key -T copy-mode-vi 'M-Right' select-pane -R
-# bind-key -T copy-mode-vi 'M-\' select-pane -l
+bind-key -T copy-mode-vi 'M-Left' select-pane -L
+bind-key -T copy-mode-vi 'M-Down' select-pane -D
+bind-key -T copy-mode-vi 'M-Up' select-pane -U
+bind-key -T copy-mode-vi 'M-Right' select-pane -R
 
 bind-key -n M-Home previous-window
 bind-key -n M-End next-window
@@ -388,23 +397,17 @@ unbind '"'
 unbind _
 bind \\ split-window -v
 
-# plugin keys
-# fuzzback
-set -g @fuzzback-bind 'C-?'
-set -g @fuzzback-popup 1
-set -g @fuzzback-popup-size '90%'
 # fzf
-TMUX_FZF_LAUNCH_KEY="Space"
+unbind-key f # this unbinds find-window key
+TMUX_FZF_LAUNCH_KEY="f"
 
-# ---
+# rebind choose tree
+unbind-key t # this unbinds the show clock key
+bind-key t choose-tree
 
-# move status line to top
-set -g status-position top
-
-# Undercurl
-set -g default-terminal '${TERM}'
-set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+# rebind choose session
+unbind-key s
+bind-key s choose-session
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -442,11 +445,22 @@ tmux_conf_uninstall_plugins_on_reload=true
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
 set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-cpu'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @plugin 'roosta/tmux-fuzzback'
+set -g @fuzzback-bind 'Bspace'
+set -g @fuzzback-popup 1
+set -g @fuzzback-popup-size '90%'
+set -g @fuzzback-hide-preview 1
 set -g @plugin 'sainnhe/tmux-fzf'
+set -g @plugin 'laktak/extrakto'
+set -g @plugin 'alexwforsythe/tmux-which-key'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @resurrect-save 'S'
+set -g @resurrect-restore 'R'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
 
 
