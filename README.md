@@ -1,8 +1,30 @@
 # Dotfiles
 My dotfiles, managed with:
-- [`Chezmoi`](https://www.chezmoi.io/).
-- [`Bitwarden Secrets`](https://bitwarden.com/products/secrets-manager/).
-- [`Age`](https://github.com/FiloSottile/age).
+- [`Chezmoi`](https://www.chezmoi.io/)
+- [`Bitwarden Secrets`](https://bitwarden.com/products/secrets-manager/)
+- [`Age`](https://github.com/FiloSottile/age)
+
+<!-- <p align="center"> -->
+<!-- <img width="1840" alt="Screenshot 2025-01-21 at 16 50 30" src="https://github.com/fredrdz/dotfiles/assets/"> -->
+<!-- </p> -->
+
+## Editor: [Neovim](https://neovim.io/) [[config](./dot_config/nvim)]
+
+- Distro: [AstroNvim](https://astronvim.com/)
+- Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+- Leader: `Ctrl+Space`
+
+## Terminal: [Wezterm](https://wezfurlong.org/wezterm/index.html) [[config](./dot_config/wezterm)]
+
+- Font: JetBrains Mono
+- Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+- Leader: `Ctrl+Shift`
+
+## Shell: [Zsh](https://www.zsh.org/) [[config](./dot_zshrc.tmpl)]
+
+- Prompt: [Starship](https://github.com/starship/starship) [[config](./dot_config/starship.toml)]
+- MacOS Package manager: [homebrew](https://github.com/homebrew)
+- Fedora Package manager: [dnf](https://docs.fedoraproject.org/en-US/quick-docs/dnf/)
 
 ## How I install via Chezmoi.
 ```sh
