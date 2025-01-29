@@ -1,0 +1,23 @@
+#!/bin/bash
+# author: github.com/fredrdz
+# note: uses golang templates to generate bash script
+
+echo "running updates..."
+
+{{/*-------------------- Darwin ----------------------*/}}
+{{- if eq .osid "darwin" -}}
+
+brew upgrade
+go-global-update
+
+{{/*-------------------- Fedora ----------------------*/}}
+{{- else if eq .osid "linux-fedora" -}}
+
+sudo dnf upgrade
+
+{{/*-------------------- Nobara ----------------------*/}}
+{{- else if eq .osid "linux-nobara" -}}
+
+nobara-sync cli
+
+{{- end -}}
