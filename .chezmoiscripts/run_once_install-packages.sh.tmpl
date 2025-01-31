@@ -30,7 +30,7 @@ packages-golang() {
 	go install github.com/Gelio/go-global-update@latest
 	go install github.com/walles/moar@latest
 	go install github.com/dundee/gdu/v5/cmd/gdu@latest
-	go install sigs.k8s.io/kind@v0.17.0
+	go install sigs.k8s.io/kind@latest
 	go install github.com/mikefarah/yq/v4@latest
 	go install github.com/TheZoraiz/ascii-image-converter@latest
 	go install github.com/sensepost/gowitness@latest
@@ -47,6 +47,7 @@ packages-golang() {
 	go install github.com/raviqqe/muffet/v2@latest
 	go install github.com/markusmobius/go-trafilatura/cmd/go-trafilatura@latest
 	go install github.com/koblas/s3-cli@latest
+	go install github.com/rs/curlie@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
