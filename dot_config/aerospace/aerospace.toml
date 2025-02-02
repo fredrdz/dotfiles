@@ -114,14 +114,14 @@ automatically-unhide-macos-hidden-apps = true
   alt-shift-ctrl-t = 'workspace 4'
 
   # See: https://nikitabobko.github.io/AeroSpace/goodness#open-a-new-window-with-applescript
-  f16       = 'exec-and-forget open -a /Applications/WezTerm.app/'
-  f17       = 'exec-and-forget open -a /Applications/ChatGPT.app/'
-  f18       = 'exec-and-forget open -a /Applications/Slack.app/'
-  f19       = 'exec-and-forget open -a /Applications/Figma.app/'
-  f20       = 'exec-and-forget open -a /Applications/Notion.app/'
-  shift-f13 = 'exec-and-forget open -a /Applications/Signal.app/'
-  shift-f14 = 'exec-and-forget open -a /Applications/Discord.app/'
-  shift-f15 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
+  f13 = 'exec-and-forget open -a /Applications/Signal.app/'
+  f14 = 'exec-and-forget open -a /Applications/Discord.app/'
+  f15 = 'exec-and-forget open -a /Applications/WezTerm.app/'
+  f16 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
+  f17 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
+  f18 = 'exec-and-forget open -a /Applications/Slack.app/'
+  f19 = 'exec-and-forget open -a /Applications/Figma.app/'
+  f20 = 'exec-and-forget open -a /Applications/Notion.app/'
 
 [mode.service.binding]
   esc = 'mode main'
