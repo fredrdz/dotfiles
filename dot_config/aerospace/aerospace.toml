@@ -51,8 +51,8 @@ automatically-unhide-macos-hidden-apps = true
 # https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
   1 = ['^built-in retina display$', 'main']
-  2 = ['dell', 'secondary']
-  3 = ['lg', 3]
+  2 = ['^m15*', 'dell', 'secondary']
+  3 = ['^sidecar', 'lg', 3]
 
 [mode.main.binding]
   # All possible keys:
