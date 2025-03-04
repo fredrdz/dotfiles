@@ -460,7 +460,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @resurrect-save 'S'
 set -g @resurrect-restore 'R'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @continuum-boot 'on'
+set -g @continuum-boot 'off' # does not support wezterm
 set -g @continuum-restore 'on'
 
 
