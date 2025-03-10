@@ -1,0 +1,22 @@
+plugins = [
+  "prettier-plugin-astro",
+  "prettier-plugin-go-template",
+  "prettier-plugin-tailwindcss",
+]
+
+bracketSameLine = false
+bracketSpacing  = true
+printWidth      = 100
+proseWrap       = "never"
+semi            = false
+singleQuote     = true
+
+[[overrides]]
+  files = "*.astro"
+  [overrides.options]
+    parser = "astro"
+
+[[overrides]]
+  files = ["*.gohtml", "*.html", "*.tmpl"]
+  [overrides.options]
+    parser = "go-template"
