@@ -1,9 +1,13 @@
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
 # Binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
+*.db
 
 # Test binary, built with `go test -c`
 *.test
@@ -11,28 +15,72 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Dependency directories (remove the comment below to include it)
-vendor/
-_vendor/
+# Config files
+*.config
+.firebaserc
 
-# Node
+# Dependency directories
+vendor/
 node_modules/
 
-# vscode
+# Build directories
+dist/
+_site/
+.builds/
+.app_data/
+pb_data/
+
+# Build files
+version.txt
+
+# Ops directories
+.netlify/
+.vercel/
+.terraform/
+.firebase/
+
+# IDE files
 *.code-workspace
 .idea/
 .vscode/
 
-# OS generated files
+# Go workspace files
+go.work
+go.work.sum
+
+# Environment files
+.env
+**/.env.*
+!.env.example
+
+# Keys
+*.crt
+*.cert
+*.key
+
+# Secrets
+*.secrets
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Generated Files
+.astro/
+*.tsbuildinfo
+bun*
+package-lock.json
+*_templ.go
+*_templ.txt
+*.min.css
+
+# OS files
 .DS_Store
 .DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 
-# misc
+# Misc
+*.log
 tmp/
-
-# spooky secrets
-*.env
-*.key
+sample/
