@@ -38,6 +38,9 @@ return {
 						desc = "Switch Buffers",
 					},
 
+					-- buffer refresh
+					["<leader>bR"] = { "<cmd>e<cr>", desc = "Refresh Current Buffer" },
+
 					-- trouble
 					["<leader>x"] = { desc = "󰒡 Trouble" },
 					["<leader>xX"] = {
