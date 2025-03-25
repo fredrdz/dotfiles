@@ -142,6 +142,11 @@ automatically-unhide-macos-hidden-apps = true
   # --
   k = ['mode main', 'reload-config']
 
+# ------------------------------------------------------------
+# Window detection rules
+# use mdls -name kMDItemCFBundleIdentifier /Applications/APP_NAME.app
+# for example w/ brave:
+# mdls -name kMDItemCFBundleIdentifier -r /Applications/Brave\ Browser.app
 [[on-window-detected]]
   if.app-id = 'com.apple.finder'
   run       = ['layout floating', 'move-node-to-workspace 1']
@@ -157,6 +162,14 @@ automatically-unhide-macos-hidden-apps = true
 [[on-window-detected]]
   if.app-id = 'notion.id'
   run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.valvesoftware.dota2'
+  run       = ['layout floating', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+  if.app-id = 'com.valvesoftware.steam'
+  run       = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
   if.app-id = 'com.brave.Browser'
