@@ -22,6 +22,9 @@ return {
 					["<C-k>"] = false,
 					["<C-l>"] = false,
 
+					-- quicker explorer bind outside leader key
+					["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
+
 					-- better increment/decrement
 					["-"] = { "<c-x>", desc = "Descrement number" },
 					["+"] = { "<c-a>", desc = "Increment number" },
