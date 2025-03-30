@@ -59,7 +59,8 @@ local mymouse = {
 local function font_with_fallback(name, params)
 	local names = {
 		name,
-		"JetBrains Nerd Font",
+		"MonaspiceNe Nerd Font Mono",
+		"JetBrainsMono Nerd Font Mono",
 		"Source Code Pro",
 	}
 	return wezterm.font_with_fallback(names, params)
@@ -85,10 +86,18 @@ local config = {
 	scrollback_lines = 3500,
 	enable_scroll_bar = false,
 	harfbuzz_features = {
-		"zero", -- Use a slashed zero '0' (instead of dotted)
-		"kern", -- (default) kerning (todo check what is really is)
-		"liga", -- (default) ligatures
-		"clig", -- (default) contextual ligatures
+		"liga",
+		"calt",
+		"ss01",
+		"ss02",
+		"ss03",
+		"ss04",
+		"ss05",
+		"ss06",
+		"ss07",
+		"ss08",
+		"ss09",
+		"ss10",
 	},
 
 	-- tab_bar
@@ -117,7 +126,7 @@ local config = {
 	-- so it's easier to see and select.
 	window_padding = { left = "0.25cell", right = "0.25cell", top = "0.25cell", bottom = "0cell" },
 	window_decorations = "RESIZE",
-	window_background_opacity = 0.95,
+	window_background_opacity = 0.97,
 	macos_window_background_blur = 25,
 	text_background_opacity = 1,
 	window_close_confirmation = "NeverPrompt",
@@ -133,48 +142,56 @@ local config = {
 
 	-- font settings
 	font = wezterm.font({
-		family = "JetBrains Mono",
+		family = "MonaspiceNe Nerd Font Mono",
+		-- family = "JetBrainsMono Nerd Font Mono",
 		weight = "Regular",
 	}),
+
 	font_rules = {
 		{
 			italic = true,
 			intensity = "Bold",
 			underline = "Single",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBlack" }),
+			font = font_with_fallback("MonaspiceKr Nerd Font Mono", { style = "Italic", weight = "ExtraBold" }),
 		},
+
 		{
 			italic = true,
 			intensity = "Bold",
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "ExtraBold" }),
+			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Italic", weight = "DemiBold" }),
 		},
+
 		{
 			intensity = "Bold",
 			italic = false,
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Normal", weight = "Bold" }),
+			font = font_with_fallback("MonaspiceNe Nerd Font Mono", { style = "Normal", weight = "Bold" }),
 		},
+
 		{
 			intensity = "Normal",
 			italic = true,
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "DemiBold" }),
+			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Italic", weight = "Thin" }),
 		},
+
 		{
 			intensity = "Half",
 			italic = true,
 			underline = "None",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Italic", weight = "Medium" }),
+			font = font_with_fallback("MonaspiceAr Nerd Font Mono", { style = "Italic", weight = "Medium" }),
 		},
+
 		{
 			intensity = "Normal",
 			italic = false,
 			underline = "Single",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { style = "Normal", weight = "Light" }),
+			font = font_with_fallback("MonaspiceAr Nerd Font Mono", { style = "Normal", weight = "Regular" }),
 		},
 	},
-	font_size = 15,
+
+	font_size = 16,
 	freetype_load_target = "Light",
 	freetype_load_flags = "NO_HINTING",
 	foreground_text_hsb = {
@@ -182,10 +199,11 @@ local config = {
 		saturation = 1.0,
 		brightness = 1.0,
 	},
+
+	line_height = 1.3,
+	cell_width = 0.9,
 	underline_position = "110%",
 	underline_thickness = "200%",
-	line_height = 1.0,
-	cell_width = 0.9,
 	bold_brightens_ansi_colors = "BrightOnly",
 	inactive_pane_hsb = { hue = 1.0, saturation = 0.7, brightness = 0.8 },
 

@@ -7,11 +7,11 @@ return {
 				compile = true, -- enable compiling the colorscheme
 				undercurl = true, -- enable undercurls
 				commentStyle = { italic = true },
-				functionStyle = {},
-				keywordStyle = { italic = true },
+				functionStyle = { bold = true },
+				keywordStyle = { bold = true, italic = true },
 				statementStyle = { bold = true },
 				typeStyle = {},
-				transparent = true, -- do not set background color
+				transparent = false, -- do not set background color
 				dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 				colors = {
