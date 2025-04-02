@@ -143,7 +143,6 @@ local config = {
 	-- font settings
 	font = wezterm.font({
 		family = "MonaspiceNe Nerd Font Mono",
-		-- family = "JetBrainsMono Nerd Font Mono",
 		weight = "Regular",
 	}),
 
