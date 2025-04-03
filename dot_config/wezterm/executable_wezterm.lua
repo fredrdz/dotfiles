@@ -101,22 +101,24 @@ local config = {
 	},
 
 	-- tab_bar
-	enable_tab_bar = true,
+	enable_tab_bar = false,
 	use_fancy_tab_bar = true,
-	tab_max_width = 50,
+	tab_bar_at_bottom = true,
 	hide_tab_bar_if_only_one_tab = true,
-	tab_bar_at_bottom = false,
+	tab_max_width = 75,
 
 	-- window settings
 	window_frame = {
-		font = wezterm.font({ family = "JetBrains Nerd Font Mono", weight = "Light" }),
-		font_size = 10,
+		font = wezterm.font({ family = "JetBrainsMono Nerd Font Mono", weight = "Light" }),
+		font_size = 11,
 		active_titlebar_bg = "#202123",
 		inactive_titlebar_bg = "#202123",
+		-- border sizes
 		border_left_width = "0cell",
 		border_right_width = "0cell",
 		border_bottom_height = "0cell",
 		border_top_height = "0cell",
+		-- border colors
 		border_left_color = "None",
 		border_right_color = "None",
 		border_bottom_color = "None",
@@ -124,9 +126,14 @@ local config = {
 	},
 	-- Pad window to avoid the content to be too close to the border,
 	-- so it's easier to see and select.
-	window_padding = { left = "0.25cell", right = "0.25cell", top = "0.25cell", bottom = "0cell" },
+	window_padding = {
+		left = "0cell",
+		right = "0cell",
+		top = "0cell",
+		bottom = "0cell",
+	},
 	window_decorations = "RESIZE",
-	window_background_opacity = 0.97,
+	window_background_opacity = 1,
 	macos_window_background_blur = 25,
 	text_background_opacity = 1,
 	window_close_confirmation = "NeverPrompt",
@@ -148,24 +155,31 @@ local config = {
 
 	font_rules = {
 		{
-			italic = true,
 			intensity = "Bold",
+			italic = true,
 			underline = "Single",
-			font = font_with_fallback("MonaspiceKr Nerd Font Mono", { style = "Italic", weight = "ExtraBold" }),
+			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Normal", weight = "Bold" }),
 		},
 
 		{
-			italic = true,
 			intensity = "Bold",
+			italic = true,
 			underline = "None",
-			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Italic", weight = "DemiBold" }),
+			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Normal", weight = "Medium" }),
+		},
+
+		{
+			intensity = "Bold",
+			italic = false,
+			underline = "Single",
+			font = font_with_fallback("MonaspiceNe Nerd Font Mono", { style = "Normal", weight = "Bold" }),
 		},
 
 		{
 			intensity = "Bold",
 			italic = false,
 			underline = "None",
-			font = font_with_fallback("MonaspiceNe Nerd Font Mono", { style = "Normal", weight = "Bold" }),
+			font = font_with_fallback("MonaspiceNe Nerd Font Mono", { style = "Normal", weight = "Medium" }),
 		},
 
 		{
@@ -179,24 +193,24 @@ local config = {
 			intensity = "Half",
 			italic = true,
 			underline = "None",
-			font = font_with_fallback("MonaspiceAr Nerd Font Mono", { style = "Italic", weight = "Medium" }),
+			font = font_with_fallback("MonaspiceRn Nerd Font Mono", { style = "Normal", weight = "Thin" }),
 		},
 
 		{
 			intensity = "Normal",
 			italic = false,
 			underline = "Single",
-			font = font_with_fallback("MonaspiceAr Nerd Font Mono", { style = "Normal", weight = "Regular" }),
+			font = font_with_fallback("MonaspiceNe Nerd Font Mono", { style = "Normal", weight = "Thin" }),
 		},
 	},
 
-	font_size = 16,
+	font_size = 15.5,
 	freetype_load_target = "Light",
 	freetype_load_flags = "NO_HINTING",
 	foreground_text_hsb = {
 		hue = 1.0,
 		saturation = 1.0,
-		brightness = 1.0,
+		brightness = 1.2,
 	},
 
 	line_height = 1.3,
