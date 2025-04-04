@@ -65,130 +65,44 @@ return {
 	{ import = "astrocommunity.comment.mini-comment", enabled = true },
 
 	-- completion
-	{ import = "astrocommunity.completion.avante-nvim", enabled = false },
-	{
-		"yetone/avante.nvim",
-		enabled = false,
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				opts = function(_, opts)
-					local ui = require("astroui")
-					-- reset prefix for neogen annotations
-					opts.mappings.n["<Leader>A"] = {
-						desc = ui.get_icon("Neogen", 1, true) .. "Annotation",
-					}
-					-- define the new prefix
-					opts.mappings.n["<Leader>a"] = { desc = " Avante" }
-				end,
-			},
-		},
-		opts = function(_, opts)
-			-- define the new prefix
-			local prefix = "<Leader>a"
-			-- set the new mappings
-			opts.mappings.ask = prefix .. "a"
-			opts.mappings.edit = prefix .. "e"
-			opts.mappings.refresh = prefix .. "r"
-			opts.mappings.focus = prefix .. "f"
-			opts.mappings.toggle.default = prefix .. "t"
-			opts.mappings.toggle.debug = prefix .. "d"
-			opts.mappings.toggle.hint = prefix .. "h"
-			opts.mappings.toggle.suggestion = prefix .. "s"
-			opts.mappings.toggle.repomap = prefix .. "R"
-			opts.mappings.diff.next = "]c"
-			opts.mappings.diff.prev = "[c"
-			opts.mappings.files.add_current = prefix .. "."
-
-			-- behavior
-			opts.behaviour = {
-				auto_suggestions = false, -- experimental stage
-				auto_set_highlight_group = true,
-				auto_set_keymaps = true,
-				auto_apply_diff_after_generation = false,
-				support_paste_from_clipboard = true,
-				minimize_diff = false, -- whether to remove unchanged lines when applying a code block
-			}
-
-			-- base settings
-			---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-			opts.provider = "claude"
-			opts.auto_suggestions_provider = "claude"
-
-			-- ai providers
-			opts.openai = {
-				endpoint = "https://api.openai.com/v1",
-				model = "gpt-4o",
-				timeout = 30000, -- timeout in milliseconds
-				temperature = 0,
-				max_tokens = 8192,
-			}
-			opts.copilot = {
-				endpoint = "https://api.githubcopilot.com",
-				model = "gpt-4o-2024-08-06",
-				proxy = nil, -- [protocol://]host[:port] Use this proxy
-				allow_insecure = false, -- allow insecure server connections
-				timeout = 30000, -- timeout in milliseconds
-				temperature = 0,
-				max_tokens = 8192,
-			}
-			opts.claude = {
-				endpoint = "https://api.anthropic.com",
-				model = "claude-3-5-sonnet-20241022",
-				timeout = 30000, -- timeout in milliseconds
-				temperature = 0,
-				max_tokens = 8000,
-			}
-
-			-- window settings
-			opts.windows = {
-				input = {
-					prefix = " ",
-					height = 10, -- height of the input window in vertical layout
-				},
-				ask = {
-					floating = false, -- open the 'AvanteAsk' prompt in a floating window
-				},
-			}
-		end,
-	},
-
-	{ import = "astrocommunity.completion.codeium-nvim", enabled = true },
-	{
-		"Exafunction/codeium.nvim",
-		enabled = true,
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				---@param opts AstroCoreOpts
-				opts = function(_, opts)
-					local maps = opts.mappings
-					if maps and maps.n then
-						-- create a temporary table to store new mappings
-						local new_mappings = {}
-						-- iterate over existing mappings to remap them
-						for key, value in pairs(maps.n) do
-							if key:match("^<Leader>;") then
-								-- create new key by replacing
-								local new_key = key:gsub("^<Leader>;", "<Leader>kr")
-								new_mappings[new_key] = value
-								-- remove old mapping
-								maps.n[key] = nil
-							end
-						end
-						-- merge new mappings into the original mappings table
-						for new_key, value in pairs(new_mappings) do
-							maps.n[new_key] = value
-						end
-					end
-				end,
-			},
-		},
-	},
+	-- FIX: uses nvim-cmp instead of blink-cmp
+	--
+	-- { import = "astrocommunity.completion.codeium-nvim", enabled = true },
+	-- {
+	-- 	"Exafunction/codeium.nvim",
+	-- 	enabled = true,
+	-- 	dependencies = {
+	-- 		{
+	-- 			"AstroNvim/astrocore",
+	-- 			---@param opts AstroCoreOpts
+	-- 			opts = function(_, opts)
+	-- 				local maps = opts.mappings
+	-- 				if maps and maps.n then
+	-- 					-- create a temporary table to store new mappings
+	-- 					local new_mappings = {}
+	-- 					-- iterate over existing mappings to remap them
+	-- 					for key, value in pairs(maps.n) do
+	-- 						if key:match("^<Leader>;") then
+	-- 							-- create new key by replacing
+	-- 							local new_key = key:gsub("^<Leader>;", "<Leader>kr")
+	-- 							new_mappings[new_key] = value
+	-- 							-- remove old mapping
+	-- 							maps.n[key] = nil
+	-- 						end
+	-- 					end
+	-- 					-- merge new mappings into the original mappings table
+	-- 					for new_key, value in pairs(new_mappings) do
+	-- 						maps.n[new_key] = value
+	-- 					end
+	-- 				end
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- },
 
 	-- recipes
 	{ import = "astrocommunity.recipes.auto-session-restore", enabled = true },
-	{ import = "astrocommunity.recipes.telescope-lsp-mappings", enabled = true },
+	{ import = "astrocommunity.recipes.vscode-icons", enabled = true },
 
 	-- lsp
 	{ import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
@@ -213,20 +127,11 @@ return {
 	-- diagnostics
 	{ import = "astrocommunity.diagnostics.trouble-nvim", enabled = true },
 
-	-- icon
-	{ import = "astrocommunity.icon.mini-icons", enabled = true },
-
 	-- indent
 	{ import = "astrocommunity.indent.indent-tools-nvim", enabled = true },
-	{ import = "astrocommunity.indent.mini-indentscope", enabled = true },
 
 	-- motion
 	{ import = "astrocommunity.motion.leap-nvim", enabled = true },
-	{
-		"ggandor/leap.nvim",
-		enabled = true,
-		commit = "5ae080b646021bbb6e1d8715b155b1e633e28166",
-	},
 	{ import = "astrocommunity.motion.mini-move", enabled = true },
 	{ import = "astrocommunity.motion.mini-surround", enabled = true },
 	{
@@ -265,9 +170,6 @@ return {
 
 	-- project
 	{ import = "astrocommunity.project.project-nvim", enabled = true },
-
-	-- register
-	{ import = "astrocommunity.register.nvim-neoclip-lua", enabled = true },
 
 	-- scrolling
 	{ import = "astrocommunity.scrolling.mini-animate", enabled = true },

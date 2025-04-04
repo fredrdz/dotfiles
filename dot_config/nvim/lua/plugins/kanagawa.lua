@@ -76,24 +76,6 @@ return {
 						MasonNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
 						NeoTreeNormal = { bg = theme.ui.bg, fg = theme.ui.fg },
 
-						-- block-like modern telescope
-						TelescopeTitle = { fg = theme.ui.fg, bold = true },
-						TelescopeNormal = { bg = theme.ui.bg },
-						TelescopeBorder = { bg = theme.ui.bg, fg = theme.ui.fg },
-
-						TelescopePromptTitle = { bg = "none", fg = theme.ui.fg },
-						TelescopePromptPrefix = { bg = "none", fg = theme.ui.fg },
-						TelescopePromptNormal = { bg = "none", fg = theme.ui.fg },
-						TelescopePromptBorder = { bg = "none" },
-
-						TelescopeResultsTitle = { bg = "none", fg = theme.ui.fg },
-						TelescopeResultsNormal = { bg = "none", fg = theme.ui.fg },
-						TelescopeResultsBorder = { bg = "none" },
-
-						TelescopePreviewTitle = { bg = "none", fg = theme.ui.fg },
-						TelescopePreviewNormal = { bg = theme.ui.bg },
-						TelescopePreviewBorder = { bg = theme.ui.bg, fg = theme.ui.bg_dim },
-
 						-- dark completion menu
 						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
 						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },

@@ -1,6 +1,7 @@
 if true then
 	return {}
-end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+end
+-- WARN: REMOVE ABOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- Customize None-ls sources
 

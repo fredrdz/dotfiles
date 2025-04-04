@@ -29,11 +29,17 @@ return {
 					["-"] = { "<c-x>", desc = "Descrement number" },
 					["+"] = { "<c-a>", desc = "Increment number" },
 
+					-- snacks pickers
+					--
 					-- buffer switching
 					["<Tab>"] = {
 						function()
 							if #vim.t.bufs > 1 then
-								require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+								require("snacks").picker.buffers({
+									current = false,
+									sort_lastused = true,
+									nofile = true,
+								})
 							else
 								require("notify")("No other buffers open")
 							end
@@ -58,20 +64,6 @@ return {
 					["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
 					["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
 
-					-- neoclip (registers)
-					["<leader>r"] = { name = "󰳴 Registers" },
-					['<leader>r"'] = { "<cmd>Telescope neoclip<cr>", desc = "Default Register" },
-					["<leader>ra"] = { "<cmd>Telescope neoclip a<cr>", desc = "Register: a" },
-					["<leader>rr"] = { "<cmd>Telescope neoclip r<cr>", desc = "Register: r" },
-					["<leader>rs"] = { "<cmd>Telescope neoclip s<cr>", desc = "Register: s" },
-					["<leader>rt"] = { "<cmd>Telescope neoclip t<cr>", desc = "Register: t" },
-					["<leader>rg"] = { "<cmd>Telescope neoclip g<cr>", desc = "Register: g" },
-					["<leader>rm"] = { "<cmd>Telescope neoclip m<cr>", desc = "Register: m" },
-					["<leader>rn"] = { "<cmd>Telescope neoclip n<cr>", desc = "Register: n" },
-					["<leader>re"] = { "<cmd>Telescope neoclip e<cr>", desc = "Register: e" },
-					["<leader>ri"] = { "<cmd>Telescope neoclip i<cr>", desc = "Register: i" },
-					["<leader>ro"] = { "<cmd>Telescope neoclip o<cr>", desc = "Register: o" },
-
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
 					["<leader>ka"] = { name = " Copilot" },
@@ -80,23 +72,6 @@ return {
 						desc = "Copilot Open",
 					},
 					["<leader>kar"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
-
-					-- telescope plugin mappings
-					["<leader>f<Tab>"] = {
-						function()
-							require("telescope.builtin").resume()
-						end,
-						desc = "Resume previous search",
-					},
-					["<leader>fB"] = { "<cmd>Telescope bibtex<cr>", desc = "Find BibTeX" },
-					["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" },
-					["<leader>fp"] = {
-						function()
-							require("telescope").extensions.projects.projects({})
-						end,
-						desc = "Find projects",
-					},
-					["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
 
 					-- misc
 					["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },

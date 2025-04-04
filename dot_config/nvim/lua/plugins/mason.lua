@@ -1,42 +1,38 @@
--- Customize Mason plugins
+-- Customize Mason
+
 ---@type LazySpec
 return {
-	-- use mason-lspconfig to configure LSP installations
+	-- use mason-tool-installer for automatically installing Mason packages
 	{
-		"williamboman/mason-lspconfig.nvim",
-		-- overrides `require("mason-lspconfig").setup(...)`
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		-- overrides `require("mason-tool-installer").setup(...)`
 		opts = {
+			-- Make sure to use the names found in `:Mason`
 			ensure_installed = {
-				"astro",
-				"bashls",
-				"cssls",
-				"csharp_ls",
-				"docker_compose_language_service",
-				"dockerls",
-				"emmet_ls",
+				-- install language servers
+				"astro-language-server",
+				"bash-language-server",
+				"css-lsp",
+				"csharp-language-server",
+				"docker-compose-language-service",
+				"dockerfile-language-server",
+				"emmet-language-server",
 				"gopls",
-				"jsonls",
-				"lua_ls",
+				"html-lsp",
+				"htmx-lsp",
+				"json-lsp",
+				"jsonld-lsp",
+				"lua-language-server",
 				"marksman",
-				"svelte",
-				"tailwindcss",
-				"html",
-				"htmx",
+				"svelte-language-server",
+				"tailwindcss-language-server",
 				"taplo",
 				"templ",
-				"vimls",
+				"vim-language-server",
 				"vtsls",
-				"yamlls",
-			},
-		},
-	},
+				"yaml-language-server",
 
-	-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
-	{
-		"jay-babu/mason-null-ls.nvim",
-		-- overrides `require("mason-null-ls").setup(...)`
-		opts = {
-			ensure_installed = {
+				-- install formatters
 				"gofumpt",
 				"goimports",
 				"gomodifytags",
@@ -48,39 +44,13 @@ return {
 				"rustywind",
 				"shellcheck",
 				"shfmt",
-			},
-		},
-		-- NOTE: handlers is broken
-		-- opts.handlers = {
-		-- 	-- for prettierd
-		-- 	prettierd = function()
-		-- 		local null_ls = require("null-ls")
-		-- 		null_ls.register(null_ls.builtins.formatting.prettierd.with({
-		-- 			filetypes = {
-		-- 				"gohtml",
-		-- 				"htmlhugo",
-		-- 			},
-		-- 			condition = function(utils)
-		-- 				return utils.root_has_file("package.json")
-		-- 					or utils.root_has_file(".prettierrc")
-		-- 					or utils.root_has_file(".prettierrc.config.js")
-		-- 					or utils.root_has_file(".prettierrc.js")
-		-- 					or utils.root_has_file(".prettierrc.json")
-		-- 					or utils.root_has_file(".prettierrc.toml")
-		-- 					or utils.root_has_file(".prettierrc.yaml")
-		-- 					or utils.root_has_file(".prettierrc.yml")
-		-- 			end,
-		-- 		}))
-		-- 	end,
-		-- }
-	},
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		-- overrides `require("mason-nvim-dap").setup(...)`
-		opts = {
-			ensure_installed = {
-				"bash",
+
+				-- install debuggers
+				"bash-debug-adapter",
 				"delve",
+
+				-- install any other package
+				"tree-sitter-cli",
 			},
 		},
 	},

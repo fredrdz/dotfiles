@@ -3,7 +3,17 @@
 
 ---@type LazySpec
 return {
-	-- == Overriding Plugins ==
+	{
+		"andweeb/presence.nvim",
+		{
+			"ray-x/lsp_signature.nvim",
+			event = "BufRead",
+			config = function()
+				require("lsp_signature").setup()
+			end,
+		},
+	},
+
 	{
 		"stevearc/aerial.nvim",
 		opts = {
@@ -23,41 +33,93 @@ return {
 	},
 
 	{
-		"goolord/alpha-nvim",
-		opts = function(_, opts)
-			-- customize the dashboard header
-			opts.section.header.val = {
-				"                       I>. idjrxxnjU@_        ",
-				"                      .1({-X(     |b}         ",
-				"                      .1||8(|/([i~a[          ",
-				"                      ')|\\/ttf/uWU[]i,.      ",
-				"                       |f/tffj/v&Ufnnnnj(-l^  ",
-				"                      _ki:~]||cWUfunnuvvccccj)",
-				"                  <l!fMi     +#1-8jnvvccczzXYY",
-				"             `;<]18{vMt   . ~hi   ^<(vzzXXYYYY",
-				"        .,>?)/t//t)zWj{'   <o-,_{tnczXXXXYUJJJ",
-				"    _!-)trjjjjftf(UWx|/`<!-UcjccczzzzXYUUJJzj{",
-				"I_1fnnnnnxrrrrrr/JW/_<I/nuunvccccXXYUUXx(_;'  ",
-				"ccccvvuuuunnnf(<na;   .nvuucczXXYYu/]!^       ",
-				"zzzzccccn(+;'  ]b:   . xcczzXvf{<:.           ",
-				"UYXXXXXzcj)->,{k`     -Yvr(_I`                ",
-				"cJUUUUYXXXXzzcUj[_I^ ]p<8                     ",
-				".:+)xXJUUUUXzXczzzzxU&)                       ",
-				"     `l?|vcUUUUYXXvm&Yu`                      ",
-				"          v0{rXJJzw8Ucv'                      ",
-				"       . tO    ,<0#YYUY`                      ",
-				"        ($urnxrtjw,^>}t`                      ",
-			}
-			opts.section.buttons.val = {
-				opts.button("LDR S f", "  Find Session"),
-				opts.button("LDR S l", "  Last Session"),
-				opts.button("LDR f '", "  Bookmarks"),
-				opts.button("LDR f f", "  Find File"),
-				opts.button("LDR f o", "󰈙  Recents"),
-				opts.button("LDR f w", "󰈭  Find Word"),
-			}
-			return opts
-		end,
+		"folke/snacks.nvim",
+		lazy = false,
+		opts = {
+			dashboard = {
+				preset = {
+					header = table.concat({
+						"                       I>. idjrxxnjU@_        ",
+						"                      .1({-X(     |b}         ",
+						"                      .1||8(|/([i~a[          ",
+						"                      ')|\\/ttf/uWU[]i,.      ",
+						"                       |f/tffj/v&Ufnnnnj(-l^  ",
+						"                      _ki:~]||cWUfunnuvvccccj)",
+						"                  <l!fMi     +#1-8jnvvccczzXYY",
+						"             `;<]18{vMt   . ~hi   ^<(vzzXXYYYY",
+						"        .,>?)/t//t)zWj{'   <o-,_{tnczXXXXYUJJJ",
+						"    _!-)trjjjjftf(UWx|/`<!-UcjccczzzzXYUUJJzj{",
+						"I_1fnnnnnxrrrrrr/JW/_<I/nuunvccccXXYUUXx(_;'  ",
+						"ccccvvuuuunnnf(<na;   .nvuucczXXYYu/]!^       ",
+						"zzzzccccn(+;'  ]b:   . xcczzXvf{<:.           ",
+						"UYXXXXXzcj)->,{k`     -Yvr(_I`                ",
+						"cJUUUUYXXXXzzcUj[_I^ ]p<8                     ",
+						".:+)xXJUUUUXzXczzzzxU&)                       ",
+						"     `l?|vcUUUUYXXvm&Yu`                      ",
+						"          v0{rXJJzw8Ucv'                      ",
+						"       . tO    ,<0#YYUY`                      ",
+						"        ($urnxrtjw,^>}t`                      ",
+					}, "\n"),
+				},
+			},
+			---@class snacks.indent.Config
+			---@field enabled? boolean
+			indent = {
+				indent = {
+					enabled = true, -- enable indent guides
+					char = "",
+					only_scope = true, -- only show indent guides of the scope
+					only_current = true, -- only show indent guides in the current window
+					hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
+				},
+
+				-- animate scopes. Enabled by default for Neovim >= 0.10
+				-- Works on older versions but has to trigger redraws during animation.
+				---@class snacks.indent.animate
+				---@field enabled? boolean
+				--- * out: animate outwards from the cursor
+				--- * up: animate upwards from the cursor
+				--- * down: animate downwards from the cursor
+				--- * up_down: animate up or down based on the cursor position
+				---@field style? "out"|"up_down"|"down"|"up"
+				animate = {
+					enabled = true,
+					style = "down",
+					easing = "linear",
+					duration = {
+						step = 20, -- ms per step
+						total = 500, -- maximum duration
+					},
+				},
+				---@class snacks.indent.Scope.Config
+				scope = {
+					enabled = true, -- enable highlighting the current scope
+					priority = 200,
+					char = "│",
+					underline = false, -- underline the start of the scope
+					only_current = true, -- only show scope in the current window
+					hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
+				},
+				chunk = {
+					-- when enabled, scopes will be rendered as chunks, except for the
+					-- top-level scope which will be rendered as a scope.
+					enabled = true,
+					-- only show chunk scopes in the current window
+					only_current = true,
+					priority = 200,
+					hl = "SnacksIndentChunk", ---@type string|string[] hl group for chunk scopes
+					char = {
+						-- corner_top = "┌",
+						-- corner_bottom = "└",
+						corner_top = "╭",
+						corner_bottom = "╰",
+						horizontal = "─",
+						vertical = "│",
+						arrow = ">",
+					},
+				},
+			},
+		},
 	},
 
 	{
@@ -89,45 +151,51 @@ return {
 		},
 	},
 
-	{
-		"nvim-notify",
-		opts = {
-			background_colour = "NotifyBackground",
-			fps = 60,
-			icons = {
-				DEBUG = "",
-				ERROR = "",
-				INFO = "",
-				TRACE = "✎",
-				WARN = "",
-			},
-			level = 2,
-			max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end,
-			minimum_width = 50,
-			render = "compact", -- allowed: default, minimal, simple, compact
-			stages = "fade_in_slide_out",
-			timeout = 2000,
-			top_down = false,
-		},
-	},
+	-- TODO: update to snacks
+	-- https://github.com/folke/snacks.nvim/blob/main/docs/notify.md
+	--
+	-- {
+	-- 	"nvim-notify",
+	-- 	opts = {
+	-- 		background_colour = "NotifyBackground",
+	-- 		fps = 60,
+	-- 		icons = {
+	-- 			DEBUG = "",
+	-- 			ERROR = "",
+	-- 			INFO = "",
+	-- 			TRACE = "✎",
+	-- 			WARN = "",
+	-- 		},
+	-- 		level = 2,
+	-- 		max_height = function()
+	-- 			return math.floor(vim.o.lines * 0.75)
+	-- 		end,
+	-- 		max_width = function()
+	-- 			return math.floor(vim.o.columns * 0.75)
+	-- 		end,
+	-- 		minimum_width = 50,
+	-- 		render = "compact", -- allowed: default, minimal, simple, compact
+	-- 		stages = "fade_in_slide_out",
+	-- 		timeout = 2000,
+	-- 		top_down = false,
+	-- 	},
+	-- },
 
-	{
-		"nvim-colorizer.lua",
-		opts = {
-			user_default_options = {
-				-- Available modes for `mode`: foreground, background,  virtualtext
-				mode = "background", -- Set the display mode.
-				-- Available methods are false / true / "normal" / "lsp" / "both"
-				-- True is same as normal
-				tailwind = "normal", -- Enable tailwind colors
-			},
-		},
-	},
+	-- TODO: update to nvim-highlight-colors
+	-- https://github.com/brenoprata10/nvim-highlight-colors
+	--
+	-- {
+	-- 	"nvim-colorizer.lua",
+	-- 	opts = {
+	-- 		user_default_options = {
+	-- 			-- Available modes for `mode`: foreground, background,  virtualtext
+	-- 			mode = "background", -- Set the display mode.
+	-- 			-- Available methods are false / true / "normal" / "lsp" / "both"
+	-- 			-- True is same as normal
+	-- 			tailwind = "normal", -- Enable tailwind colors
+	-- 		},
+	-- 	},
+	-- },
 
 	{
 		"smart-splits.nvim",
@@ -169,28 +237,6 @@ return {
 	},
 
 	{ "windwp/nvim-autopairs", optional = true, enabled = false },
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		optional = true,
-		enabled = true,
-		config = function()
-			local highlight = {
-				"desque",
-			}
-
-			local hooks = require("ibl.hooks")
-			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-				vim.api.nvim_set_hl(0, "desque", { fg = "#16B2C3" })
-			end)
-
-			require("ibl").setup({
-				indent = { char = "" },
-				scope = {
-					highlight = highlight,
-				},
-			})
-		end,
-	},
 
 	-- == Custom Plugins ==
 	{

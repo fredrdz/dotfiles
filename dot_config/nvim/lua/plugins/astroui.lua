@@ -38,7 +38,26 @@ return {
 				MatchWord = { fg = "#16B2C3", bold = true, italic = true, underline = true },
 				MatchParenCur = { fg = "#16B2C3", bold = true, italic = true, underline = true },
 				MatchWordCur = { fg = "#16B2C3", bold = true, underline = true, italic = true },
+
+				-- custom branding
+				desqueFG = { fg = "#16B2C3" },
+				desqueBG = { bg = "#16B2C3" },
 			},
+		},
+
+		-- Icons can be configured throughout the interface
+		icons = {
+			-- configure the loading of the lsp in the status line
+			LSPLoading1 = "⠋",
+			LSPLoading2 = "⠙",
+			LSPLoading3 = "⠹",
+			LSPLoading4 = "⠸",
+			LSPLoading5 = "⠼",
+			LSPLoading6 = "⠴",
+			LSPLoading7 = "⠦",
+			LSPLoading8 = "⠧",
+			LSPLoading9 = "⠇",
+			LSPLoading10 = "⠏",
 		},
 	},
 }
