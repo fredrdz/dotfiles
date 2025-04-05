@@ -1,24 +1,23 @@
--- community plugin: copilot-lua-cmp
+-- community plugin: copilot-cmp
 -- https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/completion/copilot-lua-cmp
 ---@type LazySpec
 return {
 	"AstroNvim/astrocommunity",
 	{ import = "astrocommunity.completion.copilot-cmp", enabled = true },
-
-	-- call in copilot.lua: https://github.com/zbirenbaum/copilot.lua
-	-- modify copilot config in copilot-lua-cmp
-	--
+	-- modify copilot.lua: https://github.com/zbirenbaum/copilot.lua
 	{
 		"copilot.lua",
 		event = "InsertEnter",
 		enabled = true,
 		opts = {
 			panel = {
-				enabled = true,
+				enabled = false,
 				auto_refresh = true,
+				---@class copilot.panel
+				---@field position? "top"|"bot"|"left"|"right"|"horizontal"|"vertical"
 				layout = {
-					position = "top", -- | top | left | right
-					ratio = 0.20,
+					position = "bot",
+					ratio = 0.20, -- 20% of the screen
 				},
 			},
 			suggestion = {
@@ -27,12 +26,12 @@ return {
 				hide_during_completion = true,
 				debounce = 500,
 				keymap = {
-					accept = "<M-N>",
-					accept_line = "<M-n>",
-					accept_word = "<M-o>",
-					prev = "<M-e>",
-					next = "<M-i>",
-					dismiss = "<M-m>",
+					accept = "<CM-a>", -- [a]ccept
+					accept_line = "<CM-l>", -- [l]ine
+					accept_word = "<CM-w>", -- [w]ord
+					prev = "<CM-e>", -- pr[e]v
+					next = "<CM-n>", -- [n]ext
+					dismiss = "<CM-m>", -- dis[m]iss
 				},
 			},
 		},
