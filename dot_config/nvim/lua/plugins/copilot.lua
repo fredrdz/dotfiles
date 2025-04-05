@@ -14,9 +14,9 @@ return {
 				enabled = false,
 				auto_refresh = true,
 				---@class copilot.panel
-				---@field position? "top"|"bot"|"left"|"right"|"horizontal"|"vertical"
+				---@field position? "top"|"bottom"|"left"|"right"|"horizontal"|"vertical"
 				layout = {
-					position = "bot",
+					position = "bottom",
 					ratio = 0.20, -- 20% of the screen
 				},
 			},

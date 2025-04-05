@@ -50,20 +50,6 @@ return {
 					-- buffer refresh
 					["<leader>bR"] = { "<cmd>e<cr>", desc = "Refresh Current Buffer" },
 
-					-- trouble
-					["<leader>x"] = { desc = "󰒡 Trouble" },
-					["<leader>xX"] = {
-						"<cmd>TroubleToggle document_diagnostics<cr>",
-						desc = "Document Diagnostics (Trouble)",
-					},
-					["<leader>xx"] = {
-						"<cmd>TroubleToggle workspace_diagnostics<cr>",
-						desc = "Workspace Diagnostics (Trouble)",
-					},
-					["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-					["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
-					["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
-
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
 					["<leader>ka"] = { name = " Copilot" },
@@ -143,7 +129,7 @@ return {
 					["+"] = { "g<C-a>", desc = "Increment number" },
 					["-"] = { "g<C-x>", desc = "Descrement number" },
 
-					-- Easy-Align
+					-- easy align
 					ga = { "<Plug>(EasyAlign)", desc = "Easy Align" },
 				},
 
