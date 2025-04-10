@@ -66,7 +66,8 @@ return {
 
 	-- completion
 	{ import = "astrocommunity.completion.copilot-lua-cmp", enabled = true },
-	-- FIX: uses nvim-cmp instead of blink-cmp
+
+	-- FIX: codeium uses nvim-cmp instead of blink-cmp
 	--
 	-- { import = "astrocommunity.completion.codeium-nvim", enabled = true },
 	-- {
