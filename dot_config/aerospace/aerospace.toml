@@ -121,7 +121,7 @@ automatically-unhide-macos-hidden-apps = true
   f17 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
   f18 = 'exec-and-forget open -a /Applications/Slack.app/'
   f19 = 'exec-and-forget open -a /Applications/Figma.app/'
-  f20 = 'exec-and-forget open -a /Applications/Notion.app/'
+  # f20 = 'exec-and-forget open -a /Applications/Notion.app/'
 
 [mode.service.binding]
   esc = 'mode main'
