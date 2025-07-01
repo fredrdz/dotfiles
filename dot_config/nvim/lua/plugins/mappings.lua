@@ -41,7 +41,7 @@ return {
 									nofile = true,
 								})
 							else
-								require("notify")("No other buffers open")
+								vim.notify("No other buffers open", vim.log.levels.INFO, { title = "Buffer Switch" })
 							end
 						end,
 						desc = "Switch Buffers",
