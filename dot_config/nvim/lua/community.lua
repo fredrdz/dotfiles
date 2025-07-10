@@ -59,6 +59,21 @@ return {
 				end,
 			},
 		},
+		opts = {
+			model = "gpt-4o-mini", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+			temperature = 0.1, -- GPT result temperature
+			sticky = {
+				"@models Using gpt-4o-mini",
+			},
+			prompts = {
+				GODRY = {
+					description = "Refactor Go code to eliminate duplication and enforce separation of concerns.",
+					prompt = "Refactor the following Go code to eliminate duplication and enforce separation of concerns, while strictly following Go idioms (naming conventions, package structure, error handling, minimal interfaces, etc.). Group related logic into well-named functions, types, or packages; remove repeated code by extracting common behavior; ensure comments and exports follow Go style guidelines with the exception that comments within funcs should start with a lowercase; and return only the refactored Go source.",
+					system_prompt = "COPILOT_INSTRUCTIONS",
+					context = "buffers:go",
+				},
+			},
+		},
 	},
 
 	-- comment
