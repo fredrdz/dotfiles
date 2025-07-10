@@ -217,11 +217,13 @@ return {
 	{
 		"toggleterm.nvim",
 		keys = { "<F4>" },
+		---@class toggleterm.opts
+		---@field direction? "vertical" | "horizontal" | "tab" | "float"
 		opts = {
 			size = 30,
 			open_mapping = [[<F4>]],
 			shading_factor = 2,
-			direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float'
+			direction = "float",
 		},
 	},
 
@@ -266,7 +268,7 @@ return {
 		after = "nvim-treesitter",
 		event = "User AstroFile",
 		init = function()
-			vim.g.matchup_matchparen_offscreen = { method = "status" } -- "popup" | "status"
+			vim.g.matchup_matchparen_offscreen = { method = "popup" } -- "popup" | "status"
 			vim.g.matchup_matchparen_hi_surround_always = 1
 			vim.g.matchup_matchparen_deferred = 1
 			vim.g.matchup_matchparen_deferred_show_delay = 50
