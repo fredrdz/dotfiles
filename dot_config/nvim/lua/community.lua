@@ -60,11 +60,8 @@ return {
 			},
 		},
 		opts = {
-			model = "gpt-4o-mini", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+			model = "gpt-4.1", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
 			temperature = 0.1, -- GPT result temperature
-			sticky = {
-				"@models Using gpt-4o-mini",
-			},
 			prompts = {
 				GODRY = {
 					description = "Refactor Go code to eliminate duplication and enforce separation of concerns.",

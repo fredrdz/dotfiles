@@ -59,6 +59,16 @@ return {
 					},
 					["<leader>kar"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
 
+					-- copilot chat
+					["<leader>am"] = {
+						"<cmd>CopilotChatModels<cr>",
+						desc = "Models",
+					},
+					["<leader>aa"] = {
+						"<cmd>CopilotChatAgents<cr>",
+						desc = "Agents",
+					},
+
 					-- misc
 					["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },
 
