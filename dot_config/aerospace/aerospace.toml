@@ -20,6 +20,17 @@ after-startup-command = [
   'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
+# Layouts for workspaces
+exec-on-workspace-change = ['/bin/bash', '-c', """
+  if [ "$AEROSPACE_FOCUSED_WORKSPACE" = "1" ]; then
+    aerospace layout v_accordion
+  elif [ "$AEROSPACE_FOCUSED_WORKSPACE" = "2" ]; then
+    aerospace layout h_tiles
+  elif [ "$AEROSPACE_FOCUSED_WORKSPACE" = "3" ]; then
+    aerospace layout v_tiles
+  fi
+  """]
+
 # Start AeroSpace at login
 start-at-login = true
 
@@ -74,10 +85,10 @@ automatically-unhide-macos-hidden-apps = true
   cmd-h     = [] # Disable "hide application"
 
   alt-shift-ctrl-j     = 'fullscreen'
-  alt-shift-ctrl-l     = 'join-with left'
-  alt-shift-ctrl-quote = 'join-with right'
-  alt-shift-ctrl-u     = 'join-with down'
-  alt-shift-ctrl-y     = 'join-with up'
+  alt-shift-ctrl-l     = 'resize height -50'
+  alt-shift-ctrl-quote = 'resize height +50'
+  alt-shift-ctrl-u     = 'resize width -50'
+  alt-shift-ctrl-y     = 'resize width +50'
 
   alt-shift-ctrl-m = 'mode service'
   # i3 wraps focus by default
@@ -126,21 +137,23 @@ automatically-unhide-macos-hidden-apps = true
 [mode.service.binding]
   esc = 'mode main'
   # --
-  j = ['close-all-windows-but-current', 'mode main']
-  l = 'layout accordion tiles floating'              # toggle accordion/tiles/floating layout
-  u = 'layout horizontal vertical'                   # toggle horizontal/vertical layout
+  l     = 'layout accordion'           # toggle accordion/tiles/floating layout
+  quote = 'layout horizontal vertical' # toggle horizontal/vertical layout
+  u     = 'layout tiles'
+  y     = 'layout floating'
   # --
-  e = 'resize height -50'
-  i = 'resize height +50'
+  e = 'join-with down'
+  i = 'join-with up'
+  n = 'join-with left'
+  o = 'join-with right'
+  # --
+  j = ['close-all-windows-but-current', 'mode main']
+  k = ['mode main', 'reload-config']
   m = [
     'flatten-workspace-tree',
     'layout accordion vertical',
     'mode main',
   ] # resets the workspace tree and sets the layout to vertical accordion
-  n = 'resize width -50'
-  o = 'resize width +50'
-  # --
-  k = ['mode main', 'reload-config']
 
 # ------------------------------------------------------------
 # Window detection rules
@@ -148,31 +161,31 @@ automatically-unhide-macos-hidden-apps = true
 # for example w/ brave:
 # mdls -name kMDItemCFBundleIdentifier -r /Applications/Brave\ Browser.app
 [[on-window-detected]]
-  if.app-id = 'com.apple.finder'
+  if.app-id = 'com.apple.FaceTime'
   run       = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.github.wez.wezterm'
+  if.app-id = 'com.valvesoftware.steam'
   run       = ['layout floating', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
-  if.app-id = 'com.figma.Desktop'
-  run       = ['layout tiling', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
-  if.app-id = 'notion.id'
-  run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
   if.app-id = 'com.google.Chrome'
   run       = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.valvesoftware.dota2'
-  run       = ['layout floating', 'move-node-to-workspace 2']
+  if.app-id = 'com.apple.finder'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.valvesoftware.steam'
+  if.app-id = 'com.github.wez.wezterm'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.figma.Desktop'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.valvesoftware.dota2'
   run       = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
