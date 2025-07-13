@@ -114,6 +114,9 @@ return {
 	-- 	},
 	-- },
 
+	-- docker
+	{ import = "astrocommunity.docker.lazydocker", enabled = true },
+
 	-- recipes
 	{ import = "astrocommunity.recipes.auto-session-restore", enabled = true },
 	{ import = "astrocommunity.recipes.vscode-icons", enabled = true },
