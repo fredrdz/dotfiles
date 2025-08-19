@@ -129,10 +129,10 @@ automatically-unhide-macos-hidden-apps = true
   f14 = 'exec-and-forget open -a /Applications/Discord.app/'
   f15 = 'exec-and-forget open -a /Applications/WezTerm.app/'
   f16 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
-  f17 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
-  f18 = 'exec-and-forget open -a /Applications/Slack.app/'
-  f19 = 'exec-and-forget open -a /Applications/Figma.app/'
-  # f20 = 'exec-and-forget open -a /Applications/Notion.app/'
+  f17 = 'exec-and-forget open -a /Applications/Slack.app/'
+  f18 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
+  f19 = 'exec-and-forget open -a /Applications/Claude.app/'
+  f20 = 'exec-and-forget open -a /Applications/Perplexity.app/'
 
 [mode.service.binding]
   esc = 'mode main'
@@ -181,6 +181,22 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
+  if.app-id = 'com.openai.chat'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.anthropic.claudefordesktop'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'ai.perplexity.mac'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.docker.docker'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
   if.app-id = 'com.figma.Desktop'
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
@@ -206,8 +222,4 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
   if.app-id = 'org.whispersystems.signal-desktop'
-  run       = ['layout tiling', 'move-node-to-workspace 3']
-
-[[on-window-detected]]
-  if.app-id = 'com.openai.chat'
   run       = ['layout tiling', 'move-node-to-workspace 3']
