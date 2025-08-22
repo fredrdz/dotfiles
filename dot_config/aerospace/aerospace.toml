@@ -132,7 +132,7 @@ automatically-unhide-macos-hidden-apps = true
   f17 = 'exec-and-forget open -a /Applications/Slack.app/'
   f18 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
   f19 = 'exec-and-forget open -a /Applications/Claude.app/'
-  f20 = 'exec-and-forget open -a /Applications/Perplexity.app/'
+  f20 = 'exec-and-forget open -a /Applications/Obsidian.app/'
 
 [mode.service.binding]
   esc = 'mode main'
@@ -194,6 +194,10 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
   if.app-id = 'com.docker.docker'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'md.obsidian'
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
