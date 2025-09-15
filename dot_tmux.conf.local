@@ -344,6 +344,8 @@ set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{25
 
 
 # -- user keybindings ---------------------------------------------------------
+set -g xterm-keys on
+set -g extended-keys on
 
 # Unbind the default prefix key
 set -gu prefix2
@@ -355,32 +357,6 @@ bind-key C-Space send-prefix
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind v new-window -c #{pane_current_path} #!important
-
-# Smart pane switching with awareness of Vim splits.
-# See: https://github.com/christoomey/vim-tmux-navigator
-is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-# move
-bind-key -n M-Left if-shell "$is_vim" 'send-keys M-Left'  'select-pane -L'
-bind-key -n M-Right if-shell "$is_vim" 'send-keys M-Right'  'select-pane -R'
-bind-key -n M-Up if-shell "$is_vim" 'send-keys M-Up'  'select-pane -U'
-bind-key -n M-Down if-shell "$is_vim" 'send-keys M-Down'  'select-pane -D'
-# resize
-bind-key -n S-Left if-shell "$is_vim" 'send-keys S-Left' 'resize-pane -L 3'
-bind-key -n S-Right if-shell "$is_vim" 'send-keys S-Right' 'resize-pane -R 3'
-bind-key -n S-Up if-shell "$is_vim" 'send-keys S-Up' 'resize-pane -U 3'
-bind-key -n S-Down if-shell "$is_vim" 'send-keys S-Down' 'resize-pane -D 3'
-# send to vim
-tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
-
-bind-key -T copy-mode-vi 'M-Left' select-pane -L
-bind-key -T copy-mode-vi 'M-Down' select-pane -D
-bind-key -T copy-mode-vi 'M-Up' select-pane -U
-bind-key -T copy-mode-vi 'M-Right' select-pane -R
 
 bind-key -n M-Home previous-window
 bind-key -n M-End next-window
@@ -444,6 +420,13 @@ tmux_conf_uninstall_plugins_on_reload=true
 
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @vim_navigator_mapping_left "M-Left C-h"
+set -g @vim_navigator_mapping_right "M-Right C-l"
+set -g @vim_navigator_mapping_up "M-Up C-k"
+set -g @vim_navigator_mapping_down "M-Down C-j"
+set -g @vim_navigator_mapping_prev ""
+set -g @vim_navigator_prefix_mapping_clear_screen ""
 set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-cpu'

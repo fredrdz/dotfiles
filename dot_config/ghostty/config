@@ -1,0 +1,62 @@
+# path: ~/.config/ghostty/config
+# view default keys: $ ghostty +list-keybinds --default
+# view default themes: $ ghostty +list-themes
+
+# theme
+theme = "kanagawabones"
+
+# fonts
+font-family = "MonaspiceNe Nerd Font Mono"   # primary
+font-family = "JetBrainsMono Nerd Font Mono" # fallback
+font-family = "Menlo"                        # extra fallback
+
+# map styles explicitly
+font-family-italic = "MonaspiceRn Nerd Font Mono"
+font-family-bold = "MonaspiceNe Nerd Font Mono"
+font-family-bold-italic = "MonaspiceRn Nerd Font Mono"
+
+font-size = 15.5
+font-feature = liga,calt,ss01,ss02,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10
+
+# metrics (approximate wez line_height/cell_width/underline)
+adjust-cell-height = 30%
+adjust-cell-width = -10%
+adjust-underline-position = 100%
+adjust-underline-thickness = 200%
+
+# cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-invert-fg-bg = true
+
+# colors/brightness
+bold-is-bright = true
+
+# scrollback
+scrollback-limit = 8000000
+
+# selection, clipboard, links
+copy-on-select = clipboard
+link-url = true
+
+# window
+window-padding-x = 0
+window-padding-y = 0
+window-decoration = auto
+background-opacity = 1.0
+background-blur = 25
+confirm-close-surface = false
+auto-update = check
+term = xterm-ghostty
+
+# unfocused split look
+unfocused-split-opacity = 0.8
+
+# macOS specific
+macos-titlebar-style = hidden
+
+# let M-←/→, M-↑/↓ reach apps (e.g. tmux, nvim)
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = alt+up=unbind
+keybind = alt+down=unbind
