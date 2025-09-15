@@ -44,9 +44,9 @@ right_format = '$directory⍆ $time'
   commit_hash_length = 10
 
 [git_status]
-  ahead    = '⇡${count}'
-  behind   = '⇣${count}'
-  diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+  ahead    = '${count}'
+  behind   = '${count}'
+  diverged = '⇕${ahead_count}${behind_count}'
 
 [username]
   disabled    = false
