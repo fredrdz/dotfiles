@@ -60,7 +60,7 @@ return {
 			},
 		},
 		opts = {
-			model = "gpt-4.1", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+			model = "gpt-5", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
 			temperature = 0.1, -- GPT result temperature
 			prompts = {
 				GODRY = {

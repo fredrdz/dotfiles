@@ -354,11 +354,6 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # Setup go proxy
 # export GOPROXY="https://proxy.golang.org,direct"
 
-# ghostty shell integration
-if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-fi
-
 # tabtab source for packages
 # uninstall by removing these lines
 # (used for netlify completion; installed via NPM)
