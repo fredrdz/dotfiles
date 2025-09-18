@@ -52,22 +52,12 @@ return {
 
 					-- copilot
 					["<leader>k"] = { name = "󰙘 AI" },
-					["<leader>ka"] = { name = " Copilot" },
-					["<leader>kao"] = {
+					["<leader>ko"] = { name = " Copilot" },
+					["<leader>koo"] = {
 						"<cmd>lua require('copilot.panel').open({postion, ratio})<cr>",
 						desc = "Copilot Open",
 					},
-					["<leader>kar"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
-
-					-- copilot chat
-					["<leader>am"] = {
-						"<cmd>CopilotChatModels<cr>",
-						desc = "Models",
-					},
-					["<leader>aa"] = {
-						"<cmd>CopilotChatAgents<cr>",
-						desc = "Agents",
-					},
+					["<leader>kor"] = { "<cmd>lua require('copilot.panel').refresh()<cr>", desc = "Copilot Refresh" },
 
 					-- misc
 					["<leader>."] = { "<cmd>cd %:p:h<cr>", desc = "Set CWD" },

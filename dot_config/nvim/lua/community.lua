@@ -34,85 +34,11 @@ return {
 		},
 	},
 
-	{ import = "astrocommunity.editing-support.copilotchat-nvim", enabled = true },
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		enabled = true,
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				---@param opts AstroCoreOpts
-				opts = function(_, opts)
-					local maps = opts.mappings
-					if maps and maps.n then
-						-- iterate over existing mappings to remap them
-						for key, value in pairs(maps.n) do
-							if key:match("^<Leader>P") then
-								-- create new key by replacing
-								local new_key = key:gsub("^<Leader>P", "<Leader>a")
-								maps.n[new_key] = value
-								-- remove old mapping
-								maps.n[key] = nil
-							end
-						end
-					end
-				end,
-			},
-		},
-		opts = {
-			model = "gpt-5", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
-			temperature = 0.1, -- GPT result temperature
-			prompts = {
-				GODRY = {
-					description = "Refactor Go code to eliminate duplication and enforce separation of concerns.",
-					prompt = "Refactor the following Go code to eliminate duplication and enforce separation of concerns, while strictly following Go idioms (naming conventions, package structure, error handling, minimal interfaces, etc.). Group related logic into well-named functions, types, or packages; remove repeated code by extracting common behavior; ensure comments and exports follow Go style guidelines with the exception that comments within funcs should start with a lowercase; and return only the refactored Go source.",
-					system_prompt = "COPILOT_INSTRUCTIONS",
-					context = "buffers:go",
-				},
-			},
-		},
-	},
-
 	-- comment
 	{ import = "astrocommunity.comment.mini-comment", enabled = true },
 
 	-- completion
 	{ import = "astrocommunity.completion.copilot-lua-cmp", enabled = true },
-
-	-- FIX: codeium uses nvim-cmp instead of blink-cmp
-	--
-	-- { import = "astrocommunity.completion.codeium-nvim", enabled = true },
-	-- {
-	-- 	"Exafunction/codeium.nvim",
-	-- 	enabled = true,
-	-- 	dependencies = {
-	-- 		{
-	-- 			"AstroNvim/astrocore",
-	-- 			---@param opts AstroCoreOpts
-	-- 			opts = function(_, opts)
-	-- 				local maps = opts.mappings
-	-- 				if maps and maps.n then
-	-- 					-- create a temporary table to store new mappings
-	-- 					local new_mappings = {}
-	-- 					-- iterate over existing mappings to remap them
-	-- 					for key, value in pairs(maps.n) do
-	-- 						if key:match("^<Leader>;") then
-	-- 							-- create new key by replacing
-	-- 							local new_key = key:gsub("^<Leader>;", "<Leader>kr")
-	-- 							new_mappings[new_key] = value
-	-- 							-- remove old mapping
-	-- 							maps.n[key] = nil
-	-- 						end
-	-- 					end
-	-- 					-- merge new mappings into the original mappings table
-	-- 					for new_key, value in pairs(new_mappings) do
-	-- 						maps.n[new_key] = value
-	-- 					end
-	-- 				end
-	-- 			end,
-	-- 		},
-	-- 	},
-	-- },
 
 	-- docker
 	{ import = "astrocommunity.docker.lazydocker", enabled = true },
