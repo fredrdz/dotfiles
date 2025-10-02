@@ -323,6 +323,9 @@ tmux_conf_copy_to_os_clipboard=true
 
 set -g status-interval 1 # update status line every second
 
+# allow OSC sequences to pass through (for desktop notifications, etc.)
+set -g allow-passthrough all
+
 # increase history size
 set -g history-limit 10000
 

@@ -50,7 +50,7 @@ return {
 				scrolloff = 10, -- Lines of context
 				sidescrolloff = 8, -- Columns of context
 				signcolumn = "auto",
-				errorbells = false,
+				errorbells = true,
 				-- cursorlineopt = { "number", "line" },
 				-- backspace = { "indent", "eol", "start" },
 				list = false, -- Show some invisible characters (tabs...)

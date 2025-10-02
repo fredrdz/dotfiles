@@ -15,7 +15,7 @@ font-family-italic = "MonaspiceRn Nerd Font Mono"
 font-family-bold = "MonaspiceNe Nerd Font Mono"
 font-family-bold-italic = "MonaspiceRn Nerd Font Mono"
 
-font-size = 15.5
+font-size = 16
 font-feature = liga,calt,ss01,ss02,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10
 
 # metrics (approximate wez line_height/cell_width/underline)
@@ -48,6 +48,7 @@ background-blur = 25
 confirm-close-surface = false
 auto-update = check
 term = xterm-ghostty
+desktop-notifications = true
 
 # unfocused split look
 unfocused-split-opacity = 0.8
