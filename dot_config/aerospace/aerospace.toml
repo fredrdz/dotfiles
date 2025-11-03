@@ -165,6 +165,14 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
+  if.app-id = 'com.apple.MobileSMS'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.finder'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
   if.app-id = 'com.valvesoftware.steam'
   run       = ['layout floating', 'move-node-to-workspace 1']
 
@@ -173,15 +181,11 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.github.wez.wezterm'
-  run       = ['layout tiling', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
-  if.app-id = 'com.mitchellh.ghostty'
-  run       = ['layout tiling', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
   if.app-id = 'com.openai.chat'
+  run       = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+  if.app-id = 'com.anthropic.claudefordesktop'
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
@@ -197,7 +201,7 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.apple.MobileSMS'
+  if.app-id = 'md.obsidian'
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
@@ -213,11 +217,11 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'md.obsidian'
+  if.app-id = 'com.github.wez.wezterm'
   run       = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
-  if.app-id = 'com.anthropic.claudefordesktop'
+  if.app-id = 'com.mitchellh.ghostty'
   run       = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
@@ -226,8 +230,4 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
   if.app-id = 'com.brave.Browser'
-  run       = ['layout tiling', 'move-node-to-workspace 3']
-
-[[on-window-detected]]
-  if.app-id = 'com.apple.finder'
   run       = ['layout tiling', 'move-node-to-workspace 3']
