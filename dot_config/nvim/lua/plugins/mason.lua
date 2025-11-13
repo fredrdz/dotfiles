@@ -33,12 +33,12 @@ return {
 				"yaml-language-server",
 
 				-- install formatters
-				"gofumpt",
+				"golines",
 				"goimports",
 				"gomodifytags",
-				"golangci-lint",
 				"iferr",
 				"impl",
+				"jq",
 				"luacheck",
 				"prettierd",
 				"rustywind",
