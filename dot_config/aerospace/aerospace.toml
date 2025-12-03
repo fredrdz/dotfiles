@@ -217,17 +217,17 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.github.wez.wezterm'
-  run       = ['layout tiling', 'move-node-to-workspace 2']
-
-[[on-window-detected]]
-  if.app-id = 'com.mitchellh.ghostty'
-  run       = ['layout tiling', 'move-node-to-workspace 2']
-
-[[on-window-detected]]
   if.app-id = 'com.valvesoftware.dota2'
   run       = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
   if.app-id = 'com.brave.Browser'
+  run       = ['layout tiling', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+  if.app-id = 'com.github.wez.wezterm'
+  run       = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+  if.app-id = 'com.mitchellh.ghostty'
   run       = ['layout tiling', 'move-node-to-workspace 3']
