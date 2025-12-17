@@ -50,6 +50,7 @@ packages-golang() {
 	go install github.com/markusmobius/go-trafilatura/cmd/go-trafilatura@latest
 	go install github.com/koblas/s3-cli@latest
 	go install github.com/rs/curlie@latest
+	go install github.com/charmbracelet/crush@latest
 	CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 }
 
@@ -186,7 +187,7 @@ if [ "$input" == "yes" ]; then
 	chsh -s /bin/zsh
 
 	# brew packages related to development
-	brew install make, cmake, perl, podman, gcc, httpie, luarocks, openssl, jq, go, neovim, ninja, libtool, pkg-config, libgit2, libevent, nodejs, ripgrep, vim, fzf, navi, diff-so-fancy, netlify-cli, npm-check-updates, php, wp-cli, gh, gnutls, google-cloud-sdk, mono, sdl2, faudio, zlib, sqlc, automake, yarn, cloudflare-wrangler2, scriptisto, npx, nsis, git-delta, riff, git-lfs, chroma, golangci-lint, xh, icu4c, libdeflate, zstd, argon2, dotnet, tailwindcss, fd, lazydocker, lazygit, gemini-cli, uv
+	brew install make, cmake, perl, podman, gcc, httpie, luarocks, openssl, jq, go, neovim, ninja, libtool, pkg-config, libgit2, libevent, nodejs, ripgrep, vim, fzf, navi, diff-so-fancy, netlify-cli, npm-check-updates, php, wp-cli, gh, gnutls, google-cloud-sdk, mono, sdl2, faudio, zlib, sqlc, automake, yarn, cloudflare-wrangler2, scriptisto, npx, nsis, git-delta, riff, git-lfs, chroma, golangci-lint, xh, icu4c, libdeflate, zstd, argon2, dotnet, tailwindcss, fd, lazydocker, lazygit, gemini-cli, uv, opencode
 
 	# brew packages for cross-compilation
 	brew install mingw-w64, zig, filosottile/musl-cross/musl-cross

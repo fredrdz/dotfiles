@@ -14,9 +14,9 @@ return {
 				snacks_win_opts = {
 					position = "float",
 					border = "rounded",
-					backdrop = 95,
-					width = 0.8,
-					height = 0.9,
+					backdrop = 85,
+					width = 0.95,
+					height = 0.95,
 					keys = {
 						claude_hide = {
 							toggle_key,
@@ -28,6 +28,13 @@ return {
 						},
 					},
 				},
+			},
+			-- Diff Integration
+			diff_opts = {
+				auto_close_on_accept = true,
+				vertical_split = false,
+				open_in_current_tab = true,
+				keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens
 			},
 		},
 		config = true,
