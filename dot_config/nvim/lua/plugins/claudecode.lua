@@ -5,6 +5,11 @@ return {
 		dependencies = { "folke/snacks.nvim" },
 		opts = {
 			terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
+			-- Send/Focus Behavior
+			-- When true, successful sends will focus the Claude terminal if already connected
+			focus_after_send = true,
+
+			-- Terminal Window Configuration
 			terminal = {
 				---@module "snacks"
 				---@type snacks.win.Config|{}
@@ -29,6 +34,7 @@ return {
 					},
 				},
 			},
+
 			-- Diff Integration
 			diff_opts = {
 				auto_close_on_accept = true,
