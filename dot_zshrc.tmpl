@@ -360,9 +360,6 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# enable completion
-autoload -U compinit; compinit
-
 # zsh chroma plugin settings
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
 export ZSH_COLORIZE_TOOL="chroma"
@@ -380,9 +377,15 @@ export OPENAI_API_KEY={{ (bitwardenSecrets "4a026d12-1f0b-494a-ad19-b0d10145db63
 export GEMINI_API_KEY={{ (bitwardenSecrets "25418d7e-6d70-4fbf-bccc-b33f0009be0f").value }}
 export OPENROUTER_API_KEY={{ (bitwardenSecrets "126f1bb2-cb1e-468d-b528-b35d014ef6f7").value }}
 
+# claude
+export ENABLE_LSP_TOOL=1
+
 # dataforseo
 export DATAFORSEO_USERNAME={{ (bitwardenSecrets "9823835b-d892-4cbd-8fd2-b33f000a674a").value }}
 export DATAFORSEO_PASSWORD={{ (bitwardenSecrets "60ce60a1-80cd-4d23-830b-b33f000a8480").value }}
+
+# enable completion
+autoload -U compinit; compinit
 
 # fastfetch integration
 fastfetch
