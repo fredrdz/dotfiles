@@ -5,9 +5,6 @@
 return {
 	"AstroNvim/astrocommunity",
 
-	--ai
-	{ import = "astrocommunity.ai.opencode-nvim", enabled = true },
-
 	-- editing-support
 	{ import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
 	{ import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
