@@ -130,9 +130,9 @@ automatically-unhide-macos-hidden-apps = true
   f15 = 'exec-and-forget open -a /Applications/Ghostty.app/'
   f16 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
   f17 = 'exec-and-forget open -a /Applications/Slack.app/'
-  f18 = 'exec-and-forget open -a /Applications/ChatGPT.app/'
-  f19 = 'exec-and-forget open -a /Applications/Claude.app/'
-  f20 = 'exec-and-forget open -a /Applications/Obsidian.app/'
+  f18 = 'exec-and-forget open -a /Applications/Claude.app/'
+  f19 = 'exec-and-forget open -a Messages'
+  f20 = 'exec-and-forget open -a Finder'
 
 [mode.service.binding]
   esc = 'mode main'
