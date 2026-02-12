@@ -33,7 +33,7 @@ cursor-invert-fg-bg = true
 bold-is-bright = true
 
 # scrollback
-scrollback-limit = 8000000
+scrollback-limit = 50000
 
 # selection, clipboard, links
 copy-on-select = clipboard
