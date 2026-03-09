@@ -17,11 +17,11 @@ return {
 				---@field position? "bottom" | "right" | "left" | "top" | "float"
 				---@field border? "none"|"top"|"right"|"bottom"|"left"|"hpad"|"vpad"|"rounded"|"single"|"double"|"solid"|"shadow"|string[]|false
 				snacks_win_opts = {
-					position = "bottom", -- float having message rendering issues
+					position = "float", -- float having message rendering issues
 					border = "rounded",
 					backdrop = 85,
 					width = 0.95,
-					height = 0.40, -- 0.40 is good for bottom, 0.95 for float
+					height = 0.95, -- 0.40 is good for bottom, 0.95 for float
 					keys = {
 						claude_hide = {
 							toggle_key,
