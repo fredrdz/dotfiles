@@ -356,6 +356,11 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # (used for netlify completion; installed via NPM)
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
+# node
+# fixes sharp install issues by ignoring global libvips;
+# forces it to use the one bundled with sharp, which is newer and has more features than the one in repos
+export SHARP_IGNORE_GLOBAL_LIBVIPS=1
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

@@ -21,8 +21,8 @@ font-feature = liga,calt,ss01,ss02,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10
 # metrics (approximate wez line_height/cell_width/underline)
 adjust-cell-height = 30%
 adjust-cell-width = -10%
-adjust-underline-position = 100%
-adjust-underline-thickness = 200%
+adjust-underline-position = 15%
+adjust-underline-thickness = 125%
 
 # cursor
 cursor-style = block
