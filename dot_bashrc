@@ -27,3 +27,6 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/podman/bin:$PATH
+
+# claude plugin
+alias claude-mem='bun "$HOME/.claude/plugins/cache/thedotmack/claude-mem/10.5.5/scripts/worker-service.cjs"'

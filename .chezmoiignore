@@ -7,3 +7,7 @@ README.md
 chezmoi.key.age
 lazy-lock.json
 AGENTS.md
+.claude
+*.log
+.DS_Store
+MEMORY.md

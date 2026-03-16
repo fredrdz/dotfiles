@@ -448,6 +448,9 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # ffmpeg full (with all codecs)
 export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
+
+# claude plugins
+alias claude-mem='bun "$HOME/.claude/plugins/cache/thedotmack/claude-mem/10.5.5/scripts/worker-service.cjs"'
 {{- end -}}
 
 {{/*------------------- SteamOS ----------------------*/}}
