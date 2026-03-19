@@ -32,10 +32,14 @@ cursor-invert-fg-bg = true
 # colors/brightness
 bold-is-bright = true
 
+# scroll
+scrollbar = system
+scroll-to-bottom = keystroke,output
 # scrollback
 scrollback-limit = 50000
 
 # selection, clipboard, links
+clipboard-trim-trailing-spaces = true
 copy-on-select = clipboard
 link-url = true
 
@@ -48,7 +52,12 @@ background-blur = 25
 confirm-close-surface = false
 auto-update = check
 term = xterm-ghostty
+
+# notifications
 desktop-notifications = true
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify
+notify-on-command-finish-after = 10s
 
 # unfocused split look
 unfocused-split-opacity = 0.8
