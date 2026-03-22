@@ -57,11 +57,37 @@ return {
 	{ import = "astrocommunity.pack.chezmoi", enabled = true },
 	{ import = "astrocommunity.pack.docker", enabled = true },
 	{ import = "astrocommunity.pack.go", enabled = true },
+	{
+		-- Patch nvim-dap-go to fix deprecation warning:
+		-- "vim.lsp.buf_get_clients() is deprecated"
+		-- Upstream (leoluz/nvim-dap-go) still uses the deprecated API in
+		-- dap-go-ts.lua:165. Neovim 0.10+ replaced it with vim.lsp.get_clients().
+		-- This override replaces get_root_dir() with the modern equivalent.
+		-- TODO: Remove this once upstream merges a fix.
+		"leoluz/nvim-dap-go",
+		config = function(_, opts)
+			require("dap-go").setup(opts)
+			local dap_go_ts = require("dap-go-ts")
+			dap_go_ts.get_root_dir = function()
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				local client = clients[1]
+				if client == nil then
+					error({ error_msg = "lsp client not attached" })
+				end
+				if not client.config.root_dir then
+					error({ error_msg = "lsp root_dir not defined" })
+				end
+				return client.config.root_dir
+			end
+		end,
+	},
 	{ import = "astrocommunity.pack.golangci-lint", enabled = true },
 	{ import = "astrocommunity.pack.html-css", enabled = true },
 	{ import = "astrocommunity.pack.lua", enabled = true },
 	{ import = "astrocommunity.pack.markdown", enabled = true },
-	{ import = "astrocommunity.pack.python-ruff", enabled = true },
+	{ import = "astrocommunity.pack.python.base", enabled = true },
+	{ import = "astrocommunity.pack.python.basedpyright", enabled = true },
+	{ import = "astrocommunity.pack.python.ruff", enabled = true },
 	{ import = "astrocommunity.pack.svelte", enabled = true },
 	{ import = "astrocommunity.pack.tailwindcss", enabled = true },
 	{ import = "astrocommunity.pack.toml", enabled = true },
@@ -112,9 +138,6 @@ return {
 			}
 		end,
 	},
-
-	-- project
-	{ import = "astrocommunity.project.project-nvim", enabled = true },
 
 	-- scrolling
 	{ import = "astrocommunity.scrolling.mini-animate", enabled = true },
