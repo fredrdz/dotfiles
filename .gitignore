@@ -1,6 +1,3 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -20,13 +17,21 @@
 .firebaserc
 
 # Dependency directories
+_vendor/
 vendor/
 node_modules/
+package/
 
 # Build directories
 dist/
+build/
 _site/
 .builds/
+
+# Clone-website skill intermediate/scratch files
+clone-workspace/
+
+# Application data
 .app_data/
 pb_data/
 
@@ -61,27 +66,59 @@ go.work.sum
 # Secrets
 *.secrets
 
+# vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.vite/
+.vite/deps_temp_*/
+.eslintcache
+
+# Generated Files
+.astro/
+.svelte-kit/
+*.tsbuildinfo
+bun*
+*_templ.go
+*_templ.txt
+*.min.css
+
+# tests
+# vitest
+coverage/
+.vitest-reports/
+.vitest-attachments/
+.vite-node/
+# playwright
+playwright-report/
+test-results/
+.playwright/
+blob-report/
+
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Generated Files
-.astro/
-*.tsbuildinfo
-bun*
-package-lock.json
-*_templ.go
-*_templ.txt
-*.min.css
-
 # OS files
 .DS_Store
 .DS_Store?
+._*
+.Spotlight-V100
+Thumbs.db
+.Trashes
+Icon
+
+# AI
+.superpowers
+.mcp.json
+.playwright-mcp
+.firecrawl
+MEMORY.md
 
 # Misc
-*.log
+!seo_data.db
 tmp/
-sample/
-MEMORY.md
+uploads/
+output/

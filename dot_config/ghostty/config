@@ -36,7 +36,7 @@ bold-is-bright = true
 scrollbar = system
 scroll-to-bottom = keystroke,output
 # scrollback
-scrollback-limit = 50000
+scrollback-limit = 10000
 
 # selection, clipboard, links
 clipboard-trim-trailing-spaces = true
