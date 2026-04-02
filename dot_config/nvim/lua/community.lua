@@ -85,6 +85,7 @@ return {
 	{ import = "astrocommunity.pack.html-css", enabled = true },
 	{ import = "astrocommunity.pack.lua", enabled = true },
 	{ import = "astrocommunity.pack.markdown", enabled = true },
+	{ import = "astrocommunity.pack.mdx", enabled = true },
 	{ import = "astrocommunity.pack.python.base", enabled = true },
 	{ import = "astrocommunity.pack.python.basedpyright", enabled = true },
 	{ import = "astrocommunity.pack.python.ruff", enabled = true },
