@@ -61,9 +61,6 @@ return {
 						DiagnosticSignInfo = { bg = theme.ui.bg, fg = theme.ui.fg },
 						DiagnosticInfo = { bg = theme.ui.bg, fg = theme.ui.fg },
 
-						-- lsp
-						LspInfoBorder = { bg = theme.ui.bg, fg = theme.ui.fg },
-
 						-- Save an hlgroup with dark background and dimmed foreground
 						-- so that you can use it where your still want darker windows.
 						-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark

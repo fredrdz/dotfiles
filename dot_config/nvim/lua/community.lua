@@ -53,7 +53,7 @@ return {
 	-- packs
 	{ import = "astrocommunity.pack.astro", enabled = true },
 	{ import = "astrocommunity.pack.bash", enabled = true },
-	{ import = "astrocommunity.pack.cs", enabled = true },
+	{ import = "astrocommunity.pack.cs", enabled = false }, -- disabled: incompatible with v6 (old lspconfig handler)
 	{ import = "astrocommunity.pack.chezmoi", enabled = true },
 	{ import = "astrocommunity.pack.docker", enabled = true },
 	{ import = "astrocommunity.pack.go", enabled = true },
@@ -100,9 +100,32 @@ return {
 
 	-- indent
 	{ import = "astrocommunity.indent.indent-tools-nvim", enabled = true },
+	{
+		-- Patch indent-tools: new textobjects API renamed make_repeatable_move_pair
+		-- to make_repeatable_move (single fn with opts.forward). Shim the old API.
+		-- TODO: Remove once upstream fixes arsham/indent-tools.nvim
+		"arsham/indent-tools.nvim",
+		config = function(_, opts)
+			local ok, repeatable_move = pcall(require, "nvim-treesitter-textobjects.repeatable_move")
+			if ok and not repeatable_move.make_repeatable_move_pair then
+				repeatable_move.make_repeatable_move_pair = function(forward_fn, backward_fn)
+					local wrapped = repeatable_move.make_repeatable_move(function(move_opts)
+						if move_opts.forward then
+							forward_fn()
+						else
+							backward_fn()
+						end
+					end)
+					return function() wrapped({ forward = true }) end, function() wrapped({ forward = false }) end
+				end
+			end
+			require("indent-tools").setup(opts)
+		end,
+	},
 
 	-- motion
 	{ import = "astrocommunity.motion.leap-nvim", enabled = true },
+	{ "ggandor/leap.nvim" }, -- override astrocommunity's Codeberg URL with GitHub mirror
 	{ import = "astrocommunity.motion.mini-move", enabled = true },
 	{ import = "astrocommunity.motion.mini-surround", enabled = true },
 	{

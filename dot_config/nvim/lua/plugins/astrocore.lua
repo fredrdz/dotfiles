@@ -44,7 +44,7 @@ return {
 				-- treesitter folding
 				conceallevel = 2, -- enable conceal
 				foldmethod = "expr",
-				foldexpr = "nvim_treesitter#foldexpr()",
+				foldexpr = "v:lua.vim.treesitter.foldexpr()",
 				-- appearance
 				syntax = "off",
 				scrolloff = 10, -- Lines of context
