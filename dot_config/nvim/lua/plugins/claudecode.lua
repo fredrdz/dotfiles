@@ -33,8 +33,8 @@ local function toggle_claude_tmux()
 			vim.fn.system(string.format("tmux list-panes -s -F '#{pane_id}' | grep -x '%s'", claude_hidden_pane_id))
 		)
 		if exists ~= "" then
-			-- Bring it back: join as a top pane at 30%
-			vim.fn.system(string.format("tmux join-pane -vb -l 30%% -s %s", claude_hidden_pane_id))
+			-- Bring it back: join as a top pane at 50%
+			vim.fn.system(string.format("tmux join-pane -vb -l 50%% -s %s", claude_hidden_pane_id))
 			claude_hidden_pane_id = nil
 			return
 		else
@@ -72,11 +72,11 @@ return {
 			terminal = {
 				provider = "external",
 				provider_opts = {
-					-- Horizontal split, Claude on top, 30% height
+					-- Horizontal split, Claude on top, 50% height
 					-- Wraps cmd to set pane title for reliable toggle detection
 					external_terminal_cmd = function(cmd, _cwd)
 						local wrapped = string.format("tmux select-pane -T claude-code; exec %s", cmd)
-						return { "tmux", "split-window", "-vb", "-l", "30%", "sh", "-c", wrapped }
+						return { "tmux", "split-window", "-vb", "-l", "50%", "sh", "-c", wrapped }
 					end,
 				},
 			},
