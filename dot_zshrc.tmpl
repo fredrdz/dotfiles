@@ -333,6 +333,22 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # vim-mode
 bindkey -v
 
+# television shell integration
+# Must come AFTER `bindkey -v` so tv binds ^R and ^T into the active `viins`
+# keymap (tv init uses unscoped `bindkey`, unlike fzf which binds all keymaps
+# explicitly). This overwrites fzf on ^R/^T only — fzf keeps Alt-C and **<TAB>,
+# and the fzf binary stays available for neovim plugins.
+#
+# `fzf_default_completion` is read by tv's _tv_smart_autocomplete widget: when
+# the prompt is empty, tv falls through to this widget instead of plain
+# expand-or-complete. Setting it to fzf-file-widget gives us hybrid behavior:
+#   empty prompt + ^T  → fzf file picker
+#   `vim ` + ^T        → tv smart autocomplete (channel-aware)
+if command -v tv >/dev/null 2>&1; then
+  fzf_default_completion=fzf-file-widget
+  eval "$(tv init zsh)"
+fi
+
 # https://github.com/huboles/zshmux
 # Auto-lists and connects to tmux sessions.
 [[ -d "$HOME/git/zshmux" ]] && source "$HOME/git/zshmux/zshmux.zsh"
