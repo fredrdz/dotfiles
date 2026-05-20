@@ -395,6 +395,9 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 # disable LS_COLORS to use eza themes
 export LS_COLORS=""
 
+# rtk (token compression CLI proxy) - opt out of anonymized usage telemetry
+export RTK_TELEMETRY_DISABLED=1
+
 # ai
 export ANTHROPIC_API_KEY={{ (bitwardenSecrets "8117fa18-bca8-42ce-bc53-b264004fad35").value }}
 export OPENAI_API_KEY={{ (bitwardenSecrets "4a026d12-1f0b-494a-ad19-b0d10145db63").value }}
@@ -470,8 +473,6 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # ffmpeg full (with all codecs)
 export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
 
-# claude plugins
-alias claude-mem='bun "$HOME/.claude/plugins/cache/thedotmack/claude-mem/10.5.5/scripts/worker-service.cjs"'
 {{- end -}}
 
 {{/*------------------- SteamOS ----------------------*/}}
