@@ -326,8 +326,8 @@ set -g status-interval 1 # update status line every second
 # allow OSC sequences to pass through (for desktop notifications, etc.)
 set -g allow-passthrough all
 
-# increase history size
-set -g history-limit 10000
+# history size (capped low to bound per-pane memory; oldest lines auto-evict, newest kept)
+set -g history-limit 2500
 
 # start with mouse mode enabled
 set -g mouse on
