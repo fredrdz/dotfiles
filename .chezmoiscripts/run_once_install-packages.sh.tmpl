@@ -191,10 +191,14 @@ if [ "$input" == "yes" ]; then
 	# brew packages for cross-compilation
 	brew install mingw-w64, zig, filosottile/musl-cross/musl-cross
 
-	# brew packages for everything else
-	brew install zsh, sshuttle, tmux, xclip, xsel, htop, wget, btop, autossh, tree, ffmpeg-full, iftop, gotop, speedtest-cli, caddy, zoxide, eza, starship, bat, bottom, coreutils, findutils, gnu-tar, gnu-sed, gawk, gnu-indent, gnu-getopt, grep, winetricks, fastfetch, superfile, imagemagick, yt-dlp, gotify, mac-cleanup-go, gromgit/brewtils/taproom, csvlens, mole
-
+	# brew taps
 	brew tap homebrew/services
+	brew trust twilio/brew codecrafters-io/tap felixkratz/formulae filosottile/musl-cross nikitabobko/tap
+	brew trust --formula twilio/brew/twilio
+	brew tap twilio/brew
+
+	# brew packages for everything else
+	brew install zsh, sshuttle, tmux, xclip, xsel, htop, wget, btop, autossh, tree, ffmpeg-full, iftop, gotop, speedtest-cli, caddy, zoxide, eza, starship, bat, bottom, coreutils, findutils, gnu-tar, gnu-sed, gawk, gnu-indent, gnu-getopt, grep, winetricks, fastfetch, superfile, imagemagick, yt-dlp, gotify, mac-cleanup-go, gromgit/brewtils/taproom, csvlens, mole, twilio
 
 	# golang
 	packages-golang
