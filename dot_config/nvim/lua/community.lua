@@ -117,7 +117,11 @@ return {
 							backward_fn()
 						end
 					end)
-					return function() wrapped({ forward = true }) end, function() wrapped({ forward = false }) end
+					return function()
+						wrapped({ forward = true })
+					end, function()
+						wrapped({ forward = false })
+					end
 				end
 			end
 			require("indent-tools").setup(opts)
@@ -126,7 +130,6 @@ return {
 
 	-- motion
 	{ import = "astrocommunity.motion.leap-nvim", enabled = true },
-	{ "ggandor/leap.nvim" }, -- override astrocommunity's Codeberg URL with GitHub mirror
 	{ import = "astrocommunity.motion.mini-move", enabled = true },
 	{ import = "astrocommunity.motion.mini-surround", enabled = true },
 	{
