@@ -64,8 +64,7 @@ return {
 		"coder/claudecode.nvim",
 		dependencies = { "folke/snacks.nvim" },
 		opts = {
-			-- Wrapped: routes provider traffic through the local Caveman proxy
-			terminal_cmd = "caveman claude",
+			terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
 			-- Send/Focus Behavior
 			focus_after_send = true,
 
