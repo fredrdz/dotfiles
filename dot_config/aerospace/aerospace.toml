@@ -1,5 +1,13 @@
 # Reference: https://github.com/i3/i3/blob/next/etc/config
 
+# Config version for compatibility and deprecations
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+config-version = 2
+
+# Workspaces that stay alive even when empty.
+# config-version = 1 inferred this from 'workspace N' bindings; v2 defaults to [].
+persistent-workspaces = ['1', '2', '3', '4', '5']
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 # i3 doesn't have "normalizations" feature that why we disable them here.
 # But the feature is very helpful.
@@ -217,8 +225,12 @@ automatically-unhide-macos-hidden-apps = true
   run       = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
-  if.app-id = 'com.valvesoftware.dota2'
-  run       = ['layout floating', 'move-node-to-workspace 2']
+  if  = 'test %{app-bundle-id} = com.valvesoftware.dota2'
+  run = ['layout floating', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+  if  = 'test %{app-bundle-id} = com.coffeestain.valheim-steam'
+  run = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
   if.app-id = 'com.brave.Browser'
