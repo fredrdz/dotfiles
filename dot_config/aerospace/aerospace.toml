@@ -133,7 +133,7 @@ automatically-unhide-macos-hidden-apps = true
   alt-shift-ctrl-t = 'workspace 4'
 
   # See: https://nikitabobko.github.io/AeroSpace/goodness#open-a-new-window-with-applescript
-  f13 = 'exec-and-forget open -a /Applications/Signal.app/'
+  f13 = 'exec-and-forget open -b com.coffeestain.valheim-steam'
   f14 = 'exec-and-forget open -a /Applications/Discord.app/'
   f15 = 'exec-and-forget open -a /Applications/Ghostty.app/'
   f16 = 'exec-and-forget open -a /Applications/Brave\ Browser.app/'
@@ -184,6 +184,16 @@ automatically-unhide-macos-hidden-apps = true
   if.app-id = 'com.valvesoftware.steam'
   run       = ['layout floating', 'move-node-to-workspace 1']
 
+# Steam.app is only a bootstrapper; its UI windows belong to the CEF helper
+[[on-window-detected]]
+  if.app-id = 'com.valvesoftware.steam.helper'
+  run       = ['layout floating', 'move-node-to-workspace 1']
+
+# Wine/CrossOver apps have no bundle id; tiling resizes the fullscreen game window
+[[on-window-detected]]
+  if.app-name-regex-substring = '^(DungeonSiege\.exe|wine_real)$'
+  run                         = ['layout floating']
+
 [[on-window-detected]]
   if.app-id = 'com.google.Chrome'
   run       = ['layout floating', 'move-node-to-workspace 1']
@@ -226,11 +236,11 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
   if  = 'test %{app-bundle-id} = com.valvesoftware.dota2'
-  run = ['layout floating', 'move-node-to-workspace 2']
+  run = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
   if  = 'test %{app-bundle-id} = com.coffeestain.valheim-steam'
-  run = ['layout floating', 'move-node-to-workspace 2']
+  run = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
   if.app-id = 'com.brave.Browser'
