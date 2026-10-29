@@ -285,6 +285,13 @@ return {
 			vim.g.matchup_matchparen_deferred_hide_delay = 700
 			vim.g.matchup_surround_enabled = 1
 			vim.g.matchup_transmute_enabled = 1
+			-- Terminal output shifts under matchup's byte-anchored extmarks, leaving stale highlights on random letters
+			vim.api.nvim_create_autocmd("TermOpen", {
+				callback = function(args)
+					vim.b[args.buf].matchup_matchparen_enabled = 0
+					vim.b[args.buf].matchup_matchparen_fallback = 0
+				end,
+			})
 		end,
 	},
 }
