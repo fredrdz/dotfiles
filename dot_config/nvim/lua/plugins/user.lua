@@ -260,6 +260,16 @@ return {
 		end,
 	},
 
+	-- Forward desktop notifications from :terminal children (Claude) to Ghostty through tmux
+	{
+		"MoaidHathot/osc-relay.nvim",
+		event = "VeryLazy",
+		opts = {
+			allow = { "777", "9", "9;4" }, -- notify (777, 9) and progress (9;4); not 52, Claude copies via pbcopy
+			scope = "all", -- notifications fire while Claude's buffer is hidden or unfocused
+		},
+	},
+
 	{ "fredrdz/vim-hugo", ft = "gohtml" },
 	{ "tjdevries/templ.nvim", ft = "templ" },
 
