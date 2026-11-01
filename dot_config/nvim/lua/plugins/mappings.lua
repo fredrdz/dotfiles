@@ -1,3 +1,26 @@
+-- Swap floats from terminal mode: hide the current float, then press the normal-mode key
+-- that opens the target (F2 Claude, F3 Neo-tree, F4 toggleterm). Each float's own key is a
+-- buffer-local map inside it (close), so these globals only fire from the other floats.
+-- `open` is a key to press, or a function to run instead.
+local function swap_float(open)
+	return function()
+		vim.cmd.stopinsert()
+		local ok, claude = pcall(require, "claudecode.terminal")
+		if ok and claude.get_active_terminal_bufnr() == vim.api.nvim_get_current_buf() then
+			claude.simple_toggle() -- plugin-owned hide keeps Claude's state in sync
+		elseif vim.api.nvim_win_get_config(0).relative ~= "" then
+			vim.api.nvim_win_hide(0)
+		end
+		vim.schedule(function()
+			if type(open) == "function" then
+				open()
+			else
+				vim.api.nvim_feedkeys(vim.keycode(open), "m", false)
+			end
+		end)
+	end
+end
+
 return {
 	{
 		"AstroNvim/astrocore",
@@ -106,6 +129,17 @@ return {
 					-- to normal mode
 					["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
 					["<S-esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Terminal quit" },
+
+					-- swap between Claude / Neo-tree / toggleterm floats
+					["<F2>"] = { swap_float("<F2>"), desc = "Swap to Claude Code" },
+					-- focus, not toggle: a Neo-tree float left open behind a terminal would toggle closed
+					["<F3>"] = {
+						swap_float(function()
+							vim.cmd("Neotree focus")
+						end),
+						desc = "Swap to File Explorer",
+					},
+					["<F4>"] = { swap_float("<F4>"), desc = "Swap to Terminal" },
 
 					-- pane navigation movements
 					["<M-Left>"] = { "<cmd>SmartCursorMoveLeft<cr>", desc = "Navigate pane left" },

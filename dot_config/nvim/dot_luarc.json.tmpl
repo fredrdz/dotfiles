@@ -1,0 +1,21 @@
+{{- $runtime := "/usr/share/nvim/runtime" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $runtime = "/opt/homebrew/share/nvim/runtime" -}}
+{{- end -}}
+{{- $lazy := joinPath .chezmoi.homeDir ".local/share/nvim/lazy" -}}
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.version": "LuaJIT",
+  "runtime.path": ["lua/?.lua", "lua/?/init.lua", "dot_config/nvim/lua/?.lua", "dot_config/nvim/lua/?/init.lua"],
+  "runtime.pathStrict": true,
+  "diagnostics.globals": ["vim"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "{{ $runtime }}/lua",
+    "{{ $lazy }}/lazy.nvim/lua",
+    "{{ $lazy }}/astrocore/lua",
+    "{{ $lazy }}/astrolsp/lua",
+    "{{ $lazy }}/astroui/lua",
+    "{{ $lazy }}/snacks.nvim/lua"
+  ]
+}

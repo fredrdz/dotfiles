@@ -13,6 +13,8 @@ return {
 				},
 
 				-- add new colors that can be used by heirline
+				-- astroui types hl as string-only, but get_hlgroup returns string|integer|nil
+				---@diagnostic disable: assign-type-mismatch
 				colors = function(hl)
 					local get_hlgroup = require("astroui").get_hlgroup
 					-- use helper function to get highlight group properties
@@ -30,6 +32,7 @@ return {
 					hl.tabline_bg = get_hlgroup("KanaTabline").bg
 					return hl
 				end,
+				---@diagnostic enable: assign-type-mismatch
 				attributes = {
 					mode = { bold = true },
 					buffer_active = { bold = true, italic = true, bg = "#363646" },

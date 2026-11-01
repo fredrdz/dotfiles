@@ -62,8 +62,6 @@ return {
 					}, "\n"),
 				},
 			},
-			---@class snacks.indent.Config
-			---@field enabled? boolean
 			indent = {
 				indent = {
 					enabled = true, -- enable indent guides
@@ -75,13 +73,11 @@ return {
 
 				-- animate scopes. Enabled by default for Neovim >= 0.10
 				-- Works on older versions but has to trigger redraws during animation.
-				---@class snacks.indent.animate
-				---@field enabled? boolean
-				--- * out: animate outwards from the cursor
-				--- * up: animate upwards from the cursor
-				--- * down: animate downwards from the cursor
-				--- * up_down: animate up or down based on the cursor position
-				---@field style? "out"|"up_down"|"down"|"up"
+				-- style:
+				-- * out: animate outwards from the cursor
+				-- * up: animate upwards from the cursor
+				-- * down: animate downwards from the cursor
+				-- * up_down: animate up or down based on the cursor position
 				animate = {
 					enabled = true,
 					style = "down",
@@ -142,6 +138,12 @@ return {
 			},
 			window = {
 				position = "float",
+				popup = {
+					-- Height matches the Claude Code float (92% minus border); width stays at neo-tree's default
+					size = function()
+						return { height = math.floor(vim.o.lines * 0.92) - 2, width = "50%" }
+					end,
+				},
 			},
 			highlight_tab = "NeoTreeTabInactive", -- string
 			highlight_tab_active = "NeoTreeTabActive", -- string
@@ -224,6 +226,17 @@ return {
 			open_mapping = [[<F4>]],
 			shading_factor = 2,
 			direction = "float",
+			-- Match the Claude Code float: 92% of the editor, recomputed on each open.
+			-- Snacks counts the border inside the 92%; toggleterm sizes content only, so subtract it (2).
+			float_opts = {
+				border = "rounded",
+				width = function()
+					return math.floor(vim.o.columns * 0.92) - 2
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.92) - 2
+				end,
+			},
 		},
 	},
 
