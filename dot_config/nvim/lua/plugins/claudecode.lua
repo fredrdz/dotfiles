@@ -79,7 +79,12 @@ return {
 				snacks_win_opts = {
 					position = "float",
 					width = 0.92,
-					height = 0.92,
+					-- 92% minus border, but at least 30 rows: Claude hides its running-agents row
+					-- below 30 terminal rows. Capped at full height (lines minus border).
+					height = function()
+						local rows = math.floor(vim.o.lines * 0.92) - 2
+						return math.min(math.max(rows, 30), vim.o.lines - 2)
+					end,
 					border = "rounded",
 					keys = {
 						claude_hide = { toggle_key, toggle_claude_float, mode = "t", desc = "Hide Claude" },
